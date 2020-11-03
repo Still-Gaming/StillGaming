@@ -2,33 +2,34 @@ package com.kh.jsp.qna.model.vo;
 
 public class QnaCategory {
 
-	private int qna_code;
-	private String qna_name;
+	private int qnaCode;
+	private String qnaName;
 	public QnaCategory() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public QnaCategory(int qna_code, String qna_name) {
+	public QnaCategory(int qnaCode, String qnaName) {
 		super();
-		this.qna_code = qna_code;
-		this.qna_name = qna_name;
+		this.qnaCode = qnaCode;
+		this.qnaName = qnaName;
 	}
 	@Override
 	public String toString() {
-		return "QnaCategory [qna_code=" + qna_code + ", qna_name=" + qna_name + "]";
+		return "QnaCategory [qnaCode=" + qnaCode + ", qnaName=" + qnaName + "]";
 	}
-	public int getQna_code() {
-		return qna_code;
+	public int getQnaCode() {
+		return qnaCode;
 	}
-	public void setQna_code(int qna_code) {
-		this.qna_code = qna_code;
+	public void setQnaCode(int qnaCode) {
+		this.qnaCode = qnaCode;
 	}
-	public String getQna_name() {
-		return qna_name;
+	public String getQnaName() {
+		return qnaName;
 	}
-	public void setQna_name(String qna_name) {
-		this.qna_name = qna_name;
+	public void setQnaName(String qnaName) {
+		this.qnaName = qnaName;
 	}
+
 	
 	
 }
