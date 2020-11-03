@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -15,14 +18,14 @@
     rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/plyr.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/plyr.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
 </head>
 
 <body>
@@ -37,7 +40,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">
-                        <a href="./index.html">
+                        <a href="./index.jsp">
                             <img src="img/logo.png" alt="">
                         </a>
                     </div>
@@ -46,18 +49,18 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li><a href="./index.html">Homepage</a></li>
-                                <li><a href="./categories.html">Categories <span class="arrow_carrot-down"></span></a>
+                                <li><a href="./index.jsp">Homepage</a></li>
+                                <li><a href="./categories.jsp">Categories <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
-                                        <li><a href="./categories.html">Categories</a></li>
-                                        <li><a href="./anime-details.html">Anime Details</a></li>
-                                        <li><a href="./anime-watching.html">Anime Watching</a></li>
-                                        <li><a href="./blog-details.html">Blog Details</a></li>
-                                        <li><a href="./signup.html">Sign Up</a></li>
-                                        <li><a href="./login.html">Login</a></li>
+                                        <li><a href="./categories.jsp">Categories</a></li>
+                                        <li><a href="./anime-details.jsp">Anime Details</a></li>
+                                        <li><a href="./anime-watching.jsp">Anime Watching</a></li>
+                                        <li><a href="./blog-details.jsp">Blog Details</a></li>
+                                        <li><a href="./signup.jsp">Sign Up</a></li>
+                                        <li><a href="./login.jsp">Login</a></li>
                                     </ul>
                                 </li>
-                                <li class="active"><a href="./blog.html">Our Blog</a></li>
+                                <li class="active"><a href="./blog.jsp">Our Blog</a></li>
                                 <li><a href="#">Contacts</a></li>
                             </ul>
                         </nav>
@@ -66,7 +69,7 @@
                 <div class="col-lg-2">
                     <div class="header__right">
                         <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                        <a href="./login.html"><span class="icon_profile"></span></a>
+                        <a href="./login.jsp"><span class="icon_profile"></span></a>
                     </div>
                 </div>
             </div>
@@ -99,10 +102,10 @@
                 <div class="col-lg-8">
                     <div class="blog__details__content">
                         <div class="blog__details__text">
-                            <p>As a result the last couple of eps haven’t been super exciting for me, because they’ve
-                                been more like settling into a familiar and comfortable routine.  We’re seeing character
-                                growth here but it’s subtle (apart from Shouyou, arguably).  I mean, Tobio being an
-                                asshole is nothing new – it’s kind of the foundation of his entire character arc. 
+                            <p>As a result the last couple of eps havenât been super exciting for me, because theyâve
+                                been more like settling into a familiar and comfortable routine.Â  Weâre seeing character
+                                growth here but itâs subtle (apart from Shouyou, arguably).Â  I mean, Tobio being an
+                                asshole is nothing new â itâs kind of the foundation of his entire character arc.Â 
                                 Confronting whether his being an asshole is a problem for the Crows this directly is a
                                 bit of an evolution, and probably an overdue one at that, but the overall dynamic with
                             Kageyama is basically unchanged.</p>
@@ -113,8 +116,8 @@
                             <p>In Japan the idea of a first-year speaking to a senior the way Kageyama did to Asahi is a
                                 lot more shocking than it would be in the West, but Tobio calling out teammates in
                                 genuinely rude fashion in the middle of a match is what got him isolated in the first
-                                place.  It’s better for the Crows to sort this out in practice matches than the real
-                                deal, but this is really on Tobio – he has to figure out how to co-exist with others in
+                                place.Â  Itâs better for the Crows to sort this out in practice matches than the real
+                                deal, but this is really on Tobio â he has to figure out how to co-exist with others in
                             a team environment.</p>
                         </div>
                         <div class="blog__details__item__text">
@@ -123,8 +126,8 @@
                             <p>In Japan the idea of a first-year speaking to a senior the way Kageyama did to Asahi is a
                                 lot more shocking than it would be in the West, but Tobio calling out teammates in
                                 genuinely rude fashion in the middle of a match is what got him isolated in the first
-                                place.  It’s better for the Crows to sort this out in practice matches than the real
-                                deal, but this is really on Tobio – he has to figure out how to co-exist with others in
+                                place.Â  Itâs better for the Crows to sort this out in practice matches than the real
+                                deal, but this is really on Tobio â he has to figure out how to co-exist with others in
                             a team environment.</p>
                         </div>
                         <div class="blog__details__item__text">
@@ -133,8 +136,8 @@
                             <p>In Japan the idea of a first-year speaking to a senior the way Kageyama did to Asahi is a
                                 lot more shocking than it would be in the West, but Tobio calling out teammates in
                                 genuinely rude fashion in the middle of a match is what got him isolated in the first
-                                place.  It’s better for the Crows to sort this out in practice matches than the real
-                                deal, but this is really on Tobio – he has to figure out how to co-exist with others in
+                                place.Â  Itâs better for the Crows to sort this out in practice matches than the real
+                                deal, but this is really on Tobio â he has to figure out how to co-exist with others in
                             a team environment.</p>
                         </div>
                         <div class="blog__details__tags">
@@ -152,7 +155,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="blog__details__btns__item next__btn">
-                                        <h5><a href="#">Mugen no Juunin: Immortal – 21 <span
+                                        <h5><a href="#">Mugen no Juunin: Immortal â 21 <span
                                             class="arrow_right"></span></a></h5>
                                         </div>
                                     </div>
@@ -233,15 +236,15 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="footer__logo">
-                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                            <a href="./index.jsp"><img src="img/logo.png" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="footer__nav">
                             <ul>
-                                <li class="active"><a href="./index.html">Homepage</a></li>
-                                <li><a href="./categories.html">Categories</a></li>
-                                <li><a href="./blog.html">Our Blog</a></li>
+                                <li class="active"><a href="./index.jsp">Homepage</a></li>
+                                <li><a href="./categories.jsp">Categories</a></li>
+                                <li><a href="./blog.jsp">Our Blog</a></li>
                                 <li><a href="#">Contacts</a></li>
                             </ul>
                         </div>

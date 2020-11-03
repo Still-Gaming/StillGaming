@@ -922,8 +922,8 @@ typeof navigator === "object" && (function (global, factory) {
     // https://webkit.org/blog/6784/new-video-policies-for-ios/
     playsinline: 'playsInline' in document.createElement('video'),
     // Check for mime type support against a player instance
-    // Credits: http://diveintohtml5.info/everything.html
-    // Related: http://www.leanbackplayer.com/test/h5mt.html
+    // Credits: http://diveintohtml5.info/everything.jsp
+    // Related: http://www.leanbackplayer.com/test/h5mt.jsp
     mime: function mime(input) {
       if (is$1.empty(input)) {
         return false;
@@ -2873,7 +2873,7 @@ typeof navigator === "object" && (function (global, factory) {
             volume.appendChild(createButton.call(_this10, 'mute'));
           } // Volume range control
           // Ignored on iOS as it's handled globally
-          // https://developer.apple.com/library/safari/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/Device-SpecificConsiderations/Device-SpecificConsiderations.html
+          // https://developer.apple.com/library/safari/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/Device-SpecificConsiderations/Device-SpecificConsiderations.jsp
 
 
           if (control === 'volume' && !browser.isIos) {
@@ -7920,7 +7920,7 @@ typeof navigator === "object" && (function (global, factory) {
         var _sources = _slicedToArray(sources, 1),
             _sources$ = _sources[0],
             _sources$$provider = _sources$.provider,
-            provider = _sources$$provider === void 0 ? providers.html5 : _sources$$provider,
+            provider = _sources$$provider === void 0 ? providers.jsp5 : _sources$$provider,
             src = _sources$.src;
 
         var tagName = provider === 'html5' ? type : 'div';
@@ -8207,7 +8207,7 @@ typeof navigator === "object" && (function (global, factory) {
         case 'video':
         case 'audio':
           this.type = type;
-          this.provider = providers.html5; // Get config from attributes
+          this.provider = providers.jsp5; // Get config from attributes
 
           if (this.media.hasAttribute('crossorigin')) {
             this.config.crossorigin = true;
@@ -8656,7 +8656,7 @@ typeof navigator === "object" && (function (global, factory) {
     }, {
       key: "isHTML5",
       get: function get() {
-        return this.provider === providers.html5;
+        return this.provider === providers.jsp5;
       }
     }, {
       key: "isEmbed",
