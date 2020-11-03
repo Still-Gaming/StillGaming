@@ -49,7 +49,7 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li class="active"><a href="./index.jsp">상점</a></li>
+                                <li class="active"><a href="./index.jsp">홈페이지</a></li>
                                 <li><a href="./categories.jsp">커뮤니티<span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
                                         <li><a href="./categories.jsp">Categories</a></li>
@@ -61,6 +61,7 @@
                                     </ul>
                                 </li>
                                 <li><a href="./blog.jsp">Our Blog</a></li>
+                                <li><a href="../about/shop.jsp">상점</a></li>
                                 <li><a href="#">Contacts</a></li>
                             </ul>
                         </nav>
