@@ -10,16 +10,16 @@ public class Member {
 	private String gender;              // 성별
 	private String email;               // 이메일
 	private String phone;               // 번호
-	private Date   joinDate;            // 가입일
+	private Date joinDate;            // 가입일
 	private String status;              // 탈퇴여부
-	private String reportNum;           // 신고누적회수
+	private int reportNum;           // 신고누적회수
 	
 	
 	public Member() { }
 
 
 	public Member(String memberId, String memberName, String memberPwd, String memberSsn, String gender, String email,
-			String phone, Date joinDate, String status, String reportNum) {
+			String phone, Date joinDate, String status, int reportNum) {
 		super();
 		this.memberId = memberId;
 		this.memberName = memberName;
@@ -38,6 +38,19 @@ public class Member {
 		super();
 		this.memberId = memberId;
 		this.memberPwd = memberPwd;
+	}
+
+
+	public Member(String memberId, String memberName, String memberPwd, String memberSsn, String gender, String email,
+			String phone) {
+		super();
+		this.memberId = memberId;
+		this.memberName = memberName;
+		this.memberPwd = memberPwd;
+		this.memberSsn = memberSsn;
+		this.gender = gender;
+		this.email = email;
+		this.phone = phone;
 	}
 
 
@@ -139,14 +152,15 @@ public class Member {
 	}
 
 
-	public String getReportNum() {
+	public int getReportNum() {
 		return reportNum;
 	}
 
 
-	public void setReportNum(String reportNum) {
+	public void setReportNum(int reportNum) {
 		this.reportNum = reportNum;
 	}
+
 
 
 	
