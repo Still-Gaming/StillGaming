@@ -68,7 +68,7 @@ public class BoardInsert extends HttpServlet {
 			request.setAttribute("error-msg", "게시글 작성 실패");
 			
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-		} 
+		}
 	}
 
 	/**
@@ -77,5 +77,4 @@ public class BoardInsert extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }
