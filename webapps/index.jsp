@@ -61,6 +61,7 @@
                                 </li>
                                 <li><a href="./blog.jsp">상점</a></li>
                                 <li><a href="mypage">마이페이지</a></li>
+                                <li><a href="qna">고객센터</a></li>
                               
                             </ul>
                         </nav>
