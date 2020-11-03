@@ -9,7 +9,7 @@ public class JDBCTemplate {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
-			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:xe", "STILL", "1234");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "STILL", "1234");
 			
 			con.setAutoCommit(false);
 		} catch (ClassNotFoundException | SQLException e) {

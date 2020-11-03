@@ -81,7 +81,24 @@ public class MemberDAO {
 			
 			rset = pstmt.executeQuery();
 			
-					
+			if(rset.next()) { 
+
+				result = new Member();
+				
+				result.setMemberId(m.getMemberId());
+				result.setMemberPwd(    m.getMemberPwd()           );
+				result.setMemberName(   rset.getString("membername")); 
+				result.setGender(     rset.getString("gender")        );
+				result.setMemberSsn(        rset.getString("MemberSsn")       );
+				result.setPhone(      rset.getString("phone")  );
+				result.setEmail(      rset.getString("email")  );
+				result.setJoinDate(rset.getDate("joindate"));
+				result.setReportNum(rset.getInt("reportnum"));
+			}
+			
+			System.out.println("조회 결과 확인 : " + result);
+
+			
 		} catch (SQLException e) {
 			
 			close(rset);

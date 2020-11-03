@@ -8,7 +8,6 @@
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Still Gaming -</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -53,7 +52,7 @@
                     <ul>
                         <li class="active"><a href="./index.jsp">Homepage</a></li>
                         <li><a href="./categories.jsp">Categories</a></li>
-                        <li><a href="./blog.jsp">Our Blog</a></li>
+                        <li><a href="./blog.jsp">Our   Blog</a></li>
                         <li><a href="#">Contacts</a></li>
                     </ul>
                 </div>
