@@ -281,7 +281,7 @@
                                             <li>Active</li>
                                             <li>Movie</li>
                                         </ul>
-                                        <h5><a href="#">Kizumonogatari III: Reiket su-hen</a></h5>
+                                        <h5><a href="#"> III: Reiket su-hen</a></h5>
                                     </div>
                                 </div>
                             </div>
