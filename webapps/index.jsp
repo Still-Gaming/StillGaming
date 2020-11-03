@@ -61,10 +61,7 @@
                                 </li>
                                 <li><a href="./blog.jsp">상점</a></li>
                                 <li><a href="mypage">마이페이지</a></li>
-                                <script>
-                                function my
-                                <button onclick="printConsole();">실행 확인</button>
-                                </script>
+                              
                             </ul>
                         </nav>
                     </div>
