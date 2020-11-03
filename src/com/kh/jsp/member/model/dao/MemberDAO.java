@@ -97,7 +97,6 @@ public class MemberDAO {
 			}
 			
 			System.out.println("조회 결과 확인 : " + result);
-
 			
 		} catch (SQLException e) {
 			
