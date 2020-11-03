@@ -35,6 +35,8 @@ public class MemberLogin extends HttpServlet {
 		String memberId = request.getParameter("memberId");
 		String memberPwd = request.getParameter("memberPwd");
 		
+		System.out.println(memberId + memberPwd);
+		
 		Member m = new Member(memberId, memberPwd);
 		
 		MemberService ms = new MemberService();
