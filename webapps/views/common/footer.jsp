@@ -52,7 +52,7 @@
                     <ul>
                         <li class="active"><a href="./index.jsp">Homepage</a></li>
                         <li><a href="./categories.jsp">Categories</a></li>
-                        <li><a href="./blog.jsp">Our Blog</a></li>
+                        <li><a href="./blog.jsp">Our   Blog</a></li>
                         <li><a href="#">Contacts</a></li>
                     </ul>
                 </div>
