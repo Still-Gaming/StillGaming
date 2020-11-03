@@ -3,89 +3,89 @@ package com.kh.jsp.member.model.vo;
 import java.sql.Date;
 
 public class Member {
-	private String member_id;            // 아이디
-	private String member_name;          // 이름
-    private String member_pwd;           // 비밀번호
-    private String member_ssn;           // 생년월일
-	private String gender;               // 성별
-	private String email;                // 이메일
-	private String phone;                // 번호
-	private Date join_date;            // 가입일
-	private String status;               // 탈퇴여부
-	private String report_num;           // 신고누적회수
+	private String memberId;            // 아이디
+	private String memberName;          // 이름
+    private String memberPwd;           // 비밀번호
+    private String memberSsn;           // 생년월일
+	private String gender;              // 성별
+	private String email;               // 이메일
+	private String phone;               // 번호
+	private Date   joinDate;            // 가입일
+	private String status;              // 탈퇴여부
+	private String reportNum;           // 신고누적회수
 	
 	
 	public Member() { }
 
 
-	public Member(String member_id, String member_name, String member_pwd, String member_ssn, String gender,
-			String email, String phone, Date join_date, String status, String report_num) {
+	public Member(String memberId, String memberName, String memberPwd, String memberSsn, String gender, String email,
+			String phone, Date joinDate, String status, String reportNum) {
 		super();
-		this.member_id = member_id;
-		this.member_name = member_name;
-		this.member_pwd = member_pwd;
-		this.member_ssn = member_ssn;
+		this.memberId = memberId;
+		this.memberName = memberName;
+		this.memberPwd = memberPwd;
+		this.memberSsn = memberSsn;
 		this.gender = gender;
 		this.email = email;
 		this.phone = phone;
-		this.join_date = join_date;
+		this.joinDate = joinDate;
 		this.status = status;
-		this.report_num = report_num;
+		this.reportNum = reportNum;
 	}
 
 
-	public Member(String member_id, String member_pwd) {
+	public Member(String memberId, String memberPwd) {
 		super();
-		this.member_id = member_id;
-		this.member_pwd = member_pwd;
+		this.memberId = memberId;
+		this.memberPwd = memberPwd;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Member [member_id=" + member_id + ", member_name=" + member_name + ", member_pwd=" + member_pwd
-				+ ", member_ssn=" + member_ssn + ", gender=" + gender + ", email=" + email + ", phone=" + phone
-				+ ", join_date=" + join_date + ", status=" + status + ", report_num=" + report_num + "]";
+		return "Member [memberId=" + memberId + ", memberName=" + memberName + ", memberPwd=" + memberPwd
+				+ ", memberSsn=" + memberSsn + ", gender=" + gender + ", email=" + email + ", phone=" + phone
+				+ ", joinDate=" + joinDate + ", status=" + status + ", reportNum=" + reportNum + "]";
 	}
 
 
-	public String getMember_id() {
-		return member_id;
+	public String getMemberId() {
+		return memberId;
 	}
 
 
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 
 
-	public String getMember_name() {
-		return member_name;
+	public String getMemberName() {
+		return memberName;
 	}
 
 
-	public void setMember_name(String member_name) {
-		this.member_name = member_name;
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
 
 
-	public String getMember_pwd() {
-		return member_pwd;
+	public String getMemberPwd() {
+		return memberPwd;
 	}
 
 
-	public void setMember_pwd(String member_pwd) {
-		this.member_pwd = member_pwd;
+	public void setMemberPwd(String memberPwd) {
+		this.memberPwd = memberPwd;
 	}
 
 
-	public String getMember_ssn() {
-		return member_ssn;
+	public String getMemberSsn() {
+		return memberSsn;
 	}
 
 
-	public void setMember_ssn(String member_ssn) {
-		this.member_ssn = member_ssn;
+	public void setMemberSsn(String memberSsn) {
+		this.memberSsn = memberSsn;
 	}
 
 
@@ -119,13 +119,13 @@ public class Member {
 	}
 
 
-	public Date getJoin_date() {
-		return join_date;
+	public Date getJoinDate() {
+		return joinDate;
 	}
 
 
-	public void setJoin_date(Date join_date) {
-		this.join_date = join_date;
+	public void setJoinDate(Date joinDate) {
+		this.joinDate = joinDate;
 	}
 
 
@@ -139,15 +139,16 @@ public class Member {
 	}
 
 
-	public String getReport_num() {
-		return report_num;
+	public String getReportNum() {
+		return reportNum;
 	}
 
 
-	public void setReport_num(String report_num) {
-		this.report_num = report_num;
+	public void setReportNum(String reportNum) {
+		this.reportNum = reportNum;
 	}
-	
+
+
 	
 
 	
