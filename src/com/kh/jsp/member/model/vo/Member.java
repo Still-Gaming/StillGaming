@@ -10,7 +10,7 @@ public class Member {
 	private String gender;              // 성별
 	private String email;               // 이메일
 	private String phone;               // 번호
-	private Date   joinDate;            // 가입일
+	private Date joinDate;            // 가입일
 	private String status;              // 탈퇴여부
 	private int reportNum;           // 신고누적회수
 	
