@@ -61,7 +61,7 @@
                                     </ul>
                                 </li>
                                 <li><a href="./blog.jsp">Our Blog</a></li>
-                                <li><a href="../about/shop.jsp">상점</a></li>
+                                <li><a href="<%= request.getContextPath() %>/views/about/shop.jsp">상점</a></li>
                                 <li><a href="#">Contacts</a></li>
                             </ul>
                         </nav>
