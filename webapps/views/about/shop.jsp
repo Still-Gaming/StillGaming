@@ -28,7 +28,7 @@
 
 	<div class="container-fluid landing_bigTempImage clean">
 		<div class="landing_rowMainImage">
-			<div style="display: inline; max-width: 100%;">
+			<div style="display: inline; max-width: 50%;">
 
 				<ul id="websitesTemplatesCategoriesBox"
 					class="list-group s123-categories-navbar horizontal"
