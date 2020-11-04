@@ -34,7 +34,7 @@ public class MemberDAO {
 		}
 	}
 	
-	public int insertMember(Connection con, Member joinMember) {
+	public int insertMember(Connection con, Member joinMember)  {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -57,6 +57,7 @@ public class MemberDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+
 		} finally {
 			
 			close(pstmt);
@@ -86,12 +87,12 @@ public class MemberDAO {
 				result = new Member();
 				
 				result.setMemberId(m.getMemberId());
-				result.setMemberPwd(    m.getMemberPwd()           );
-				result.setMemberName(   rset.getString("membername")); 
-				result.setGender(     rset.getString("gender")        );
-				result.setMemberSsn(        rset.getString("MemberSsn")       );
-				result.setPhone(      rset.getString("phone")  );
-				result.setEmail(      rset.getString("email")  );
+				result.setMemberPwd(  m.getMemberPwd());
+				result.setMemberName(rset.getString("membername")); 
+				result.setGender(rset.getString("gender") );
+				result.setMemberSsn( rset.getString("MemberSsn"));
+				result.setPhone(rset.getString("phone"));
+				result.setEmail( rset.getString("email"));
 				result.setJoinDate(rset.getDate("joindate"));
 				result.setReportNum(rset.getInt("reportnum"));
 			}
@@ -99,7 +100,9 @@ public class MemberDAO {
 			System.out.println("조회 결과 확인 : " + result);
 			
 		} catch (SQLException e) {
+			e.printStackTrace();
 			
+		} finally {
 			close(rset);
 			close(pstmt);
 		}
