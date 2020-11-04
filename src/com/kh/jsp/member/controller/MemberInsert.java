@@ -54,7 +54,7 @@ public class MemberInsert extends HttpServlet {
 		
 		request.setAttribute("memberName", memberName);
 		request.setAttribute("memberId", memberId);
-		request.getRequestDispatcher("views/member/joinsuccess.jsp").forward(request, response);
+		request.getRequestDispatcher("views/member/joinSuccess.jsp").forward(request, response);
 		
 	}
 

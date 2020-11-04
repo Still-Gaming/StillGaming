@@ -148,15 +148,10 @@ input{margin-bottom: 9px;}
                
              
                <p><b>연락처</b></p>
-            <select name="phone1" style="width:77px; height:37px; display:inline;" class="form-control">
- 			<option value="010">010
-			<option value="011">011
-			<option value="016">016
-			<option value="017">017
-			<option value="018">018
-			</select>
-			 &nbsp; - &nbsp;<input type="number" name="phone2" required="required" style="width:77px; height:37px; display:inline;" class="form-control" />
-			 &nbsp; - &nbsp;<input type="number" name="phone3" required="required" style="width:76px; height:37px; display:inline;" class="form-control"/>        
+            <input type="number" name="phone1" required="required" style="width:76px; height:37px; display:inline;" class="form-control"/>
+			
+			 &nbsp; - &nbsp; <input type="number" name="phone2" required="required" style="width:77px; height:37px; display:inline;" class="form-control" />
+			 &nbsp; - &nbsp; <input type="number" name="phone3" required="required" style="width:76px; height:37px; display:inline;" class="form-control"/>        
                			
 			<p><b>성별</b></p>
 			<input type="radio" name="gender" value="M"  />남 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -369,70 +364,6 @@ input{margin-bottom: 9px;}
 
 
 	<%@ include file="../common/footer.jsp" %>
-<script>
-
-// 비밀번호 유효성 체크 정규표현식 함수(영문,숫자,특수문자 8자리 이상 20자리 이하)
-function pwdRegEx(pwd){  
-   var pwdRegEx = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/g;
-
-   return pwdRegEx.test(pwd);
-}
-
-/* function idRegEx(id){
-	var idRegEx = var idReg = /^[A-za-z0-9]{5,15}/g;
-	
-	return idregEx.test(id);
-} */
-
-// 두 비밀번호가 같은지 체크하는 함수
-function isSamePwd(pwd1,pwd2){
-   if(pwd1 == pwd2){
-      return true;
-   }else return false;
-   
-}
-
-
-// 비밀번호 유효성체크 이벤트 함수
-$('[name^="memberPwd"]').change(function(){
-   var pwd1 = $('#memberPwd').val();
-   var pwd2 = $('#memberPwd2').val();
-
-   if(!isSamePwd(pwd,pwd2)){
-      $('#pwdResult').html("비밀번호가 일치하지 않습니다.").css('color','red');
-   }else if(!pwdRegEx(pwd2)){
-      $('#pwdResult').html("");
-      $('#pwdResult').html("비밀번호는 숫자,영문 대소문자, 특수문자로 구성된<br> 8자리 이상 20자리 이하이어야 합니다.").css('color','red');
-   }else{
-      $('#pwdResult').html("사용 가능한 비밀번호입니다.").css('color','green');
-   }
-
-   
-});
-
-/* %('[name=memberId]').change(function)
- */
-function validate(){
-    
-    // 비밀번호
-    var pwd1 = $('#memberPwd').val();
-    var pwd2 = $('#memberPwd2').val();
-    
-	
-    // 비밀번호 체크
-    if(!isSamePwd(pwd1,pwd2)){   
-     alert("비밀번호가 일치하지 않습니다.");
-        return false;
-    }
-    
-    if(!pwdRegEx(pwd2)){
-       alert("올바르지 않은 형식의 비밀번호입니다.");
-       return false;
-    }
-    
-}
-    
-</script>
 
 
 <!-- Js Plugins -->

@@ -72,11 +72,11 @@
                     <div class="header__right">
 <!--                         <a href="#" class="search-switch"><span class="icon_search"></span></a> -->
 		<%if ( m == null ) { %>
-                        <b><a href="/StillGaming/views/member/login.jsp" style="color: black;" >LOGIN</a></b>&nbsp; | &nbsp;
-                      <b><a href="/StillGaming/views/member/signup.jsp" style="color: black;" >JOIN US</a></b>
+                        <b><a href="/StillGaming/views/member/memberLogin.jsp" style="color: black;" >LOGIN</a></b>&nbsp; | &nbsp;
+                      <b><a href="/StillGaming/views/member/memberJoin.jsp" style="color: black;" >JOIN US</a></b>
          <% } else { %>
          			<b><a href="/StillGaming/logout.me" style="color: black;" >LOGOUT</a></b>&nbsp; | &nbsp;
-         			<b><a href="#" style="color: black;" >MY PAGE</a></b>
+         			<b><a href="/StillGaming/views/mypage/mypageMain.jsp" style="color: black;" >MY PAGE</a></b>
           	<% } %>          
                     </div>
                 </div>
@@ -85,10 +85,5 @@
         </div>
     </header>
     <!-- Header End -->
-	<script>
-	function login(){
-		
-	}
-	</script>
 </body>
 </html>

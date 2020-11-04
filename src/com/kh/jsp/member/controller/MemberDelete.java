@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.jsp.common.exception.MemberException;
 import com.kh.jsp.member.model.service.MemberService;
 import com.kh.jsp.member.model.vo.Member;
 
@@ -34,9 +35,17 @@ public class MemberDelete extends HttpServlet {
 		
 		String memberId = ((Member)session.getAttribute("member")).getMemberId();
 
+		System.out.println("회원 기존 아이디  : " + memberId);
+
 		MemberService ms = new MemberService();
 		
 		ms.deleteMember(memberId);
+		
+		System.out.println("회원 탈퇴 성공!");
+		
+		session.invalidate();
+		
+		response.sendRedirect("index.jsp");
 	}
 
 	/**
