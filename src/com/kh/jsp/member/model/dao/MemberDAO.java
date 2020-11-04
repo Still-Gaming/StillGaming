@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import com.kh.jsp.common.exception.MemberException;
 import com.kh.jsp.member.model.vo.Member;
 
 public class MemberDAO {
@@ -124,6 +125,41 @@ public class MemberDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+public int updateMember(Connection con, Member m) throws MemberException {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		// 비밀번호, 성별, 나이, 이메일, 연락처, 주소, 취미
+		String sql = prop.getProperty("updateMember");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString( 1,  m.getMemberId() );
+			pstmt.setString( 2,  m.getMemberName()  );
+			pstmt.setString( 3,  m.getMemberPwd()     );
+			pstmt.setString( 4,  m.getMemberSsn()   );
+			pstmt.setString( 5,  m.getGender()   );
+			pstmt.setString( 6,  m.getEmail() );
+			pstmt.setString( 7,  m.getPhone()   );
+			
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			throw new MemberException("[DAO] : " + e.getMessage());
+			
+		} finally {
+			
 			close(pstmt);
 		}
 		
