@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
 </head>
-
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
