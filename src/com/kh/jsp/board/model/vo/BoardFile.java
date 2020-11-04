@@ -1,4 +1,4 @@
-package com.kh.jsp.boardfile.model.vo;
+package com.kh.jsp.board.model.vo;
 
 import java.sql.Date;
 
