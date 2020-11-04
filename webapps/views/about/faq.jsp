@@ -1,143 +1,100 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<!DOCTYPE html>
-<html class="">
-   
-    <head>
-      
-<link rel="stylesheet" type="text/css" href="../../Bootstrap-Admin/vendors/bootstrap-wysihtml5/src/bootstrap-wysihtml5.css"></link>
- 
-    </head>   
-    <body>
-      <%@ include file="/views/common/header.jsp" %>
- 
     
-         
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span3" id="sidebar">
-                
-                </div>
-                 
-                <!--/span-->
-                <div class="span9" id="content">
-                    <div class="row-fluid">
-                        <div class="alert alert-success">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            <h4>FAQ 게시판</h4>
-                        </div>
-                             
-                        </div>
-                    
-                    
-                   <div>
-                      
-                   
-                     <div class="table-responsive">
-                     <table class="table">
-                        <tr>
-                            <th>? 주문 정보는 어떻게 확인할 수 있나요? </th>
-                            <td>${qnaVO.subject } ${qnaVO.rep }</td>
-                        </tr>
-                         
-                        <tr>
-                            <th>?  질문 내용</th>
-                            <td><fmt:formatDate value="${qnaVO.indate }"  type="date" /></td>
-                        </tr>
+<!DOCTYPE html>
+<html lang="zxx">
  
-                        <tr>
-                            <th>?  질문 내용</th>
-                            <td>
-                                ${qnaVO.content }
-                            </td>
-                        </tr>
-                         
-                        <c:choose>
-                            <c:when test="${qnaVO.rep=='1' }">
-                            <form action="/MacaronicsServlet?command=admin_qna_repsave" method="post" >
-                             <table class="table">
-                                <tr>
-                                    <th>답변하기</th>
-                                    <td>
-                                        <textarea id="bootstrap-editor" style="width:98%;height:200px;" name="reply" ></textarea>
-                                    </td>
-                                </tr>
-                                <tr>
-                                 <td></td>
-                                 <td> 
-                                 <input type="hidden" value="${qnaVO.qseq}" name="qseq">
-                                
-                                </tr>
-                            </table>
-                            </form>   
-                            </c:when>
-                            <c:otherwise>
-                     
-                            </c:otherwise>                
-                        </c:choose>
-             
-                        <tfoot>
-                            <tr>
-                                <td colspan="2" class="text-center" style="text-align: center;">
-                                    <a href="MacaronicsServlet?command=admin_qna_list"  class="btn btn-primary">제출</a>
-                                 </td>
-                            </tr>
-                        </tfoot>
-                     </table>
-                     </div>
-                   
-                   
-                      
-                   </div>
-                     
-                    </div>
-                </div>
-          
-            
-            </div>
-            <hr>
- 
-<div style="margin-bottom: 150px;">
-&nbsp;
-</div>
-     <!-- FOOTER -->
-<nav class="avbar navbar-inverse navbar-fixed-bottom" style="height:50px  ;  background-color:#000  ;">
-  <div class="container text-center" style="color:#fff;">
-  <p>&nbsp;</p>
-   <p ><a href="http://macaronics.net/" style="   color:#fff;">Macaronics.net</a></p>  
-    <p>&nbsp;</p><p>&nbsp;</p>
-  </div>
-</nav>
- 
- 
-        <!--/.fluid-container-->
-        <script src="../../Bootstrap-Admin/vendors/bootstrap-wysihtml5/lib/js/wysihtml5-0.3.0.js"></script>
-        <script src="../../Bootstrap-Admin/vendors/jquery-1.9.1.min.js"></script>
-        <script src="../../Bootstrap-Admin/bootstrap/js/bootstrap.min.js"></script>
-        <script src="../../Bootstrap-Admin/vendors/bootstrap-wysihtml5/src/bootstrap-wysihtml5.js"></script>
-<script src="../../Bootstrap-Admin/vendors/bootstrap-wysihtml5/src/bootstrap-wysihtml5.js"></script>
-  
-<script type="text/javascript">
- 
- 
-$(function() {
-     
-    // Bootstrap
-    $('#bootstrap-editor').wysihtml5();
-     
-});
- 
-</script>
-  
 
-	
-	<%@ include file="/views/common/footer.jsp" %>
+<head>
+    <title>글 상세보기</title>
+    
+    <style type="text/css">
+        #wrap {
+            width: 800px;
+            margin: 0 auto 0 auto;
+        }
+    
+        #detailBoard{
+            text-align :center;
+        }
+        
+        #title{
+            height : 16;
+            font-family :'돋움';
+            font-size : 12;
+            text-align :center;
+        }
+    </style>
+    
+    <script type="text/javascript">
+        function changeView(value)
+        {
+            if(value == 0)    location.href="BoardListAction.bo?page=${pageNum}";
+            else if(value == 1){
+                location.href='BoardReplyFormAction.bo?num=${board.board_num}&page=${pageNum}';
+            }
+                
+        }
+    </script>
+</head>
+<body>
+ 
+<div id="wrap">
+    <br><br>
+    <div id="board">
+        <table id="detailBoard" width="800" border="3" bordercolor="lightgray">
+        
+            <tr>
+                <td id="title">작성일</td>
+                <td>${board.board_date}</td>
+            </tr>
+            <tr>
+                <td id="title">작성자</td>
+                <td>${board.board_id}</td>
+            </tr>
+            <tr>
+                <td id="title">
+                    제 목
+                </td>
+                <td>
+                    ${board.board_subject}
+                </td>        
+            </tr>
+            <tr>
+                <td id="title">
+                    내 용
+                </td>
+                <td>
+                    ${board.board_content}
+                </td>        
+            </tr>
+            <tr>
+                <td id="title">
+                    첨부파일
+                </td>
+                <td>
+                    <a href='FileDownloadAction.bo?file_name=${board.board_file}'>${board.board_file}</a>
+                </td>    
+            </tr>
+    
+            <tr align="center" valign="middle">
+                <td colspan="5">
+                <c:if test="${sessionScope.sessionID !=null}">
+                    <c:if test="${sessionScope.sessionID == board.board_id}">
+                        <input type="button" value="수정" >
+                        <input type="button" value="삭제" >
+                    </c:if>
+                        <input type="button" value="답글" onclick="changeView(1)" >
+                </c:if>        
+                    <input type="button" value="목록" onclick="changeView(0)">            
+                </td> <!-- javascript:location.href='BoardListAction.bo?page=${pageNum}' -->
+            </tr>
+        </table>
+    </div>
+</div>    
+ 
 </body>
 </html>
 
 
-
-
-
-
+출처: https://all-record.tistory.com/131 [세상의 모든 기록]
