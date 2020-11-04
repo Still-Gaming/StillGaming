@@ -30,23 +30,32 @@ public class MemberInsert extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	      String memberId = request.getParameter("memberId");
+	      String memberName = request.getParameter("memberName");
+	      String memberPwd = request.getParameter("memberPwd");
+	      String memberSsn = request.getParameter("memberSsn");
+	      String gender = request.getParameter("gender");
+	      String email = request.getParameter("email1") +"@" + request.getParameter("email2");
+	      String phone = request.getParameter("phone1") + "-"
+	              + request.getParameter("phone2") + "-"
+	              + request.getParameter("phone3");
+	      
+	      Member m = new Member(memberId, memberPwd, memberName, memberSsn, gender,
+	                        email, phone);
+	      System.out.println("가입 정보 확인 : " + m);
+	      
 		
-		String memberId = request.getParameter("memberId");
-		String memberName = request.getParameter("memberName");
-		String memberPwd = request.getParameter("memberPwd");
-		String memberSsn = request.getParameter("memberSsn");
-		String gender = request.getParameter("gender");
-		String email = request.getParameter("email");
-		String phone = request.getParameter("tel1") + "-"
-			     + request.getParameter("tel2") + "-"
-			     + request.getParameter("tel3");
-		
-		Member m = new Member(memberId, memberPwd, memberName, memberSsn, gender,
-								email, phone);
-		
+		// 회원 가입 실행
 		MemberService ms = new MemberService();
-		
+			
 		ms.insertMember(m);
+			
+		//response.sendRedirect("views/member/joinsuccess.jsp");
+		
+		request.setAttribute("memberName", memberName);
+		request.setAttribute("memberId", memberId);
+		request.getRequestDispatcher("views/member/joinsuccess.jsp").forward(request, response);
+		
 	}
 
 	/**

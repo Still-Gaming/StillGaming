@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="zxx">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
+    
 </head>
 
 <body>
@@ -35,12 +36,11 @@
 
 	<%@ include file="views/common/header.jsp" %>
 
-
     <!-- Hero Section Begin -->
     <section class="hero">
         <div class="container">
             <div class="hero__slider owl-carousel">
-                <div class="hero__items set-bg" data-setbg="/resources/img/hero/hero.jpg">
+                <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/hero/hero.jpg">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="hero__items set-bg" data-setbg="resources/img/hero/hero.jpg">
+                <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/hero/hero.jpg">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="hero__items set-bg" data-setbg="resources/img/hero/hero.jpg">
+                <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/hero/hero.jpg">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
