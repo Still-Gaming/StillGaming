@@ -32,35 +32,25 @@ public class MemberUpdate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 1. 인코딩 : EncodingFilter가 대신 해줌  HTML에서 서블릿으로 이동할때 필터가 먼저 실행되서 
-		// 2. 회원 정보 수정용 데이터 받아오기 
-		String memberId = request.getParameter("memberId");
-		String memberName = request.getParameter("memberName");
-	    String memberPwd = request.getParameter("memberPwd");
-		String memberSsn= request.getParameter("memberSsn");
-		String gender= request.getParameter("gender");
-		String email= request.getParameter("email");
-		String phone = request.getParameter("phone");
+		
+	    String memberPwd = request.getParameter("memberPwd");		
+	    String email = request.getParameter("email1") +"@" + request.getParameter("email2");
+	    String phone = request.getParameter("phone1") + "-"
+	              + request.getParameter("phone2") + "-"
+	              + request.getParameter("phone3");
 		
 		
-		// 3. 해당 회원의 원본 정보(로그인 시 가져온 정보) 꺼내오기
-		HttpSession session = request.getSession(false);
+	    HttpSession session = request.getSession(false);
 		
 		Member m = (Member)session.getAttribute("member");
 		
 		System.out.println("[서블릿] 원본 정보 : " + m);
 		
-		// 변경할 회원정보를 setter로 처리하기 
 		
-		
-		
-		m.setMemberId(memberId);
-		m.setMemberName(memberName);
 		m.setMemberPwd(memberPwd);
-		m.setMemberSsn(memberSsn);
-		m.setGender(gender);
 		m.setEmail(email);
 		m.setPhone(phone);
+
 		
 		System.out.println("[서블릿] 변경 후 정보 :" + m);
 		
@@ -68,14 +58,11 @@ public class MemberUpdate extends HttpServlet {
 		MemberService ms = new MemberService();
 		
 		
-		
 		try {
 			ms.updateMember(m);
 	
 			System.out.println("회원 정보 수정 완료!");
-			
-			session.invalidate();
-			
+				
 			response.sendRedirect("index.jsp");
 						
 		} catch(MemberException e) {

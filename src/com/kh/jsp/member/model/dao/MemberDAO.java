@@ -88,14 +88,14 @@ public class MemberDAO {
 				result = new Member();
 				
 				result.setMemberId(m.getMemberId());
-				result.setMemberPwd(  m.getMemberPwd());
-				result.setMemberName(rset.getString("membername")); 
+				result.setMemberPwd(m.getMemberPwd());
+				result.setMemberName(rset.getString("member_name")); 
 				result.setGender(rset.getString("gender") );
-				result.setMemberSsn( rset.getString("MemberSsn"));
+				result.setMemberSsn( rset.getString("Member_Ssn"));
 				result.setPhone(rset.getString("phone"));
 				result.setEmail( rset.getString("email"));
-				result.setJoinDate(rset.getDate("joindate"));
-				result.setReportNum(rset.getInt("reportnum"));
+				result.setJoinDate(rset.getDate("join_date"));
+				result.setReportNum(rset.getInt("report_num"));
 			}
 			
 			System.out.println("조회 결과 확인 : " + result);
@@ -138,22 +138,15 @@ public int updateMember(Connection con, Member m) throws MemberException {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
-		
-		// 비밀번호, 성별, 나이, 이메일, 연락처, 주소, 취미
+
 		String sql = prop.getProperty("updateMember");
 		
 		try {
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString( 1,  m.getMemberId() );
-			pstmt.setString( 2,  m.getMemberName()  );
-			pstmt.setString( 3,  m.getMemberPwd()     );
-			pstmt.setString( 4,  m.getMemberSsn()   );
-			pstmt.setString( 5,  m.getGender()   );
-			pstmt.setString( 6,  m.getEmail() );
-			pstmt.setString( 7,  m.getPhone()   );
-			
-			
+			pstmt.setString(1, m.getMemberPwd() );
+			pstmt.setString(2, m.getMemberId());
+		
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {

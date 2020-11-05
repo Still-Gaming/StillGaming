@@ -18,15 +18,6 @@ public class MemberService {
 	private Connection con;
 	private MemberDAO mDAO = new MemberDAO();
 
-	
-	
-	public Member selectMember(String id){
-		Connection con = getConnection();
-		Member loginMember = new MemberDAO().selectMember(con, id);
-		close(con);
-		return loginMember;
-	}
-	
 	public int insertMember(Member joinMember) {
 		
 		con = getConnection();
@@ -91,17 +82,6 @@ public class MemberService {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

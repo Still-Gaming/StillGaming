@@ -1,4 +1,4 @@
-package com.kh.jsp.boardcomment.model.vo;
+package com.kh.jsp.boardComment.model.vo;
 
 import java.sql.Date;
 
@@ -7,29 +7,35 @@ public class BoardComment {
 	private int boardNo;
 	private String memberId;
 	private Date commentDate;
+	private String commentText;
 
-	public BoardComment() {
-		super();
-	}
+	public BoardComment() { }
 
-	public BoardComment(int boardNo, String memberId) {
+	
+
+	public BoardComment(int commentNo, int boardNo, String memberId, String commentText) {
 		super();
+		this.commentNo = commentNo;
 		this.boardNo = boardNo;
 		this.memberId = memberId;
+		this.commentText = commentText;
 	}
 
-	public BoardComment(int commentNo, int boardNo, String memberId, Date commentDate) {
+
+
+	public BoardComment(int commentNo, int boardNo, String memberId, Date commentDate, String commentText) {
 		super();
 		this.commentNo = commentNo;
 		this.boardNo = boardNo;
 		this.memberId = memberId;
 		this.commentDate = commentDate;
+		this.commentText = commentText;
 	}
 
 	@Override
 	public String toString() {
 		return "BoardComment [commentNo=" + commentNo + ", boardNo=" + boardNo + ", memberId=" + memberId
-				+ ", commentDate=" + commentDate + "]";
+				+ ", commentDate=" + commentDate + ", commentText=" + commentText + "]";
 	}
 
 	public int getCommentNo() {
@@ -63,4 +69,14 @@ public class BoardComment {
 	public void setCommentDate(Date commentDate) {
 		this.commentDate = commentDate;
 	}
+
+	public String getCommentText() {
+		return commentText;
+	}
+
+	public void setCommentText(String commentText) {
+		this.commentText = commentText;
+	}
+
+	
 }
