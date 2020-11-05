@@ -72,13 +72,36 @@ public class BoardService {
 			result2 = bDAO.updateBoardFile(con, bf);
 		}
 		
-		close(con);
-		
 		if(result1 > 0 && (bf == null || result2 > 0)) {
-			totalResult = b.getBoardNo();
+			totalResult = 1;
+			commit(con);
+		} else {
+			rollback(con);
 		}
 		
+		close(con);
+		
 		return totalResult;
+	}
+
+	public BoardFile selectBoardFile(int boardNo) throws BoardException {
+		con = getConnection();
+		
+		BoardFile result = bDAO.selectBoardFile(con, boardNo);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public Board selectBoard(int boardNo) throws BoardException {
+		con = getConnection();
+		
+		Board result = bDAO.selectBoard(con, boardNo);
+		
+		close(con);
+		
+		return result;
 	}
 
 }

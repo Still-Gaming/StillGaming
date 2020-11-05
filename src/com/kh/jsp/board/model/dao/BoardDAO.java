@@ -243,4 +243,80 @@ public class BoardDAO {
 		return result;
 	}
 
+	public BoardFile selectBoardFile(Connection con, int boardNo) throws BoardException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		BoardFile result = null;
+		
+		String sql = prop.getProperty("selectBoardFile");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, boardNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = new BoardFile();
+				
+				result.setFileNo(rset.getInt("FILE_NO"));
+				result.setBoardNo(boardNo);
+				result.setFileName(rset.getString("FILE_NAME"));
+				result.setFileChangeName(rset.getString("FILE_CHANGE_NAME"));
+				result.setFilePath(rset.getString("FILE_PATH"));
+				result.setFileUploadDate(rset.getDate("FILE_UPLOADDATE"));
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			throw new BoardException("[DAO] : " + e.getMessage());
+			
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public Board selectBoard(Connection con, int boardNo) throws BoardException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Board result = null;
+		
+		String sql = prop.getProperty("selectBoard");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, boardNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = new Board();
+				
+				result.setBoardNo(boardNo);
+				result.setMemberId(rset.getString("MEMBER_ID"));
+				result.setBoardType(rset.getInt("BOARD_TYPE"));
+				result.setBoardTitle(rset.getString("BOARD_TITLE"));
+				result.setBoardText(rset.getString("BOARD_TEXT"));
+				result.setBoardDate(rset.getDate("BOARD_DATE"));
+				result.setBoardCount(rset.getInt("BOARD_COUNT"));
+				result.setBoardStatus(rset.getString("BOARD_STATUS").charAt(0));
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			throw new BoardException("[DAO] : " + e.getMessage());
+			
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }
