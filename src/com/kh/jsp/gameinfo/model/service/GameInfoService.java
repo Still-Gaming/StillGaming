@@ -8,6 +8,7 @@ import static com.kh.jsp.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.kh.jsp.common.exception.GameInfoException;
 import com.kh.jsp.gameinfo.model.dao.GameInfoDAO;
 import com.kh.jsp.gameinfo.model.vo.GameImage;
 import com.kh.jsp.gameinfo.model.vo.GameInfo;
@@ -41,37 +42,37 @@ public class GameInfoService {
 	}
 
 
-	public int insertGameInfo(GameInfo g, GameImage gi) {
+	public void insertGameInfo(GameInfo g, GameImage gi) throws GameInfoException {
 		con = getConnection();
 		
-		int result = 0;
-		
-		// 1. 사진 게시글 저장
 		int result1 = nDAO.insertGameInfo(con, g);
+		int result2 = 0;
+		
 		
 		if(result1 > 0) {
-			int gino = nDAO.getCurrentGameInfono(con);
+			int gminfoNum = nDAO.getCurrentGminfoNum(con);
+					
+			if(gminfoNum > 0 && gi != null) {
+					gi.setGminfoNum(gminfoNum);
+					
+					result2 = nDAO.insertGameImage(con, gi);
+			}
 			
-			gi.setGminfoNum(gino);
 		}
 		
-		// 2. 첨부파일 여러개 저장
-		int result2 = nDAO.insertGameImage(con, gi);
-			
 		
-		if(result1 > 0 && result2 > 0) {
+		if( result1 > 0 ) {
 			commit(con);
-			result = 1;
+			result1 = 1;
 		} else {
 			rollback(con);
 		}
 		close(con);
 			
-		return result;
+		
 	}
-	}
-
-
-	
-	
 }
+
+
+	
+

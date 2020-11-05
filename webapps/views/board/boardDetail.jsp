@@ -11,12 +11,15 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 상세보기</title>
+<style>
+	td {
+		color : white;
+	}
+</style>
 </head>
 <body>
-	<%@ include file="../common/header.jsp" %>
+	<%@ include file="/views/common/header.jsp" %>
 	
-		<div class="outer">
-		<br/>
 		<h2 align="center">게시글 상세 보기</h2>
 		<div class="tableArea">
 			<table align="center" width="800px">
@@ -34,7 +37,7 @@
 				<tr>
 					<td colspan="3">
 						<div class="imgArea">
-						<% if(bf.getFileChangeName() != null && bf.getFileChangeName().length() > 0) { %>
+						<% if(bf != null && bf.getFileChangeName() != null && bf.getFileChangeName().length() > 0) { %>
 							<img src="<%= request.getContextPath() %>/resources/boardUploadFiles/<%= bf.getFileChangeName() %>" />
 						<% } %>
 						</div>
@@ -56,7 +59,7 @@
 		</div>
 		
 		<div class="replyArea">
-			<span>댓글(<%= clist.size() %>)</span>
+			<span>댓글('댓글 개수 들어갈 자리')</span>
 			
 			<div class="replyWriteArea">
 				<form action="<%= request.getContextPath() %>/insert.co" method="post">
@@ -77,6 +80,6 @@
 			</div>
 		</div>
 	
-	<%@ include file="../common/footer.jsp" %>
+	<%@ include file="/views/common/footer.jsp" %>
 </body>
 </html>

@@ -10,6 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.jsp.common.exception.BoardException;
+import com.kh.jsp.common.exception.GameInfoException;
+import com.kh.jsp.gameinfo.model.vo.GameImage;
 import com.kh.jsp.gameinfo.model.vo.GameInfo;
 
 import static com.kh.jsp.common.JDBCTemplate.*;
@@ -105,6 +108,92 @@ public class GameInfoDAO {
 		
 		return list;
 	}
+
+
+	public int insertGameInfo(Connection con, GameInfo g) throws GameInfoException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("insertGameInfo");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			
+			pstmt.setString(1, g.getGminfoName());
+			pstmt.setDate(2, g.getGminfoDate());
+			pstmt.setString(3, g.getGminfoCompany());
+			pstmt.setString(4, g.getGminfoExp());
+			pstmt.setInt(5, g.getGmTypenum());
+			pstmt.setInt(6, g.getGminfoAage());
+			pstmt.setInt(7, g.getGminfoPrice());
+			
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+			throw new GameInfoException("[DAO] : " + e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+	
+		return result;
+	}
+
+
+	public int insertGameImage(Connection con, GameImage gi) throws GameInfoException{
+			PreparedStatement pstmt = null;
+			int result = 0;
+			
+			String sql = prop.getProperty("insertGameImageFile");
+			
+			try {
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setInt(1, gi.getGminfoNum());
+				pstmt.setString(2, gi.getGmimgFile());
+				pstmt.setString(3, gi.getGmimgCgfile());
+				pstmt.setString(4, gi.getGmimgPath());
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+		return result;
+	}
+
+
+	public int getCurrentGminfoNum(Connection con) throws GameInfoException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("currentGminfoNum");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			throw new GameInfoException("[DAO] : " + e.getMessage());
+			
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	
+	}
+
 
 
 }

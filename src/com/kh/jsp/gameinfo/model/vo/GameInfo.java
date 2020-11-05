@@ -4,15 +4,15 @@ import java.sql.Date;
 
 public class GameInfo {
 	
-	private int gminfoNum;         // 게임번호   
-	private String gminfoName;     // 게임이름
-	private Date gminfoDate;        // 출시일
+	private int gminfoNum;            // 게임번호   
+	private String gminfoName;        // 게임이름
+	private Date gminfoDate;          // 출시일
 	private String gminfoCompany;     // 개발사
 	private String gminfoExp;         // 게임설명
-	private int gmTypenum;         // 장르번호
-	private int gminfoAage;        // 등급번호
-	private int gminfoPrice;       // 가격
-	private String 
+	private int gmTypenum;            // 장르번호
+	private int gminfoAage;           // 등급번호
+	private int gminfoPrice;          // 가격
+	
 	
 	
 	public GameInfo() { }
@@ -36,6 +36,19 @@ public class GameInfo {
 		super();
 		this.gminfoName = gminfoName;
 		this.gminfoExp = gminfoExp;
+		this.gminfoPrice = gminfoPrice;
+	}
+
+
+	public GameInfo(String gminfoName, Date gminfoDate, String gminfoCompany, String gminfoExp, int gmTypenum,
+			int gminfoAage, int gminfoPrice) {
+		super();
+		this.gminfoName = gminfoName;
+		this.gminfoDate = gminfoDate;
+		this.gminfoCompany = gminfoCompany;
+		this.gminfoExp = gminfoExp;
+		this.gmTypenum = gmTypenum;
+		this.gminfoAage = gminfoAage;
 		this.gminfoPrice = gminfoPrice;
 	}
 

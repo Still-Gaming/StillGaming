@@ -8,6 +8,7 @@ public class GameImage {
 	private String gmimgCgfile;   // 변경된 파일명
 	private String gmimgPath;     // 파일경로
 	
+	
 	public GameImage() {}
 
 	public GameImage(int gmimgNum, int gminfoNum, String gmimgFile, String gmimgCgfile, String gmimgPath) {

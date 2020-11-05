@@ -1,11 +1,37 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.kh.jsp.gameinfo.model.vo.*, java.util.*" %>
+<% String memberId = (String) request.getAttribute("memberId"); 
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>게임등록</title>
 
+<style>
+	
+	.insertArea {
+		width:500px;
+		height:450px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.btnArea {
+		width:150px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	#titleImgArea {
+		width:350px;
+		height:200px;
+		border:2px dashed darkgray;
+		text-align:center;
+		display:table-cell;
+		vertical-align:middle;
+	
+</style>
 </head>
 <body>
 	<%@ include file="../common/header.jsp" %>
@@ -17,40 +43,73 @@
 			  method="post" enctype="multipart/form-data">
 			<div class="insertArea">
 				<!-- 게시글 추가 영역 -->
-				<input type="hidden" name="MemberId" value="<%= m.getMemberId() %>" />
+				<input type="hidden" name="userId" value="<%= m.getMemberId() %>" />
 				<table align="center">
 					<tr>
-						<td width="100px">제목</td>
-						<td colspan="3">
-							<input type="text" name="title" size="45" />
+						<td width="100px">게임번호</td>
+						<td colspan="3" height="3">
+							
 						</td>
 					</tr>
 					<tr>
-						<td>이미지</td>
+						<td width="100px">게임명</td>
+						<td colspan="3" height="3">
+							<input type="text" name="gminfoName" size="45" />
+						</td>
+					</tr>
+					<tr>
+						<td width="100px">게임출시일</td>
+						<td>
+						<input type="date" name="gminfoDate"/>
+						</td>
+					</tr>
+					<tr>
+						<td>게임 이미지</td>
 						<td colspan="3">
 							<!-- div#titleImgArea -->
 							<div id="titleImgArea">
-								<img id="titleImg" width="350" height="200" />
+								<img id="gameimage" width="350" height="200" />
 							</div>
+						</td>
+					</tr>
+					<tr>
+						<td width="100px">출시한 회사</td>
+						<td colspan="3" height="3">
+							<input type="text" name="gminfoCompany" size="45" />
 						</td>
 					</tr>
 					<tr>
 						<td width="100px">게임 설명</td>
 						<td colspan="3">
-							<textarea name="content" cols="50" rows="5" style="resize:none;"></textarea>
+							<textarea name="gminfoExp" cols="50" rows="5" style="resize:none;"></textarea>
 						</td>
 					</tr>
-					<td width="100px">가격</td>
-						<td colspan="3">
-							<input type="text" name="price" size="45" />
+					<tr>
+						<td width="100px">장르번호</td>
+						<td colspan="3" height="3">
+							<input type="text" name="gmTypenum" size="45" />
 						</td>
+					</tr>
+					<tr>
+						<td width="100px">연령등급</td>
+						<td colspan="3" height="3">
+							<input type="text" name="gminfoAage" size="45" />
+						</td>
+					</tr>
+					<tr>
+						<td width="100px">가격</td>
+						<td colspan="3" height="3">
+							<input type="text" name="gminfoPrice" size="45" />
+						</td>
+					</tr>
+					
 				</table>
 			
 			</div>
 			<div class="fileArea" id="fileArea">
 				<!-- 첨부할 사진 추가 영역 -->
 				<!-- (input:file#thumbnailImg[name=thumbnailImg onchange=loadImg(this, )])*4 -->
-				<input type="file" name="Img1" id="Img1" onchange="loadImg(this,1);" />
+				<input type="file" name="gameImg1" id="gameImg1" onchange="loadImg(this,1);" />
 				
 			</div>
 			<div class="btnArea">
@@ -63,9 +122,9 @@
 		// 사진 게시글 미리보기 기능 구현
 		$(function(){
 			$('#titleImgArea').click(function(){
-				$('#Img1').click();
+				$('#gameImg1').click();
 			});
-			
+		
 			
 			$('#fileArea').hide();
 		})
@@ -78,7 +137,7 @@
 				reader.onload = function(e){
 					
 					switch(num){
-					case 1 : $('#titleImg').attr('src', e.target.result);
+					case 1 : $('#gameImg1').attr('src', e.target.result);
 					
 					}
 				}
@@ -93,6 +152,9 @@
 		
 		request.getRequestDispatcher("../common/errorPage.jsp").forward(request, response);		
 	} %>
-	<%@ include file="../common/footer.jsp" %>
+	
+	
+	
+
 </body>
 </html>

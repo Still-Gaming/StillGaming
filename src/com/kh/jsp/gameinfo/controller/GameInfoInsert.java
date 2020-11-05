@@ -1,6 +1,10 @@
 package com.kh.jsp.gameinfo.controller;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,8 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
-import com.kh.jsp.board.model.service.BoardService;
-import com.kh.jsp.board.model.vo.Board;
+
+import com.kh.jsp.common.MyRenamePolicy;
+
+import com.kh.jsp.common.exception.GameInfoException;
+import com.kh.jsp.gameinfo.model.service.GameInfoService;
+import com.kh.jsp.gameinfo.model.vo.GameImage;
+import com.kh.jsp.gameinfo.model.vo.GameInfo;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -34,51 +43,66 @@ public class GameInfoInsert extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-				int maxSize = 1024 * 1024 * 10; 
+		int maxSize = 1024 * 1024 * 10;
+		
+		if(!ServletFileUpload.isMultipartContent(request)) {
+			request.setAttribute("exception", new Exception("사진 게시글 등록 오류"));
+			request.setAttribute("error-msg", "multipart로 전송되지 않았습니다.");
 			
-				if(! ServletFileUpload.isMultipartContent(request)) {
-					
-					
-					request.setAttribute("error-msg", "multipart로 전송되지 않았습니다.");
-					
-					request.getRequestDispatcher("views/common/errorPage.jsp")
-					       .forward(request, response);
-				}
-				
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		}
+		
+		String root = request.getServletContext().getRealPath("/resources");
+		String filePath = root + "/gameimageUploadFiles/";
+		
+		MultipartRequest mre = new MultipartRequest(
+                request, filePath, maxSize, "UTF-8",
+                new MyRenamePolicy() );
+		
+		
+		String gminfoName = mre.getParameter("gminfoName");
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date gminfoDate = null;
+		try {
+			gminfoDate = new Date(sdf.parse(mre.getParameter("gminfoDate")).getTime());
 			
-				String root = request.getServletContext().getRealPath("/");
-				String savePath = root + "resources/gameimage";
-				
-				
-				MultipartRequest mre = new MultipartRequest(request, savePath,
-						                                    maxSize, "UTF-8",
-						                                    new DefaultFileRenamePolicy());
-				
-				String gminfoName = mre.getParameter("gminfoName");
-				String content = mre.getParameter("");
-				String userId = mre.getParameter("userId");
-				
-				// 5-2. 파일 저장 및 정보 처리하기
-				//     JSP로부터 전달받은 파일을 먼저 저장하고
-				//     해당 파일의 이름을 따온다.
-				
-				String filename = mre.getFilesystemName("file");
-				
-				// 6. 전달받은 값을 서비스로 넘기기
-				Board b = new Board(title, content, userId, filename);
-				
-				int result = new BoardService().insertBoard(b);
-				
-				if (result > 0) {
-					response.sendRedirect("selectList.bo");
-				} else {
-					request.setAttribute("error-msg", "게시글 작성 실패!");
-					
-					request.getRequestDispatcher("views/common/errorPage.jsp")
-					       .forward(request, response);
-				
-				}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		String gminfoCompany = mre.getParameter("gminfoCompany");
+		String gminfoExp = mre.getParameter("gminfoExp");
+		int gmTypenum = Integer.parseInt(mre.getParameter("gmTypenum"));
+		int gminfoAage = Integer.parseInt(mre.getParameter("gminfoAage"));
+		int gminfoPrice = Integer.parseInt(mre.getParameter("gminfoPrice"));
+		
+		String fileName = mre.getOriginalFileName("file");
+		String fileChangeName = mre.getFilesystemName("file");
+		
+		GameInfo b = new GameInfo(gminfoName, gminfoDate, gminfoCompany, gminfoExp, gmTypenum, gminfoAage, gminfoPrice);
+		
+		GameImage bf = null; 
+		
+		if(fileName != null) bf = new GameImage(fileName, fileChangeName, filePath);
+		
+		GameInfoService bs = new GameInfoService();
+		
+		try {
+			bs.insertGameInfo(b, bf);
+			
+			response.sendRedirect("gamelist.do");
+			
+		} catch (GameInfoException g) {
+			
+			request.setAttribute("exception", g);
+			request.setAttribute("error-msg", "게시글 작성 실패");
+			
+			
+			 request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		}
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

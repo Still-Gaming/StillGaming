@@ -150,6 +150,7 @@
 				<% } %>
 			</tbody>
 		</table>
+		<button onclick="location.href='views/shop/gameInsertForm.jsp'">작성하기</button>
 	</div>
 	
 		<div class="pagingArea" align="center">
