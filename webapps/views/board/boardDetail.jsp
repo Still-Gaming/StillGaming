@@ -53,7 +53,7 @@
 			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo'">목록으로</button>
 			
 			<% if(m != null && m.getMemberId().equals(b.getMemberId())){ %>
-				<button onclick="location.href='<%= request.getContextPath() %>/upload.bo?boardNo='+<%=b.getBoardNo()%>">수정</button>
+				<button onclick="location.href='<%= request.getContextPath() %>/updateView.bo?boardNo='+<%=b.getBoardNo()%>">수정</button>
 				<button onclick="location.href='<%= request.getContextPath() %>/delete.bo?boardNo='+<%=b.getBoardNo()%>">삭제</button>
 			<% } %>
 		</div>

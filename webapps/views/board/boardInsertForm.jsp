@@ -46,15 +46,15 @@
 				    
 				    <br/>
 				    <div align="center">
-				      	<button type="reset">작성 취소</button>
-				    	<button type="submit">게시글 등록</button>
+				      	<button type="reset">취소</button>
+				    	<button type="submit">등록</button>
 				    </div>
 				</form>
 			</div>
 		</div>
 		
 	<% } else { 
-		request.getRequestDispatcher("/views/member/memberLigin.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/member/memberLogin.jsp").forward(request, response);
 	} %>
 	
 	<%@ include file="/views/common/footer.jsp" %>
