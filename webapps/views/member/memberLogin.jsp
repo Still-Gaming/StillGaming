@@ -59,11 +59,11 @@
                         <h3>Login</h3>
                         <form id="loginForm" action="/StillGaming/login.me" method="post">
                             <div class="input__item">
-                                <input type="text" name="memberId" placeholder="Email address">
+                                <input type="text" name="memberId" placeholder="ID">
                                 <span class="icon_mail"></span>
                             </div>
                             <div class="input__item">
-                                <input type="text" name="memberPwd" placeholder="Password">
+                                <input type="password" name="memberPwd" placeholder="Password">
                                 <span class="icon_lock"></span>
                             </div>
                             <button type="submit" onclick='login()' class="site-btn">Login Now</button>

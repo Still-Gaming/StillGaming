@@ -51,6 +51,7 @@
                 <div class="col-lg-8">
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
+
                             <ul class="header__ul">
                                 <li><a href="#" class="menu">Shop</a></li>
                                 <li><a href="./categories.jsp" class="menu">Community<span class="arrow_carrot-down"></span></a>
@@ -59,11 +60,13 @@
                                         <li><a href="#">자유게시판</a></li>
                                     </ul>
                                 </li>
+
                                 <li><a href="#" >Q&A<span class="arrow_carrot-down"></span></a>
                                    <ul class="dropdown">
                                         <li><a href="#">FAQ</a></li>
                                         <li><a href="#">1:1문의</a></li>
                                    </ul>
+
                             </ul>
                         </nav>
                     </div>

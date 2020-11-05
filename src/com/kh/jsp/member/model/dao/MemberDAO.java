@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import com.kh.jsp.common.exception.MemberException;
 import com.kh.jsp.member.model.vo.Member;
 
 public class MemberDAO {
@@ -87,14 +88,14 @@ public class MemberDAO {
 				result = new Member();
 				
 				result.setMemberId(m.getMemberId());
-				result.setMemberPwd(  m.getMemberPwd());
-				result.setMemberName(rset.getString("membername")); 
+				result.setMemberPwd(m.getMemberPwd());
+				result.setMemberName(rset.getString("member_name")); 
 				result.setGender(rset.getString("gender") );
-				result.setMemberSsn( rset.getString("MemberSsn"));
+				result.setMemberSsn( rset.getString("Member_Ssn"));
 				result.setPhone(rset.getString("phone"));
 				result.setEmail( rset.getString("email"));
-				result.setJoinDate(rset.getDate("joindate"));
-				result.setReportNum(rset.getInt("reportnum"));
+				result.setJoinDate(rset.getDate("join_date"));
+				result.setReportNum(rset.getInt("report_num"));
 			}
 			
 			System.out.println("조회 결과 확인 : " + result);
@@ -127,6 +128,34 @@ public class MemberDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+public int updateMember(Connection con, Member m) throws MemberException {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateMember");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, m.getMemberPwd() );
+			pstmt.setString(2, m.getMemberId());
+		
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			throw new MemberException("[DAO] : " + e.getMessage());
+			
+		} finally {
+			
 			close(pstmt);
 		}
 		

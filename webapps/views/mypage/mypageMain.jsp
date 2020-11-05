@@ -31,7 +31,7 @@
 	<%@ include file="../common/header.jsp" %>
 	
 	<div> 
-		<a href="memberUpdateForm.jsp">
+		<a href="../member/memberUpdateForm.jsp">
 			회원 정보 수정 
 		</a>
 	</div>

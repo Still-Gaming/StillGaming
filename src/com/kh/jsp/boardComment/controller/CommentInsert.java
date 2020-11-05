@@ -1,29 +1,26 @@
-package com.kh.jsp.member.controller;
+package com.kh.jsp.boardComment.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.kh.jsp.member.model.service.MemberService;
-import com.kh.jsp.member.model.vo.Member;
+import com.kh.jsp.boardComment.model.serivce.BoardCommentService;
+import com.kh.jsp.boardComment.model.vo.BoardComment;
 
 /**
- * Servlet implementation class MemberLogin
+ * Servlet implementation class CommentInert
  */
-@WebServlet("/login.me")
-public class MemberLogin extends HttpServlet {
+@WebServlet("/insert.do")
+public class CommentInsert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberLogin() {
+    public CommentInsert() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,31 +29,20 @@ public class MemberLogin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int commentNo = Integer.parseInt(request.getParameter("commnetNo"));
+		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 		String memberId = request.getParameter("memberId");
-		String memberPwd = request.getParameter("memberPwd");
+		String commentText = request.getParameter("commentText");
 		
-		Member m = new Member(memberId, memberPwd);
+		BoardComment comment = new BoardComment(commentNo, boardNo, memberId, commentText);
 		
-		MemberService ms = new MemberService();
+		int result = new BoardCommentService().insertComment(comment);
 		
-		m = ms.selectMember(m);
-		
-		if(m != null) {
-			HttpSession session = request.getSession();
-		
-			session.setAttribute("member", m);
-			
-			response.sendRedirect("index.jsp");
-			
+		if( result > 0 ) {
+			response.sendRedirect("selectOne.bo?bno="+ boardNo);
 		} else {
-			
-		request.setAttribute("error-msg", "회원 로그인 실패!");
-			
-			RequestDispatcher view 
-			    = request.getRequestDispatcher("views/loginFail.jsp");
-			
-			view.forward(request, response);
-			
+			// 에러 페이지 작성 . . . 생략
 		}
 	}
 
