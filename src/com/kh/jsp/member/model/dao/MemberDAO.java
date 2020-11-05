@@ -145,7 +145,9 @@ public int updateMember(Connection con, Member m) throws MemberException {
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, m.getMemberPwd() );
-			pstmt.setString(2, m.getMemberId());
+			pstmt.setString(2, m.getEmail());
+			pstmt.setString(3, m.getPhone());
+			pstmt.setString(4, m.getMemberId());
 		
 			result = pstmt.executeUpdate();
 			

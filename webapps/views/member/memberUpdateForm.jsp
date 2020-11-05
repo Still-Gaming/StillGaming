@@ -118,7 +118,7 @@ input{margin-bottom: 9px;}
 				<div class="ui input" style="font-size:15px;">연락처 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="number" name="phone1" id="phone1" style="width:200px; height:30px; border-radius:5px;" required> &nbsp; - &nbsp;
 				<input type="number" name="phone2" id="phone2" style="width:200px; height:30px; border-radius:5px;" required> &nbsp; - &nbsp;
-				<input type="number" name="phone1" id="phone1" style="width:200px; height:30px; border-radius:5px;" required>
+				<input type="number" name="phone3" id="phone3" style="width:200px; height:30px; border-radius:5px;" required>
 				</div>
 				
 				
