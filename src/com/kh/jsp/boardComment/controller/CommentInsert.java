@@ -29,13 +29,14 @@ public class CommentInsert extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int commentNo = Integer.parseInt(request.getParameter("commnetNo"));
+		// 작성자, 게시글 번호, 댓글 내용, 참조 댓글번호, 댓글레벨 작성
+		String MemberId = request.getParameter("MemberId");
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
-		String memberId = request.getParameter("memberId");
 		String commentText = request.getParameter("commentText");
+		int refcno = Integer.parseInt(request.getParameter("refcno"));
+		int commentLevel = Integer.parseInt(request.getParameter("commentLevel"));
 		
-		BoardComment comment = new BoardComment(commentNo, boardNo, memberId, commentText);
+		BoardComment comment = new BoardComment(boardNo, commentText, MemberId, refcno, commentLevel);
 		
 		int result = new BoardCommentService().insertComment(comment);
 		

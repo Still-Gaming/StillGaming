@@ -31,6 +31,10 @@
 /* Template default CSS
 /*----------------------------------------*/
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
 	height: 100%;
@@ -327,7 +331,7 @@ ol {
 -----------------------*/
 
 .header {
-	background: #070720;
+	background: #FFFFFF;
 }
 
 .header__logo {
