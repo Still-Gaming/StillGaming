@@ -21,16 +21,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
- <!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    
 <style>
 *{
    font-family: 'Noto Sans KR', sans-serif;
@@ -87,6 +78,12 @@ input{margin-bottom: 9px;}
    margin-left:15px;
    border-radius:3px;
 }
+
+.default {background-color: #e7e7e7; color: black;}
+
+.default:hover {background: #ddd;}
+.info {background-color: #2196F3;}
+.info:hover {background: #0b7dda;}
 </style>
 
 </head>
@@ -98,93 +95,78 @@ input{margin-bottom: 9px;}
     </div>
 
 	<%@ include file="../common/header.jsp" %>
-   
-<!--     Normal Breadcrumb Begin
-    <section class="normal-breadcrumb set-bg" data-setbg="../../resources/img/normal-breadcrumb.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="normal__breadcrumb__text">
-                        <h2>Sign Up</h2>
-                        <p>Welcome to the official Anime blog.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    Normal Breadcrumb End -->
-
+	
     <!-- Signup Section Begin -->
+    <br />
+    <br />
+    <br />
+
 <div class="section1">
    <div class="section2">
       <div class="section3">
-         <div class="join1">
             <form action="/StillGaming/insert.me" onsubmit="return validate();" method="post" style="margin-top:-10px;">
-            
-               <p><b>아이디</b></p>
-               <input type="text" name="memberId" id="memberId" style="width :268px; height:40px; display:inline-block;" required="required" placeholder="아이디를 입력해주세요" class="form-control"/>
-               <input type="button" value="중복확인" id="idDupCheckBtn" style="margin: -2px 0px 0px 7px; height:40px; background:#364559;" class="btn btn-primary"> 
-               <label id="idResult" style="font-size:12px;  display:block;"></label>
-
+               <table>
+               <tr>
+	               <td>아이디</td>
+	               <td><input type="text" name="memberId" id="memberId" style="width :268px; height:40px; display:inline-block;" required="required" class="form-control"/></td>
+	               <td><input type="button" value="중복확인" id="idDupCheckBtn" style="margin: -2px 0px 0px 7px; height:40px;" class="btn default"> </td>
+	               <td><label id="idResult" style="font-size:12px;  display:block;"></label></td>
+			   </tr>
                
-               <p><b>비밀번호</b></p>
-               <input type="password" name="memberPwd" id="memberPwd" style="width : 268px;  height:40px;" required="required" placeholder="비밀번호를 입력해주세요" class="form-control"/>
+               <tr>
+                   <td>비밀번호</td>
+               	   <td><input type="password" name="memberPwd" id="memberPwd" style="width : 268px;  height:40px;" required="required" placeholder="영,숫자 포함 8글자 이상 20글자 이하" class="form-control"/></td>
+               </tr>
                
-               <p><b>비밀번호 확인</b></p>
-               <input type="password" name="memberPwd2" id="memberPwd2" style="width : 268px;  height:40px; margin-bottom:10px;" required="required" placeholder="비밀번호를 재입력해주세요" class="form-control"/>
-               <label id="pwdResult" style="font-size:12px;  display:block;"></label>
+               <tr>
+               		<td>비밀번호 확인</td>
+              	    <td><input type="password" name="memberPwd2" id="memberPwd2" style="width : 268px;  height:40px; margin-bottom:10px;" required="required" placeholder="비밀번호를 재입력해주세요" class="form-control"/></td>
+               	    <td><label id="pwdResult" style="font-size:12px;  display:block;"></label></td>
+               </tr>
                
-               <p><b>이름</b></p>
-               <input type="text" name="memberName" style="width : 268px; height:37px;" required="required" class="form-control"/>
+               <tr>
+               		<td>이름</td>
+               		<td><input type="text" name="memberName" style="width : 268px; height:37px;" required="required" class="form-control"/></td>
+               </tr>
                
-               <p><b>이메일</b></p>
-               <input type="text" name="email1"style="width:122px; height:40px; display:inline-block;" required="required" class="form-control">
-             &nbsp;@&nbsp;
-              <input type="text" name="email2"style="width:122px; height:40px; display:inline-block;" required="required" class="form-control">
-             <input type="button" value="중복확인" id="emailDupCheckBtn" style="margin: -2px 0px 0px 7px; height:40px; background:#364559;" class="btn btn-primary"> 
+               <tr>
+               		<td>이메일</td>
+              	 	<td><input type="text" name="email1"style="width:122px; height:40px; display:inline-block;" required="required" class="form-control">
+               @
+               <input type="text" name="email2"style="width:122px; height:40px; display:inline-block;" required="required" class="form-control"></td>
+              <td><input type="button" value="중복확인" id="emailDupCheckBtn" style="margin: -2px 0px 0px 7px; height:40px; " class="btn default"></td> 
+              </tr>
                
-               <p><b>생년월일</b></p>
-			   <input type="text" name="memberSsn" style="width : 268px; height:37px;" required="required" class="form-control"/>
-               
+               <tr>
+               		<td>생년월일</td>
+			   		<td><input type="text" name="memberSsn" style="width : 268px; height:37px;" required="required" class="form-control"/></td>
+               </tr>
              
-               <p><b>연락처</b></p>
-            <input type="number" name="phone1" required="required" style="width:76px; height:37px; display:inline;" class="form-control"/>
+              <tr>
+					<td>연락처</td>
+            		<td><input type="number" name="phone1" required="required" style="width:76px; height:37px; display:inline;" class="form-control"/>
 			
-			 &nbsp; - &nbsp; <input type="number" name="phone2" required="required" style="width:77px; height:37px; display:inline;" class="form-control" />
-			 &nbsp; - &nbsp; <input type="number" name="phone3" required="required" style="width:76px; height:37px; display:inline;" class="form-control"/>        
-               			
-			<p><b>성별</b></p>
-			<input type="radio" name="gender" value="M"  />남 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="radio" name="gender" value="F" />여
-               
-                <input type="submit" id="submitBtn" value=" 동의 후 회원 가입" class="btn btn-primary" style="text-align:center;width: 351px; height:45px; margin-left: 56px; margin-top:-10px;background:#364559;left:601px;position:absolute" /> 
+			  -  <input type="number" name="phone2" required="required" style="width:77px; height:37px; display:inline;" class="form-control" />
+			  -  <input type="number" name="phone3" required="required" style="width:76px; height:37px; display:inline;" class="form-control"/></td>
+              </tr>	
+              
+              <tr>
+				  <td><p>성별</p></td>
+				  <td><input type="radio" name="gender" value="M"  />남자 &nbsp;
+				  <input type="radio" name="gender" value="F" />여자</td>
+			</tr>
+
+			</table>
+				<button type="submit" id="submitBtn" style="margin: -2px 0px 0px 7px; height:40px; color: white; align: center;" class="btn info">회원가입</button>
             </form>
             
-         </div>
-         <div class="join2">
-            <div class="check" style="position:absolute;top:39px">
-               <div class="custom-control custom-checkbox" style="margin-left:40px;font-family: 'Noto Sans KR', sans-serif;">
-                  <input type="checkbox" class="custom-control-input" id="term1" onchange="isChecked();">
-                   <label class="custom-control-label" for="term1">서비스 이용약관 동의 (필수)</label><br>   
-                    <textarea class="term-box" readonly>제1조 (목적)
-
-                 </textarea>
-                 </div>
-                 
-                 <div class="custom-control custom-checkbox" style="margin-left:40px;font-family: 'Noto Sans KR', sans-serif;margin-top:30px;">
-                  <input type="checkbox" class="custom-control-input" id="term2" onchange="isChecked();">
-                   <label class="custom-control-label" for="term2">개인정보 수집 • 이용에 대한 동의 (필수)</label>
-                   <textarea class="term-box" readonly>
- 
-                 </textarea>
-                   </div>
-                </div>
-                
+         </div>           
          </div>      
       </div>
-   </div>
-</div>
-
+<br />
+<br />
+<br />
+<br />
 
 	<%@ include file="../common/footer.jsp" %>
 

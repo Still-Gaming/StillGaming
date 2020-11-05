@@ -8,7 +8,7 @@
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Still Gaming | 마이페이지</title>
+    <title>Still Gaming | 찜목록</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -30,30 +30,13 @@
 
 	<%@ include file="../common/header.jsp" %>
 	
-	<div> 
-		<a href="../member/memberUpdateForm.jsp">
-			회원 정보 수정 
-		</a>
-	</div>
-		<a href="myWishList.jsp">
-			찜목록
-		</a>
 	<div>
-		<a href=""></a>
+	
+		<p></p>
+	
 	</div>
-	<br />
-	<br />
 	
-	<div> 찜 목록 </div>
 	
-	<div> 장바구니 </div>
-	
-	<div> 내가 쓴 글 조회 </div>
-	
-	<div> 구매내역 </div>
-
-
-
 	<%@ include file="../common/footer.jsp" %>
 
 </body>
