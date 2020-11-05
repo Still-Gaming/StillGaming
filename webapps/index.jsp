@@ -10,9 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-
     <title>Still Gaming</title>
-
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -56,6 +54,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/hero/hero.jpg">
                     <div class="row">
                         <div class="col-lg-6">
@@ -69,6 +68,7 @@
                     </div>
                 </div>
                 <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/hero/hero.jpg">
+
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
