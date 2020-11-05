@@ -52,15 +52,34 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
 
+<<<<<<< HEAD
+=======
+                            <ul>
+                                <li class="active"><a href="./index.jsp">홈페이지</a></li>
+                                <li><a href="./categories.jsp">커뮤니티<span class="arrow_carrot-down"></span></a>
+
+>>>>>>> refs/remotes/origin/feature_jin
                             <ul class="header__ul">
                                 <li><a href="#" class="menu">Shop</a></li>
+<<<<<<< HEAD
                                 <li><a href="./categories.jsp" class="menu">Community<span class="arrow_carrot-down"></span></a>
+=======
+                                <li><a href="./categories.jsp" class="menu">Community<span class="arrow_carrot-down"></span></a>
+
+>>>>>>> refs/remotes/origin/feature_jin
                                     <ul class="dropdown">
                                         <li><a href="#" >공지사항</a></li>
                                         <li><a href="#">자유게시판</a></li>
                                     </ul>
                                 </li>
 
+<<<<<<< HEAD
+=======
+                                <li><a href="./blog.jsp">Our Blog</a></li>
+                                <li><a href="views/shop/shop.jsp">상점</a></li>
+                                <li><a href="#">Contacts</a></li>
+
+>>>>>>> refs/remotes/origin/feature_jin
                                 <li><a href="#" >Q&A<span class="arrow_carrot-down"></span></a>
                                    <ul class="dropdown">
                                         <li><a href="#">FAQ</a></li>
@@ -86,6 +105,7 @@
             </div>
             <div id="mobile-menu-wrap"></div>
         </div>
+        
     </header>
     <!-- Header End -->
 </body>
