@@ -10,20 +10,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.jsp.board.model.service.BoardService;
 import com.kh.jsp.board.model.vo.Board;
-import com.kh.jsp.board.model.vo.BoardFile;
 import com.kh.jsp.common.exception.BoardException;
 
 /**
- * Servlet implementation class BoardSelectOne
+ * Servlet implementation class BoardUpdateView
  */
-@WebServlet("/selectOne.bo")
-public class BoardSelectOne extends HttpServlet {
+@WebServlet("/updateView.bo")
+public class BoardUpdateView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardSelectOne() {
+    public BoardUpdateView() {
         super();
     }
 
@@ -39,25 +38,17 @@ public class BoardSelectOne extends HttpServlet {
 		
 		try {
 			Board b = bs.selectBoard(boardNo);
-			BoardFile bf = bs.selectBoardFile(boardNo);
-			
-			bs.plusCount(boardNo);
-			b.setBoardCount(b.getBoardCount() + 1);
 			
 			request.setAttribute("board", b);
-			request.setAttribute("boardFile", bf);
 			
-			page = "views/board/boardDetail.jsp";
+			page = "views/board/boardUpdate.jsp";
 			
 		} catch (BoardException e) {
 			
 			request.setAttribute("exception", e);
-			request.setAttribute("error-msg", "게시글 상세 조회 실패");
+			request.setAttribute("error-msg", "게시글 수정 페이지 상세 조회 실패");
 			
 			page = "views/common/errorPage.jsp";
-			
-		} finally {
-			request.getRequestDispatcher(page).forward(request, response);
 		}
 	}
 
