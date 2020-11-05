@@ -38,6 +38,8 @@ public class BoardSelectOne extends HttpServlet {
 		String page = "";
 		
 		try {
+			bs.plusCount(boardNo);
+			
 			Board b = bs.selectBoard(boardNo);
 			BoardFile bf = bs.selectBoardFile(boardNo);
 			
