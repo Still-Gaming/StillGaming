@@ -112,7 +112,11 @@
 		}).on('click', function() {
 			var boardNo = $(this).parent().find('input').val();
 			
-			location.href='<%= request.getContextPath() %>/selectOne.bo?boardNo=' + boardNo;
+			<% if(m != null) { %>
+				location.href='<%= request.getContextPath() %>/selectOne.bo?boardNo=' + boardNo;
+			<% } else { %>
+				location.href='<%= request.getContextPath() %>/views/member/memberLogin.jsp';
+			<% } %>
 		});
 	</script>
 </body>

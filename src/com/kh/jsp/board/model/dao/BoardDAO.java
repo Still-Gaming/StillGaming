@@ -319,4 +319,28 @@ public class BoardDAO {
 		return result;
 	}
 
+	public int plusCount(Connection con, int boardNo) throws BoardException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("plusCount");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, boardNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			throw new BoardException("[DAO] : " + e.getMessage());
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }

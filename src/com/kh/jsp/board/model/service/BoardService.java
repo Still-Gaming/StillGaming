@@ -109,4 +109,15 @@ public class BoardService {
 		return result;
 	}
 
+	public void plusCount(int boardNo) throws BoardException {
+		con = getConnection();
+		
+		int result = bDAO.plusCount(con, boardNo);
+		
+		if(result > 0) commit(con);
+		else rollback(con);
+		
+		close(con);
+	}
+
 }
