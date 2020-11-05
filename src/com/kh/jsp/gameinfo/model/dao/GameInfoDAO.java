@@ -73,8 +73,7 @@ public class GameInfoDAO {
 		try {
 			pstmt = con.prepareStatement(sql);
 			
-			// 1. 마지막 행의 번호
-			// 2. 첫 행의 번호
+			
 			int startRow = (currentPage - 1) * limit + 1; 
 			int endRow = startRow + limit - 1;
 
@@ -88,9 +87,9 @@ public class GameInfoDAO {
 				GameInfo b = new GameInfo();
 				
 				
-				b.setGminfoName(   rset.getString("gminfoName"));
-				b.setGminfoExp( rset.getString("gminfoExp"));
-				b.setGminfoPrice( rset.getInt("gminfoPrice"));
+				b.setGminfoName(   rset.getString("gminfo_Name"));
+				b.setGminfoExp( rset.getString("gminfo_Exp"));
+				b.setGminfoPrice( rset.getInt("gminfo_Price"));
 				
 				
 				list.add(b);

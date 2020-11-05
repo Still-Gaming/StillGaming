@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*, com.kh.jsp.gameinfo.model.vo.*"%>
+<%
+	ArrayList<GameInfo> list = (ArrayList<GameInfo>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+%>
 
 
 <!DOCTYPE html>
@@ -93,14 +102,83 @@
 		  display: table;
 		}
 	</style>
+	<!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/plyr.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
+    
 	
     
 </head>
 <body>
 
-	<%@ include file="../common/header.jsp" %>
+	<%@ include file="/views/common/header.jsp" %>
 	
 	
+	<div class="titleArea">
+		<h2>게임 리스트</h2>
+	</div>
+		
+	<div class="tableArea">
+		<table align="center" style="color:white;">
+			<thead>
+				<tr align="center">
+					<th width="50">이름</th>
+					<th width="200">설명</th>
+					<th width="80">가격</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<% for(GameInfo b : list) { %>
+					<tr align="center">
+						<input type="hidden" name="GameInfoNo" id="GameInfoNo" value="<%= b.getGminfoNum() %>" />
+						<td><%= b.getGminfoName() %></td>
+						<td><%= b.getGminfoExp() %></td>
+						<td><%= b.getGminfoPrice() %></td>
+					</tr>
+				<% } %>
+			</tbody>
+		</table>
+	</div>
+	
+		<div class="pagingArea" align="center">
+	
+		<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=1'"><<</button>
+		
+		<%  if(currentPage <= 1){  %>
+			<button disabled><</button>
+		<%  }else{ %>
+			<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= currentPage - 1 %>'"><</button>
+		<%  } %>
+			
+		<% for(int p = startPage; p <= endPage; p++){
+				if(p == currentPage){ %>
+				<button disabled><%= p %></button>
+			<% } else { %>
+				<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= p %>'"><%= p %></button>
+			<% } %>
+		<% } %>
+				
+		<%  if(currentPage >= maxPage){  %>
+			<button disabled>></button>
+		<%  } else { %>
+			<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= currentPage + 1 %>'">></button>
+		<%  } %>
+		
+		<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= maxPage %>'">>></button>
+		
+	</div>
 	
 	
 	<script>
@@ -126,7 +204,7 @@
 		}
 	</script>
 	
-	<%@ include file="../common/footer.jsp" %>
+	<%@ include file="/views/common/footer.jsp" %>
 	
 	<div class="search-model">
     <div class="h-100 d-flex align-items-center justify-content-center">

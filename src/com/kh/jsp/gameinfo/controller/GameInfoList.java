@@ -51,7 +51,6 @@ public class GameInfoList extends HttpServlet {
 			
 				currentPage = 1;
 				
-				
 				if(request.getParameter("currentPage") != null) {
 					currentPage
 					  = Integer.parseInt(request.getParameter("currentPage")); 
@@ -73,7 +72,7 @@ public class GameInfoList extends HttpServlet {
 				list = bs.selectList(currentPage, limit);
 				
 				String page = "";
-				
+
 				if( list != null && list.size() > 0) {
 					PageInfo pi = new PageInfo(currentPage, listCount, limit, 
 							                   maxPage, startPage, endPage);
@@ -81,10 +80,10 @@ public class GameInfoList extends HttpServlet {
 					request.setAttribute("pi", pi);
 					request.setAttribute("list", list);
 					
-					page = "views/shop/shop.jsp";
+					page = "/views/shop/shop.jsp";
 				} else {
 					request.setAttribute("error-msg", "게시글 조회 실패");
-					page = "views/common/errorPage.jsp";
+					page = "/views/common/errorPage.jsp";
 				}
 				
 					request.getRequestDispatcher(page).forward(request, response);

@@ -1,4 +1,4 @@
-package com.kh.jsp.gameimage.model.vo;
+package com.kh.jsp.gameinfo.model.vo;
 
 public class GameImage {
 	
@@ -14,6 +14,22 @@ public class GameImage {
 		super();
 		this.gmimgNum = gmimgNum;
 		this.gminfoNum = gminfoNum;
+		this.gmimgFile = gmimgFile;
+		this.gmimgCgfile = gmimgCgfile;
+		this.gmimgPath = gmimgPath;
+	}
+	
+
+	public GameImage(int gmimgNum, int gminfoNum, String gmimgFile) {
+		super();
+		this.gmimgNum = gmimgNum;
+		this.gminfoNum = gminfoNum;
+		this.gmimgFile = gmimgFile;
+	}
+
+	
+	public GameImage(String gmimgFile, String gmimgCgfile, String gmimgPath) {
+		super();
 		this.gmimgFile = gmimgFile;
 		this.gmimgCgfile = gmimgCgfile;
 		this.gmimgPath = gmimgPath;

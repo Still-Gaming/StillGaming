@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.kh.jsp.board.model.vo.*, com.kh.jsp.boardcomment.model.vo.*, java.util.*" %>
+<%@ page import="com.kh.jsp.board.model.vo.*, com.kh.jsp.boardComment.model.vo.*, java.util.*" %>
 <% 
 	Board b = (Board)request.getAttribute("board");
 	BoardFile bf = (BoardFile)request.getAttribute("boardFile");

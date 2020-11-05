@@ -12,6 +12,7 @@ public class GameInfo {
 	private int gmTypenum;         // 장르번호
 	private int gminfoAage;        // 등급번호
 	private int gminfoPrice;       // 가격
+	private String 
 	
 	
 	public GameInfo() { }
