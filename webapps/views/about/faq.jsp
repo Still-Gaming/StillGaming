@@ -1,100 +1,110 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <!DOCTYPE html>
-<html lang="zxx">
- 
-
+<html>
 <head>
-    <title>글 상세보기</title>
-    
-    <style type="text/css">
-        #wrap {
-            width: 800px;
-            margin: 0 auto 0 auto;
-        }
-    
-        #detailBoard{
-            text-align :center;
-        }
-        
-        #title{
-            height : 16;
-            font-family :'돋움';
-            font-size : 12;
-            text-align :center;
-        }
-    </style>
-    
-    <script type="text/javascript">
-        function changeView(value)
-        {
-            if(value == 0)    location.href="BoardListAction.bo?page=${pageNum}";
-            else if(value == 1){
-                location.href='BoardReplyFormAction.bo?num=${board.board_num}&page=${pageNum}';
-            }
-                
-        }
-    </script>
+<meta charset="UTF-8">
+<title>FAQ </title>
+<style>
+body{background:#f4f4f4}
+.btn{padding:0;background:transparent;border:0;outline:0}
+
+.accordion_area{ background-color: gray; color: #fff; cursor: pointer; padding: 10px; width: 100%; text-align: left; outline: none; font-size: 20px; transition: all 0.5s; }
+.accordion_area .btn_toggle{color:teal;display:block;width:100%;height:50px;padding:0 10px;background:#fff;font-size:20px;text-align:left;line-height:30px;box-sizing:border-box}
+.accordion_area .btn_toggle::before{display:inline;content:'Q.'} /* Q 에대해 */
+.accordion_area .content_area{  padding: 0 18px; background-color: #fff; height: 100px; overflow: hidden; transition: all 0.5s; display:none;}
+.accordion_area .content_area::before{color: black; display:inlnie;content:'A.'  } /* // 눌렀을떄 A  */
+.accordion_area .content_area.act{color:black; display:block}/*  //눌렀을떄 글씨색 */
+.active, .accordion_area:hover { background-color: teal; } /* //마우스 가져갔을때 */
+ .accordion_area::after { content: "\002B"; color: black; font-weight: bold; float: right; margin-left: 5px; font-size: 25px; }
+ .active::after { content: "\2212" }
+h2{
+ background-color: #ffffff;
+ opacity: 1;
+ color: red;
+ padding: 10px;
+}
+</style>
+
 </head>
 <body>
- 
-<div id="wrap">
-    <br><br>
-    <div id="board">
-        <table id="detailBoard" width="800" border="3" bordercolor="lightgray">
-        
-            <tr>
-                <td id="title">작성일</td>
-                <td>${board.board_date}</td>
-            </tr>
-            <tr>
-                <td id="title">작성자</td>
-                <td>${board.board_id}</td>
-            </tr>
-            <tr>
-                <td id="title">
-                    제 목
-                </td>
-                <td>
-                    ${board.board_subject}
-                </td>        
-            </tr>
-            <tr>
-                <td id="title">
-                    내 용
-                </td>
-                <td>
-                    ${board.board_content}
-                </td>        
-            </tr>
-            <tr>
-                <td id="title">
-                    첨부파일
-                </td>
-                <td>
-                    <a href='FileDownloadAction.bo?file_name=${board.board_file}'>${board.board_file}</a>
-                </td>    
-            </tr>
-    
-            <tr align="center" valign="middle">
-                <td colspan="5">
-                <c:if test="${sessionScope.sessionID !=null}">
-                    <c:if test="${sessionScope.sessionID == board.board_id}">
-                        <input type="button" value="수정" >
-                        <input type="button" value="삭제" >
-                    </c:if>
-                        <input type="button" value="답글" onclick="changeView(1)" >
-                </c:if>        
-                    <input type="button" value="목록" onclick="changeView(0)">            
-                </td> <!-- javascript:location.href='BoardListAction.bo?page=${pageNum}' -->
-            </tr>
-        </table>
-    </div>
-</div>    
- 
+<%@ include file="/views/common/header.jsp" %>
+	
+
+	<h2>FAQ</h2>
+	
+
+
+	<div class="accordion_area">
+  <button class="btn btn_toggle">Whit is accordion?</button>
+  <div class="content_area">
+    Accordion is accordion.
+  </div>
+</div>
+
+<div class="accordion_area">
+  <button class="btn btn_toggle">Whit is accordion?</button>
+  <div class="content_area">
+    Accordion is accordion.
+  </div>
+</div>
+
+<div class="accordion_area" data-group="one">
+  <button class="btn btn_toggle">Whit is accordion?</button>
+  <div class="content_area act">
+    Accordion is accordion.
+  </div>
+</div>
+
+<div class="accordion_area" data-group="one">
+  <button class="btn btn_toggle">Whit is accordion?</button>
+  <div class="content_area">
+    Accordion is accordion.
+  </div>
+</div>
+
+<div class="accordion_area" data-group="one">
+  <button class="btn btn_toggle">Whit is accordion?</button>
+  <div class="content_area">
+    Accordion is accordion.
+  </div>
+</div>
+	
+
+<script>
+function bindingAccordionEvent(wrap){
+	  let areaArr = document.querySelectorAll(wrap);
+	  
+	  areaArr.forEach(function(area){
+	     let hasGroup = area.dataset['group'] !== undefined ? true : false;
+	    let btn = area.querySelector('.btn_toggle');
+	    
+	    btn.addEventListener('click', function(){
+	      if(hasGroup === true){
+	        let name = area.dataset['group'];
+	        let groupArr = document.querySelectorAll(wrap + '[data-group="'+ name +'"]');
+	        let thisContent = area.querySelector('.content_area');
+	        
+	        groupArr.forEach(function(group){
+	           let content = group.querySelector('.content_area');
+	          content.classList.remove('act');
+	        });
+	        thisContent.classList.add('act');
+	      }else{
+	        let content = area.querySelector('.content_area');
+	        content.classList.toggle('act');
+	      }
+	    });
+	  });
+	}
+
+	bindingAccordionEvent('.accordion_area');
+
+
+
+</script>
+	
+	
+	<%@ include file="/views/common/footer.jsp" %>
 </body>
 </html>
-
-
-출처: https://all-record.tistory.com/131 [세상의 모든 기록]

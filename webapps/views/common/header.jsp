@@ -75,7 +75,7 @@
                                 </li>
                                 <li><a href="#" >Q&A<span class="arrow_carrot-down"></span></a>
                                    <ul class="dropdown">
-                                        <li><a href="#">FAQ</a></li>
+                                        <li><a href="<%= request.getContextPath() %>/views/about/faq.jsp">FAQ</a></li>
                                         <li><a href="<%= request.getContextPath() %>/views/about/qna.jsp">1:1문의</a></li>
                                    </ul>
 

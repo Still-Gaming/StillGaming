@@ -3,7 +3,7 @@ package com.kh.jsp.qna.model.vo;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class Qna implements Serializable {
+public class Qnavo implements Serializable {
 	
 	private static final long serialVersionUID = 119L;
 	

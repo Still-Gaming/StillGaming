@@ -13,7 +13,8 @@ a {
 
 table, tr, td {
 	border-radius: 3px;
-	 color: yellow;
+	border-color: fuchsia;
+	 color: fuchsia;
 }
 </style>
 </head>
@@ -22,9 +23,10 @@ table, tr, td {
 
 <form action="" method="post">
 	<table width="600px" style="margin: 50px auto" border="1">
-		<tr>
+		<tr >
+
 			<td align="left" style="color:red">Q & A</td>
-			<td colspan="2" align="right"><a href="../index.jsp">메인화면</a></td>
+			<td colspan="2" align="right" ><a href="../index.jsp">메인화면</a></td>
 		</tr>
 		<tr>
 			<td width="70" align="center">제목</td>
@@ -37,25 +39,16 @@ table, tr, td {
 			</select>
 			</td>
 		</tr>
+		
 		<tr>
-			<td width="70" align="center">이메일</td>
-			<td width="330"><input type="text" name="email" size="30">
+		<td width="70" align="center">첨부파일</td>
+			<td width="330"><input type="file" value="파일 선택" name="file" size="30">
 			</td>
-		</tr>
-		<tr>
-			<td width="70" align="center">제목</td>
-			<td width="330"><input type="text" name="subject" size="50"
-				value='<c:if test="${ not empty param.ref }">[답글]</c:if>'>
-			</td>
+       		
 		</tr>
 		<tr>
 			<td width="70" align="center">내용</td>
 			<td width="330"><textarea rows="13" cols="50" name="content"></textarea>
-			</td>
-		</tr>
-		<tr>
-			<td width="70" align="center">비밀번호</td>
-			<td width="330"><input type="password" name="pass" size="10">
 			</td>
 		</tr>
 		<tr>
