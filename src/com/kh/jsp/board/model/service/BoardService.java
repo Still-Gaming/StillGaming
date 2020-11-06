@@ -2,6 +2,7 @@ package com.kh.jsp.board.model.service;
 
 import static com.kh.jsp.common.JDBCTemplate.*;
 
+import java.io.File;
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -59,7 +60,7 @@ public class BoardService {
 		return list;
 	}
 
-	public int updateBoard(Board b, BoardFile bf) throws BoardException {
+	public int updateBoard(Board b, BoardFile bf, String filePath) throws BoardException {
 		con = getConnection();
 		
 		int totalResult = 0;
@@ -69,7 +70,11 @@ public class BoardService {
 		if(result1 > 0 && bf != null) {
 			bf.setBoardNo(b.getBoardNo());
 			
+			BoardFile oldFile = bDAO.selectBoardFile(con, bf.getBoardNo());
+			
 			result2 = bDAO.updateBoardFile(con, bf);
+			
+			new File(filePath + oldFile.getFileChangeName()).delete();
 		}
 		
 		if(result1 > 0 && (bf == null || result2 > 0)) {
@@ -102,6 +107,17 @@ public class BoardService {
 		close(con);
 		
 		return result;
+	}
+
+	public void plusCount(int boardNo) throws BoardException {
+		con = getConnection();
+		
+		int result = bDAO.plusCount(con, boardNo);
+		
+		if(result > 0) commit(con);
+		else rollback(con);
+		
+		close(con);
 	}
 
 }

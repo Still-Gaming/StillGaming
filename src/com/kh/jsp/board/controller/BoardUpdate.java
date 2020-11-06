@@ -69,22 +69,16 @@ public class BoardUpdate extends HttpServlet {
 				bf.setFileChangeName(fileChangeName);
 			}
 			
-			int result = bs.updateBoard(b, bf);
+			int result = bs.updateBoard(b, bf, filePath);
 			
-			if(result > 0 && bf == null) {
-				BoardFile oldFile = bs.selectBoardFile(boardNo);
-				
-				new File(filePath + oldFile.getFileChangeName()).delete();
-			}
-			
-			if(result == 1) {
-				response.sendRedirect("");
-			} else {
-				
-			}
+			response.sendRedirect("selectOne.bo?boardNo=" + boardNo);
 			
 		} catch (BoardException e) {
-			e.printStackTrace();
+			
+			request.setAttribute("exception", e);
+			request.setAttribute("error-msg", "게시글 수정 실패");
+			
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
 	}
 

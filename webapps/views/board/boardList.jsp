@@ -15,9 +15,10 @@
 <head>
 <meta charset="UTF-8">
 <title>커뮤니티</title>
+<script src="/resources/jqery-3.3.1.min.js"></script>
 </head>
 <body>
-	<%@ include file="../common/header.jsp" %>
+	<%@ include file="/views/common/header.jsp" %>
 	
 	<div class="titleArea">
 		<h2>자유 게시판</h2>
@@ -94,6 +95,29 @@
 		</div>
 	</form>
 	
-	<%@ include file="../common/footer.jsp" %>
+	<%@ include file="/views/common/footer.jsp" %>
+	
+	<script>
+		$('td').on('mouseenter', function() {
+			$(this).css('cursor', 'pointer');
+			$(this).parent().css({
+				'background-color' : 'white',
+				'color' : 'black'
+			});
+		}).on('mouseleave', function() {
+			$(this).parent().css({
+				'background-color' : 'transparent',
+				'color' : 'white'
+			})
+		}).on('click', function() {
+			var boardNo = $(this).parent().find('input').val();
+			
+			<% if(m != null) { %>
+				location.href='<%= request.getContextPath() %>/selectOne.bo?boardNo=' + boardNo;
+			<% } else { %>
+				location.href='<%= request.getContextPath() %>/views/member/memberLogin.jsp';
+			<% } %>
+		});
+	</script>
 </body>
 </html>

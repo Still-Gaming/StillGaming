@@ -7,9 +7,9 @@
 <title>게시글 작성</title>
 </head>
 <body>
-	<%@ include file="../common/header.jsp" %>
+	<%@ include file="/views/common/header.jsp" %>
 	
-	if(m != null) {
+	<% if(m != null) { %>
 		
 		<div class="outer">
 		
@@ -19,7 +19,7 @@
 			<div class="tableArea">
 				<form action="<%= request.getContextPath() %>/insert.bo"
 				      method="post" enctype="multipart/form-data">
-		      		<input type="hidden" name="memberId" value="user01" />
+		      		<input type="hidden" name="memberId" value="<%= m.getMemberId() %>" />
 		      		<input type="hidden" name="boardType" value="1" />
 				    <table>
 				      	<tr>
@@ -46,20 +46,17 @@
 				    
 				    <br/>
 				    <div align="center">
-				      	<button type="reset">작성 취소</button>
-				    	<button type="submit">게시글 등록</button>
+				      	<button type="reset">취소</button>
+				    	<button type="submit">등록</button>
 				    </div>
 				</form>
 			</div>
 		</div>
 		
-	} else { 
-		request.setAttribute("exception", new Exception("게시글 작성 비회원 접근"));
-		request.setAttribute("error-msg", "회원만 접근 가능합니다!");
-		
-		request.getRequestDispatcher("../common/errorPage.jsp").forward(request, response);
-	}
+	<% } else { 
+		request.getRequestDispatcher("/views/member/memberLogin.jsp").forward(request, response);
+	} %>
 	
-	<%@ include file="../common/footer.jsp" %>
+	<%@ include file="/views/common/footer.jsp" %>
 </body>
 </html>

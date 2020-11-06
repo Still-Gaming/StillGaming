@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.kh.jsp.board.model.vo.*, com.kh.jsp.boardcomment.model.vo.*, java.util.*" %>
+<%@ page import="com.kh.jsp.board.model.vo.*, com.kh.jsp.boardComment.model.vo.*, java.util.*" %>
 <% 
 	Board b = (Board)request.getAttribute("board");
 	BoardFile bf = (BoardFile)request.getAttribute("boardFile");
@@ -11,12 +11,15 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 상세보기</title>
+<style>
+	td {
+		color : white;
+	}
+</style>
 </head>
 <body>
-	<%@ include file="../common/header.jsp" %>
+	<%@ include file="/views/common/header.jsp" %>
 	
-		<div class="outer">
-		<br/>
 		<h2 align="center">게시글 상세 보기</h2>
 		<div class="tableArea">
 			<table align="center" width="800px">
@@ -34,7 +37,7 @@
 				<tr>
 					<td colspan="3">
 						<div class="imgArea">
-						<% if(bf.getFileChangeName() != null && bf.getFileChangeName().length() > 0) { %>
+						<% if(bf != null && bf.getFileChangeName() != null && bf.getFileChangeName().length() > 0) { %>
 							<img src="<%= request.getContextPath() %>/resources/boardUploadFiles/<%= bf.getFileChangeName() %>" />
 						<% } %>
 						</div>
@@ -50,13 +53,13 @@
 			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo'">목록으로</button>
 			
 			<% if(m != null && m.getMemberId().equals(b.getMemberId())){ %>
-				<button onclick="location.href='<%= request.getContextPath() %>/upload.bo?boardNo='+<%=b.getBoardNo()%>">수정</button>
+				<button onclick="location.href='<%= request.getContextPath() %>/updateView.bo?boardNo='+<%=b.getBoardNo()%>">수정</button>
 				<button onclick="location.href='<%= request.getContextPath() %>/delete.bo?boardNo='+<%=b.getBoardNo()%>">삭제</button>
 			<% } %>
 		</div>
 		
 		<div class="replyArea">
-			<span>댓글(<%= clist.size() %>)</span>
+			<span>댓글('댓글 개수 들어갈 자리')</span>
 			
 			<div class="replyWriteArea">
 				<form action="<%= request.getContextPath() %>/insert.co" method="post">
@@ -77,6 +80,6 @@
 			</div>
 		</div>
 	
-	<%@ include file="../common/footer.jsp" %>
+	<%@ include file="/views/common/footer.jsp" %>
 </body>
 </html>
