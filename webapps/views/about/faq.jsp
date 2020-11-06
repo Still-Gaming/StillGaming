@@ -18,7 +18,29 @@ body{background:#f4f4f4}
 .active, .accordion_area:hover { background-color: teal; } /* 마우스 가져갔을때 */
  .accordion_area::after { content: "\002B"; color: black; font-weight: bold; float: right; margin-left: 5px; font-size: 25px; }
  .active::after { content: "\2212" }
- #content1{ 'display:none;'}
+ 
+.accordion_area:focus,
+.accordion_area:hover,
+.menu h2:active {
+    background : skyblue;
+    color : yellow;
+    text-shadow: none;
+}
+
+.content_area{
+ font-size : 15px;
+    display : block;
+    color : white;
+    text-shadow : 2px 2px 2px black;
+    text-decoration : none;
+}
+
+	div[id*=content] {
+		display : none;
+	}
+
+
+
 h2{
  background-color: #ffffff;
  opacity: 1;
@@ -26,7 +48,7 @@ h2{
  padding: 10px;
 }
 </style>
-
+<script src="../../resources/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <%@ include file="/views/common/header.jsp" %>
@@ -34,55 +56,55 @@ h2{
 
 	<h2>FAQ</h2>
 	
-	   <ul id="menu">
+	   <ul class="menu">
         <li><a href="#content1"> 배송관련 </a></li>
         <li><a href="#content2"> 결제관련 </a></li>
         <li><a href="#content3"> 게임관련 </a></li>
     </ul>
     
-    
+    <div class="content">
 	<div id="content1">
-	<div class="accordion_area" >
-  <button class="btn btn_toggle">안녕?</button>
-  <div class="content_area">
-    Accordion is accordion.
-  </div>
-</div>
+		<div class="accordion_area" >
+  			<button class="btn btn_toggle">안녕? 배송관련 입니다</button>
+  			<div class="content_area">
+    			Accordion is accordion.
+  			</div>
+		</div>
 
-<div class="accordion_area" >
-  <button class="btn btn_toggle">Whit is accordion?</button>
-  <div class="content_area">
-    Accordion is accordion.
-  </div>
-</div>
-
-<div class="accordion_area" data-group="one">
-  <button class="btn btn_toggle">Whit is accordion?</button>
-  <div class="content_area act">
-    Accordion is accordion.
-  </div>
-</div>
-
-<div class="accordion_area" data-group="one">
-  <button class="btn btn_toggle">Whit is accordion?</button>
-  <div class="content_area">
-    Accordion is accordion.
-  </div>
-</div>
-
-<div class="accordion_area" data-group="one">
-  <button class="btn btn_toggle">Whit is accordion?</button>
-  <div class="content_area">
-    Accordion is accordion.
-  </div>
-</div>
+		<div class="accordion_area" >
+			<button class="btn btn_toggle">Whit is accordion?</button>
+			<div class="content_area">
+				Accordion is accordion.
+			</div>
+		</div>
 	
-</div>
+		<div class="accordion_area" data-group="one">
+			<button class="btn btn_toggle">Whit is accordion?</button>
+			<div class="content_area act">
+				Accordion is accordion.
+			</div>
+		</div>
+	
+		<div class="accordion_area" data-group="one">
+			<button class="btn btn_toggle">Whit is accordion?</button>
+			<div class="content_area">
+				Accordion is accordion.
+			</div>
+		</div>
+
+		<div class="accordion_area" data-group="one">
+			<button class="btn btn_toggle">Whit is accordion?</button>
+			<div class="content_area">
+			Accordion is accordion.
+			</div>
+		</div>
+	
+	</div>
 
 
 <div id="content2">
 	<div class="accordion_area" >
-  <button class="btn btn_toggle">나는 </button>
+  <button class="btn btn_toggle">나는 결제관련입니다 </button>
   <div class="content_area">
     Accordion is accordion.
   </div>
@@ -120,7 +142,7 @@ h2{
 
 <div id="content3">
 	<div class="accordion_area" >
-  <button class="btn btn_toggle">진솔</button>
+  <button class="btn btn_toggle">진솔 게임관련입니다</button>
   <div class="content_area">
     Accordion is accordion.
   </div>
@@ -155,8 +177,23 @@ h2{
 </div>
 	
 </div>
+</div>
 
 <script>
+	$('.content').children().each(function() {
+		
+	});
+	$('a').on('click', function() {
+		$('.content').children().each(function() {
+			$(this).css({
+				'display' : 'none'
+			});
+		});
+		$($(this).attr('href')).css({
+			'display' : 'block'
+		});
+	});
+	
 function bindingAccordionEvent(wrap){
 	  let areaArr = document.querySelectorAll(wrap);
 	  

@@ -9,12 +9,14 @@
 a {
 	text-decoration: none;
 	color: black;
+	font-size: 30px;
 }
 
 table, tr, td {
 	border-radius: 3px;
-	border-color: fuchsia;
-	 color: fuchsia;
+	border-color: black;
+	 color: black;
+	 border-width: 5px;
 }
 </style>
 </head>

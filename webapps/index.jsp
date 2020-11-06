@@ -679,6 +679,8 @@
 <script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
 
 
+<%@ include file="/views/common/footer.jsp" %>
+
 </body>
 
 </html>
