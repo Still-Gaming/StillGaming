@@ -19,10 +19,12 @@ public class GameInfoService {
 	private GameInfoDAO nDAO = new GameInfoDAO();
 	
 	
-	public ArrayList<GameInfo> selectList(int currentPage, int limit) {
+	public ArrayList<GameInfo> selectList(int currentPage, int limit) throws GameInfoException {
 		con = getConnection();
 		
 		ArrayList<GameInfo> list = nDAO.selectList(con, currentPage, limit);
+		
+		
 		
 		close(con);
 		
@@ -42,8 +44,9 @@ public class GameInfoService {
 	}
 
 
-	public void insertGameInfo(GameInfo g, GameImage gi) throws GameInfoException {
+	public int insertGameInfo(GameInfo g, GameImage gi) throws GameInfoException {
 		con = getConnection();
+		int result = 0;
 		
 		int result1 = nDAO.insertGameInfo(con, g);
 		int result2 = 0;
@@ -61,16 +64,19 @@ public class GameInfoService {
 		}
 		
 		
-		if( result1 > 0 ) {
+		if( result1 > 0 && result2 > 0 ) {
 			commit(con);
-			result1 = 1;
+			result = 1;
 		} else {
 			rollback(con);
 		}
 		close(con);
 			
-		
+		return result;
 	}
+
+
+	
 }
 
 

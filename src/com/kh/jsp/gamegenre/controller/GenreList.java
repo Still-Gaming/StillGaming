@@ -1,26 +1,29 @@
-package com.kh.jsp.boardComment.controller;
+package com.kh.jsp.gamegenre.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.jsp.boardComment.model.serivce.BoardCommentService;
-import com.kh.jsp.boardComment.model.vo.BoardComment;
+import com.google.gson.Gson;
+import com.kh.jsp.gamegenre.model.service.GameGenreService;
+import com.kh.jsp.gamegenre.model.vo.GameGenre;
 
 /**
- * Servlet implementation class CommentInert
+ * Servlet implementation class GenreList
  */
-@WebServlet("/insert.co")
-public class CommentInsert extends HttpServlet {
+@WebServlet("/genreList.do")
+public class GenreList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommentInsert() {
+    public GenreList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,24 +32,9 @@ public class CommentInsert extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		
-		String MemberId = request.getParameter("memberId");
-		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
-		String commentText = request.getParameter("commentText");
-		int refcno = Integer.parseInt(request.getParameter("refcno"));
-		int commentLevel = Integer.parseInt(request.getParameter("commentLevel"));
-		
-		
-		BoardComment comment = new BoardComment(boardNo, commentText, MemberId, refcno, commentLevel);
-		
-		int result = new BoardCommentService().insertComment(comment);
-		
-		if( result > 0 ) {
-			response.sendRedirect("selectOne.bo?boardNo="+ boardNo);
-		} else {
-			
-		}
+		ArrayList<GameGenre> list = new GameGenreService().selectList();
+		response.setContentType("application/json; charset=utf-8"); 
+		new Gson().toJson(list, response.getWriter());
 	}
 
 	/**

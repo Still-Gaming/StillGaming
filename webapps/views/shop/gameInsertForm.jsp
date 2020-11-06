@@ -45,12 +45,7 @@
 				<!-- 게시글 추가 영역 -->
 				<input type="hidden" name="userId" value="<%= m.getMemberId() %>" />
 				<table align="center">
-					<tr>
-						<td width="100px">게임번호</td>
-						<td colspan="3" height="3">
-							
-						</td>
-					</tr>
+				
 					<tr>
 						<td width="100px">게임명</td>
 						<td colspan="3" height="3">
@@ -87,7 +82,7 @@
 					<tr>
 						<td width="100px">장르번호</td>
 						<td colspan="3" height="3">
-							<input type="text" name="gmTypenum" size="45" />
+							<select id="selectGenre"></select>
 						</td>
 					</tr>
 					<tr>
@@ -109,7 +104,7 @@
 			<div class="fileArea" id="fileArea">
 				<!-- 첨부할 사진 추가 영역 -->
 				<!-- (input:file#thumbnailImg[name=thumbnailImg onchange=loadImg(this, )])*4 -->
-				<input type="file" name="gameImg1" id="gameImg1" onchange="loadImg(this,1);" />
+				<input type="file" name="gameImg1" id="gameImg1" onchange="loadImg(this);" />
 				
 			</div>
 			<div class="btnArea">
@@ -127,19 +122,30 @@
 		
 			
 			$('#fileArea').hide();
+			
+			$.ajax({
+				url : '<%= request.getContextPath() %>/genreList.do',
+				type : 'get',
+				success : function(list){
+					var $genre = $('#selectGenre');
+					for( var i = 0 ; i < list.length ; i++ ){
+						var $option = $('<option value=' + list[i].gmTypeNum + '>' + list[i].gmType + '</option>');
+						
+						$genre.append($option);
+					}
+				}
+			});
 		})
 		
-		function loadImg(img, num){
+		function loadImg(img){
 			if(img.files && img.files[0]) {
 				
 				var reader = new FileReader();
 				
 				reader.onload = function(e){
 					
-					switch(num){
-					case 1 : $('#gameImg1').attr('src', e.target.result);
+					$('#gameimage').attr('src', e.target.result);
 					
-					}
 				}
 				
 				reader.readAsDataURL(img.files[0]);

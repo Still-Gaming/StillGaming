@@ -65,41 +65,49 @@ public class GameInfoDAO {
 		return result;
 	}
 	
-	public ArrayList<GameInfo> selectList(Connection con, int currentPage, int limit) {
+	public ArrayList<GameInfo> selectList(Connection con, int currentPage, int limit) throws GameInfoException {
 		
 		ArrayList<GameInfo> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("selectList");
-		
+		String sql = prop.getProperty("selectListImage");
+
 		try {
 			pstmt = con.prepareStatement(sql);
 			
 			
 			int startRow = (currentPage - 1) * limit + 1; 
 			int endRow = startRow + limit - 1;
-
+			
 			pstmt.setInt(1, endRow);
 			pstmt.setInt(2, startRow);
 			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
+				GameInfo gi = new GameInfo();
 				
-				GameInfo b = new GameInfo();
+				gi.setGminfoNum(   rset.getInt("gminfo_num"));
+				gi.setGminfoName(   rset.getString("gminfo_name"));
+				gi.setGminfoExp( rset.getString("gminfo_exp"));
+				gi.setGminfoPrice( rset.getInt("gminfo_price"));
+				gi.setGminfoDate( rset.getDate("gminfo_date"));
+				gi.setGminfoCompany( rset.getString("gminfo_company"));
+				gi.setGminfoExp( rset.getString("gminfo_exp"));
+				gi.setGmTypenum( rset.getInt("gm_typenum"));
+				gi.setGminfoAge( rset.getInt("gminfo_age"));
+				gi.setGminfoImage( rset.getString("gmimg_cgfile"));
+				gi.setGminfoAgeRank( rset.getString("RANK_NAME"));
+				gi.setGminfoType( rset.getString("gm_type"));
 				
+				list.add(gi);
 				
-				b.setGminfoName(   rset.getString("gminfo_Name"));
-				b.setGminfoExp( rset.getString("gminfo_Exp"));
-				b.setGminfoPrice( rset.getInt("gminfo_Price"));
-				
-				
-				list.add(b);
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new GameInfoException("[DAO] : " + e.getMessage());
 			
 		} finally {
 			close(rset);
@@ -125,9 +133,8 @@ public class GameInfoDAO {
 			pstmt.setString(3, g.getGminfoCompany());
 			pstmt.setString(4, g.getGminfoExp());
 			pstmt.setInt(5, g.getGmTypenum());
-			pstmt.setInt(6, g.getGminfoAage());
+			pstmt.setInt(6, g.getGminfoAge());
 			pstmt.setInt(7, g.getGminfoPrice());
-			
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -156,9 +163,12 @@ public class GameInfoDAO {
 				pstmt.setString(3, gi.getGmimgCgfile());
 				pstmt.setString(4, gi.getGmimgPath());
 				
+				result = pstmt.executeUpdate();
 			} catch (SQLException e) {
 				
 				e.printStackTrace();
+			} finally {
+				close(pstmt);
 			}
 		return result;
 	}
@@ -179,7 +189,7 @@ public class GameInfoDAO {
 			if(rset.next()) {
 				result = rset.getInt(1);
 			}
-			
+			System.out.println("번호 : " + result);
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
@@ -195,5 +205,9 @@ public class GameInfoDAO {
 	}
 
 
-
+	
 }
+
+
+
+

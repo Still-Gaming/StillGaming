@@ -1,6 +1,7 @@
 package com.kh.jsp.boardComment.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,16 +12,16 @@ import com.kh.jsp.boardComment.model.serivce.BoardCommentService;
 import com.kh.jsp.boardComment.model.vo.BoardComment;
 
 /**
- * Servlet implementation class CommentInert
+ * Servlet implementation class CommentUpdate
  */
-@WebServlet("/insert.co")
-public class CommentInsert extends HttpServlet {
+@WebServlet("/update.co")
+public class CommentUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommentInsert() {
+    public CommentUpdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,24 +30,25 @@ public class CommentInsert extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		int CommentNo = Integer.parseInt(request.getParameter("commentNo"));
+		int BoardNo = Integer.parseInt(request.getParameter("boardNo"));
+		String Content = request.getParameter("commentText");
 		
-		String MemberId = request.getParameter("memberId");
-		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
-		String commentText = request.getParameter("commentText");
-		int refcno = Integer.parseInt(request.getParameter("refcno"));
-		int commentLevel = Integer.parseInt(request.getParameter("commentLevel"));
+		BoardComment bco = new BoardComment();
+		bco.setCommentNo(CommentNo);
+		bco.setCommentText(Content);
 		
-		
-		BoardComment comment = new BoardComment(boardNo, commentText, MemberId, refcno, commentLevel);
-		
-		int result = new BoardCommentService().insertComment(comment);
+		int result = new BoardCommentService().updateComment(bco);
 		
 		if( result > 0 ) {
-			response.sendRedirect("selectOne.bo?boardNo="+ boardNo);
+			response.sendRedirect("selectOne.bo?boardNo="+ BoardNo);
 		} else {
-			
+			// 에러 페이지 전달
+			request.setAttribute("error-msg", "댓글 수정 실패!");
+			request.getRequestDispatcher("views/common/errorPage.jsp")
+			       .forward(request, response);
 		}
+		
 	}
 
 	/**

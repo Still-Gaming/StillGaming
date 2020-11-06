@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8" import="java.util.*, com.kh.jsp.gameinfo.model.vo.*"%>
 <%
 	ArrayList<GameInfo> list = (ArrayList<GameInfo>)request.getAttribute("list");
+	
+	
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
@@ -124,64 +126,129 @@
 
 	<%@ include file="/views/common/header.jsp" %>
 	
-	
-	<div class="titleArea">
-		<h2>게임 리스트</h2>
-	</div>
-		
-	<div class="tableArea">
-		<table align="center" style="color:white;">
-			<thead>
-				<tr align="center">
-					<th width="50">이름</th>
-					<th width="200">설명</th>
-					<th width="80">가격</th>
-					
-				</tr>
-			</thead>
-			<tbody>
-				<% for(GameInfo b : list) { %>
-					<tr align="center">
-						<input type="hidden" name="GameInfoNo" id="GameInfoNo" value="<%= b.getGminfoNum() %>" />
-						<td><%= b.getGminfoName() %></td>
-						<td><%= b.getGminfoExp() %></td>
-						<td><%= b.getGminfoPrice() %></td>
-					</tr>
-				<% } %>
-			</tbody>
-		</table>
-		<button onclick="location.href='views/shop/gameInsertForm.jsp'">작성하기</button>
-	</div>
-	
-		<div class="pagingArea" align="center">
-	
-		<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=1'"><<</button>
+	<!-- Product Section Begin -->
+    <section class="product-page spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="product__page__content">
+                        <div class="product__page__title">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-8 col-sm-6">
+                                    <div class="section-title">
+                                        <h4>Games</h4>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-6">
+                                    <div class="product__page__filter">
+                                        <p>Order by:</p>
+                                        <select>
+                                            <option value="">A-Z</option>
+                                            <option value="">1-10</option>
+                                            <option value="">10-50</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        <% for(GameInfo gi : list) { %>
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="product__item">
+                                    <div class="product__item__pic set-bg" data-setbg="<%= request.getContextPath() %>/resources/gameimageUploadFiles/<%= gi.getGminfoImage() %>">
+                                        <div class="ep"><%= gi.getGminfoDate() %></div>
+                                       
+                                        <div class="view"><i class="fa fa-check"></i> <%= gi.getGminfoAgeRank() %></div>
+                                    </div>
+                                    <div class="product__item__text">
+                                        <ul>
+                                            <li><%= gi.getGminfoType() %></li>
+                                        </ul>
+                                        <h5><a href="<%= gi.getGminfoNum() %>"><%= gi.getGminfoName() %></a></h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                        </div>
+                        <button onclick="location.href='views/shop/gameInsertForm.jsp'">작성하기</button>
+                    </div>
+                    <div class="product__pagination">
+                    <a href="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=1'"><<</a>
 		
 		<%  if(currentPage <= 1){  %>
-			<button disabled><</button>
+			<a class="current-page"><</a>
 		<%  }else{ %>
-			<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= currentPage - 1 %>'"><</button>
+			<a href="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= currentPage - 1 %>'"><</a>
 		<%  } %>
 			
 		<% for(int p = startPage; p <= endPage; p++){
 				if(p == currentPage){ %>
-				<button disabled><%= p %></button>
+				<a class="current-page"><%= p %></a>
 			<% } else { %>
-				<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= p %>'"><%= p %></button>
+				<a href="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= p %>'"><%= p %></a>
 			<% } %>
 		<% } %>
 				
 		<%  if(currentPage >= maxPage){  %>
-			<button disabled>></button>
+			<a class="current-page">></a>
 		<%  } else { %>
-			<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= currentPage + 1 %>'">></button>
+			<a href="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= currentPage + 1 %>'">></a>
 		<%  } %>
 		
-		<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= maxPage %>'">>></button>
-		
+		<a href="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= maxPage %>'">>></a>
+	
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-8">
+                    <div class="product__sidebar">
+                        <div class="product__sidebar__view">
+                            <div class="section-title">
+                                <h5>Top Views</h5>
+                            </div>
+                            <ul class="filter__controls">
+                                <li class="active" data-filter="*">Day</li>
+                                <li data-filter=".week">Week</li>
+                                <li data-filter=".month">Month</li>
+                                <li data-filter=".years">Years</li>
+                            </ul>
+                            <div class="filter__gallery">
+                                <div class="product__sidebar__view__item set-bg mix day years"
+                                data-setbg="img/sidebar/tv-1.jpg">
+                                <div class="ep">18 / ?</div>
+                                <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                                <h5><a href="#">Boruto: Naruto next generations</a></h5>
+                            </div>
+                            <div class="product__sidebar__view__item set-bg mix month week"
+                            data-setbg="img/sidebar/tv-2.jpg">
+                            <div class="ep">18 / ?</div>
+                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                            <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
+                        </div>
+                        <div class="product__sidebar__view__item set-bg mix week years"
+                        data-setbg="img/sidebar/tv-3.jpg">
+                        <div class="ep">18 / ?</div>
+                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                        <h5><a href="#">Sword art online alicization war of underworld</a></h5>
+                    </div>
+                    <div class="product__sidebar__view__item set-bg mix years month"
+                    data-setbg="img/sidebar/tv-4.jpg">
+                    <div class="ep">18 / ?</div>
+                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                    <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
+                </div>
+                <div class="product__sidebar__view__item set-bg mix day"
+	                data-setbg="img/sidebar/tv-5.jpg">
+	                <div class="ep">18 / ?</div>
+	                <div class="view"><i class="fa fa-eye"></i> 9141</div>
+	                <h5><a href="#">Fate stay night unlimited blade works</a></h5>
+            	</div>
+        		</div>
+    		</div>
+		</div>
 	</div>
-	
-	
+	</div>
+	</div>
+	</section>
 	<script>
 		function openCity(evt, cityName) {
 		  // Declare all variables
@@ -215,7 +282,16 @@
         </form>
     </div>
 </div>
-	
+
+<!-- Js Plugins -->
+<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/mixitup.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
 
 
 </body>
