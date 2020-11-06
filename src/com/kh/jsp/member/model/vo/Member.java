@@ -4,8 +4,8 @@ import java.sql.Date;
 
 public class Member {
 	private String memberId;            // 아이디
-	private String memberName;          // 이름
     private String memberPwd;           // 비밀번호
+	private String memberName;          // 이름
     private String memberSsn;           // 생년월일
 	private String gender;              // 성별
 	private String email;               // 이메일
@@ -18,7 +18,7 @@ public class Member {
 	public Member() { }
 
 
-	public Member(String memberId, String memberName, String memberPwd, String memberSsn, String gender, String email,
+	public Member(String memberId, String memberPwd, String memberName,  String memberSsn, String gender, String email,
 			String phone, Date joinDate, String status, int reportNum) {
 		super();
 		this.memberId = memberId;
@@ -41,7 +41,7 @@ public class Member {
 	}
 
 
-	public Member(String memberId, String memberName, String memberPwd, String memberSsn, String gender, String email,
+	public Member(String memberId,String memberPwd,  String memberName, String memberSsn, String gender, String email,
 			String phone) {
 		super();
 		this.memberId = memberId;
@@ -56,7 +56,7 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "Member [memberId=" + memberId + ", memberName=" + memberName + ", memberPwd=" + memberPwd
+		return "Member [memberId=" + memberId + ", memberPwd=" + memberPwd + ", memberName=" + memberName
 				+ ", memberSsn=" + memberSsn + ", gender=" + gender + ", email=" + email + ", phone=" + phone
 				+ ", joinDate=" + joinDate + ", status=" + status + ", reportNum=" + reportNum + "]";
 	}

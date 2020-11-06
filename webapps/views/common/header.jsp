@@ -5,6 +5,7 @@
 %>
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
 <head>
 <meta charset="UTF-8">
     <meta name="description" content="Anime Template">
@@ -25,7 +26,11 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
+=======
+<head>
+>>>>>>> refs/remotes/origin/develop
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
+<<<<<<< HEAD
     
     
     <style>
@@ -43,14 +48,64 @@
 		}
     	
     </style>
+=======
+    <style>
+    	.header__ul {
+    		margin-top : 20px;
+    	}
+    	
+		.header__right {
+			margin-top: 20px;
+		}
+		
+		
+		.header__right b a {
+			font-size : 14px;
+		}
+		
+		.header__menu ul li .dropdown {
+>>>>>>> refs/remotes/origin/develop
+
+<<<<<<< HEAD
 
 
-
+=======
+			background: #EAEAEA;
+	  }  	
+	  
+	  
+	  .header__menu ul li:hover a {
+		color: black;
+	}
+	
+	.header__menu ul li a {
+		color: black;
+		font-size: 18px;
+	}
+	
+	.header__menu ul li:active a {
+		color : #00005D;
+	}
+	
+	.dropdown li:hover{
+		background: #5D5D5D;
+	}
+	
+	#drop:hover {
+		color: #ffffff;
+	}
+	
+    </style>
+>>>>>>> refs/remotes/origin/develop
 
 </head>
 <body>
     <!-- Header Section Begin -->
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> refs/remotes/origin/develop
     <header class="header" style="background-color: white;">
         <div class="container">
             <div class="row">
@@ -64,14 +119,27 @@
                 <div class="col-lg-8">
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
+<<<<<<< HEAD
 
                   <ul class="header__ul">
                                 <li><a href="#" class="menu">Shop</a></li>
                                 <li><a href="./categories.jsp" class="menu">Community<span class="arrow_carrot-down"></span></a>
+=======
+
+                		  <ul class="header__ul">
+                                <li><a href="#">Shop</a></li>
+                                <li><a href="#">Community<span class="arrow_carrot-down"></span></a>
+>>>>>>> refs/remotes/origin/develop
                                     <ul class="dropdown">
+<<<<<<< HEAD
                                         <li><a href="#" >공지사항</a></li>
                                         <li><a href="#">자유게시판</a></li>
+=======
+                                        <li><a href="#" id="drop">공지사항</a></li>
+                                        <li><a href="#" id="drop">자유게시판</a></li>
+>>>>>>> refs/remotes/origin/develop
                                     </ul>
+<<<<<<< HEAD
                                 </li>
                                 <li><a href="#" >Q&A<span class="arrow_carrot-down"></span></a>
                                    <ul class="dropdown">
@@ -79,6 +147,15 @@
                                         <li><a href="<%= request.getContextPath() %>/views/about/qna.jsp">1:1문의</a></li>
                                    </ul>
 
+=======
+                                </li>
+                                <li><a href="#" >Q&A<span class="arrow_carrot-down"></span></a>
+                                   <ul class="dropdown">
+                                        <li><a href="#" id="drop">FAQ</a></li>
+                                        <li><a href="#" id="drop">1:1문의</a></li>
+                                   </ul>
+
+>>>>>>> refs/remotes/origin/develop
                             </ul>
                         </nav>
                     </div>
@@ -98,10 +175,15 @@
             </div>
             <div id="mobile-menu-wrap"></div>
         </div>
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> refs/remotes/origin/develop
     </header>
     <!-- Header End -->
     
+<<<<<<< HEAD
     
 <script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
@@ -111,5 +193,8 @@
 <script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
+=======
+ 
+>>>>>>> refs/remotes/origin/develop
 </body>
 </html>

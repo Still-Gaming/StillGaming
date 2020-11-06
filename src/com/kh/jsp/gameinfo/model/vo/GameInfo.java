@@ -5,6 +5,7 @@ import java.sql.Date;
 public class GameInfo {
 	
 	private int gminfoNum;         // 게임번호   
+	private String gminfoName;     // 게임이름
 	private Date gminfoDate;        // 출시일
 	private String gminfoCompany;     // 개발사
 	private String gminfoExp;         // 게임설명
@@ -16,10 +17,11 @@ public class GameInfo {
 	public GameInfo() { }
 
 
-	public GameInfo(int gminfoNum, Date gminfoDate, String gminfoCompany, String gminfoExp, int gmTypenum,
-			int gminfoAage, int gminfoPrice) {
+	public GameInfo(int gminfoNum, String gminfoName, Date gminfoDate, String gminfoCompany, String gminfoExp,
+			int gmTypenum, int gminfoAage, int gminfoPrice) {
 		super();
 		this.gminfoNum = gminfoNum;
+		this.gminfoName = gminfoName;
 		this.gminfoDate = gminfoDate;
 		this.gminfoCompany = gminfoCompany;
 		this.gminfoExp = gminfoExp;
@@ -28,12 +30,20 @@ public class GameInfo {
 		this.gminfoPrice = gminfoPrice;
 	}
 
+	
+	public GameInfo(String gminfoName, String gminfoExp, int gminfoPrice) {
+		super();
+		this.gminfoName = gminfoName;
+		this.gminfoExp = gminfoExp;
+		this.gminfoPrice = gminfoPrice;
+	}
+
 
 	@Override
 	public String toString() {
-		return "GameInfo [gminfoNum=" + gminfoNum + ", gminfoDate=" + gminfoDate + ", gminfoCompany=" + gminfoCompany
-				+ ", gminfoExp=" + gminfoExp + ", gmTypenum=" + gmTypenum + ", gminfoAage=" + gminfoAage
-				+ ", gminfoPrice=" + gminfoPrice + "]";
+		return "GameInfo [gminfoNum=" + gminfoNum + ", gminfoName=" + gminfoName + ", gminfoDate=" + gminfoDate
+				+ ", gminfoCompany=" + gminfoCompany + ", gminfoExp=" + gminfoExp + ", gmTypenum=" + gmTypenum
+				+ ", gminfoAage=" + gminfoAage + ", gminfoPrice=" + gminfoPrice + "]";
 	}
 
 
@@ -44,6 +54,16 @@ public class GameInfo {
 
 	public void setGminfoNum(int gminfoNum) {
 		this.gminfoNum = gminfoNum;
+	}
+
+
+	public String getGminfoName() {
+		return gminfoName;
+	}
+
+
+	public void setGminfoName(String gminfoName) {
+		this.gminfoName = gminfoName;
 	}
 
 
@@ -105,6 +125,9 @@ public class GameInfo {
 	public void setGminfoPrice(int gminfoPrice) {
 		this.gminfoPrice = gminfoPrice;
 	}
+
+
+	
 		
 	
 	

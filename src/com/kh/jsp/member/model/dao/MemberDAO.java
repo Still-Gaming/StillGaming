@@ -1,6 +1,6 @@
 package com.kh.jsp.member.model.dao;
 
-import static com.kh.jsp.common.JDBCTemplate.close;
+import static com.kh.jsp.common.JDBCTemplate.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import com.kh.jsp.common.exception.MemberException;
 import com.kh.jsp.member.model.vo.Member;
 
 public class MemberDAO {
@@ -34,7 +35,7 @@ public class MemberDAO {
 		}
 	}
 	
-	public int insertMember(Connection con, Member joinMember) {
+	public int insertMember(Connection con, Member joinMember)  {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -57,6 +58,7 @@ public class MemberDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+
 		} finally {
 			
 			close(pstmt);
@@ -80,10 +82,28 @@ public class MemberDAO {
 			pstmt.setString(2, m.getMemberPwd());
 			
 			rset = pstmt.executeQuery();
+
+			if(rset.next()) { 
+
+				result = new Member();
+				
+				result.setMemberId(m.getMemberId());
+				result.setMemberPwd(m.getMemberPwd());
+				result.setMemberName(rset.getString("member_name")); 
+				result.setGender(rset.getString("gender") );
+				result.setMemberSsn( rset.getString("Member_Ssn"));
+				result.setPhone(rset.getString("phone"));
+				result.setEmail( rset.getString("email"));
+				result.setJoinDate(rset.getDate("join_date"));
+				result.setReportNum(rset.getInt("report_num"));
+			}
 			
-					
+			System.out.println("조회 결과 확인 : " + result);
+			
 		} catch (SQLException e) {
+			e.printStackTrace();
 			
+		} finally {
 			close(rset);
 			close(pstmt);
 		}
@@ -113,5 +133,91 @@ public class MemberDAO {
 		
 		return result;
 	}
+	
+public int updateMember(Connection con, Member m) throws MemberException {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+
+		String sql = prop.getProperty("updateMember");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, m.getMemberPwd() );
+			pstmt.setString(2, m.getEmail());
+			pstmt.setString(3, m.getPhone());
+			pstmt.setString(4, m.getMemberId());
+		
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			throw new MemberException("[DAO] : " + e.getMessage());
+			
+		} finally {
+			
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+public int idDupCheck(Connection con, String id) {
+	int result = 0;
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	
+	String sql = prop.getProperty("idDupCheck");
+	
+	try {
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1, id);
+		
+		rset = pstmt.executeQuery();
+		
+		if(rset.next()) {
+			result = rset.getInt(1);
+		}
+	} catch (SQLException e) {
+
+		e.printStackTrace();
+	} finally {
+		close(rset);
+		close(pstmt);
+	}
+	
+	return result;
+}
+
+public int emailDupCheck(Connection con, String email) {
+	int result = 0;
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	
+	String sql = prop.getProperty("emailDupCheck");
+	
+	try {
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1, email);
+		
+		rset = pstmt.executeQuery();
+		
+		if(rset.next()) {
+			result = rset.getInt(1);
+		}
+	} catch (SQLException e) {
+
+		e.printStackTrace();
+	} finally {
+		close(rset);
+		close(pstmt);
+	}
+	
+	return result;
+}
 
 }

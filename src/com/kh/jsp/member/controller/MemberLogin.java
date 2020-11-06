@@ -49,12 +49,13 @@ public class MemberLogin extends HttpServlet {
 			response.sendRedirect("index.jsp");
 			
 		} else {
-//			request.setAttribute("error-msg", "회원 로그인 실패!");
-//			
-//			RequestDispatcher view 
-//			    = request.getRequestDispatcher("views/loginFail.jsp");
-//			
-//			view.forward(request, response);
+			
+		request.setAttribute("error-msg", "회원 로그인 실패!");
+			
+			RequestDispatcher view 
+			    = request.getRequestDispatcher("views/common/errorPage.jsp");
+			
+			view.forward(request, response);
 			
 		}
 	}

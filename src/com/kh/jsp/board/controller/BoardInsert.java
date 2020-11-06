@@ -12,6 +12,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.kh.jsp.board.model.service.BoardService;
 import com.kh.jsp.board.model.vo.Board;
+import com.kh.jsp.board.model.vo.BoardFile;
 import com.kh.jsp.common.MyRenamePolicy;
 import com.kh.jsp.common.exception.BoardException;
 import com.oreilly.servlet.MultipartRequest;
@@ -43,9 +44,9 @@ public class BoardInsert extends HttpServlet {
 		}
 		
 		String root = request.getServletContext().getRealPath("/");
-		String savePath = root + "resources/boardUploadFiles";
+		String filePath = root + "resources/boardUploadFiles";
 		
-		MultipartRequest mre = new MultipartRequest(request, savePath,
+		MultipartRequest mre = new MultipartRequest(request, filePath,
 				maxSize, "UTF-8", new MyRenamePolicy());
 		
 		String memberId = mre.getParameter("memberId");
@@ -53,12 +54,19 @@ public class BoardInsert extends HttpServlet {
 		String boardTitle = mre.getParameter("boardTitle");
 		String boardText = mre.getParameter("boardText");
 		
+		String fileName = mre.getOriginalFileName("file");
+		String fileChangeName = mre.getFilesystemName("file");
+		
 		Board b = new Board(memberId, boardType, boardTitle, boardText);
+		
+		BoardFile bf = null; 
+		
+		if(fileName != null) bf = new BoardFile(fileName, fileChangeName, filePath);
 		
 		BoardService bs = new BoardService();
 		
 		try {
-			bs.insertBoard(b);
+			bs.insertBoard(b, bf);
 			
 			response.sendRedirect("selectList.bo");
 			

@@ -13,15 +13,16 @@ body{background:#f4f4f4}
 .accordion_area .btn_toggle{color:teal;display:block;width:100%;height:50px;padding:0 10px;background:#fff;font-size:20px;text-align:left;line-height:30px;box-sizing:border-box}
 .accordion_area .btn_toggle::before{display:inline;content:'Q.'} /* Q 에대해 */
 .accordion_area .content_area{  padding: 0 18px; background-color: #fff; height: 100px; overflow: hidden; transition: all 0.5s; display:none;}
-.accordion_area .content_area::before{color: black; display:inlnie;content:'A.'  } /* // 눌렀을떄 A  */
-.accordion_area .content_area.act{color:black; display:block}/*  //눌렀을떄 글씨색 */
-.active, .accordion_area:hover { background-color: teal; } /* //마우스 가져갔을때 */
+.accordion_area .content_area::before{color: black; display:inlnie;content:'A.'  } /* 눌렀을떄 A  */
+.accordion_area .content_area.act{color:black; display:block}/*  눌렀을떄 글씨색 */
+.active, .accordion_area:hover { background-color: teal; } /* 마우스 가져갔을때 */
  .accordion_area::after { content: "\002B"; color: black; font-weight: bold; float: right; margin-left: 5px; font-size: 25px; }
  .active::after { content: "\2212" }
+ #content1{ 'display:none;'}
 h2{
  background-color: #ffffff;
  opacity: 1;
- color: red;
+ color: black;
  padding: 10px;
 }
 </style>
@@ -33,16 +34,22 @@ h2{
 
 	<h2>FAQ</h2>
 	
-
-
-	<div class="accordion_area">
-  <button class="btn btn_toggle">Whit is accordion?</button>
+	   <ul id="menu">
+        <li><a href="#content1"> 배송관련 </a></li>
+        <li><a href="#content2"> 결제관련 </a></li>
+        <li><a href="#content3"> 게임관련 </a></li>
+    </ul>
+    
+    
+	<div id="content1">
+	<div class="accordion_area" >
+  <button class="btn btn_toggle">안녕?</button>
   <div class="content_area">
     Accordion is accordion.
   </div>
 </div>
 
-<div class="accordion_area">
+<div class="accordion_area" >
   <button class="btn btn_toggle">Whit is accordion?</button>
   <div class="content_area">
     Accordion is accordion.
@@ -70,6 +77,84 @@ h2{
   </div>
 </div>
 	
+</div>
+
+
+<div id="content2">
+	<div class="accordion_area" >
+  <button class="btn btn_toggle">나는 </button>
+  <div class="content_area">
+    Accordion is accordion.
+  </div>
+</div>
+
+<div class="accordion_area" >
+  <button class="btn btn_toggle">Whit is accordion?</button>
+  <div class="content_area">
+    Accordion is accordion.
+  </div>
+</div>
+
+<div class="accordion_area" data-group="one">
+  <button class="btn btn_toggle">Whit is accordion?</button>
+  <div class="content_area act">
+    Accordion is accordion.
+  </div>
+</div>
+
+<div class="accordion_area" data-group="one">
+  <button class="btn btn_toggle">Whit is accordion?</button>
+  <div class="content_area">
+    Accordion is accordion.
+  </div>
+</div>
+
+<div class="accordion_area" data-group="one">
+  <button class="btn btn_toggle">Whit is accordion?</button>
+  <div class="content_area">
+    Accordion is accordion.
+  </div>
+</div>
+	
+</div>
+
+<div id="content3">
+	<div class="accordion_area" >
+  <button class="btn btn_toggle">진솔</button>
+  <div class="content_area">
+    Accordion is accordion.
+  </div>
+</div>
+
+<div class="accordion_area" >
+  <button class="btn btn_toggle">Whit is accordion?</button>
+  <div class="content_area">
+    Accordion is accordion.
+  </div>
+</div>
+
+<div class="accordion_area" data-group="one">
+  <button class="btn btn_toggle">Whit is accordion?</button>
+  <div class="content_area act">
+    Accordion is accordion.
+  </div>
+</div>
+
+<div class="accordion_area" data-group="one">
+  <button class="btn btn_toggle">Whit is accordion?</button>
+  <div class="content_area">
+    Accordion is accordion.
+  </div>
+</div>
+
+<div class="accordion_area" data-group="one">
+  <button class="btn btn_toggle">Whit is accordion?</button>
+  <div class="content_area">
+    Accordion is accordion.
+  </div>
+</div>
+	
+</div>
 
 <script>
 function bindingAccordionEvent(wrap){
