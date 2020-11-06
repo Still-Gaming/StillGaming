@@ -26,7 +26,13 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
-    
+<style>
+	
+	body {
+		background-color: white;
+	}
+	
+</style>
 
 </head>
 
@@ -42,7 +48,7 @@
     <section class="hero">
         <div class="container">
             <div class="hero__slider owl-carousel">
-                <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/hero/hero.jpg">
+                <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/amongus.png">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
@@ -55,7 +61,7 @@
                     </div>
                 </div>
 
-                <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/hero/hero.jpg">
+                <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/amongus.png">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
@@ -67,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/hero/hero.jpg">
+                <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/amongus.png">
 
                     <div class="row">
                         <div class="col-lg-6">
