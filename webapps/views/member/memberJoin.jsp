@@ -108,14 +108,14 @@ input{margin-bottom: 9px;}
                <table>
                <tr>
 	               <td>아이디</td>
-	               <td><input type="text" name="memberId" id="memberId" style="width :268px; height:40px; display:inline-block;" required="required" class="form-control"/></td>
+	               <td><input type="text" name="memberId" id="memberId" style="width :268px; height:40px; display:inline-block;" placeholder="사용하실 아이디를 입력해주세요" class="form-control" required/></td>
 	               <td><input type="button" value="중복확인" id="idDupCheckBtn" style="margin: -2px 0px 0px 7px; height:40px;" class="btn default"> </td>
 	               <td><label id="idResult" style="font-size:12px;  display:block;"></label></td>
 			   </tr>
                
                <tr>
                    <td>비밀번호</td>
-               	   <td><input type="password" name="memberPwd" id="memberPwd" style="width : 268px;  height:40px;" required="required" placeholder="영,숫자 포함 8글자 이상 20글자 이하" class="form-control"/></td>
+               	   <td><input type="password" name="memberPwd" id="memberPwd" style="width : 268px;  height:40px;" required="required" placeholder="비밀번호를 입력해주세요" class="form-control"/></td>
                </tr>
                
                <tr>
@@ -126,7 +126,7 @@ input{margin-bottom: 9px;}
                
                <tr>
                		<td>이름</td>
-               		<td><input type="text" name="memberName" style="width : 268px; height:37px;" required="required" class="form-control"/></td>
+               		<td><input type="text" maxlenth="15" name="memberName" style="width : 268px; height:37px;" required="required" class="form-control"/></td>
                </tr>
                
                <tr>
@@ -169,6 +169,114 @@ input{margin-bottom: 9px;}
 <br />
 
 	<%@ include file="../common/footer.jsp" %>
+
+<script>
+$('#idDupCheckBtn').on('click',function(){
+	$.ajax({
+		url : '/StillGaming/icheck.me',
+		type : 'post',
+		data : { memberId : $('#memberId').val() },
+		success : function(data){
+			// console.log(data);
+			
+			// 전달된 결과가 0이면 사용자 없음 : 가입 가능!
+			//			 1 		    있음 : 가입 불가!
+			if( data == 0 ) {
+				alert("사용 가능한 아이디입니다.");
+			} else {
+				alert("이미 사용 중인 아이디입니다.")
+			}
+		}, error : function(){
+			console.log("에러 발생");
+		}
+	});
+});
+
+$('#emailDupCheckBtn').on('click',function(){
+	$.ajax({
+		url : '/StillGaming/echeck.me',
+		type : 'post',
+		data : { 
+			email : $('#email').val()
+				 },
+		success : function(data){
+			// console.log(data);
+			
+			// 전달된 결과가 0이면 사용자 없음 : 가입 가능!
+			//			 1 		    있음 : 가입 불가!
+			if( data == 0 ) {
+				alert("사용 가능한 이메일입니다.");
+			} else {
+				alert("이미 사용 중인 이메일입니다.")
+			}
+		}, error : function(){
+			console.log("에러 발생");
+		}
+	});
+});
+// 비밀번호 유효성 체크 정규표현식 함수(영문,숫자,특수문자 8자리 이상 20자리 이하)
+function pwdRegEx(pwd){  
+   var pwdRegEx = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
+
+   return pwdRegEx.test(pwd);
+}
+
+// 두 비밀번호가 같은지 체크하는 함수
+function isSamePwd(pwd1,pwd2){
+   if(pwd1 == pwd2){
+      return true;
+   }else return false;
+   
+}
+
+
+// 비밀번호 유효성체크 이벤트 함수
+$('[name^="memberPwd"]').change(function(){
+   var pwd1 = $('#memberPwd').val();
+   var pwd2 = $('#memberPwd2').val();
+
+   if(!isSamePwd(pwd1,pwd2)){
+      $('#pwdResult').html("비밀번호가 일치하지 않습니다.").css('color','red');
+   }else if(!pwdRegEx(pwd2)){
+      $('#pwdResult').html("");
+      $('#pwdResult').html("비밀번호는 숫자,영문 대소문자, 특수문자로 구성된<br> 8자리 이상 20자리 이하이어야 합니다.").css('color','red');
+   }else{
+      $('#pwdResult').html("사용 가능한 비밀번호입니다.").css('color','green');
+   }
+   
+});
+
+
+
+function validate(){
+
+   // 비밀번호
+   var pwd1 = $('#memberPwd').val();
+   var pwd2 = $('#memberPwd2').val();
+
+   // 비밀번호 체크
+   if(!isSamePwd(pwd1,pwd2)){   
+    alert("비밀번호가 일치하지 않습니다.");
+       return false;
+   }
+   
+   if(!pwdRegEx(pwd2)){
+      alert("올바르지 않은 형식의 비밀번호입니다.");
+      return false;
+   }
+ 
+   // 이메일 중복 체크
+   if(idDupCheckNum == 1){
+      alert("이미 사용 중인 아이디입니다!");
+      return false;
+   } else if(idDupCheckNum == -1){
+      alert("아이디 중복검사를 해주세요");
+      return false;
+   }
+	  
+   
+}
+</script>
 
 
 <!-- Js Plugins -->

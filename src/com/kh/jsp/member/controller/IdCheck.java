@@ -10,19 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.jsp.member.model.service.MemberService;
 
 /**
  * Servlet implementation class IdCheckServlet
  */
 @WebServlet("/icheck.me")
-public class IdCheckServlet extends HttpServlet {
+public class IdCheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IdCheckServlet() {
+    public IdCheck() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,29 +32,15 @@ public class IdCheckServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		  // ID 중복 검사 처리
-	  
-	        ArrayList<String> ids = new MemberService().selectMember();
-	        response.setContentType("text/html;charset=UTF-8");
-	        response.setHeader("Cache-Control", "no-cache");
-	        PrintWriter out = response.getWriter();
-	        // id 중복 처리
-	        String gotId = request.getParameter("id");
-	        
-	        String result = null;
-	        for(String id : ids){
-	            if(id.equals(gotId)){
-	                // 응답 메세지 1 : 이미 등록된 ID 입니다.
-	                result = "<font color=\"red\">이미 등록된 ID 입니다.</font>";
-	                break;
-	            }else{
-
-	                // 응답 메세지 2 : 사용할 수 있는 ID 입니다.
-	                result = "<font color=\"green\">사용할 수 있는 ID 입니다.</font>";
-	            }
-	        }  
-	        out.println(result);
-	    }
+		String id = request.getParameter("memberId");
+		
+		MemberService ms = new MemberService();
+		
+		int result = ms.idDupCheck(id);
+		
+		new Gson().toJson(result, response.getWriter());
+		
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

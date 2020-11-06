@@ -1,9 +1,6 @@
 package com.kh.jsp.member.model.service;
 
-import static com.kh.jsp.common.JDBCTemplate.close;
-import static com.kh.jsp.common.JDBCTemplate.commit;
-import static com.kh.jsp.common.JDBCTemplate.getConnection;
-import static com.kh.jsp.common.JDBCTemplate.rollback;
+import static com.kh.jsp.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 
@@ -75,6 +72,28 @@ public class MemberService {
 		} else {
 			rollback(con);
 		} 
+		
+		close(con);
+		
+		return result;
+	}
+
+
+	public int idDupCheck(String id) {
+		con = getConnection();
+		
+		int result = mDAO.idDupCheck(con, id);
+		
+		close(con);
+		
+		return result;
+	}
+
+
+	public int emailDupCheck(String email) {
+		con = getConnection();
+		
+		int result = mDAO.emailDupCheck(con, email);
 		
 		close(con);
 		
