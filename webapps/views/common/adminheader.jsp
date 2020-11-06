@@ -69,23 +69,16 @@
                         <nav class="header__menu mobile-menu">
 
                 		  <ul class="header__ul">
-                                <li><a href="#">Shop</a></li>
-                                <li><a href="#">Community<span class="arrow_carrot-down"></span></a>
-                                    <ul class="dropdown">
-                                        <li><a href="#" id="drop">공지사항</a></li>
-                                        <li><a href="#" id="drop">자유게시판</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#" >Q&A<span class="arrow_carrot-down"></span></a>
-                                   <ul class="dropdown">
-                                        <li><a href="#" id="drop">FAQ</a></li>
-                                        <li><a href="#" id="drop">1:1문의</a></li>
-                                   </ul>
-                                <li><a href="#" >admin<span class="arrow_carrot-down"></span></a>
-                                   <ul class="dropdown">
-                                        <li><a href="/StillGaming/views/mypage/adminpage.jsp" id="drop">adminpage</a></li>
-                                       
-                                   </ul>
+                                <li><a href="#">회원관리</a></li> |
+                                <li><a href="#">신고관리</a></li> |
+                                <li><a href="#">게시글관리</a></li> |
+                                <li><a href="#">Q&A 관리</a></li> |
+                                <li><a href="#">공지사항 관리</a></li> 
+                                
+                                
+                                
+                                
+                               
 
                             </ul>
                         </nav>
