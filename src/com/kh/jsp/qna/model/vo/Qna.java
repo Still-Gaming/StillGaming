@@ -1,8 +1,11 @@
 package com.kh.jsp.qna.model.vo;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Qna {
+public class Qnavo implements Serializable {
+	
+	private static final long serialVersionUID = 119L;
 	
 	private int qnaNo;
 	private String memberId;

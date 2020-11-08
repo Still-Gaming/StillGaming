@@ -1,6 +1,7 @@
 package com.kh.jsp.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.jsp.board.model.service.BoardService;
 import com.kh.jsp.board.model.vo.Board;
 import com.kh.jsp.board.model.vo.BoardFile;
+import com.kh.jsp.boardComment.model.serivce.BoardCommentService;
+import com.kh.jsp.boardComment.model.vo.BoardComment;
 import com.kh.jsp.common.exception.BoardException;
 
 /**
@@ -34,6 +37,7 @@ public class BoardSelectOne extends HttpServlet {
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 		
 		BoardService bs = new BoardService();
+		ArrayList<BoardComment> clist = new BoardCommentService().selectList(boardNo);
 		
 		String page = "";
 		
@@ -46,6 +50,8 @@ public class BoardSelectOne extends HttpServlet {
 			
 			request.setAttribute("board", b);
 			request.setAttribute("boardFile", bf);
+			request.setAttribute("clist", clist);
+			
 			
 			page = "views/board/boardDetail.jsp";
 			

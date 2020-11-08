@@ -131,9 +131,9 @@ input{margin-bottom: 9px;}
                
                <tr>
                		<td>이메일</td>
-              	 	<td><input type="text" name="email1"style="width:122px; height:40px; display:inline-block;" required="required" class="form-control">
+              	 	<td><input type="text" name="email1" id="email1" style="width:122px; height:40px; display:inline-block;" required="required" class="form-control">
                @
-               <input type="text" name="email2"style="width:122px; height:40px; display:inline-block;" required="required" class="form-control"></td>
+               <input type="text" name="email2" id="email2" style="width:122px; height:40px; display:inline-block;" required="required" class="form-control"></td>
               <td><input type="button" value="중복확인" id="emailDupCheckBtn" style="margin: -2px 0px 0px 7px; height:40px; " class="btn default"></td> 
               </tr>
                
@@ -197,13 +197,12 @@ $('#emailDupCheckBtn').on('click',function(){
 		url : '/StillGaming/echeck.me',
 		type : 'post',
 		data : { 
-			email : $('#email').val()
+			email1 : $('#email1').val(),
+			email2 : $('#email2').val()
 				 },
 		success : function(data){
-			// console.log(data);
-			
-			// 전달된 결과가 0이면 사용자 없음 : 가입 가능!
-			//			 1 		    있음 : 가입 불가!
+				console.log(data);
+
 			if( data == 0 ) {
 				alert("사용 가능한 이메일입니다.");
 			} else {

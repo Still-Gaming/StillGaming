@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.jsp.board.model.vo.Board;
 import com.kh.jsp.board.model.vo.PageInfo;
-import com.kh.jsp.common.exception.BoardException;
 import com.kh.jsp.common.exception.MyPageException;
 import com.kh.jsp.mypage.model.service.MyPageService;
 

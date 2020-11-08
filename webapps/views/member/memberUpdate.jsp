@@ -86,11 +86,13 @@ padding:10px 20px;
 				<tr>
 					<td><div style="font-size:15px;">아이디 :</div></td>
 					<td><%= m.getMemberId() %></td>
+					<td></td>
 				</tr>
 				
 				<tr>
 					<td><div class="ui input" style="font-size:15px;">변경 PWD :</div></td>
 					<td><input type="password" name="memberPwd" id="memberPwd" style="width:200px; height:30px; border-radius:5px;" required></td>
+					<td></td>
 				</tr>
 				
 				<tr>
@@ -102,17 +104,21 @@ padding:10px 20px;
 				<tr>
 					<td><div style="font-size:15px;">이름 :</div></td>
 					<td><%= m.getMemberName() %></td>
+					<td></td>
 				</tr>
 
 				<tr>
 					<td><div class="ui input" style="font-size:15px;">이메일 :</div></td>          
 					<td><input type="text" name="email1" id="email1" style="width:100px; height:30px; border-radius:5px;" required> @
 						<input type="text" name="email2" id="email2" style="width:100px; height:30px; border-radius:5px;" required></td>
+					<td><input type="button" value="중복확인" id="emailDupCheckBtn" style="margin: -2px 0px 0px 7px; height:40px; " class="btn default"></td> 
+						
 				</tr>
 				
 				<tr>
-					<td><div style="font-size:15px;">생년월일 :</div><td>
+					<td><div style="font-size:15px;">생년월일 :</div></td>
 					<td><%= m.getMemberSsn() %></td>
+					<td></td>
 				</tr>
 				
 				<tr>
@@ -120,16 +126,25 @@ padding:10px 20px;
 					<td><input type="number" name="phone1" id="phone1" style="width:70px; border-radius:5px;" required>-  
 						<input type="number" name="phone2" id="phone2" style="width:70px; border-radius:5px;" required>-  
 						<input type="number" name="phone3" id="phone3" style="width:70px; border-radius:5px;" required></td>
+						<td></td>
 				</tr>
 				
 				<tr>
 					<td><div style="font-size:15px;">성별 :</div></td>
-					<td><%= m.getGender() %></td>
+					<td>
+						<% if( m.getGender().equals("M") ) { %>
+							남자
+						<% } else { %>
+							여자
+						<% } %>	
+					</td>
+					<td></td>
 				</tr>
 				
 				<tr>
 					<td><div style="font-size:15px;">가입일자 :</div></td>
 					<td><%= m.getJoinDate() %></td>
+					<td></td>
 				</tr>	
 
 		</table>
@@ -153,6 +168,9 @@ padding:10px 20px;
 	<%@ include file="../common/footer.jsp" %>
 	
 		<script>
+		
+		
+		
 		function deleteMember() {
 						var result = window.confirm("정말 탈퇴하시겠습니까?");
 						
@@ -164,6 +182,27 @@ padding:10px 20px;
 						}
 					}
 
+		$('#emailDupCheckBtn').on('click',function(){
+			$.ajax({
+				url : '/StillGaming/echeck.me',
+				type : 'post',
+				data : { 
+					email1 : $('#email1').val(),
+					email2 : $('#email2').val()
+						 },
+				success : function(data){
+						console.log(data);
+
+					if( data == 0 ) {
+						alert("사용 가능한 이메일입니다.");
+					} else {
+						alert("이미 사용 중인 이메일입니다.")
+					}
+				}, error : function(){
+					console.log("에러 발생");
+				}
+			});
+		});
 		
 		// 비밀번호 유효성 체크 정규표현식 함수(영문,숫자,특수문자 8자리 이상 20자리 이하)
 		function pwdRegEx(pwd){  
