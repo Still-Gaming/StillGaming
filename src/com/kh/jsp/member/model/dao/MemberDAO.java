@@ -82,7 +82,7 @@ public class MemberDAO {
 			pstmt.setString(2, m.getMemberPwd());
 			
 			rset = pstmt.executeQuery();
-			
+
 			if(rset.next()) { 
 
 				result = new Member();

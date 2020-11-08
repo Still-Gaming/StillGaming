@@ -2,13 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.kh.jsp.board.model.vo.*, java.util.*" %>
 <%
-	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
-	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	int listCount = pi.getListCount();
-	int currentPage = pi.getCurrentPage();
-	int maxPage = pi.getMaxPage();
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
+   ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+   PageInfo pi = (PageInfo)request.getAttribute("pi");
+   int listCount = pi.getListCount();
+   int currentPage = pi.getCurrentPage();
+   int maxPage = pi.getMaxPage();
+   int startPage = pi.getStartPage();
+   int endPage = pi.getEndPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -23,9 +23,11 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
+
 <script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
+<<<<<<< HEAD
 	<%@ include file="/views/common/header.jsp" %>
 	
 	<div class="titleArea">
