@@ -39,7 +39,7 @@
 			찜목록
 		</a>
 	<div>
-		<a href=""></a>
+		<a href="#"></a>
 	</div>
 	<br />
 	<br />
