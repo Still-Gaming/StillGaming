@@ -21,17 +21,57 @@
                 <div class="col-lg-8">
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
+<<<<<<< HEAD
 
                 		  <ul class="header__ul">
                                 <li><a href="<%= request.getContextPath() %>/gamelist.do">Store</a></li>
                                 <li><a href="#">Community<span class="arrow_carrot-down"></span></a>
+=======
+
+
+
+                            <ul>
+                                <li class="active"><a href="./index.jsp">홈페이지</a></li>
+                                <li><a href="./categories.jsp">커뮤니티<span class="arrow_carrot-down"></span></a>
+
+
+                            <ul class="header__ul">
+                                <li><a href="#" class="menu">Shop</a></li>
+
+
+                  <ul class="header__ul">
+                                <li><a href="#" class="menu">Shop</a></li>
+
+                                <li><a href="./categories.jsp" class="menu">Community<span class="arrow_carrot-down"></span></a>
+
+
+                                <li><a href="./categories.jsp" class="menu">Community<span class="arrow_carrot-down"></span></a>
+
+
+
+>>>>>>> refs/remotes/origin/feature_jin
                                     <ul class="dropdown">
                                         <li><a href="#" id="drop">공지사항</a></li>
                                         <li><a href="<%= request.getContextPath() %>/selectList.bo" id="drop">자유게시판</a></li>
                                     </ul>
+<<<<<<< HEAD
                                 </li>
                                 
 								<li><a href="#" >Q&A<span class="arrow_carrot-down"></span></a>
+=======
+
+                                </li>
+
+                				 <li><a href="./blog.jsp">Our Blog</a></li>
+                                <li><a href="<%= request.getContextPath() %>/gamelist.do")">상점</a></li>
+                                <li><a href="#">Contacts</a></li>
+
+
+
+                                </li>
+
+                                <li><a href="#" >Q&A<span class="arrow_carrot-down"></span></a>
+>>>>>>> refs/remotes/origin/feature_jin
                                    <ul class="dropdown">
                                         <li><a href="<%= request.getContextPath()%>/views/about/faq.jsp" id="drop">FAQ</a></li>
                                         <li><a href="<%= request.getContextPath()%>/views/about/qna.jsp" id="drop">1:1문의</a></li>

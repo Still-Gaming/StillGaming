@@ -36,4 +36,22 @@ public class BoardCommentService {
 		
 		return clist;
 	}
+
+	public int updateComment(BoardComment bco) {
+		con = getConnection();
+		
+		int result = bcDAO.updateComment(con, bco);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
+	 
 }
