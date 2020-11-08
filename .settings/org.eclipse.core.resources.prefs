@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/config=UTF-8
 encoding//src/config/board-sql.properties=UTF-8
 encoding//src/config/comment-sql.properties=UTF-8
 encoding//src/config/gamelist-sql.properties=UTF-8

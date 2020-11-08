@@ -3,9 +3,55 @@
 <%
 	Member m = (Member)session.getAttribute("member");
 %>
+<!DOCTYPE html>
+<html>
+<head>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
-	<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/headerstyle.css" type="text/css">
+    <style>
+    	.header__ul {
+    		margin-top : 20px;
+    	}
+    	
+		.header__right {
+			margin-top: 20px;
+		}
+		
+		
+		.header__right b a {
+			font-size : 14px;
+		}
+		
+		.header__menu ul li .dropdown {
 
+			background: #EAEAEA;
+	  }  	
+	  
+	  
+	  .header__menu ul li:hover a {
+		color: black;
+	}
+	
+	.header__menu ul li a {
+		color: black;
+		font-size: 18px;
+	}
+	
+	.header__menu ul li:active a {
+		color : #00005D;
+	}
+	
+	.dropdown li:hover{
+		background: #5D5D5D;
+	}
+	
+	#drop:hover {
+		color: #ffffff;
+	}
+	
+    </style>
+
+</head>
+<body>
     <!-- Header Section Begin -->
 
     <header class="header" style="background-color: white;">
@@ -23,19 +69,16 @@
                         <nav class="header__menu mobile-menu">
 
                 		  <ul class="header__ul">
-                                <li><a href="<%= request.getContextPath() %>/gamelist.do">Store</a></li>
-                                <li><a href="#">Community<span class="arrow_carrot-down"></span></a>
-                                    <ul class="dropdown">
-                                        <li><a href="#" id="drop">공지사항</a></li>
-                                        <li><a href="<%= request.getContextPath() %>/selectList.bo" id="drop">자유게시판</a></li>
-                                    </ul>
-                                </li>
+                                <li><a href="#">회원관리</a></li> |
+                                <li><a href="#">신고관리</a></li> |
+                                <li><a href="#">게시글관리</a></li> |
+                                <li><a href="#">Q&A 관리</a></li> |
+                                <li><a href="#">공지사항 관리</a></li> 
                                 
-								<li><a href="#" >Q&A<span class="arrow_carrot-down"></span></a>
-                                   <ul class="dropdown">
-                                        <li><a href="<%= request.getContextPath()%>/views/about/faq.jsp" id="drop">FAQ</a></li>
-                                        <li><a href="<%= request.getContextPath()%>/views/about/qna.jsp" id="drop">1:1문의</a></li>
-                                   </ul>
+                                
+                                
+                                
+                               
 
                             </ul>
                         </nav>
@@ -59,3 +102,7 @@
 
     </header>
     <!-- Header End -->
+    
+ 
+</body>
+</html>
