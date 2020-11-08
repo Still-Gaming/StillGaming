@@ -1,12 +1,16 @@
 package com.kh.jsp.gameinfo.model.service;
 
 import static com.kh.jsp.common.JDBCTemplate.close;
+import static com.kh.jsp.common.JDBCTemplate.commit;
 import static com.kh.jsp.common.JDBCTemplate.getConnection;
+import static com.kh.jsp.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.kh.jsp.common.exception.GameInfoException;
 import com.kh.jsp.gameinfo.model.dao.GameInfoDAO;
+import com.kh.jsp.gameinfo.model.vo.GameImage;
 import com.kh.jsp.gameinfo.model.vo.GameInfo;
 
 
@@ -15,10 +19,12 @@ public class GameInfoService {
 	private GameInfoDAO nDAO = new GameInfoDAO();
 	
 	
-	public ArrayList<GameInfo> selectList(int currentPage, int limit) {
+	public ArrayList<GameInfo> selectList(int currentPage, int limit) throws GameInfoException {
 		con = getConnection();
 		
 		ArrayList<GameInfo> list = nDAO.selectList(con, currentPage, limit);
+		
+		
 		
 		close(con);
 		
@@ -38,6 +44,41 @@ public class GameInfoService {
 	}
 
 
-	
+	public int insertGameInfo(GameInfo g, GameImage gi) throws GameInfoException {
+		con = getConnection();
+		int result = 0;
+		
+		int result1 = nDAO.insertGameInfo(con, g);
+		int result2 = 0;
+		
+		
+		if(result1 > 0) {
+			int gminfoNum = nDAO.getCurrentGminfoNum(con);
+					
+			if(gminfoNum > 0 && gi != null) {
+					gi.setGminfoNum(gminfoNum);
+					
+					result2 = nDAO.insertGameImage(con, gi);
+			}
+			
+		}
+		
+		
+		if( result1 > 0 && result2 > 0 ) {
+			commit(con);
+			result = 1;
+		} else {
+			rollback(con);
+		}
+		close(con);
+			
+		return result;
+	}
+
+
 	
 }
+
+
+	
+

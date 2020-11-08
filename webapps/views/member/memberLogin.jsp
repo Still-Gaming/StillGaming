@@ -27,7 +27,8 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
-        <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style2.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style2.css" type="text/css">
+    
     
 <style>
 
@@ -49,14 +50,14 @@ html, body {
 
 	<%@ include file="../common/header.jsp" %>
 
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
     <!-- Login Section Begin -->
-    <section class="login spad">
+<div style="background: #EAEAEA; color:black;">
+<br />
+<br />
+<br />
+<br />
+<br />
+    <section class="login spad" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
@@ -67,7 +68,7 @@ html, body {
                         
                             <div class="input__item" >
                                 <input type="text" name="memberId" placeholder="ID" >
-                            <span class="icon_id"></span>
+                            	<span class="fa fa-user" id="userIcon"></span>
                             </div>
                             
                             <div class="input__item">
@@ -92,8 +93,7 @@ html, body {
                         <a href="memberJoin.jsp" class="primary-btn">Register Now</a>
                     </div>
                 </div>
-           </div>
-
+           </div>  
 <br />
 <br />
 <br />
@@ -102,6 +102,7 @@ html, body {
 <br />
 
       </section>
+</div>
     <!-- Login Section End -->
 
 	<%@ include file="../common/footer.jsp" %>

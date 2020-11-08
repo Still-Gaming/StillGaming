@@ -26,14 +26,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
-<style>
-	
-	body {
-		background-color: white;
-	}
-	
-</style>
-
+ 
 </head>
 
 <body>
@@ -53,7 +46,7 @@
                         <div class="col-lg-6">
                             <div class="hero__text">
                                 <div class="label">Adventure</div>
-                                <h2>Fate /ㅇ Stay Night: Unlimited Blade Works</h2>
+                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
                                 <p>After 30 days of travel across the world...</p>
                                 <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
                             </div>

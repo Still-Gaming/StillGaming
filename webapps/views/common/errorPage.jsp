@@ -9,7 +9,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
     <meta charset="UTF-8">
     <meta name="description" content="Anime Template">
     <meta name="keywords" content="Anime, unica, creative, html">
@@ -56,36 +55,6 @@
 	<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/js/main.js"></script>	
-=======
-<meta charset="UTF-8">
-<title>Service ERROR</title>
-<style>
-.outer{
-		padding: 20px;
-		width:600px;
-		height:500px;
-		background:black;
-		color:white;
-		margin-left:auto;
-		margin-right:auto;
-		margin-top:50px;
-	}
-span {
-	font-size:21pt;
-	background: white;
-	color: navy;
-}
-</style>
-</head>
-<body>
-<%@ include file="../common/header.jsp" %>
-	<div class="outer">
-		<h1>서비스 에러 발생!!!</h1>
-		<h3 style="color:hotpink;">ERROR : <%= e.getMessage() %></h3>
-		<h4><span>서</span>비스 수행 중 에러가 발생했습니다. 전송 값을 확인해 보시고,<br>
-		이상이 없을 시 부서 담당자에게 연락하시기 바랍니다.</h4>
-	</div>
-<%@ include file="../common/footer.jsp" %>
->>>>>>> refs/remotes/origin/feature_jin
+
 </body>
 </html>

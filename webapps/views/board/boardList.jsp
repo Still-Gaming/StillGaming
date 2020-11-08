@@ -15,7 +15,15 @@
 <head>
 <meta charset="UTF-8">
 <title>커뮤니티</title>
-<script src="/resources/jqery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/plyr.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
+<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 	<%@ include file="/views/common/header.jsp" %>
@@ -25,7 +33,7 @@
 	</div>
 		
 	<div class="tableArea">
-		<table align="center" style="color:white;">
+		<table align="center">
 			<thead>
 				<tr align="center">
 					<th width="50">번호</th>
@@ -101,17 +109,17 @@
 		$('td').on('mouseenter', function() {
 			$(this).css('cursor', 'pointer');
 			$(this).parent().css({
-				'background-color' : 'white',
-				'color' : 'black'
+				'background-color' : 'black',
+				'color' : 'white'
 			});
 		}).on('mouseleave', function() {
 			$(this).parent().css({
 				'background-color' : 'transparent',
-				'color' : 'white'
+				'color' : 'black'
 			})
 		}).on('click', function() {
 			var boardNo = $(this).parent().find('input').val();
-			
+			console.log(boardNo);
 			<% if(m != null) { %>
 				location.href='<%= request.getContextPath() %>/selectOne.bo?boardNo=' + boardNo;
 			<% } else { %>
@@ -119,5 +127,13 @@
 			<% } %>
 		});
 	</script>
+	
+<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/mixitup.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
 </body>
 </html>

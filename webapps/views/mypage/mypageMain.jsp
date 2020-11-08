@@ -44,7 +44,6 @@
 	<br />
 	<br />
 	
-	<div> 찜 목록 </div>
 	
 	<div> 장바구니 </div>
 	
@@ -52,7 +51,9 @@
 		<a href="<%= request.getContextPath() %>/post.my?memberId=<%= m.getMemberId() %>">내가 쓴 글 조회</a>
 	</div>
 	
-	<div> 구매내역 </div>
+	<div> 
+		<a href="<%= request.getContextPath() %>/orderList.my?memberId=<%= m.getMemberId() %>">구매내역 </a>
+	</div>
 
 
 
