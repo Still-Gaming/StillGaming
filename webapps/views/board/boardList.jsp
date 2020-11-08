@@ -15,7 +15,13 @@
 <head>
 <meta charset="UTF-8">
 <title>커뮤니티</title>
-<script src="/resources/jqery-3.3.1.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css" />
+<style>
+	.input-group {
+		container : 'body';
+	}
+</style>
 </head>
 <body>
 	<%@ include file="/views/common/header.jsp" %>
@@ -52,46 +58,50 @@
 	
 	<div class="pagingArea" align="center">
 	
-		<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
+		<button class="btn" onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
 		
 		<%  if(currentPage <= 1){  %>
 			<button disabled><</button>
 		<%  }else{ %>
-			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage - 1 %>'"><</button>
+			<button class="btn" onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage - 1 %>'"><</button>
 		<%  } %>
 			
 		<% for(int p = startPage; p <= endPage; p++){
 				if(p == currentPage){ %>
 				<button disabled><%= p %></button>
 			<% } else { %>
-				<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= p %>'"><%= p %></button>
+				<button class="btn" onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= p %>'"><%= p %></button>
 			<% } %>
 		<% } %>
 				
 		<%  if(currentPage >= maxPage){  %>
 			<button disabled>></button>
 		<%  } else { %>
-			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage + 1 %>'">></button>
+			<button class="btn" onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage + 1 %>'">></button>
 		<%  } %>
 		
-		<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= maxPage %>'">>></button>
+		<button class="btn" onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= maxPage %>'">>></button>
 		
 	</div>
 	
 	<div class="btnArea">
-		<button onclick="location.href='<%= request.getContextPath() %>/views/board/boardInsertForm.jsp'">글쓰기</button>
+		<button class="btn btn-primary" onclick="location.href='<%= request.getContextPath() %>/views/board/boardInsertForm.jsp'">글쓰기</button>
 	</div>
 	
 	<form action="<%= request.getContextPath() %>/search.bo">
 		<div class="searchArea">
-			<select name="category" id="category">
-				<option value="title" selected>제목</option>
-				<option value="memberId">작성자</option>
-			</select>
+			<div class="input-group">
+				<select name="category" id="category">
+					<option value="title" selected>제목</option>
+					<option value="memberId">작성자</option>
+				</select>
 			
-			<input type="text" name="searchWord" id="searchWord" />
-			
-			<button>검색</button>
+				<input type="text" name="searchWord" id="searchWord" />
+				
+				<span class="input-group-btn">
+					<button class="btn btn-success" type="button">검색</button>
+				</span>
+			</div>
 		</div>
 	</form>
 	
