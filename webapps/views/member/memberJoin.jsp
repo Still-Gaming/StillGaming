@@ -14,6 +14,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>StillGaming | 회원가입</title>
     
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+    
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/elegant-icons.css" type="text/css">
@@ -21,17 +26,17 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
 
 <style>
-*{
-   font-family: 'Noto Sans KR', sans-serif;
+
+.section1{
+   font-family: "Mulish", sans-serif;
+      margin:0 auto;
 }
 .logo{
    width: 500px;
    text-align:center;
-   margin:0 auto;
-}
-.section1{
    margin:0 auto;
 }
 .section2{
@@ -64,7 +69,6 @@
    font-size:15px;
    margin-top:14px;
    margin-bottom:3px;
-   font-family: 'Noto Sans KR', sans-serif;
 }
 .check{
     margin-bottom: 132px;
@@ -72,7 +76,6 @@
 }
 input{margin-bottom: 9px;}
 .term-box{
- font-family: 'Noto Sans KR', sans-serif;
    width:350px;
    height:160px;
    margin-left:15px;
@@ -89,11 +92,6 @@ input{margin-bottom: 9px;}
 </head>
 
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
-
 	<%@ include file="../common/header.jsp" %>
 	
     <!-- Signup Section Begin -->
@@ -126,7 +124,7 @@ input{margin-bottom: 9px;}
                
                <tr>
                		<td>이름</td>
-               		<td><input type="text" maxlenth="15" name="memberName" style="width : 268px; height:37px;" required="required" class="form-control"/></td>
+               		<td><input type="text" name="memberName" style="width : 268px; height:37px;" required="required" class="form-control"/></td>
                </tr>
                
                <tr>
@@ -152,8 +150,8 @@ input{margin-bottom: 9px;}
               
               <tr>
 				  <td><p>성별</p></td>
-				  <td><input type="radio" name="gender" value="M"  />남자 &nbsp;
-				  <input type="radio" name="gender" value="F" />여자</td>
+				  <td><input type="radio" name="gender" value="M"/>남자 &nbsp;
+				  <input type="radio" name="gender" value="F"/>여자</td>
 			</tr>
 
 			</table>
@@ -279,7 +277,6 @@ function validate(){
 
 
 <!-- Js Plugins -->
-<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>

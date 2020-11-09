@@ -35,12 +35,12 @@ public class MemberDAO {
 		}
 	}
 	
-	public int insertMember(Connection con, Member joinMember)  {
+	public int insertMember(Connection con, Member joinMember) throws MemberException  {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertMember");
-		
+		System.out.println(joinMember.getGender()+"1234");
 		try {
 			pstmt = con.prepareStatement(sql);
 			
@@ -58,6 +58,8 @@ public class MemberDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw new MemberException("[DAO] : " + e.getMessage());
+
 
 		} finally {
 			
@@ -111,7 +113,7 @@ public class MemberDAO {
 		return result;
 	}
 
-	public int deleteMember(Connection con, String memberId) {
+	public int deleteMember(Connection con, String memberId) throws MemberException {
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
@@ -127,6 +129,8 @@ public class MemberDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw new MemberException("[DAO] : " + e.getMessage());
+
 		} finally {
 			close(pstmt);
 		}

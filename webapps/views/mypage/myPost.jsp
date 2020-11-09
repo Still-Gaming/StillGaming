@@ -34,19 +34,84 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
- 
+<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
+
+
+<style>
+section {
+	margin-left: 200px;
+	margin-top: 100px;
+	margin-right: 200px;
+	margin-bottom: 50px;
+}
+
+  table {
+    width: 100%;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+  }
+
+h4 {
+	  letter-spacing: 5px;
+}  
+
+hr {
+	margin-left: 500px;
+	margin-right: 500px;
+	border-width: 2px;
+}
+
+.product__pagination {
+	padding-top: 15px;
+}
+
+.product__pagination a {
+	display: inline-block;
+	font-size: 15px;
+	color: #000000;
+	font-weight: 600;
+	height: 50px;
+	width: 50px;
+	border: 1px solid transparent;
+	border-radius: 50%;
+	line-height: 48px;
+	text-align: center;
+	-webkit-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
+	cursor: pointer;
+	
+}
+
+.product__pagination a:hover {
+	color: #b7b7b7;
+}
+
+.product__pagination a.current-page {
+	border: 1px solid #000000;
+}
+
+
+</style>
 </head>
 <body>
 
 	<%@ include file="../common/header.jsp" %>
 	
 	
-	<div class="titleArea">
-		<h2>자유 게시판</h2>
-	</div>
+	<section>
+	<h4 align="center">내가 쓴 게시글</h4>
+	<hr />
+	<br />
+	<br />
 		
 	<div class="tableArea">
-		<table align="center" style="color:white;">
+		<table align="center">
 			<thead>
 				<tr align="center">
 					<th width="50">번호</th>
@@ -71,45 +136,64 @@
 		</table>
 	</div>
 	
-	<div class="pagingArea" align="center">
-	
-		<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
+	    <div class="product__pagination" align="center">
+           <a onclick="location.href='<%= request.getContextPath() %>/post.my?memberId=<%= m.getMemberId() %>&ccurrentPage=1'"><<</a>
 		
 		<%  if(currentPage <= 1){  %>
-			<button disabled><</button>
+			<a class="current-page"><</a>
 		<%  }else{ %>
-			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage - 1 %>'"><</button>
+			<a onclick="location.href='<%= request.getContextPath() %>/post.my?memberId=<%= m.getMemberId() %>&currentPage=<%= currentPage - 1 %>'"><</a>
 		<%  } %>
 			
 		<% for(int p = startPage; p <= endPage; p++){
 				if(p == currentPage){ %>
-				<button disabled><%= p %></button>
+				<a class="current-page"><%= p %></a>
 			<% } else { %>
-				<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= p %>'"><%= p %></button>
+				<a onclick="location.href='<%= request.getContextPath() %>/post.my?memberId=<%= m.getMemberId() %>&currentPage=<%= p %>'"><%= p %></a>
 			<% } %>
 		<% } %>
 				
 		<%  if(currentPage >= maxPage){  %>
-			<button disabled>></button>
+			<a class="current-page">></a>
 		<%  } else { %>
-			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage + 1 %>'">></button>
+			<a onclick="location.href='<%= request.getContextPath() %>/post.my?memberId=<%= m.getMemberId() %>&currentPage=<%= currentPage + 1 %>'">></a>
 		<%  } %>
 		
-		<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= maxPage %>'">>></button>
-		
-	</div>
+		<a onclick="location.href='<%= request.getContextPath() %>/post.my?memberId=<%= m.getMemberId() %>&currentPage=<%= maxPage %>'">>></a>
 	
-	<div class="btnArea">
-		<button onclick="location.href='<%= request.getContextPath() %>/views/board/boardInsertForm.jsp'">글쓰기</button>
-	</div>
-	
+      </div>
+      
+      <br />
+      <br />
+      <br />
+      <br />
+	</section>
 	
 	<%@ include file="../common/footer.jsp" %>
+	
+	<script>
+		$('td').on('mouseenter', function() {
+			$(this).css('cursor', 'pointer');
+			$(this).parent().css({
+				'background-color' : 'lightgray',
+				'color' : 'black'
+			});
+		}).on('mouseleave', function() {
+			$(this).parent().css({
+				'background-color' : 'transparent',
+				'color' : 'black'
+			})
+		}).on('click', function() {
+			var boardNo = $(this).parent().find('input').val();
+			console.log(boardNo);
+			<% if(m != null) { %>
+				location.href='<%= request.getContextPath() %>/selectOne.bo?boardNo=' + boardNo;
+			<% } %>
+		});
+	</script>
+	
 
-</body>
 
-
-<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>

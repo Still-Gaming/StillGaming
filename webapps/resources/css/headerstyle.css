@@ -42,4 +42,9 @@
 	
 	body {
 		background-color: white;
+		
+	}
+
+	.header {
+		font-family: "Mulish", sans-serif;
 	}

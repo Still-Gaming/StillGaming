@@ -13,10 +13,12 @@
     
     <script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
 
-
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+    
     <!-- Css Styles -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/elegant-icons.css" type="text/css">
@@ -24,10 +26,9 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
+
  <style>
-body{
-font-family: 'Noto Sans KR', sans-serif;
-}
 .section1{
 	margin: 0 auto;
 }
@@ -64,7 +65,6 @@ padding:10px 20px;
 #deleteBtn {
 	margin-left: 200px;
 }
-
 
 
 </style>
@@ -132,11 +132,11 @@ padding:10px 20px;
 				<tr>
 					<td><div style="font-size:15px;">성별 :</div></td>
 					<td>
-						<% if( m.getGender().equals("M") ) { %>
-							남자
-						<% } else { %>
+					 <% if( m.getGender().toUpperCase().equals("F  ") ) { %>
 							여자
-						<% } %>	
+						<% } else { %>
+							남자
+						<% } %> 
 					</td>
 					<td></td>
 				</tr>

@@ -3,9 +3,13 @@
 <%
 	Member m = (Member)session.getAttribute("member");
 %>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
 	<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/headerstyle.css" type="text/css">
-
+	<style>
+	
+	.header {	
+		font-family: "Mulish", sans-serif;
+	}
+	</style>
     <!-- Header Section Begin -->
 
     <header class="header" style="background-color: white;">
@@ -14,7 +18,7 @@
                 <div class="col-lg-2">
                     <div class="header__logo">
                         <a href="/StillGaming/">
-                            <img src="/StillGaming/resources/img/sglogo.png" alt="">
+                            <img src="/StillGaming/resources/img/sglogo.png">
                         </a>
                     </div>
                 </div>

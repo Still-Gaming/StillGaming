@@ -85,7 +85,7 @@
     <!-- Hero Section End -->
 
     <!-- Product Section Begin -->
-    <section class="product spad">
+    <section class="product spad" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
@@ -649,18 +649,6 @@
 
 	<%@ include file="views/common/footer.jsp" %>
 
-
-  <!-- Search model Begin -->
-  <div class="search-model">
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-switch"><i class="icon_close"></i></div>
-        <form class="search-model-form">
-            <input type="text" id="search-input" placeholder="Search here.....">
-        </form>
-    </div>
-</div>
-<!-- Search model end -->
-
 <!-- Js Plugins -->
 <script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
@@ -671,8 +659,6 @@
 <script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
 
-
-<%@ include file="/views/common/footer.jsp" %>
 
 </body>
 
