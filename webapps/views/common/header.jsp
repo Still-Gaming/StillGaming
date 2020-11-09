@@ -36,6 +36,12 @@
                                         <li><a href="<%= request.getContextPath()%>/views/about/faq.jsp" id="drop">FAQ</a></li>
                                         <li><a href="<%= request.getContextPath()%>/views/about/qna.jsp" id="drop">1:1문의</a></li>
                                    </ul>
+                                   
+                                  <li><a href="#" >admin<span class="arrow_carrot-down"></span></a>
+                                   <ul class="dropdown">
+                                        <li><a href="<%= request.getContextPath()%>/views/about/adminpage.jsp" id="drop">adminpage</a></li>
+                                       
+                                   </ul>
 
                             </ul>
                         </nav>

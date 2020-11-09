@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.kh.jsp.board.model.vo.*, java.util.*" %>
+<%@ page import="com.kh.jsp.member.model.vo.*, java.util.*" %>
 <%
-   ArrayList<Member> list = (ArrayList<Board>)request.getAttribute("list");
-   MemberInfo mi = (PageInfo)request.getAttribute("pi");
-   int listCount = pi.getListCount();
-   int currentPage = pi.getCurrentPage();
-   int maxPage = pi.getMaxPage();
-   int startPage = pi.getStartPage();
-   int endPage = pi.getEndPage();
+   ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+   Member mb = (Member)request.getAttribute("mb");
+   String memberId = mb.getMemberId();
+   int memberName = mb.getMemberName();
+   int memberSsn = mb.getMemberSsn();
+   int Gender = mb.getGender();
+   int Email = mb.getEmail();
+   int Phone = mb.getPhone();
 %>
 <!DOCTYPE html>
 <html>
@@ -46,14 +47,15 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% for(Board b : list) { %>
+				<% for(Member m : list) { %>
 					<tr align="center">
 						<input type="hidden" name="BoardNo" id="BoardNo" value="<%= b.getBoardNo() %>" />
-						<td><%= b.getBoardNo() %></td>
-						<td><%= b.getBoardTitle() %></td>
-						<td><%= b.getMemberId() %></td>
-						<td><%= b.getBoardCount() %></td>
-						<td><%= b.getBoardDate() %></td>
+						<td><%= m.getMemberId() %></td>
+						<td><%= m.getMemberName() %></td>
+						<td><%= m.getMemberSsn() %></td>
+						<td><%= m.getGender() %></td>
+						<td><%= m.getEmail() %></td>
+						<td><%= m.getPhone() %></td>
 					</tr>
 				<% } %>
 			</tbody>
