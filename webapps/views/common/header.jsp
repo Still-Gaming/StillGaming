@@ -8,6 +8,8 @@
 <head>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
     <style>
+@charset "UTF-8";
+
     	.header__ul {
     		margin-top : 20px;
     	}
@@ -22,6 +24,7 @@
 		}
 		
 		.header__menu ul li .dropdown {
+
 			background: #EAEAEA;
 	  }  	
 	  
@@ -46,6 +49,11 @@
 	#drop:hover {
 		color: #ffffff;
 	}
+	
+	body {
+		background-color: white;
+	}
+
 	
     </style>
 
