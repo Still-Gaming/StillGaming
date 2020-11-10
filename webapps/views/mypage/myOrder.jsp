@@ -111,6 +111,7 @@ hr {
 	<hr />
 	<input type="date" id="date1"> ~ <input type="date" id="date2">
 	<button type="button" onclick="search();">조회</button>
+	<button type="reset">초기화</button>
 	<br />
 	<br />
 		<div class="tableArea">
@@ -179,7 +180,7 @@ hr {
 	
 	<script>
 	function search(){
-		location.href="<%=request.getContextPath()%>/ordSearch.my?memberId=<%= m.getMemberId() %>&date1="+$('#date1').val()"&date2="+$('#date2').val();
+		location.href="<%=request.getContextPath()%>/searchOrd.my?memberId=<%= m.getMemberId() %>&date1="+$('#date1').val()+"&date2="+$('#date2').val();
 	}
 	</script>
 

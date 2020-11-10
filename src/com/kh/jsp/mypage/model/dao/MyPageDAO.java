@@ -294,13 +294,10 @@ public class MyPageDAO {
 			while(rset.next()) {
 				Ord o = new Ord();
 				
-				o.setOrdNo(rset.getInt("ORD_NO"));
-				o.setOrdDate(rset.getDate("ORD_DATE"));
-				o.setGminfoNum(rset.getInt("GMINFO_NUM"));
-				o.setGminfoName(rset.getString("GMINFO_NAME"));
-				o.setGminfoPrice(rset.getInt("GMINFO_PRICE"));
-				
-				list.add(o);
+				o.setOrdNo(rset.getInt(1));
+				o.setMemberId(rset.getString(2));
+				o.setGminfoNum(rset.getInt(3));
+				o.setOrdDate(rset.getDate(4));
 			}
 			
 		} catch (SQLException e) {

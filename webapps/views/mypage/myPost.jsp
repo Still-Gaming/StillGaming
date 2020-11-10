@@ -103,7 +103,12 @@ hr {
 
 	<%@ include file="../common/header.jsp" %>
 	
+<!-- 	<div class="tab">
+  	<button class="tablinks" onclick="open(event, 'Board')">게시글</button>
+  	<button class="tablinks" onclick="open(event, 'QnA')">1:1문의</button>
+	</div> -->
 	
+	<div  class="tabcontent" id="Board">
 	<section>
 	<h4 align="center">내가 쓴 게시글</h4>
 	<hr />
@@ -162,12 +167,12 @@ hr {
 		<a onclick="location.href='<%= request.getContextPath() %>/post.my?memberId=<%= m.getMemberId() %>&currentPage=<%= maxPage %>'">>></a>
 	
       </div>
-      
       <br />
       <br />
       <br />
       <br />
 	</section>
+	</div>
 	
 	<%@ include file="../common/footer.jsp" %>
 	
@@ -190,7 +195,21 @@ hr {
 				location.href='<%= request.getContextPath() %>/selectOne.bo?boardNo=' + boardNo;
 			<% } %>
 		});
-	</script>
+	<!-- 	
+		function open(evt, type) {
+		  var i, tabcontent, tablinks;
+		  tabcontent = document.getElementsByClassName("tabcontent");
+		  for (i = 0; i < tabcontent.length; i++) {
+		    tabcontent[i].style.display = "none";
+		  }
+		  tablinks = document.getElementsByClassName("tablinks");
+		  for (i = 0; i < tablinks.length; i++) {
+		    tablinks[i].className = tablinks[i].className.replace(" active", "");
+		  }
+		  document.getElementById(cityName).style.display = "block";
+		  evt.currentTarget.className += " active";
+		}
+	</script> -->
 	
 
 
