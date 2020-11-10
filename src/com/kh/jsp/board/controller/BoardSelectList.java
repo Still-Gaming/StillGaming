@@ -40,7 +40,7 @@ public class BoardSelectList extends HttpServlet {
 		int endPage;
 		int maxPage;
 		int currentPage;
-		int limit = 10;
+		int limit = 5;
 		currentPage = 1;
 		
 		if(request.getParameter("currentPage") != null) {

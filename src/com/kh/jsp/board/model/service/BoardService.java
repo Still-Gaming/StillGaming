@@ -120,4 +120,17 @@ public class BoardService {
 		close(con);
 	}
 
+	public int deleteBoard(int boardNo) throws BoardException {
+		con = getConnection();
+		
+		int result = bDAO.deleteBoard(con, boardNo);
+		
+		if(result > 0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
+
 }

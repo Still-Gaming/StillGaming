@@ -99,6 +99,42 @@ public class MemberService {
 		
 		return result;
 	}
+
+
+	public String searchId(String name, String email) throws MemberException {
+		con = getConnection();
+		
+		String memberId = mDAO.searchId(con, name, email);
+		
+		close(con);
+		
+		return memberId;
+	}
+
+
+	public int searchPwd(Member m) throws MemberException {
+		con = getConnection();
+		
+		int result = mDAO.searchPwd(con, m);
+				
+		close(con);
+		
+		return result;
+	}
+
+
+	public int updatePwd(Member m) throws MemberException {
+		con = getConnection();
+		
+		int result = mDAO.updatePwd(con, m);
+		
+		if(result > 0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
 	
 }
 
