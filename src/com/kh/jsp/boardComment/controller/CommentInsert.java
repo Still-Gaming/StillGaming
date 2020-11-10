@@ -7,13 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.jsp.boardComment.model.serivce.BoardCommentService;
+import com.kh.jsp.boardComment.model.service.BoardCommentService;
 import com.kh.jsp.boardComment.model.vo.BoardComment;
 
 /**
  * Servlet implementation class CommentInert
  */
-@WebServlet("/insert.do")
+@WebServlet("/insert.co")
 public class CommentInsert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -30,21 +30,22 @@ public class CommentInsert extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// 작성자, 게시글 번호, 댓글 내용, 참조 댓글번호, 댓글레벨 작성
-		String MemberId = request.getParameter("MemberId");
+		
+		String MemberId = request.getParameter("memberId");
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 		String commentText = request.getParameter("commentText");
-		int refcno = Integer.parseInt(request.getParameter("refcno"));
+		int refCno = Integer.parseInt(request.getParameter("refCno"));
 		int commentLevel = Integer.parseInt(request.getParameter("commentLevel"));
 		
-		BoardComment comment = new BoardComment(boardNo, commentText, MemberId, refcno, commentLevel);
+		
+		BoardComment comment = new BoardComment(boardNo, commentText, MemberId, refCno, commentLevel);
 		
 		int result = new BoardCommentService().insertComment(comment);
 		
 		if( result > 0 ) {
-			response.sendRedirect("selectOne.bo?bno="+ boardNo);
+			response.sendRedirect("selectOne.bo?boardNo="+ boardNo);
 		} else {
-			// 에러 페이지 작성 . . . 생략
+			
 		}
 	}
 

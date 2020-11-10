@@ -9,25 +9,27 @@ public class GameInfo {
 	private Date gminfoDate;          // 출시일
 	private String gminfoCompany;     // 개발사
 	private String gminfoExp;         // 게임설명
-	private int gmTypenum;            // 장르번호
-	private int gminfoAage;           // 등급번호
+	private int gmTypeNum;            // 장르번호
+	private int gminfoAge;           // 등급번호
 	private int gminfoPrice;          // 가격
-	
+	private String gminfoImage;      // 가상변수 1
+	private String gminfoAgeRank;    // 가상변수 2
+	private String gminfoType;    // 가상변수 3
 	
 	
 	public GameInfo() { }
 
 
 	public GameInfo(int gminfoNum, String gminfoName, Date gminfoDate, String gminfoCompany, String gminfoExp,
-			int gmTypenum, int gminfoAage, int gminfoPrice) {
+			int gmTypeNum, int gminfoAge, int gminfoPrice) {
 		super();
 		this.gminfoNum = gminfoNum;
 		this.gminfoName = gminfoName;
 		this.gminfoDate = gminfoDate;
 		this.gminfoCompany = gminfoCompany;
 		this.gminfoExp = gminfoExp;
-		this.gmTypenum = gmTypenum;
-		this.gminfoAage = gminfoAage;
+		this.gmTypeNum = gmTypeNum;
+		this.gminfoAge = gminfoAge;
 		this.gminfoPrice = gminfoPrice;
 	}
 
@@ -40,15 +42,15 @@ public class GameInfo {
 	}
 
 
-	public GameInfo(String gminfoName, Date gminfoDate, String gminfoCompany, String gminfoExp, int gmTypenum,
-			int gminfoAage, int gminfoPrice) {
+	public GameInfo(String gminfoName, Date gminfoDate, String gminfoCompany, String gminfoExp, int gmTypeNum,
+			int gminfoAge, int gminfoPrice) {
 		super();
 		this.gminfoName = gminfoName;
 		this.gminfoDate = gminfoDate;
 		this.gminfoCompany = gminfoCompany;
 		this.gminfoExp = gminfoExp;
-		this.gmTypenum = gmTypenum;
-		this.gminfoAage = gminfoAage;
+		this.gmTypeNum = gmTypeNum;
+		this.gminfoAge = gminfoAge;
 		this.gminfoPrice = gminfoPrice;
 	}
 
@@ -56,8 +58,8 @@ public class GameInfo {
 	@Override
 	public String toString() {
 		return "GameInfo [gminfoNum=" + gminfoNum + ", gminfoName=" + gminfoName + ", gminfoDate=" + gminfoDate
-				+ ", gminfoCompany=" + gminfoCompany + ", gminfoExp=" + gminfoExp + ", gmTypenum=" + gmTypenum
-				+ ", gminfoAage=" + gminfoAage + ", gminfoPrice=" + gminfoPrice + "]";
+				+ ", gminfoCompany=" + gminfoCompany + ", gminfoExp=" + gminfoExp + ", gmTypeNum=" + gmTypeNum
+				+ ", gminfoAge=" + gminfoAge + ", gminfoPrice=" + gminfoPrice + "]";
 	}
 
 
@@ -111,23 +113,23 @@ public class GameInfo {
 	}
 
 
-	public int getGmTypenum() {
-		return gmTypenum;
+	public int getGmTypeNum() {
+		return gmTypeNum;
 	}
 
 
-	public void setGmTypenum(int gmTypenum) {
-		this.gmTypenum = gmTypenum;
+	public void setGmTypeNum(int gmTypeNum) {
+		this.gmTypeNum = gmTypeNum;
 	}
 
 
-	public int getGminfoAage() {
-		return gminfoAage;
+	public int getGminfoAge() {
+		return gminfoAge;
 	}
 
 
-	public void setGminfoAage(int gminfoAage) {
-		this.gminfoAage = gminfoAage;
+	public void setGminfoAge(int gminfoAge) {
+		this.gminfoAge = gminfoAge;
 	}
 
 
@@ -141,9 +143,38 @@ public class GameInfo {
 	}
 
 
+	public String getGminfoImage() {
+		return gminfoImage;
+	}
+
+
+	public void setGminfoImage(String gminfoImage) {
+		this.gminfoImage = gminfoImage;
+	}
+
+
+	public String getGminfoAgeRank() {
+		return gminfoAgeRank;
+	}
+
+
+	public void setGminfoAgeRank(String gminfoAgeRank) {
+		this.gminfoAgeRank = gminfoAgeRank;
+	}
+
+
+	public String getGminfoType() {
+		return gminfoType;
+	}
+
+
+	public void setGminfoType(String gminfoType) {
+		this.gminfoType = gminfoType;
+	}
+
+
 	
-		
-	
+
 	
 
 }

@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.jsp.board.model.vo.BoardFile;
 import com.kh.jsp.common.exception.BoardException;
 import com.kh.jsp.common.exception.GameInfoException;
 import com.kh.jsp.gameinfo.model.vo.GameImage;
@@ -65,41 +66,49 @@ public class GameInfoDAO {
 		return result;
 	}
 	
-	public ArrayList<GameInfo> selectList(Connection con, int currentPage, int limit) {
+	public ArrayList<GameInfo> selectList(Connection con, int currentPage, int limit) throws GameInfoException {
 		
 		ArrayList<GameInfo> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("selectList");
-		
+		String sql = prop.getProperty("selectListImage");
+
 		try {
 			pstmt = con.prepareStatement(sql);
 			
 			
 			int startRow = (currentPage - 1) * limit + 1; 
 			int endRow = startRow + limit - 1;
-
+			
 			pstmt.setInt(1, endRow);
 			pstmt.setInt(2, startRow);
 			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
+				GameInfo gi = new GameInfo();
 				
-				GameInfo b = new GameInfo();
+				gi.setGminfoNum(   rset.getInt("gminfo_num"));
+				gi.setGminfoName(   rset.getString("gminfo_name"));
+				gi.setGminfoExp( rset.getString("gminfo_exp"));
+				gi.setGminfoPrice( rset.getInt("gminfo_price"));
+				gi.setGminfoDate( rset.getDate("gminfo_date"));
+				gi.setGminfoCompany( rset.getString("gminfo_company"));
+				gi.setGminfoExp( rset.getString("gminfo_exp"));
+				gi.setGmTypeNum( rset.getInt("gm_typenum"));
+				gi.setGminfoAge( rset.getInt("gminfo_age"));
+				gi.setGminfoImage( rset.getString("gmimg_cgfile"));
+				gi.setGminfoAgeRank( rset.getString("RANK_NAME"));
+				gi.setGminfoType( rset.getString("gm_type"));
 				
+				list.add(gi);
 				
-				b.setGminfoName(   rset.getString("gminfo_Name"));
-				b.setGminfoExp( rset.getString("gminfo_Exp"));
-				b.setGminfoPrice( rset.getInt("gminfo_Price"));
-				
-				
-				list.add(b);
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new GameInfoException("[DAO] : " + e.getMessage());
 			
 		} finally {
 			close(rset);
@@ -124,10 +133,9 @@ public class GameInfoDAO {
 			pstmt.setDate(2, g.getGminfoDate());
 			pstmt.setString(3, g.getGminfoCompany());
 			pstmt.setString(4, g.getGminfoExp());
-			pstmt.setInt(5, g.getGmTypenum());
-			pstmt.setInt(6, g.getGminfoAage());
+			pstmt.setInt(5, g.getGmTypeNum());
+			pstmt.setInt(6, g.getGminfoAge());
 			pstmt.setInt(7, g.getGminfoPrice());
-			
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -156,9 +164,12 @@ public class GameInfoDAO {
 				pstmt.setString(3, gi.getGmimgCgfile());
 				pstmt.setString(4, gi.getGmimgPath());
 				
+				result = pstmt.executeUpdate();
 			} catch (SQLException e) {
 				
 				e.printStackTrace();
+			} finally {
+				close(pstmt);
 			}
 		return result;
 	}
@@ -179,7 +190,7 @@ public class GameInfoDAO {
 			if(rset.next()) {
 				result = rset.getInt(1);
 			}
-			
+			System.out.println("번호 : " + result);
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
@@ -195,5 +206,188 @@ public class GameInfoDAO {
 	}
 
 
+	public GameInfo selectGameInfo(Connection con, int gminfoNum) throws GameInfoException {
+			GameInfo result = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			
+			
+			String sql = prop.getProperty("selectGameInfo");
+			System.out.println(sql);
+			try {
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setInt(1, gminfoNum);
+				
+				rset = pstmt.executeQuery();
+				
+				
+				if(rset.next()) {
+					result = new GameInfo();
+					
+					 result.setGminfoNum(   rset.getInt("gminfo_num"));
+					 result.setGminfoName(   rset.getString("gminfo_name"));
+					 result.setGminfoExp( rset.getString("gminfo_exp"));
+					 result.setGminfoPrice( rset.getInt("gminfo_price"));
+					 result.setGminfoDate( rset.getDate("gminfo_date"));
+					 result.setGminfoCompany( rset.getString("gminfo_company"));
+					 result.setGminfoExp( rset.getString("gminfo_exp"));
+					 result.setGmTypeNum( rset.getInt("gm_typenum"));
+					 result.setGminfoAge( rset.getInt("gminfo_age"));
+					 result.setGminfoImage( rset.getString("gmimg_cgfile"));
+					
+					 
+					
+			}
+				   	
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+				throw new GameInfoException("[DAO] : " + e.getMessage());
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			
+			
+			
+		return result;
+	}
 
+
+	public GameImage selectGameImage(Connection con, int gminfoNum) throws GameInfoException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		GameImage result = null;
+		
+		String sql = prop.getProperty("selectGameImageFile");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, gminfoNum);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next() ) {
+				result = new GameImage();
+				
+				result.setGmimgNum(rset.getInt("GMIMG_NUM"));
+				result.setGminfoNum(gminfoNum);
+				result.setGmimgFile(rset.getString("GMIMG_FILE"));
+				result.setGmimgCgfile(rset.getString("GMIMG_CGFILE"));
+				result.setGmimgPath(rset.getString("GMIMG_PATH"));
+				result.setGminfoImage(rset.getString("GMIMG_FILE"));
+				
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			throw new GameInfoException("[DAO] : " + e.getMessage());
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+	return result;
+	}
+
+
+	public int updateGameInfo(Connection con, GameInfo b) throws GameInfoException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("updateGameInfo");
+			System.out.println(sql);
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			
+			pstmt.setString(1, b.getGminfoName());
+			pstmt.setDate(2, b.getGminfoDate());
+			pstmt.setString(3, b.getGminfoCompany());
+			pstmt.setString(4, b.getGminfoExp());
+			pstmt.setInt(5, b.getGmTypeNum());
+			pstmt.setInt(6, b.getGminfoAge());
+			pstmt.setInt(7, b.getGminfoPrice());
+			pstmt.setInt(8, b.getGminfoNum());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			throw new GameInfoException("[DAO] :" + e.getMessage());
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+
+	public int updateGameImage(Connection con, GameImage bf) throws GameInfoException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("updateGameImage");
+		System.out.println(sql);
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			System.out.println(sql + "1111");
+			pstmt.setString(1, bf.getGmimgFile());
+			pstmt.setString(2, bf.getGmimgCgfile());
+			pstmt.setString(3, bf.getGmimgPath());
+			pstmt.setInt(4, bf.getGminfoNum());
+			
+			result = pstmt.executeUpdate();
+			
+			System.out.println(result + "2222");
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			throw new GameInfoException("[DAO] : " + e.getMessage());
+			
+		} finally {
+		
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public int deleteGameInfo(Connection con, int gminfoNum) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteGameInfo");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, gminfoNum);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			close(pstmt);
+		}
+				
+		return result;
+	
+	}
+
+
+	
 }
+
+
+
+

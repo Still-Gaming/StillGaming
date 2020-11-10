@@ -20,7 +20,7 @@ public class BoardCommentDAO {
 	public BoardCommentDAO() {
 		prop = new Properties();
 
-		String filePath = BoardCommentDAO.class.getResource("/config/comment-sql.propperties").getPath();
+		String filePath = BoardCommentDAO.class.getResource("/config/comment-sql.properties").getPath();
 
 		try {
 			prop.load(new FileReader(filePath));
@@ -40,6 +40,8 @@ public class BoardCommentDAO {
 		
 		String sql = prop.getProperty("insertComment");
 		
+		System.out.println(sql);
+		
 		try {
 			pstmt = con.prepareStatement(sql);
 			
@@ -56,7 +58,7 @@ public class BoardCommentDAO {
 			pstmt.setInt(5, comment.getCommentLevel());
 			
 			result = pstmt.executeUpdate();
-		
+			
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
@@ -82,13 +84,13 @@ public class BoardCommentDAO {
 			while(rset.next()) {
 				BoardComment bco = new BoardComment();
 				
-				bco.setCommentNo(   rset.getInt(1) );
-				bco.setBoardNo(     rset.getInt(2) );
-				bco.setCommentText( rset.getString(3));
-				bco.setMemberId(    rset.getString(4));
-				bco.setCommentDate( rset.getDate(5));
-				bco.setRefCno(      rset.getInt(6));
-				bco.setCommentLevel(rset.getInt(7));
+				bco.setCommentNo(   rset.getInt("COMMENT_NO") );
+				bco.setBoardNo(     rset.getInt("BOARD_NO") );
+				bco.setCommentText( rset.getString("COMMENT_TEXT"));
+				bco.setMemberId(    rset.getString("MEMBER_ID"));
+				bco.setCommentDate( rset.getDate("COMMENT_DATE"));
+				bco.setRefCno(      rset.getInt("REF_CNO"));
+				bco.setCommentLevel(rset.getInt("COMMENT_LEVEL"));
 				
 				clist.add(bco);				
 			}
@@ -103,4 +105,59 @@ public class BoardCommentDAO {
 		
 		return clist;
 	}
+
+	public int updateComment(Connection con, BoardComment bco) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateComment");
+		System.out.println(bco.getCommentText() + " / " + bco.getCommentNo());
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, bco.getCommentText());
+			pstmt.setInt(2, bco.getCommentNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		
+		} finally {
+			close(pstmt);
+		}
+				
+		return result;
+		
+	}
+	public int deleteComment(Connection con, int commentNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteComment");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, commentNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			
+			close(pstmt);
+		}
+				
+		return result;
+	}
+
+	
+
+	
+		
 }
