@@ -12,6 +12,8 @@ public class PageInfo implements Serializable {
 	private int maxPage;
 	private int startPage;
 	private int endPage;
+	private String category;
+	private String searchWord;
 	
 	public PageInfo() {
 		super();
@@ -27,10 +29,23 @@ public class PageInfo implements Serializable {
 		this.endPage = endPage;
 	}
 
+	public PageInfo(int currentPage, int listCount, int limit, int maxPage, int startPage, int endPage, String category,
+			String searchWord) {
+		super();
+		this.currentPage = currentPage;
+		this.listCount = listCount;
+		this.limit = limit;
+		this.maxPage = maxPage;
+		this.startPage = startPage;
+		this.endPage = endPage;
+		this.category = category;
+		this.searchWord = searchWord;
+	}
+
 	@Override
 	public String toString() {
 		return "PageInfo [currentPage=" + currentPage + ", listCount=" + listCount + ", limit=" + limit + ", maxPage="
-				+ maxPage + ", startPage=" + startPage + ", endPage=" + endPage + "]";
+				+ maxPage + ", startPage=" + startPage + ", endPage=" + endPage + ", searchWord=" + searchWord + "]";
 	}
 
 	public int getCurrentPage() {
@@ -79,6 +94,22 @@ public class PageInfo implements Serializable {
 
 	public void setEndPage(int endPage) {
 		this.endPage = endPage;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getSearchWord() {
+		return searchWord;
+	}
+
+	public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
 	}
 	
 }

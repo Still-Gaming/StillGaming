@@ -9,6 +9,8 @@
    int maxPage = pi.getMaxPage();
    int startPage = pi.getStartPage();
    int endPage = pi.getEndPage();
+   String searchWord = pi.getSearchWord();
+   String str = "";
 %>
 <!DOCTYPE html>
 <html>
@@ -62,40 +64,49 @@
 	</div>
 	
 	<div class="pagingArea" align="center">
-	
-		<button class="btn btn-light" onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
+		
+		<% 
+			if(pi.getSearchWord() == null) {
+				str = request.getContextPath() + "/selectList.bo?currentPage=";
+			} else {
+				str = request.getContextPath() + "/search.bo?category=" + pi.getCategory() + "&searchWord=" + pi.getSearchWord() + "&currentPage=";
+			}
+		
+		%>
+		<button class="btn btn-light" onclick="location.href='<%= str %>1'"><<</button>
 		
 		<%  if(currentPage <= 1){  %>
 			<button class="btn btn-light" disabled><</button>
-		<%  }else{ %>
-			<button class="btn btn-light" onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage - 1 %>'"><</button>
+		<%  } else { %>
+			<button class="btn btn-light" onclick="location.href='<%= str %><%= currentPage - 1 %>'"><</button>
 		<%  } %>
 			
 		<% for(int p = startPage; p <= endPage; p++){
 				if(p == currentPage){ %>
 				<button class="btn btn-light" disabled><%= p %></button>
 			<% } else { %>
-				<button class="btn btn-light" onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= p %>'"><%= p %></button>
+				<button class="btn btn-light" onclick="location.href='<%= str %><%= p %>'"><%= p %></button>
 			<% } %>
 		<% } %>
 				
 		<%  if(currentPage >= maxPage){  %>
 			<button class="btn btn-light" disabled>></button>
 		<%  } else { %>
-			<button class="btn btn-light" onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage + 1 %>'">></button>
+			<button class="btn btn-light" onclick="location.href='<%= str %><%= currentPage + 1 %>'">></button>
 		<%  } %>
 		
-		<button class="btn btn-light" onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= maxPage %>'">>></button>
+		<button class="btn btn-light" onclick="location.href='<%= str %><%= maxPage %>'">>></button>
 		
 	</div>
 	
 	<br/>
 	
 	<div class="container">
-		<form action="<%= request.getContextPath() %>/search.bo" class="form-inline">
+		<form id="searchFrm" action="<%= request.getContextPath() %>/search.bo" class="form-inline">
 			<select name="category" id="category" class="custom-select">
-				<option value="title" selected>제목</option>
-				<option value="memberId">작성자</option>
+				<option value="BOARD_TITLE" selected>제목</option>
+				<option value="MEMBER_ID">작성자</option>
+				<option value="BOARD_TEXT">내용</option>
 			</select>
 			
 			&nbsp;&nbsp;
@@ -105,7 +116,7 @@
 			&nbsp;&nbsp;
 			
 			<span class="form-inline-btn">
-				<button class="btn btn-light" type="button">검색</button>
+				<button class="btn btn-light" type="button" id="searchBtn">검색</button>
 			</span>
 		</form>
 	</div>
@@ -125,6 +136,16 @@
 			<% } else { %>
 				location.href='<%= request.getContextPath() %>/views/member/memberLogin.jsp';
 			<% } %>
+		});
+		
+		$('#searchBtn').on('click', function() {
+			if($('#searchWord').val().length < 2) {
+				alert('검색어를 2자 이상 입력해주세요');
+				$('#searchWord').focus();
+				return;
+			}
+			
+			$('#searchFrm').submit();
 		});
 	</script>
 	
