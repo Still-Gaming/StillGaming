@@ -15,6 +15,8 @@
 <head>
 <meta charset="UTF-8">
 <title>커뮤니티</title>
+	<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
+
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/elegant-icons.css" type="text/css">
@@ -23,26 +25,21 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
-
-<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-<<<<<<< HEAD
+
 	<%@ include file="/views/common/header.jsp" %>
-	
-	<div class="titleArea">
-		<h2>자유 게시판</h2>
-	</div>
 		
-	<div class="tableArea">
-		<table align="center">
-			<thead>
+	<div class="container table-responsive-xs">
+		<h2>자유 게시판</h2>
+		<table align="center" class="table table-bordered table-hover">
+			<thead class="table-secondary">
 				<tr align="center">
-					<th width="50">번호</th>
-					<th width="200">제목</th>
-					<th width="80">작성자</th>
-					<th width="50">조회수</th>
-					<th width="120">작성일</th>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>조회수</th>
+					<th>작성일</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -58,67 +55,68 @@
 				<% } %>
 			</tbody>
 		</table>
+		
+		<div class="">
+			<button class="btn btn-light" onclick="location.href='<%= request.getContextPath() %>/views/board/boardInsertForm.jsp'">글쓰기</button>
+		</div>
 	</div>
 	
 	<div class="pagingArea" align="center">
 	
-		<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
+		<button class="btn btn-light" onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
 		
 		<%  if(currentPage <= 1){  %>
-			<button disabled><</button>
+			<button class="btn btn-light" disabled><</button>
 		<%  }else{ %>
-			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage - 1 %>'"><</button>
+			<button class="btn btn-light" onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage - 1 %>'"><</button>
 		<%  } %>
 			
 		<% for(int p = startPage; p <= endPage; p++){
 				if(p == currentPage){ %>
-				<button disabled><%= p %></button>
+				<button class="btn btn-light" disabled><%= p %></button>
 			<% } else { %>
-				<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= p %>'"><%= p %></button>
+				<button class="btn btn-light" onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= p %>'"><%= p %></button>
 			<% } %>
 		<% } %>
 				
 		<%  if(currentPage >= maxPage){  %>
-			<button disabled>></button>
+			<button class="btn btn-light" disabled>></button>
 		<%  } else { %>
-			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage + 1 %>'">></button>
+			<button class="btn btn-light" onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage + 1 %>'">></button>
 		<%  } %>
 		
-		<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= maxPage %>'">>></button>
+		<button class="btn btn-light" onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= maxPage %>'">>></button>
 		
 	</div>
 	
-	<div class="btnArea">
-		<button onclick="location.href='<%= request.getContextPath() %>/views/board/boardInsertForm.jsp'">글쓰기</button>
-	</div>
+	<br/>
 	
-	<form action="<%= request.getContextPath() %>/search.bo">
-		<div class="searchArea">
-			<select name="category" id="category">
+	<div class="container">
+		<form action="<%= request.getContextPath() %>/search.bo" class="form-inline">
+			<select name="category" id="category" class="custom-select">
 				<option value="title" selected>제목</option>
 				<option value="memberId">작성자</option>
 			</select>
 			
-			<input type="text" name="searchWord" id="searchWord" />
+			&nbsp;&nbsp;
 			
-			<button>검색</button>
-		</div>
-	</form>
+			<input type="text" name="searchWord" id="searchWord" placeholder="내용을 입력해주세요." class="form-control" />
+		
+			&nbsp;&nbsp;
+			
+			<span class="form-inline-btn">
+				<button class="btn btn-light" type="button">검색</button>
+			</span>
+		</form>
+	</div>
+	
+	<br/><br/><br/><br/>
 	
 	<%@ include file="/views/common/footer.jsp" %>
 	
 	<script>
 		$('td').on('mouseenter', function() {
 			$(this).css('cursor', 'pointer');
-			$(this).parent().css({
-				'background-color' : 'black',
-				'color' : 'white'
-			});
-		}).on('mouseleave', function() {
-			$(this).parent().css({
-				'background-color' : 'transparent',
-				'color' : 'black'
-			})
 		}).on('click', function() {
 			var boardNo = $(this).parent().find('input').val();
 			console.log(boardNo);
@@ -132,9 +130,9 @@
 	
 <script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/nice-select.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/mixitup.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/slicknav.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
 </body>

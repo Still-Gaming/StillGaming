@@ -126,7 +126,7 @@ public class BoardDAO {
 			pstmt = con.prepareStatement(sql);
 			
 			int startRow = (currentPage - 1) * limit + 1; 
-			int endRow = startRow + limit - 1;
+			int endRow = startRow + 9;
 
 			pstmt.setInt(1, endRow);
 			pstmt.setInt(2, startRow);
@@ -336,6 +336,28 @@ public class BoardDAO {
 			e.printStackTrace();
 			throw new BoardException("[DAO] : " + e.getMessage());
 			
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteBoard(Connection con, int boardNo) throws BoardException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("deleteBoard");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, boardNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new BoardException("[DAO] : " + e.getMessage());
 		} finally {
 			close(pstmt);
 		}
