@@ -5,6 +5,7 @@ import static com.kh.jsp.common.JDBCTemplate.*;
 import java.io.File;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.kh.jsp.board.model.dao.BoardDAO;
 import com.kh.jsp.board.model.vo.Board;
@@ -131,6 +132,16 @@ public class BoardService {
 		close(con);
 		
 		return result;
+	}
+
+	public HashMap<String, Object> searchBoard(int currentPage, int limit, String category, String searchWord) throws BoardException {
+		con = getConnection();
+		
+		HashMap<String, Object> hmap = bDAO.searchBoard(con, currentPage, limit, category, searchWord);
+		
+		close(con);
+		
+		return hmap;
 	}
 
 }

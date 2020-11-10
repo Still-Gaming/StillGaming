@@ -30,6 +30,12 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style2.css" type="text/css">
     
+    <style>
+    	td {
+    		padding: 5px;
+    		vertical-align: middle;
+    	}
+    </style>
 </head>
 <body>
 	<%@ include file="../common/header.jsp" %>
@@ -40,12 +46,12 @@
 			
 			<table>
 				<tr>
-					<td><label for="">이름</label></td>
-					<td><input type="text" name="idName" placeholder="내용을 입력해주세요" /></td>
+					<td>이름</td>
+					<td><input type="text" name="idName" placeholder="내용을 입력해주세요" class="form-control" /></td>
 				</tr>
 				<tr>
-					<td><label for="">이메일</label></td>
-					<td><input type="text" name="idEmail" placeholder="내용을 입력해주세요" /></td>
+					<td>이메일</td>
+					<td><input type="text" name="idEmail" placeholder="내용을 입력해주세요" class="form-control" /></td>
 				</tr>
 				<tr>
 					<td colspan="2"><button type="button" class="btn btn-dark" id="searchId">확인</button></td>
@@ -58,16 +64,16 @@
 			
 			<table>
 				<tr>
-					<td><label for="">아이디</label></td>
-					<td><input type="text" name="pwdId" placeholder="내용을 입력해주세요" /></td>
+					<td>아이디</td>
+					<td><input type="text" name="pwdId" placeholder="내용을 입력해주세요" class="form-control" /></td>
 				</tr>
 				<tr>
-					<td><label for="">이름</label></td>
-					<td><input type="text" name="pwdName" placeholder="내용을 입력해주세요" /></td>
+					<td>이름</td>
+					<td><input type="text" name="pwdName" placeholder="내용을 입력해주세요" class="form-control" /></td>
 				</tr>
 				<tr>
-					<td><label for="">이메일</label></td>
-					<td><input type="text" name="pwdEmail" placeholder="내용을 입력해주세요" /></td>
+					<td>이메일</td>
+					<td><input type="text" name="pwdEmail" placeholder="내용을 입력해주세요" class="form-control" /></td>
 				</tr>
 				<tr>
 					<td colspan="2"><button type="button" class="btn btn-dark" id="searchPwd">확인</button></td>
