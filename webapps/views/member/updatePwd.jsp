@@ -30,29 +30,37 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style2.css" type="text/css">
     
+    <style>
+    	td {
+    		padding: 5px;
+    		vertical-align: middle;
+    	}
+    </style>
 </head>
 <body>
 	<%@ include file="../common/header.jsp" %>
 	
-	<div class="container">
+	<br/>
+	
+	<div class="container" style="background : lightgrey; padding : 10px; border-radius : 5px;">
 		<form id="updatePwdFrm" action="<%= request.getContextPath() %>/updatePwd.me">
 			<h4>비밀번호 변경</h4>
 			
 			<table>
 				<tr>
-					<td><label for="">아이디</label></td>
+					<td>아이디</td>
 					<td>
-						<input type="text" value="<%= sm.getMemberId() %>" disabled="disabled" />
+						<input type="text" value="<%= sm.getMemberId() %>" disabled="disabled" class="form-control" />
 						<input type="hidden" name="memberId" value="<%= sm.getMemberId() %>" />
 					</td>
 				</tr>
 				<tr>
-					<td><label for="">비밀번호</label></td>
-					<td><input type="password" name="memberPwd" placeholder="내용을 입력해주세요" /></td>
+					<td>비밀번호</td>
+					<td><input type="password" name="memberPwd" placeholder="내용을 입력해주세요" class="form-control" /></td>
 				</tr>
 				<tr>
-					<td><label for="">비밀번호 확인</label></td>
-					<td><input type="password" name="memberPwd2" placeholder="내용을 입력해주세요" /></td>
+					<td>비밀번호 확인</td>
+					<td><input type="password" name="memberPwd2" placeholder="내용을 입력해주세요" class="form-control" /></td>
 				</tr>
 				<tr>
 					<td colspan="2"><button type="button" class="btn btn-dark" id="updatePwd">확인</button></td>
