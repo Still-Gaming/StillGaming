@@ -76,7 +76,7 @@
 						data-wow-delay=".2s">
 						<div class="service" data-height="height">
 							<div class="service-element">
-								<h3>회원정보</h3>
+								<h3>프로필</h3>
 							</div>
 							<div class="service-info">
 								<i align="center" class="service-icon fa fa-user-circle"></i>
