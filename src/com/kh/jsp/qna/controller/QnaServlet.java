@@ -8,8 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
 import com.kh.jsp.qna.model.service.QnaService;
 import com.kh.jsp.qna.model.vo.Qna;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
  * Servlet implementation class InsertQnAServlet
@@ -30,12 +34,31 @@ public class QnaServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		int maxSize = 1024 * 1024 * 10;
 		
+		
+		if( ! ServletFileUpload.isMultipartContent(request)) {
+			//에러 페이지
+			
+			request.setAttribute("error-msg", "multipart로 전송되지 않았습니다.");
+			
+			request.getRequestDispatcher("views/common/errorPage.jsp")
+					 .forward(request, response);
+		}
+		String root = request.getServletContext().getRealPath("/");
+		String savePath = root + "resources/boardUploadFiles";
+		
+		MultipartRequest mre = new MultipartRequest(request, savePath,
+																	maxSize, "UTF-8",
+																	new DefaultFileRenamePolicy());
 		
 		String qTitle = request.getParameter("title");
 		String qContent = request.getParameter("content");
+		String qFile = mre.getFilesystemName("file");
 		
-		Qna q = new Qna(qTitle, qContent);
+		
+		Qna q = new Qna(qTitle, qContent,qFile);
 		QnaService qs= new QnaService();
 		
 		int result =  qs.insertQna(q);

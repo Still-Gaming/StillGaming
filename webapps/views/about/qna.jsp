@@ -23,7 +23,8 @@ table, tr, td {
 <body>
 <%@ include file="/views/common/header.jsp" %>
 
-<form action="/StillGaming/qna.do" method="post" class="qnasm">
+<form action="<%= request.getContextPath() %>/qna.do" 
+		method="post" class="qnasm"  enctype="multipart/form-data">
 	<table width="600px" style="margin: 50px auto" border="1">
 		<tr >
 
