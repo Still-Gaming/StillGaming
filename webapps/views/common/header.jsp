@@ -5,11 +5,13 @@
 %>
 	<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/headerstyle.css" type="text/css">
 	<style>
-	
+
 	.header {	
 		font-family: "Mulish", sans-serif;
 	}
+
 	</style>
+
     <!-- Header Section Begin -->
 
     <header class="header" style="background-color: white;">

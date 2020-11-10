@@ -23,12 +23,12 @@ table, tr, td {
 <body>
 <%@ include file="/views/common/header.jsp" %>
 
-<form action="" method="post">
+<form action="/StillGaming/qna.do" method="post" class="qnasm">
 	<table width="600px" style="margin: 50px auto" border="1">
 		<tr >
 
 			<td align="left" style="color:red">Q & A</td>
-			<td colspan="2" align="right" ><a href="../index.jsp">메인화면</a></td>
+			<td colspan="2" align="right" ><a href="<%= request.getContextPath()%>">메인화면</a></td>
 		</tr>
 		<tr>
 			<td width="70" align="center">제목</td>
