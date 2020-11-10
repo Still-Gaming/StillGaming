@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.kh.jsp.mypage.model.vo.*, com.kh.jsp.board.model.vo.*, java.util.*" %>
 <%
+	Cart cart = (Cart)request.getAttribute("cart");
+
 	ArrayList<Cart> list = (ArrayList<Cart>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int listCount = pi.getListCount();
@@ -63,6 +65,12 @@ h4 {
 	margin-right: 550px;
 	border-width: 2px;
 }
+
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
  </style>
 </head>
 <body>
@@ -80,6 +88,7 @@ h4 {
 		<table align="center">
 			<thead>
 				<tr align="center">
+					<th width="30">	<input type="checkbox" id="checkAll"></th>
 					<th width="100">이미지</th>
 					<th width="100">게임명</th>
 					<th width="80">가격</th>
@@ -88,6 +97,8 @@ h4 {
 			<tbody>
 				<% for(Cart c : list) { %>
 					<tr align="center">
+						<input type="hidden" name="CartNo" id="CartNo" value="<%= c.getGminfoNum() %>" />					
+						<td><input type="checkbox" name="gno" id="chk" value="<%= c.getGminfoNum() %>"></td>						
  						<td><%= c.getGminfoImage() %></td>
 						<td><%= c.getGminfoName() %></td>
 						<td><%= c.getGminfoPrice() %></td>
@@ -98,8 +109,12 @@ h4 {
 	</div>
 	<br />
 	
-	<hr style="border-width: 3px;" />
+		<hr style="border-width: 3px;" />
 	
+	<button id="delete" class="btn btn-default" onclick="deleteChk();"><i class="fa fa-check"></i>삭제</button>
+	
+	<p align="right">총 결제 금액 </p>
+
     <br />
     <br />
     <br />
@@ -109,8 +124,37 @@ h4 {
 	
 	<%@ include file="../common/footer.jsp" %>
 
-</body>
+	<script>
 
+	$(document).ready(function(){
+	    $("#checkAll").click(function(){
+	        if($("#checkAll").prop("checked")){
+	            $("input[type=checkbox]").prop("checked",true);
+	        }else{
+	            $("input[type=checkbox]").prop("checked",false);
+	        }
+	    })
+	
+	})
+
+	function deleteChk(){
+			var chk = "";
+			$( "input[id='chk']:checked" ).each (function (){
+				  chk = chk + $(this).val()+ "," ;
+			 });
+			 chk = chk.substring(0,chk.lastIndexOf( ","));
+	 
+		  if(chk == ''){
+		    alert("삭제할 항목을 선택하세요.");
+		    return false;
+		  }
+		 
+		  if(confirm("삭제 하시겠습니까?")){
+				  console.log(chk);
+				location.href='<%= request.getContextPath() %>/chkDelete.my?memberId=<%= m.getMemberId() %>&gno=' + chk;
+		  }
+		}
+</script>
 
 </body>
 </html>

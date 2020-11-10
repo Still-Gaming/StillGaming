@@ -31,7 +31,6 @@
 	<%@ include file="/views/common/header.jsp" %>
 		
 	<div class="container table-responsive-xs">
-		<h2>자유 게시판</h2>
 		<table align="center" class="table table-bordered table-hover">
 			<thead class="table-secondary">
 				<tr align="center">

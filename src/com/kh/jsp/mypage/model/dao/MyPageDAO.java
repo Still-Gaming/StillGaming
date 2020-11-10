@@ -235,7 +235,7 @@ public class MyPageDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("ordList");
+		String sql = prop.getProperty("cartList");
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -253,7 +253,7 @@ public class MyPageDAO {
 				
 				Cart c = new Cart();
 
-				
+				c.setGminfoNum(rset.getInt("GMINFO_NUM"));
 				c.setGminfoName(rset.getString("GMINFO_NAME"));
 				c.setGminfoPrice(rset.getInt("GMINFO_PRICE"));
 
@@ -313,6 +313,28 @@ public class MyPageDAO {
 		
 		return list;
 		
+	}
+
+	public int deleteCart(Connection con, int gminfoNum) throws MyPageException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("deleteCart");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, gminfoNum);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new MyPageException("[DAO] : " + e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 	

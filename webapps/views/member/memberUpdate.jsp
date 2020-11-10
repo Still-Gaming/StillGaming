@@ -29,41 +29,64 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
 
  <style>
+
 .section1{
-	margin: 0 auto;
+   font-family: "Mulish", sans-serif;
+      margin:0 auto;
 }
+
 .section2{
-	margin: 0 auto;
-	width:550px;
+   width : 1200px;
+   margin:0 auto;
+   margin-top: 50px;
 }
 .section3{
-	margin:0 auto;
-	margin-left:30px;
-	margin-top : 50px;
-	margin-bottom: 30px;
+   margin:0 auto;
+   padding:30px;
+   position: relative; 
 }
-.section4{
-	margin:0 auto;
-	padding:25px;
-	margin-left:30px;
+.section3>div{
+   display:inline-block;
 }
-.section3>h3{
-font-family: 'Noto Sans KR', sans-serif;
+.join1{
+  width:420px;
+  border-right:2px solid #BDD4F2;
+  margin-left:150px;
 }
-.section4>table{
-display:inline-block;
+.join2{
+  width:470px;
 }
-.edit1>div{
-padding:10px 20px;
+.email>div{
+   width :300px; 
+   height:40px; 
+   display:inline-block;
 }
-.default {background-color: #e7e7e7; color: black;}
+.join1>form>p{
+   font-size:15px;
+   margin-top:14px;
+   margin-bottom:3px;
+}
+.check{
+    margin-bottom: 132px;
 
-.default:hover {background: #ddd;}
-.info {background-color: #2196F3;}
-.info:hover {background: #0b7dda;}
+}
+input{margin-bottom: 9px;}
+.term-box{
+   width:350px;
+   height:160px;
+   margin-left:15px;
+   border-radius:3px;
+}
 
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.btn-default:hover {background: #ddd;}
 #deleteBtn {
-	margin-left: 200px;
+	margin-left: 800px;
 }
 
 
@@ -91,13 +114,13 @@ padding:10px 20px;
 				
 				<tr>
 					<td><div class="ui input" style="font-size:15px;">변경 PWD :</div></td>
-					<td><input type="password" name="memberPwd" id="memberPwd" style="width:200px; height:30px; border-radius:5px;" required></td>
+					<td><input type="password" name="memberPwd" id="memberPwd" class="form-control" style="width:200px; height:30px; border-radius:5px;" required></td>
 					<td></td>
 				</tr>
 				
 				<tr>
 					<td><div class="ui input" style="font-size:15px;">변경 PWD 확인 :</div></td>
-					<td><input type="password" name="memberPwd2" id="memberPwd2" style="width:200px; height:30px; border-radius:5px;" required></td>
+					<td><input type="password" name="memberPwd2" id="memberPwd2" class="form-control" style="width:200px; height:30px; border-radius:5px;" required></td>
 					<td><label id="pwdResult" style="font-size:12px;  display:block;"></label></td>
 				</tr>
 				
@@ -109,9 +132,9 @@ padding:10px 20px;
 
 				<tr>
 					<td><div class="ui input" style="font-size:15px;">이메일 :</div></td>          
-					<td><input type="text" name="email1" id="email1" style="width:100px; height:30px; border-radius:5px;" required> @
-						<input type="text" name="email2" id="email2" style="width:100px; height:30px; border-radius:5px;" required></td>
-					<td><input type="button" value="중복확인" id="emailDupCheckBtn" style="margin: -2px 0px 0px 7px; height:40px; " class="btn default"></td> 
+					<td><input type="text" name="email1" id="email1" style="width:100px; display:inline; height:30px; border-radius:5px;" class="form-control" required> @
+						<input type="text" name="email2" id="email2" style="width:100px; display:inline; height:30px; border-radius:5px;" class="form-control" required ></td>
+					<td><input type="button" value="중복확인" id="emailDupCheckBtn" style="margin: -2px 0px 0px 7px; height:40px; " class="btn btn-default"></td> 
 						
 				</tr>
 				
@@ -123,9 +146,9 @@ padding:10px 20px;
 				
 				<tr>
 					<td><div class="ui input" style="font-size:15px;">연락처 :</div>
-					<td><input type="number" name="phone1" id="phone1" style="width:70px; border-radius:5px;" required>-  
-						<input type="number" name="phone2" id="phone2" style="width:70px; border-radius:5px;" required>-  
-						<input type="number" name="phone3" id="phone3" style="width:70px; border-radius:5px;" required></td>
+					<td><input type="number" name="phone1" id="phone1" style="width:70px; border-radius:5px; display:inline;" class="form-control" required>-  
+						<input type="number" name="phone2" id="phone2" style="width:70px; border-radius:5px; display:inline;" class="form-control" required>-  
+						<input type="number" name="phone3" id="phone3" style="width:70px; border-radius:5px; display:inline;" class="form-control" required></td>
 						<td></td>
 				</tr>
 				
@@ -150,9 +173,9 @@ padding:10px 20px;
 		</table>
 		
 		<br />
-		    <button type="submit" class="btn default">정보 수정</button>
- 					
-			<button id="deleteBtn" class="btn default" onclick="deleteMember();">회원 탈퇴</button>
+		    <button type="submit" class="btn btn-default">정보 수정</button>
+ 		
+			<button id="deleteBtn" class="btn btn-default" onclick="deleteMember();">회원 탈퇴</button>
 		</form>
 		
 		</div>	

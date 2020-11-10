@@ -96,7 +96,11 @@ hr {
 	border: 1px solid #000000;
 }
 
-
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
 </style>
 </head>
 <body>
@@ -108,17 +112,18 @@ hr {
   	<button class="tablinks" onclick="open(event, 'QnA')">1:1문의</button>
 	</div> -->
 	
-	<div  class="tabcontent" id="Board">
+	<div class="tabcontent" id="Board">
 	<section>
 	<h4 align="center">내가 쓴 게시글</h4>
 	<hr />
 	<br />
+ 	<br />
 	<br />
-		
 	<div class="tableArea">
 		<table align="center">
 			<thead>
 				<tr align="center">
+					<th width="30">	<input type="checkbox" id="checkAll"></th>
 					<th width="50">번호</th>
 					<th width="200">제목</th>
 					<th width="80">작성자</th>
@@ -130,8 +135,9 @@ hr {
 				<% for(Board b : list) { %>
 					<tr align="center">
 						<input type="hidden" name="BoardNo" id="BoardNo" value="<%= b.getBoardNo() %>" />
+						<td><input type="checkbox" name="bno" id="chk" value="<%= b.getBoardNo() %>"></td>						
 						<td><%= b.getBoardNo() %></td>
-						<td><%= b.getBoardTitle() %></td>
+						<td class="tdclick"><%= b.getBoardTitle() %></td>
 						<td><%= b.getMemberId() %></td>
 						<td><%= b.getBoardCount() %></td>
 						<td><%= b.getBoardDate() %></td>
@@ -140,6 +146,9 @@ hr {
 			</tbody>
 		</table>
 	</div>
+	<br />
+		&nbsp;<button id="delete" class="btn btn-default" onclick="deleteChk();"><i class="fa fa-check" aria-hidden="true"></i>
+		삭제</button>
 	
 	    <div class="product__pagination" align="center">
            <a onclick="location.href='<%= request.getContextPath() %>/post.my?memberId=<%= m.getMemberId() %>&ccurrentPage=1'"><<</a>
@@ -177,7 +186,7 @@ hr {
 	<%@ include file="../common/footer.jsp" %>
 	
 	<script>
-		$('td').on('mouseenter', function() {
+		$('.tdclick').on('mouseenter', function() {
 			$(this).css('cursor', 'pointer');
 			$(this).parent().css({
 				'background-color' : 'lightgray',
@@ -195,24 +204,36 @@ hr {
 				location.href='<%= request.getContextPath() %>/selectOne.bo?boardNo=' + boardNo;
 			<% } %>
 		});
-	<!-- 	
-		function open(evt, type) {
-		  var i, tabcontent, tablinks;
-		  tabcontent = document.getElementsByClassName("tabcontent");
-		  for (i = 0; i < tabcontent.length; i++) {
-		    tabcontent[i].style.display = "none";
+		
+		$(document).ready(function(){
+		    $("#checkAll").click(function(){
+		        if($("#checkAll").prop("checked")){
+		            $("input[type=checkbox]").prop("checked",true);
+		        }else{
+		            $("input[type=checkbox]").prop("checked",false);
+		        }
+		    })
+		})
+		
+		function deleteChk(){
+  			var chk = "";
+  			$( "input[id='chk']:checked" ).each (function (){
+  				  chk = chk + $(this).val()+ "," ;
+ 			 });
+ 			 chk = chk.substring(0,chk.lastIndexOf( ","));
+		 
+		  if(chk == ''){
+		    alert("삭제할 항목을 선택하세요.");
+		    return false;
 		  }
-		  tablinks = document.getElementsByClassName("tablinks");
-		  for (i = 0; i < tablinks.length; i++) {
-		    tablinks[i].className = tablinks[i].className.replace(" active", "");
+ 			 
+		  if(confirm("삭제 하시겠습니까?")){
+				location.href='<%= request.getContextPath() %>/chkDelete.bo?memberId=<%= m.getMemberId() %>&bno=' + chk;
 		  }
-		  document.getElementById(cityName).style.display = "block";
-		  evt.currentTarget.className += " active";
-		}
-	</script> -->
-	
-
-
+	}
+﻿
+		
+	</script>
 <script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>

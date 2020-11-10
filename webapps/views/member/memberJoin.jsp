@@ -34,11 +34,7 @@
    font-family: "Mulish", sans-serif;
       margin:0 auto;
 }
-.logo{
-   width: 500px;
-   text-align:center;
-   margin:0 auto;
-}
+
 .section2{
    width : 1200px;
    margin:0 auto;
@@ -82,11 +78,13 @@ input{margin-bottom: 9px;}
    border-radius:3px;
 }
 
-.default {background-color: #e7e7e7; color: black;}
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
 
-.default:hover {background: #ddd;}
-.info {background-color: #2196F3;}
-.info:hover {background: #0b7dda;}
+.btn-default:hover {background: #ddd;}
 </style>
 
 </head>
@@ -107,7 +105,7 @@ input{margin-bottom: 9px;}
                <tr>
 	               <td>아이디</td>
 	               <td><input type="text" name="memberId" id="memberId" style="width :268px; height:40px; display:inline-block;" placeholder="사용하실 아이디를 입력해주세요" class="form-control" required/></td>
-	               <td><input type="button" value="중복확인" id="idDupCheckBtn" style="margin: -2px 0px 0px 7px; height:40px;" class="btn default"> </td>
+	               <td><input type="button" value="중복확인" id="idDupCheckBtn" style="margin: -2px 0px 0px 7px; height:40px;" class="btn btn-default"> </td>
 	               <td><label id="idResult" style="font-size:12px;  display:block;"></label></td>
 			   </tr>
                
@@ -132,7 +130,7 @@ input{margin-bottom: 9px;}
               	 	<td><input type="text" name="email1" id="email1" style="width:122px; height:40px; display:inline-block;" required="required" class="form-control">
                @
                <input type="text" name="email2" id="email2" style="width:122px; height:40px; display:inline-block;" required="required" class="form-control"></td>
-              <td><input type="button" value="중복확인" id="emailDupCheckBtn" style="margin: -2px 0px 0px 7px; height:40px; " class="btn default"></td> 
+              <td><input type="button" value="중복확인" id="emailDupCheckBtn" style="margin: -2px 0px 0px 7px; height:40px; " class="btn btn-default"></td> 
               </tr>
                
                <tr>
@@ -155,7 +153,9 @@ input{margin-bottom: 9px;}
 			</tr>
 
 			</table>
-				<button type="submit" id="submitBtn" style="margin: -2px 0px 0px 7px; height:40px; color: white; align: center;" class="btn info">회원가입</button>
+			<div align="center" >
+				<button type="submit" id="submitBtn" style="margin: -2px 0px 0px 7px; height:40px;" class="btn btn-default">회원가입</button>
+            </div>
             </form>
             
          </div>           

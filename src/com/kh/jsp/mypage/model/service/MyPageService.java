@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.jsp.board.model.vo.Board;
+import com.kh.jsp.common.exception.BoardException;
 import com.kh.jsp.common.exception.MyPageException;
 import com.kh.jsp.mypage.model.dao.MyPageDAO;
 import com.kh.jsp.mypage.model.vo.Cart;
@@ -102,5 +103,18 @@ public class MyPageService {
 		
 		}
 
+
+	public int deleteCart(int gminfoNum) throws MyPageException {
+		con = getConnection();
+		
+		int result = mpDAO.deleteCart(con, gminfoNum);
+		
+		if(result > 0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
 }
 

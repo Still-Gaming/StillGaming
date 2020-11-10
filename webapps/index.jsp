@@ -85,7 +85,7 @@
     <!-- Hero Section End -->
 
     <!-- Product Section Begin -->
-    <section class="product spad" >
+    <section class="product spad" style="color: black;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
