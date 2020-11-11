@@ -36,6 +36,8 @@ public class PayView extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
 		String memberId = request.getParameter("memberId");
 		String[] gin = request.getParameter("gameInfoNums").split(",");
 		int[] gameInfoNums = new int[gin.length];
@@ -48,22 +50,22 @@ public class PayView extends HttpServlet {
 		
 		String page = "";
 		
-//		try {
+		try {
 			
 			ArrayList<GameInfo> list = ps.selectList(gameInfoNums);
 			
 			request.setAttribute("list", list);
 			
-			page = "views/mypage/";
+			page = "views/mypage/orderForm.jsp";
 		
-//		} catch (GameInfoException e) {
-//		
-//			request.setAttribute("exception", e);
-//			request.setAttribute("error-msg", "게임 정보를 가져오지 못했습니다.");
-//			
-//			page = "views/common/errorPage.jsp";
-//		
-//		}
+		} catch (GameInfoException e) {
+		
+			request.setAttribute("exception", e);
+			request.setAttribute("error-msg", "게임 정보를 가져오지 못했습니다.");
+			
+			page = "views/common/errorPage.jsp";
+		
+		}
 		
 		request.getRequestDispatcher(page).forward(request, response);
 		

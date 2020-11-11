@@ -303,7 +303,7 @@ public class MyPageDAO {
 				o.setGminfoDate(rset.getDate(6));
 				o.setGminfoCompany(rset.getString(7));
 				o.setGminfoExp(rset.getString(8));
-				o.setGmTypenum(rset.getInt(9));
+				o.setGmTypeNum(rset.getInt(9));
 				o.setGminfoAge(rset.getInt(10));
 				o.setGminfoPrice(rset.getInt(11));
 				
