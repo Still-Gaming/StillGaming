@@ -41,40 +41,40 @@
     <section class="hero">
         <div class="container">
             <div class="hero__slider owl-carousel">
-                <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/amongus.png">
+                <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/index/amongus.png">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
-                                <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                                <div class="label">Survival</div>
+                                <h2>Among us</h2>
+                                <p>An online and local party game of teamwork and betrayal for 4-10 players...in space!</p>
+                                <a href="#"><span>Buy Now</span> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/amongus.png">
+                <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/index/battle.jpg">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
-                                <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night:  Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                                <div class="label">FPS</div>
+                                <h2>Battle Grounds</h2>
+                                <p>An online and local party game of teamwork and betrayal for 4-10 players...in space!</p>
+                                <a href="#"><span>Buy Now</span> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/amongus.png">
+                <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/index/cyber.jpg">
 
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
-                                <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days odf travel across the world...</p>
-                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                                <div class="label">Action RPG</div>
+                                <h2>CyberPunk 2077</h2>
+                                <p>An online and local party game of teamwork and betrayal for 4-10 players...in space!</p>
+                                <a href="#"><span>Buy Now</span> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
     <!-- Hero Section End -->
 
     <!-- Product Section Begin -->
-    <section class="product spad">
+    <section class="product spad" style="color: black;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
@@ -648,31 +648,6 @@
 <!-- Product Section End -->
 
 	<%@ include file="views/common/footer.jsp" %>
-
-
-  <!-- Search model Begin -->
-  <div class="search-model">
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-switch"><i class="icon_close"></i></div>
-        <form class="search-model-form">
-            <input type="text" id="search-input" placeholder="Search here.....">
-        </form>
-    </div>
-</div>
-<!-- Search model end -->
-
-<!-- Js Plugins -->
-<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/mixitup.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
-
-
-
 
 </body>
 

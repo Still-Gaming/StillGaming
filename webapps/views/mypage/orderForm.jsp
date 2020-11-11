@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.kh.jsp.mypage.model.vo.*, java.util.*" %>
+<%
+	ArrayList<Cart> list = (ArrayList<Cart>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +12,7 @@
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Still Gaming | 찜목록</title>
+    <title>Still Gaming | 구매내역</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -24,33 +28,39 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
- 
+ <script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-
+	
 	<%@ include file="../common/header.jsp" %>
 	
-	<div>
-	
-		<p></p>
-	
+	<section>
+	<h4 align="center">주문서 작성</h4>
+	<hr />
+	<input type="date" name="date1" id="date1"> ~ <input type="date" name="date2" id="date2">
+	<button type="button" class="btn btn-default" onclick="search();">조회</button>
+	<button type="reset" class="btn btn-default" onclick="history.back();">초기화</button>
+	<br />
+	<br />
+		<div class="tableArea">
+		<table>
+			<thead>
+				<tr align="center">
+					<th width="260">게임명</th>
+					<th width="80">가격</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for(Cart c : list) { %>
+					<tr align="center">
+						<td><%= c.getGminfoName() %></td>
+						<td><%= c.getGminfoPrice() %></td>
+					</tr>
+				<% } %>
+			</tbody>
+		</table>
 	</div>
 	
-	
-	<%@ include file="../common/footer.jsp" %>
-
-</body>
-
-
-<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/mixitup.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
-
 
 </body>
 </html>

@@ -39,8 +39,8 @@
 </head>
 <body>
 	<%@ include file="../common/header.jsp" %>
-	
-	<div class="container">
+	<br /><br />
+	<div class="container" align="center">
 		<form id="searchIdFrm" action="<%= request.getContextPath() %>/searchId.me">
 			<h4>아이디 찾기</h4>
 			
@@ -53,13 +53,16 @@
 					<td>이메일</td>
 					<td><input type="text" name="idEmail" placeholder="내용을 입력해주세요" class="form-control" /></td>
 				</tr>
-				<tr>
+				<tr  align="center">
 					<td colspan="2"><button type="button" class="btn btn-dark" id="searchId">확인</button></td>
 				</tr>
 			</table>
 		</form>
 		
+		<hr />
+		
 		<form id="searchPwdFrm" action="<%= request.getContextPath() %>/searchPwd.me">
+		<br />
 			<h4>비밀번호 찾기</h4>
 			
 			<table>
@@ -75,7 +78,7 @@
 					<td>이메일</td>
 					<td><input type="text" name="pwdEmail" placeholder="내용을 입력해주세요" class="form-control" /></td>
 				</tr>
-				<tr>
+				<tr align="center">
 					<td colspan="2"><button type="button" class="btn btn-dark" id="searchPwd">확인</button></td>
 				</tr>
 			</table>

@@ -43,7 +43,7 @@
 	<br/>
 	
 	<div class="container" style="background : lightgrey; padding : 10px; border-radius : 5px;">
-		<form id="updatePwdFrm" action="<%= request.getContextPath() %>/updatePwd.me">
+		<form id="updatePwdFrm" action="<%= request.getContextPath() %>/updatePwd.me" onsubmit="return validate();">
 			<h4>비밀번호 변경</h4>
 			
 			<table>
@@ -56,11 +56,13 @@
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><input type="password" name="memberPwd" placeholder="내용을 입력해주세요" class="form-control" /></td>
+					<td><input type="password" id="memberPwd" name="memberPwd" placeholder="내용을 입력해주세요" class="form-control" /></td>
 				</tr>
 				<tr>
 					<td>비밀번호 확인</td>
-					<td><input type="password" name="memberPwd2" placeholder="내용을 입력해주세요" class="form-control" /></td>
+					<td><input type="password" id="memberPwd2" name="memberPwd2" placeholder="내용을 입력해주세요" class="form-control" /></td>
+               	    <td><label id="pwdResult" style="font-size:12px;  display:block;"></label></td>
+					
 				</tr>
 				<tr>
 					<td colspan="2"><button type="button" class="btn btn-dark" id="updatePwd">확인</button></td>
@@ -83,28 +85,51 @@
     <script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
     <script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
     <script>
-    	$('#updatePwd').on('click', function() {
-    		var pwd1 = $('input[name=memberPwd]');
-    		var pwd2 = $('input[name=memberPwd2]');
-    		
-    		if(pwd1.val().length == 0) {
-    			alert('비밀번호를 입력해주세요.');
-    			pwd1.focus();
-    			return;
-    		} else if(pwd2.val().length == 0) {
-    			alert('비밀번호를 입력해주세요.');
-    			pwd2.focus();
-    			return;
-    		} else if(pwd1.val() != pwd2.val()) {
-    			alert('비밀번호가 서로 다릅니다.');
-    			pwd1.val('');
-    			pwd2.val('');
-    			pwd1.focus();
-    			return;
-    		} 
-    		
-    		$('#updatePwdFrm').submit();
+    function pwdRegEx(pwd){  
+    	   var pwdRegEx = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
+
+    	   return pwdRegEx.test(pwd);
+    	}
+
+    	// 두 비밀번호가 같은지 체크하는 함수
+    	function isSamePwd(pwd1,pwd2){
+    	   if(pwd1 == pwd2){
+    	      return true;
+    	   }else return false;
+    	   
+    	}
+    $('[name^="memberPwd"]').change(function(){
+    	   var pwd1 = $('#memberPwd').val();
+    	   var pwd2 = $('#memberPwd2').val();
+
+    	   if(!isSamePwd(pwd1,pwd2)){
+    	      $('#pwdResult').html("비밀번호가 일치하지 않습니다.").css('color','red');
+    	   }else if(!pwdRegEx(pwd2)){
+    	      $('#pwdResult').html("");
+    	      $('#pwdResult').html("비밀번호는 숫자,영문 대소문자, 특수문자로 구성된<br> 8자리 이상 20자리 이하이어야 합니다.").css('color','red');
+    	   }else{
+    	      $('#pwdResult').html("사용 가능한 비밀번호입니다.").css('color','green');
+    	   }
+    	   
     	});
+
+    	function validate(){
+
+    	   // 비밀번호
+    	   var pwd1 = $('#memberPwd').val();
+    	   var pwd2 = $('#memberPwd2').val();
+
+    	   // 비밀번호 체크
+    	   if(!isSamePwd(pwd1,pwd2)){   
+    	    alert("비밀번호가 일치하지 않습니다.");
+    	       return false;
+    	   }
+    	   
+    	   if(!pwdRegEx(pwd2)){
+    	      alert("올바르지 않은 형식의 비밀번호입니다.");
+    	      return false;
+    	   }
+    	}
     </script>
 </body>
 </html>

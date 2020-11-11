@@ -34,20 +34,99 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
+ <script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
  
+<style>
+
+section {
+	margin-left: 200px;
+	margin-top: 100px;
+	margin-right: 200px;
+	margin-bottom: 50px;
+}
+
+  table {
+    width: 100%;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+  }
+
+h4 {
+	  letter-spacing: 5px;
+}  
+
+hr {
+	margin-left: 550px;
+	margin-right: 550px;
+	border-width: 2px;
+}
+
+.product__pagination {
+	padding-top: 15px;
+}
+
+.product__pagination a {
+	display: inline-block;
+	font-size: 15px;
+	color: #000000;
+	font-weight: 600;
+	height: 50px;
+	width: 50px;
+	border: 1px solid transparent;
+	border-radius: 50%;
+	line-height: 48px;
+	text-align: center;
+	-webkit-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
+}
+
+.product__pagination a:hover {
+	color: #b7b7b7;
+	cursor: pointer;
+}
+
+.product__pagination a.current-page {
+	border: 1px solid #000000;
+}
+
+.product__pagination a i {
+	color: #b7b7b7;
+	font-size: 15px;
+}
+
+
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+</style>
 </head>
 <body>
 
 	<%@ include file="../common/header.jsp" %>
 	
-	<div></div>
-	
+	<section>
+	<h4 align="center">구매내역</h4>
+	<hr />
+	<input type="date" name="date1" id="date1"> ~ <input type="date" name="date2" id="date2">
+	<button type="button" class="btn btn-default" onclick="search();">조회</button>
+	<button type="reset" class="btn btn-default" onclick="history.back();">초기화</button>
+	<br />
+	<br />
 		<div class="tableArea">
-		<table align="center" style="color:white;">
+		<table>
 			<thead>
 				<tr align="center">
-					<th width="100">구매일자</th>
-					<th width="200">게임명</th>
+					<th width="200">구매일자</th>
+					<th width="260">게임명</th>
 					<th width="80">가격</th>
 				</tr>
 			</thead>
@@ -63,40 +142,63 @@
 			</tbody>
 		</table>
 	</div>
-	
-		<div class="pagingArea" align="center">
-	
-		<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
+	<br />
+	    <div class="product__pagination" align="center">
+           <a onclick="location.href='<%= request.getContextPath() %>/ord.my?memberId=<%= m.getMemberId() %>&currentPage=1'"><<</a>
 		
 		<%  if(currentPage <= 1){  %>
-			<button disabled><</button>
+			<a class="current-page"><</a>
 		<%  }else{ %>
-			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage - 1 %>'"><</button>
+			<a onclick="location.href='<%= request.getContextPath() %>/ord.my?memberId=<%= m.getMemberId() %>&currentPage=<%= currentPage - 1 %>'"><</a>
 		<%  } %>
 			
 		<% for(int p = startPage; p <= endPage; p++){
 				if(p == currentPage){ %>
-				<button disabled><%= p %></button>
+				<a class="current-page"><%= p %></a>
 			<% } else { %>
-				<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= p %>'"><%= p %></button>
+				<a onclick="location.href='<%= request.getContextPath() %>/ord.my?memberId=<%= m.getMemberId() %>&currentPage=<%= p %>'"><%= p %></a>
 			<% } %>
 		<% } %>
 				
 		<%  if(currentPage >= maxPage){  %>
-			<button disabled>></button>
+			<a class="current-page">></a>
 		<%  } else { %>
-			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage + 1 %>'">></button>
+			<a onclick="location.href='<%= request.getContextPath() %>/ord.my?memberId=<%= m.getMemberId() %>&currentPage=<%= currentPage + 1 %>'">></a>
 		<%  } %>
 		
-		<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= maxPage %>'">>></button>
-		
-	</div>
+		<a onclick="location.href='<%= request.getContextPath() %>/ord.my?memberId=<%= m.getMemberId() %>&currentPage=<%= maxPage %>'">>></a>
 	
+      </div>
+      
+      <br />
+      <br />
+      <br />
+      <br />
+	</section>
+	
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+
 	
 	<%@ include file="../common/footer.jsp" %>
+	
+	<script>
+	function search(){
+		location.href="<%=request.getContextPath()%>/searchOrd.my?memberId=<%= m.getMemberId() %>&date1="+$('#date1').val()+"&date2="+$('#date2').val();
+	}
+	</script>
 
+	<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/mixitup.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/main.js"></script>	
+	
 </body>
 
-
-</body>
 </html>

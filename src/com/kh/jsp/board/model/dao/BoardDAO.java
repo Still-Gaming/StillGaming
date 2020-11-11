@@ -122,7 +122,7 @@ public class BoardDAO {
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("selectList");
-		
+
 		try {
 			pstmt = con.prepareStatement(sql);
 			

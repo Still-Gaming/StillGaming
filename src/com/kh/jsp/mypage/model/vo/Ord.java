@@ -35,7 +35,7 @@ public class Ord extends GameInfo {
 				+ ", toString()=" + super.toString() + ", getGminfoNum()=" + getGminfoNum() + ", getGminfoName()="
 				+ getGminfoName() + ", getGminfoDate()=" + getGminfoDate() + ", getGminfoCompany()="
 				+ getGminfoCompany() + ", getGminfoExp()=" + getGminfoExp() + ", getGmTypenum()=" + getGmTypenum()
-				+ ", getGminfoAage()=" + getGminfoAage() + ", getGminfoPrice()=" + getGminfoPrice() + ", getClass()="
+				+ ", getGminfoAage()=" + getGminfoAge() + ", getGminfoPrice()=" + getGminfoPrice() + ", getClass()="
 				+ getClass() + ", hashCode()=" + hashCode() + "]";
 	}
 	public int getOrdNo() {

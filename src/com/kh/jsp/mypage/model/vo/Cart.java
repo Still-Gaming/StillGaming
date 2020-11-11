@@ -11,6 +11,7 @@ public class Cart extends GameInfo {
 	private String gminfoname;
 	private int gminfoprice;
 	private String gmimgfile;
+	
 	public Cart() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -38,7 +39,7 @@ public class Cart extends GameInfo {
 				+ ", gminfoprice=" + gminfoprice + ", gmimgfile=" + gmimgfile + ", toString()=" + super.toString()
 				+ ", getGminfoNum()=" + getGminfoNum() + ", getGminfoName()=" + getGminfoName() + ", getGminfoDate()="
 				+ getGminfoDate() + ", getGminfoCompany()=" + getGminfoCompany() + ", getGminfoExp()=" + getGminfoExp()
-				+ ", getGmTypenum()=" + getGmTypenum() + ", getGminfoAage()=" + getGminfoAage() + ", getGminfoPrice()="
+				+ ", getGmTypenum()=" + getGmTypenum() + ", getGminfoAage()=" + getGminfoAge() + ", getGminfoPrice()="
 				+ getGminfoPrice() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
 	}
 	public String getMemberId() {

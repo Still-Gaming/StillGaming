@@ -10,11 +10,6 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-3">
-                <div class="footer__logo">
-                    <a href="./index.jsp"><img src="resources/img/logo.png" alt=""></a>
-                </div>
-            </div>
             <div class="col-lg-6">
                 <div class="footer__nav">
                     <ul>
@@ -31,3 +26,12 @@
       </div>
   </footer>
   <!-- Footer Section End -->
+
+<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/mixitup.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
