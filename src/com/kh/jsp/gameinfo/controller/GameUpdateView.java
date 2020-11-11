@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.jsp.common.exception.GameInfoException;
 import com.kh.jsp.gameinfo.model.service.GameInfoService;
+import com.kh.jsp.gameinfo.model.vo.GameImage;
 import com.kh.jsp.gameinfo.model.vo.GameInfo;
 
 /**
@@ -38,8 +39,10 @@ public class GameUpdateView extends HttpServlet {
 		
 		try {
 			GameInfo gi = bs.selectGameInfo(gminfoNum);
+			GameImage gie = bs.selectGameImage(gminfoNum);
 			
 			request.setAttribute("gameInfo", gi);
+			request.setAttribute("GameImage", gie);
 			
 			page = "views/shop/gameUpdate.jsp";
 					

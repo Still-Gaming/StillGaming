@@ -53,7 +53,7 @@ public class MemberLogin extends HttpServlet {
 		request.setAttribute("error-msg", "회원 로그인 실패!");
 			
 			RequestDispatcher view 
-			    = request.getRequestDispatcher("views/loginFail.jsp");
+			    = request.getRequestDispatcher("views/common/errorPage.jsp");
 			
 			view.forward(request, response);
 			

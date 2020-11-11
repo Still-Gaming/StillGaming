@@ -85,7 +85,6 @@
 				</form>
 		<div class="replySelectArea">
 		
-		
 			<!-- 댓글 목록 구현 영역 -->
 			<% if (clist.size() == 0) { %>
 				<span>여러분이 새 댓글의 주인공이 되어 보세요!</span>
@@ -146,6 +145,15 @@
 			</div>
 		
 		</div>
+	<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/mixitup.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/main.js"></script> 
+		
 		<script>
 		
 			function reComment(obj) {

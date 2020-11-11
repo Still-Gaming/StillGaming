@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.kh.jsp.boardComment.model.dao.BoardCommentDAO;
 import com.kh.jsp.boardComment.model.vo.BoardComment;
+import com.kh.jsp.gamereview.model.vo.GameReview;
 
 import static com.kh.jsp.common.JDBCTemplate.*;
 
@@ -66,6 +67,5 @@ public class BoardCommentService {
 		
 	}
 
-
-	 
+	
 }

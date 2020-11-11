@@ -1,6 +1,6 @@
 package com.kh.jsp.member.model.dao;
 
-import static com.kh.jsp.common.JDBCTemplate.close;
+import static com.kh.jsp.common.JDBCTemplate.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -82,7 +82,7 @@ public class MemberDAO {
 			pstmt.setString(2, m.getMemberPwd());
 			
 			rset = pstmt.executeQuery();
-			
+
 			if(rset.next()) { 
 
 				result = new Member();
@@ -145,7 +145,9 @@ public int updateMember(Connection con, Member m) throws MemberException {
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, m.getMemberPwd() );
-			pstmt.setString(2, m.getMemberId());
+			pstmt.setString(2, m.getEmail());
+			pstmt.setString(3, m.getPhone());
+			pstmt.setString(4, m.getMemberId());
 		
 			result = pstmt.executeUpdate();
 			
@@ -161,5 +163,61 @@ public int updateMember(Connection con, Member m) throws MemberException {
 		
 		return result;
 	}
+
+public int idDupCheck(Connection con, String id) {
+	int result = 0;
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	
+	String sql = prop.getProperty("idDupCheck");
+	
+	try {
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1, id);
+		
+		rset = pstmt.executeQuery();
+		
+		if(rset.next()) {
+			result = rset.getInt(1);
+		}
+	} catch (SQLException e) {
+
+		e.printStackTrace();
+	} finally {
+		close(rset);
+		close(pstmt);
+	}
+	
+	return result;
+}
+
+public int emailDupCheck(Connection con, String email) {
+	int result = 0;
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	
+	String sql = prop.getProperty("emailDupCheck");
+	
+	try {
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1, email);
+		
+		rset = pstmt.executeQuery();
+		
+		if(rset.next()) {
+			result = rset.getInt(1);
+		}
+	} catch (SQLException e) {
+
+		e.printStackTrace();
+	} finally {
+		close(rset);
+		close(pstmt);
+	}
+	
+	return result;
+}
 
 }

@@ -26,8 +26,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
-    
-
+ 
 </head>
 
 <body>
@@ -42,12 +41,12 @@
     <section class="hero">
         <div class="container">
             <div class="hero__slider owl-carousel">
-                <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/hero/hero.jpg">
+                <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/amongus.png">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
                                 <div class="label">Adventure</div>
-                                <h2>Fate /ㅇ Stay Night: Unlimited Blade Works</h2>
+                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
                                 <p>After 30 days of travel across the world...</p>
                                 <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
                             </div>
@@ -55,7 +54,7 @@
                     </div>
                 </div>
 
-                <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/hero/hero.jpg">
+                <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/amongus.png">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
@@ -67,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/hero/hero.jpg">
+                <div class="hero__items set-bg" data-setbg="/StillGaming/resources/img/amongus.png">
 
                     <div class="row">
                         <div class="col-lg-6">
@@ -672,6 +671,8 @@
 <script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
 
+
+<%@ include file="/views/common/footer.jsp" %>
 
 </body>
 

@@ -58,6 +58,22 @@ public class GameUpdate extends HttpServlet {
 		
 		
 		int gminfoNum = Integer.parseInt(mre.getParameter("gminfoNum"));
+		String gminfoName = mre.getParameter("gminfoName");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date gminfoDate = null;
+		try {
+			gminfoDate = new Date(sdf.parse(mre.getParameter("gminfoDate")).getTime());
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		String gminfoCompany = mre.getParameter("gminfoCompany");
+		String gminfoExp = mre.getParameter("gminfoExp");
+		int gmTypeNum = Integer.parseInt(mre.getParameter("gmTypeNum"));
+		int gminfoAge = Integer.parseInt(mre.getParameter("gminfoAge"));
+		int gminfoPrice = Integer.parseInt(mre.getParameter("gminfoPrice"));
+		
 		
 		String fileName = mre.getOriginalFileName("file");
 		String fileChangeName = mre.getFilesystemName("file");
@@ -76,12 +92,25 @@ public class GameUpdate extends HttpServlet {
 				bf.setGmimgCgfile(fileChangeName);
 			
 			}
+			System.out.println("bf : " + bf);
+			System.out.println("b : " + b);
+			
+			b.setGminfoNum(gminfoNum);
+			b.setGminfoName(gminfoName);
+			b.setGminfoCompany(gminfoCompany);
+			b.setGminfoDate(gminfoDate);
+			b.setGminfoExp(gminfoExp);
+			b.setGminfoNum(gminfoNum);
+			b.setGminfoAge(gminfoAge);
+			b.setGminfoPrice(gminfoPrice);
 			
 			int result = bs.updateGameInfo(b, bf, filePath);
 			
-			
+			if( result > 0) {
+
 			response.sendRedirect("selectone.do?gminfoNum=" + gminfoNum);
-			
+				
+			} 
 			
 		} catch (GameInfoException g) {
 			

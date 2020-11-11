@@ -2,15 +2,14 @@
 	pageEncoding="UTF-8" import="java.util.*, com.kh.jsp.gameinfo.model.vo.*"%>
 <%
 	ArrayList<GameInfo> list = (ArrayList<GameInfo>)request.getAttribute("list");
-	GameInfo gif = (GameInfo)request.getAttribute("gif");
-	GameImage gii = (GameImage)request.getAttribute("gii");
 	
-	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	int listCount = pi.getListCount();
-	int currentPage = pi.getCurrentPage();
-	int maxPage = pi.getMaxPage();
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
+	PageInfo pi = null;
+	String keyword = request.getParameter("keyword");
+	boolean chkSearch = false;
+	if(list != null && list.size() > 0 && (keyword == null)) {
+		pi = (PageInfo)request.getAttribute("pi");
+		chkSearch = true;
+	}
 %>
 
 
@@ -36,30 +35,6 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
     
-	 
-  	
-  	<style>
-  		.btnArea {
-  			width : 500px;
-  			height : 450px;
-  			margin-left : auto;
-  			margin-right : auto;
-  		}
-  		.btnArea {
-  			width : 150px;
-  			margin-left: auto;
-  			margin-right : auto;
-  		}
-  		#titleImgArea {
-  			width :350px;
-  			height : 200px;
-  			border : 2px dashed darkgray;
-  			text-align: center;
-  			display : table-cell;
-  			vertical-align:middle;
-  		}
-  	</style>
-    
 </head>
 <body>
 
@@ -75,12 +50,12 @@
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-6">
                                     <div class="section-title">
-                                        <h4>Games</h4>
+                                        <h4 style='color:black;'>Games</h4>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-6">
                                     <div class="product__page__filter">
-                                        <p>Order by:</p>
+                                        <p  style='color:black;'> Order by:</p>
                                         <select>
                                             <option value="">A-Z</option>
                                             <option value="">1-10</option>
@@ -88,11 +63,25 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="searchArea" align="center">
+									<select id="searchCondition" name="searchCondition">
+										<option value="">---</option>
+										<option value="name">게임이름</option>
+										<option value="company">게임회사</option>
+										<option value="content">내용</option>
+								</select>
+								<input type="search" id="keyword" placeholder="키워드를 입력하세요!"> 
+								<button type="button" onclick="search();">검색하기</button>
+							</div>
                             </div>
                         </div>
                         <div class="row">
-                        <% for(GameInfo gi : list) { %>
-                            <div class="col-sm-8">
+                        <% if(list == null || list.size() == 0) { %>
+                        	<div class="col-lg-10 col-md-10 col-sm-10">
+                        		<h2>조회된 상품이 없습니다.</h2>
+                        	</div>
+                        <% } else { for(GameInfo gi : list) { %>
+                            <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="<%= request.getContextPath() %>/resources/gameimageUploadFiles/<%= gi.getGminfoImage() %>">
                                         <div class="ep"><%= gi.getGminfoDate() %></div>
@@ -101,64 +90,51 @@
                                     </div>
                                     <div class="product__item__text">
                                         <ul>
-                                            <li><%= gi.getGminfoType() %></li>
+                                            <li style="color : black;"><%= gi.getGminfoType() %></li>
                                         </ul>
-                                        <h5><a href="<%= request.getContextPath() %>/selectone.do?gminfoNum=<%=gi.getGminfoNum()%>"><%= gi.getGminfoName() %></a></h5></div>
+                                        <h5><a  style="color : black;" href="<%= request.getContextPath() %>/selectone.do?gminfoNum=<%=gi.getGminfoNum()%>"><%= gi.getGminfoName() %></a></h5></div>
                                        	&nbsp;&nbsp;
                                       
                                     </div>
                                 </div>
                             </div>
-                            <% } %>
+                            <% } } %>
                         </div>
                         <button onclick="location.href='views/shop/gameInsertForm.jsp'">작성하기</button>
                     </div>
-                    
+                    <% if(chkSearch) {  %> 
                     <div class="pagingArea" align="center">
 	
 		<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=1'"><<</button>
 		
-		<%  if(currentPage <= 1){  %>
+		<%  if(pi.getCurrentPage() <= 1){  %>
 			<button disabled><</button>
 		<%  }else{ %>
-			<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= currentPage - 1 %>'"><</button>
+			<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= pi.getCurrentPage() - 1 %>'"><</button>
 		<%  } %>
 			
-		<% for(int p = startPage; p <= endPage; p++){
-				if(p == currentPage){ %>
+		<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){
+				if(p == pi.getCurrentPage()){ %>
 				<button disabled><%= p %></button>
 			<% } else { %>
 				<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= p %>'"><%= p %></button>
 			<% } %>
 		<% } %>
 				
-		<%  if(currentPage >= maxPage){  %>
+		<%  if(pi.getCurrentPage() >= pi.getMaxPage()){  %>
 			<button disabled>></button>
 		<%  } else { %>
-			<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= currentPage + 1 %>'">></button>
+			<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= pi.getCurrentPage() + 1 %>'">></button>
 		<%  } %>
 		
-		<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= maxPage %>'">>></button>
+		<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= pi.getMaxPage() %>'">>></button>
 		
 	</div>
-	
-                </div>
+	<% } %>
+     </div>
              
 	</div>
-	</div>
-	</section>
 	
-	
-	<%@ include file="/views/common/footer.jsp" %>
-	
-	<div class="search-model">
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-switch"><i class="icon_close"></i></div>
-        <form class="search-model-form">
-            <input type="text" id="search-input" placeholder="Search here.....">
-        </form>
-    </div>
-</div>
 <!-- Js Plugins -->
 	<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
@@ -168,6 +144,21 @@
 	<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/js/main.js"></script> 
+	
+	<script>  
+		
+		function search(){
+			location.href="<%=request.getContextPath()%>/searchGame.no?con="+$('#searchCondition').val()+"&keyword="+$('#keyword').val();
+		}
+		
+	</script>
+	
+	</section>
+	
+	
+	<%@ include file="/views/common/footer.jsp" %>
+	
+	
 	
 
 

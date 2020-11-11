@@ -84,7 +84,7 @@
 					<tr>
 						<td width="100px">장르번호</td>
 						<td colspan="3" height="3">
-							<select id="selectGenre"></select>
+							<input type="text" name="gmTypeNum" size="45" />
 						</td>
 					</tr>
 					<tr>

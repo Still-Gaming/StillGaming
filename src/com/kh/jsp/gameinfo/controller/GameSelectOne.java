@@ -17,6 +17,8 @@ import com.kh.jsp.common.exception.GameInfoException;
 import com.kh.jsp.gameinfo.model.service.GameInfoService;
 import com.kh.jsp.gameinfo.model.vo.GameImage;
 import com.kh.jsp.gameinfo.model.vo.GameInfo;
+import com.kh.jsp.gamereview.model.service.GameReviewService;
+import com.kh.jsp.gamereview.model.vo.GameReview;
 
 
 /**
@@ -39,8 +41,9 @@ public class GameSelectOne extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			int gminfoNum = Integer.parseInt(request.getParameter("gminfoNum"));
-		
-		GameInfoService bs = new GameInfoService();
+			
+			ArrayList<GameReview> clist = new GameReviewService().selectList(gminfoNum);
+			GameInfoService bs = new GameInfoService();
 		
 		
 		String page = "";
@@ -48,27 +51,24 @@ public class GameSelectOne extends HttpServlet {
 		try {
 			GameInfo gi = bs.selectGameInfo(gminfoNum);
 			GameImage gie = bs.selectGameImage(gminfoNum);
-		
+
 			request.setAttribute("GameInfo", gi);
 			request.setAttribute("GameImage", gie);
-			
-			
+			request.setAttribute("clist", clist);
 			
 			page = "views/shop/gameDetail.jsp";
 			
-			
-			} catch(GameInfoException g) {
+		} catch(GameInfoException g) {
 			
 			request.setAttribute("exception", g);
 			request.setAttribute("error-msg", "게시글 조회 실패");
 			
 			page = "/views/common/errorPage.jsp";
 		
-			} finally {
-				
-			request.getRequestDispatcher(page).forward(request, response);
 		}
+		System.out.println(page);
 		
+		request.getRequestDispatcher(page).forward(request, response);
 	}		
 		
 		

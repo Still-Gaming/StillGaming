@@ -38,6 +38,7 @@ public class CommentInsert extends HttpServlet {
 		int commentLevel = Integer.parseInt(request.getParameter("commentLevel"));
 		
 		
+
 		BoardComment comment = new BoardComment(boardNo, commentText, MemberId, refCno, commentLevel);
 		
 		int result = new BoardCommentService().insertComment(comment);
@@ -46,6 +47,9 @@ public class CommentInsert extends HttpServlet {
 			response.sendRedirect("selectOne.bo?boardNo="+ boardNo);
 		} else {
 			
+			request.setAttribute("error-msg", "댓글 작성 실패");
+			
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
 	}
 

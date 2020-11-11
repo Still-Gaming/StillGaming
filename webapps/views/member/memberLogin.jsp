@@ -2,13 +2,14 @@
     pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html lang="zxx">
+<html>
 
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Anime Template">
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Still Gaming | 로그인</title>
 
@@ -16,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
-
+    <link href='https://fonts.googleapis.com/css?family=Amiko' rel='stylesheet'>
     <!-- Css Styles -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/font-awesome.min.css" type="text/css">
@@ -26,6 +27,20 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style2.css" type="text/css">
+    
+    
+<style>
+
+
+html, body {
+	background: #EAEAEA;
+	color : black;
+}
+
+
+</style>
+
 </head>
 <body>
     <!-- Page Preloder -->
@@ -35,69 +50,60 @@
 
 	<%@ include file="../common/header.jsp" %>
 
-    <!-- Normal Breadcrumb Begin -->
-    <section class="normal-breadcrumb set-bg" data-setbg="img/normal-breadcrumb.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="normal__breadcrumb__text">
-                        <h2>Login</h2>
-                        <p>Welcome to the official AnimeÂ blog.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Normal Breadcrumb End -->
-
     <!-- Login Section Begin -->
-    <section class="login spad">
+<div style="background: #EAEAEA; color:black;">
+<br />
+<br />
+<br />
+<br />
+<br />
+    <section class="login spad" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="login__form">
-                        <h3>Login</h3>
+                        <h3 class="wow fadeIn" data-wow-delay="0.6s" style="color: black;">Login</h3>
+                        
                         <form id="loginForm" action="/StillGaming/login.me" method="post">
-                            <div class="input__item">
-                                <input type="text" name="memberId" placeholder="ID">
-                                <span class="icon_mail"></span>
+                        
+                            <div class="input__item" >
+                                <input type="text" name="memberId" placeholder="ID" >
+                            	<span class="fa fa-user" id="userIcon"></span>
                             </div>
+                            
                             <div class="input__item">
                                 <input type="password" name="memberPwd" placeholder="Password">
                                 <span class="icon_lock"></span>
                             </div>
+                            
                             <button type="submit" onclick='login()' class="site-btn">Login Now</button>
+                            
                         </form>
-                        <a href="#" class="forget_pass">Forgot Your Password?</a>
+                    
+                        <a href="memberSearch.jsp" class="forget_pass" style="color: black; text-align: right;">아이디 | 비밀번호 찾기</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="login__register">
-                        <h3>Dontât Have An Account?</h3>
-                        <a href="#" class="primary-btn">Register Now</a>
+                        <br />
+                        <br />
+                        <br />
+                        <h5 style="color: black;">Dont’t Have An Account?</h5>
+                        <br />
+                        <a href="memberJoin.jsp" class="primary-btn">Register Now</a>
                     </div>
                 </div>
-            </div>
-            <div class="login__social">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="login__social__links">
-                            <span>or</span>
-                            <ul>
-                                <li><a href="#" class="facebook"><i class="fa fa-facebook"></i> Sign in With
-                                Facebook</a></li>
-                                <li><a href="#" class="google"><i class="fa fa-google"></i> Sign in With Google</a></li>
-                                <li><a href="#" class="twitter"><i class="fa fa-twitter"></i> Sign in With Twitter</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+           </div>  
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+      </section>
+</div>
     <!-- Login Section End -->
-    
 
 	<%@ include file="../common/footer.jsp" %>
 	

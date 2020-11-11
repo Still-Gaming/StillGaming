@@ -38,40 +38,21 @@ public class GameDelete extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-				int maxSize = 1024 * 1024 * 10; 
-				
-				
-				if(! ServletFileUpload.isMultipartContent(request)) {
-					request.setAttribute("error-msg", "multipart 전송 아님");
-					
-					request.getRequestDispatcher("views/common/errorPage.jsp")
-					       .forward(request, response);
-				}
-				
-				String root = request.getServletContext().getRealPath("/");
-				String savePath = root + "resources/boardUploadFiles";
-				
+		int gminfoNum = Integer.parseInt(request.getParameter("gminfoNum"));
 			
-				MultipartRequest mre = new MultipartRequest(request, savePath, maxSize, "UTF-8",
-														    new DefaultFileRenamePolicy());
-				
-				int gminfoNum = Integer.parseInt(mre.getParameter("gminfoNum"));
-				
 				GameInfoService bs = new GameInfoService();
 				
+				String root = request.getServletContext().getRealPath("/resources");
+				String filePath = root + "/gameimageUploadFiles/";
 				
 				try {
-					GameInfo b = bs.selectGameInfo(gminfoNum);
-					
-					if( b.getGminfoImage() != null)
-						new File(b.getGminfoImage()).delete();
-					
-					int result = bs.deleteGameInfo(gminfoNum);
+				
+					int result = bs.deleteGameInfo(gminfoNum, filePath);
 					
 					if( result > 0 ) {
 						response.sendRedirect("gamelist.do");
-						
-				}
+					}
+				
 				} catch (GameInfoException g) {
 					
 					request.setAttribute("exception", g);

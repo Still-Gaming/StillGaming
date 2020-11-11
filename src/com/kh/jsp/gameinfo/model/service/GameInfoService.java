@@ -15,6 +15,7 @@ import com.kh.jsp.gameinfo.model.vo.GameImage;
 import com.kh.jsp.gameinfo.model.vo.GameInfo;
 
 
+
 public class GameInfoService {
 	private Connection con;
 	private GameInfoDAO nDAO = new GameInfoDAO();
@@ -135,8 +136,8 @@ public class GameInfoService {
 	
 	}
 
-
-	public int deleteGameInfo(int gminfoNum) {
+	public int deleteGameInfo(int gminfoNum, String filePath) throws GameInfoException {
+	
 		con = getConnection();
 		
 		int result = nDAO.deleteGameInfo(con, gminfoNum);
@@ -147,7 +148,29 @@ public class GameInfoService {
 		close(con);
 		
 		return result;
+	
+	}
+
+
+	public ArrayList<GameInfo> searchGame(String condition, String keyword) throws GameInfoException {
+		con = getConnection();
 		
+		ArrayList<GameInfo> list = null;
+		
+		// 검색 옵션에 제목, 작성자 등 그 어떤 것이라도
+		// 조건을 달았다면 조건부 검색을 실시
+		if( condition.length() > 0 ) {
+			
+			list = nDAO.searchList(con, condition, keyword);
+			
+		} else {
+			// 검색 옵션을 선택하지 않았다면 전체 검색
+			list = nDAO.searchAll(con, keyword);
+		}
+		
+		close(con);
+		
+		return list;
 	}
 
 }

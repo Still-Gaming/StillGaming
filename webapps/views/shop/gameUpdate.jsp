@@ -4,7 +4,7 @@
 <%
 	
 	GameInfo gi = (GameInfo)request.getAttribute("gameInfo");
-	
+	GameImage gie = (GameImage)request.getAttribute("GameImage");
 	
 %>
     
@@ -77,7 +77,7 @@
 					<tr>
 						<td width="100px">게임출시일</td>
 						<td>
-						<input type="date" name="gminfoDate"/ value="<%= gi.getGminfoDate() %>">
+						<input type="date" name="gminfoDate" value="<%= gi.getGminfoDate() %>">
 						</td>
 					</tr>
 					<tr>
@@ -85,7 +85,7 @@
 						<td colspan="3">
 							<!-- div#titleImgArea -->
 							<div id="titleImgArea">
-								<img id="gameimage" width="350" height="200" />
+								<img id="gameimage" src="<%= request.getContextPath() %>/resources/gameimageUploadFiles/<%= gie.getGmimgCgfile() %>" width="350" height="200" />
 							</div>
 						</td>
 					</tr>

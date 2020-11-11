@@ -6,7 +6,7 @@
 %>
 
 <!DOCTYPE html>
-<html lang="zxx">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -14,6 +14,7 @@
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   
      <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
      <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style2.css" type="text/css">
      <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css" type="text/css">
@@ -25,6 +26,17 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
     
+    <style>
+    	.btn {
+    		background: lightgray;
+    		color: white;
+    	}
+    	
+    	.btn:hover {
+    		background: gray;
+    		color: white;
+    	}
+    </style>
     
     <title>StillGaming | 회원가입</title>
     
@@ -41,18 +53,16 @@
 	<br />
 	<br />
 	
-   <div class="container">
-      <div class="row">
-	<h3 style="color: white;"><%= memberName %> 님 '<%= memberId  %>' 아이디로 회원가입 완료 되셨습니다.</h3>
+    <div align="center">
+	<h3><%= memberName %> 님 '<%= memberId  %>' 아이디로 회원가입 완료 되셨습니다.</h3>
 	
 	<br />
 	<br />
-		</div>
-	</div>s
+
 	
-	<input type="button" value="메인" class="btn" onclick="window.location.href='../../index.jsp'">
-	<input type="button" value="로그인" class="btn" onclick="window.location.href='login.jsp'">
-	
+	<input type="button" value="메인" class="btn btn-default" onclick="window.location.href='/StillGaming/index.jsp'">
+	<input type="button" value="로그인" class="btn btn-default" onclick="window.location.href='/StillGaming/views/member/memberLogin.jsp'">
+	</div>
 
 	<br />
 	<br />

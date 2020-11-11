@@ -31,21 +31,29 @@
 	<%@ include file="../common/header.jsp" %>
 	
 	<div> 
-		<a href="../member/memberUpdateForm.jsp">
+		<a href="../member/memberUpdate.jsp">
 			회원 정보 수정 
 		</a>
 	</div>
-	
+		<a href="myWishList.jsp">
+			찜목록
+		</a>
+	<div>
+		<a href="#"></a>
+	</div>
 	<br />
 	<br />
 	
-	<div> 찜 목록 </div>
 	
 	<div> 장바구니 </div>
 	
-	<div> 내가 쓴 글 조회 </div>
+	<div> 
+		<a href="<%= request.getContextPath() %>/post.my?memberId=<%= m.getMemberId() %>">내가 쓴 글 조회</a>
+	</div>
 	
-	<div> 구매내역 </div>
+	<div> 
+		<a href="<%= request.getContextPath() %>/orderList.my?memberId=<%= m.getMemberId() %>">구매내역 </a>
+	</div>
 
 
 

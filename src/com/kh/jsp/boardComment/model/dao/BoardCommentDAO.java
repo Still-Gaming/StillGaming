@@ -40,7 +40,7 @@ public class BoardCommentDAO {
 		
 		String sql = prop.getProperty("insertComment");
 		
-		System.out.println(sql);
+		
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -111,7 +111,7 @@ public class BoardCommentDAO {
 		PreparedStatement pstmt = null;
 		
 		String sql = prop.getProperty("updateComment");
-		System.out.println(bco.getCommentText() + " / " + bco.getCommentNo());
+		
 		try {
 			pstmt = con.prepareStatement(sql);
 			

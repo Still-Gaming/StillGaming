@@ -3,52 +3,9 @@
 <%
 	Member m = (Member)session.getAttribute("member");
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-    <meta name="description" content="Anime Template">
-    <meta name="keywords" content="Anime, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
-
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/plyr.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
-    
-    
-    <style>
-    	.header__ul {
-    		margin-top : 20px;
-    	}
-    	
-		.header__right {
-			margin-top: 20px;
-		}
-		
-		
-		.header__right b a {
-			font-size : 14px;
-		}
-    	
-    </style>
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/headerstyle.css" type="text/css">
 
-
-
-
-</head>
-<body>
     <!-- Header Section Begin -->
 
     <header class="header" style="background-color: white;">
@@ -65,46 +22,19 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
 
-
-
-                            <ul>
-                                <li class="active"><a href="./index.jsp">홈페이지</a></li>
-                                <li><a href="./categories.jsp">커뮤니티<span class="arrow_carrot-down"></span></a>
-
-
-                            <ul class="header__ul">
-                                <li><a href="#" class="menu">Shop</a></li>
-
-
-                  <ul class="header__ul">
-                                <li><a href="#" class="menu">Shop</a></li>
-
-                                <li><a href="./categories.jsp" class="menu">Community<span class="arrow_carrot-down"></span></a>
-
-
-                                <li><a href="./categories.jsp" class="menu">Community<span class="arrow_carrot-down"></span></a>
-
-
-
+                		  <ul class="header__ul">
+                                <li><a href="<%= request.getContextPath() %>/gamelist.do">Store</a></li>
+                                <li><a href="#">Community<span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
-                                        <li><a href="#" >공지사항</a></li>
-                                        <li><a href="#">자유게시판</a></li>
+                                        <li><a href="#" id="drop">공지사항</a></li>
+                                        <li><a href="<%= request.getContextPath() %>/selectList.bo" id="drop">자유게시판</a></li>
                                     </ul>
-
                                 </li>
-
-                				 <li><a href="./blog.jsp">Our Blog</a></li>
-                                <li><a href="<%= request.getContextPath() %>/gamelist.do")">상점</a></li>
-                                <li><a href="#">Contacts</a></li>
-
-
-
-                                </li>
-
-                                <li><a href="#" >Q&A<span class="arrow_carrot-down"></span></a>
+                                
+								<li><a href="#" >Q&A<span class="arrow_carrot-down"></span></a>
                                    <ul class="dropdown">
-                                        <li><a href="#">FAQ</a></li>
-                                        <li><a href="#">1:1문의</a></li>
+                                        <li><a href="<%= request.getContextPath()%>/views/about/faq.jsp" id="drop">FAQ</a></li>
+                                        <li><a href="<%= request.getContextPath()%>/views/about/qna.jsp" id="drop">1:1문의</a></li>
                                    </ul>
 
                             </ul>
@@ -120,7 +50,7 @@
          <% } else { %>
          			<b><a href="/StillGaming/logout.me" style="color: black;" >LOGOUT</a></b>&nbsp; | &nbsp;
          			<b><a href="/StillGaming/views/mypage/mypageMain.jsp" style="color: black;" >MY PAGE</a></b>
-          	<% } %>          
+          	<% } %>
                     </div>
                 </div>
             </div>
@@ -129,15 +59,3 @@
 
     </header>
     <!-- Header End -->
-    
-    
-<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/mixitup.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
-</body>
-</html>

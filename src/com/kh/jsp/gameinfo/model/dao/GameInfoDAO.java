@@ -10,11 +10,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.kh.jsp.board.model.vo.BoardFile;
-import com.kh.jsp.common.exception.BoardException;
+
 import com.kh.jsp.common.exception.GameInfoException;
 import com.kh.jsp.gameinfo.model.vo.GameImage;
 import com.kh.jsp.gameinfo.model.vo.GameInfo;
+
 
 import static com.kh.jsp.common.JDBCTemplate.*;
 
@@ -344,7 +344,7 @@ public class GameInfoDAO {
 			
 			result = pstmt.executeUpdate();
 			
-			System.out.println(result + "2222");
+			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
@@ -385,7 +385,109 @@ public class GameInfoDAO {
 	}
 
 
+	public ArrayList<GameInfo> searchList(Connection con, String condition, String keyword) throws GameInfoException {
+		ArrayList<GameInfo> list1 = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = null;
+		
+		switch (condition) {
+		case "name" :       // 게임이름 검색 시
+			sql = prop.getProperty("searchName");
+			break;
+		case "company" :    // 게임회사 검색 시
+			sql = prop.getProperty("searchCompany");
+			break;
+		case "content" :    // 내용으로 검색 시
+			sql = prop.getProperty("searchContent");
+			break;
+		}
+			
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, keyword);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				GameInfo g = new GameInfo();
+				
+				
+				g.setGminfoNum( rset.getInt("GMINFO_NUM"));
+				g.setGminfoName(rset.getString("GMINFO_NAME"));
+				g.setGminfoDate(rset.getDate("GMINFO_DATE"));
+				g.setGminfoCompany(rset.getString("GMINFO_COMPANY"));
+				g.setGminfoExp(rset.getString("GMINFO_EXP"));
+				g.setGmTypeNum(rset.getInt("GM_TYPENUM"));
+				g.setGminfoAge(rset.getInt("GMINFO_AGE"));
+				g.setGminfoPrice(rset.getInt("GMINFO_PRICE"));
+				
+				list1.add(g);
+				System.out.println(g.getGminfoName());
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			throw new GameInfoException("[DAO] : " + e.getMessage());
+		
+		} finally {
+			
+			close(rset);
+			close(pstmt);
+		}		
+		
+		return list1;
 	
+}
+
+	public ArrayList<GameInfo> searchAll(Connection con, String keyword) throws GameInfoException {
+		ArrayList<GameInfo> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("searchAll");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, keyword);
+			pstmt.setString(2, keyword);
+			pstmt.setString(3, keyword);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				GameInfo g = new GameInfo();
+				
+				g.setGminfoNum( rset.getInt("GMINFO_NUM"));
+				g.setGminfoName(rset.getString("GMINFO_NAME"));
+				g.setGminfoDate(rset.getDate("GMINFO_DATE"));
+				g.setGminfoCompany(rset.getString("GMINFO_COMPANY"));
+				g.setGminfoExp(rset.getString("GMINFO_EXP"));
+				g.setGmTypeNum(rset.getInt("GM_TYPENUM"));
+				g.setGminfoAge(rset.getInt("GMINFO_AGE"));
+				g.setGminfoPrice(rset.getInt("GMINFO_PRICE"));
+				
+				list.add(g);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			throw new GameInfoException("[DAO] : " + e.getMessage());
+		
+		} finally {
+			
+			close(rset);
+			close(pstmt);
+		}		
+		
+		return list;
+	}
+
 }
 
 
