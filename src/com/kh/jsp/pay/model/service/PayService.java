@@ -23,7 +23,7 @@ public class PayService {
 		for(int i = 0; i < gameInfoNums.length; i++) {
 			GameInfo gi = new GameInfoDAO().selectGameInfo(con, gameInfoNums[i]);
 			
-			list.add(gi);
+			list.add(gi); 
 		}
 		
 		return list;
