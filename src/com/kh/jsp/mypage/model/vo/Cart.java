@@ -39,7 +39,7 @@ public class Cart extends GameInfo {
 				+ ", gminfoprice=" + gminfoprice + ", gmimgfile=" + gmimgfile + ", toString()=" + super.toString()
 				+ ", getGminfoNum()=" + getGminfoNum() + ", getGminfoName()=" + getGminfoName() + ", getGminfoDate()="
 				+ getGminfoDate() + ", getGminfoCompany()=" + getGminfoCompany() + ", getGminfoExp()=" + getGminfoExp()
-				+ ", getGmTypenum()=" + getGmTypenum() + ", getGminfoAage()=" + getGminfoAge() + ", getGminfoPrice()="
+				+ ", getGmTypenum()=" + getGminfoNum() + ", getGminfoAage()=" + getGminfoAge() + ", getGminfoPrice()="
 				+ getGminfoPrice() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
 	}
 	public String getMemberId() {
