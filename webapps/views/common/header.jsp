@@ -50,7 +50,7 @@
                       <b><a href="/StillGaming/views/member/memberJoin.jsp" style="color: black;" >JOIN US</a></b>
          <% } else { %>
          			<b><a href="/StillGaming/logout.me" style="color: black;" >LOGOUT</a></b>&nbsp; | &nbsp;
-         			<b><a href="/StillGaming/views/mypage/mypageMain.jsp" style="color: black;" >MY PAGE</a></b>
+         			<b><a href="<%= request.getContextPath() %>/main.my?memberId=<%= m.getMemberId() %>" style="color: black;" >MY PAGE</a></b>
           	<% } %>
                     </div>
                 </div>
