@@ -134,7 +134,7 @@ public class MemberDAO {
 		return result;
 	}
 	
-public int updateMember(Connection con, Member m) throws MemberException {
+	public int updateMember(Connection con, Member m) throws MemberException {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -164,60 +164,136 @@ public int updateMember(Connection con, Member m) throws MemberException {
 		return result;
 	}
 
-public int idDupCheck(Connection con, String id) {
-	int result = 0;
-	PreparedStatement pstmt = null;
-	ResultSet rset = null;
+	public int idDupCheck(Connection con, String id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("idDupCheck");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt(1);
+			}
+		} catch (SQLException e) {
 	
-	String sql = prop.getProperty("idDupCheck");
-	
-	try {
-		pstmt = con.prepareStatement(sql);
-		
-		pstmt.setString(1, id);
-		
-		rset = pstmt.executeQuery();
-		
-		if(rset.next()) {
-			result = rset.getInt(1);
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
 		}
-	} catch (SQLException e) {
-
-		e.printStackTrace();
-	} finally {
-		close(rset);
-		close(pstmt);
+		
+		return result;
 	}
-	
-	return result;
-}
 
-public int emailDupCheck(Connection con, String email) {
-	int result = 0;
-	PreparedStatement pstmt = null;
-	ResultSet rset = null;
+	public int emailDupCheck(Connection con, String email) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("emailDupCheck");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, email);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt(1);
+			}
+		} catch (SQLException e) {
 	
-	String sql = prop.getProperty("emailDupCheck");
-	
-	try {
-		pstmt = con.prepareStatement(sql);
-		
-		pstmt.setString(1, email);
-		
-		rset = pstmt.executeQuery();
-		
-		if(rset.next()) {
-			result = rset.getInt(1);
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
 		}
-	} catch (SQLException e) {
-
-		e.printStackTrace();
-	} finally {
-		close(rset);
-		close(pstmt);
+		
+		return result;
 	}
-	
-	return result;
-}
+
+	public String searchId(Connection con, String name, String email) throws MemberException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String memberId = null;
+		
+		String sql = prop.getProperty("searchId");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, name);
+			pstmt.setString(2, email);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				memberId = rset.getString("MEMBER_ID");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new MemberException("[DAO] : " + e.getMessage());
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return memberId;
+	}
+
+	public int searchPwd(Connection con, Member m) throws MemberException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("searchPwd");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, m.getMemberId());
+			pstmt.setString(2, m.getMemberName());
+			pstmt.setString(3, m.getEmail());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new MemberException("[DAO] : " + e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updatePwd(Connection con, Member m) throws MemberException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("updatePwd");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, m.getMemberPwd());
+			pstmt.setString(2, m.getMemberId());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new MemberException("[DAO] : " + e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 
 }

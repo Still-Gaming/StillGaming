@@ -9,7 +9,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
     <meta charset="UTF-8">
     <meta name="description" content="Anime Template">
     <meta name="keywords" content="Anime, unica, creative, html">
@@ -34,7 +33,7 @@
  
 </head>
 <body>
-	<%@ include file="header.jsp" %>
+	<%@ include file="/views/common/header.jsp" %>
 	
 	<div class="outer">
 		<h1>서비스 에러 발생!!!</h1>
@@ -44,7 +43,7 @@
 	</div>
 	
 	
-	<%@ include file="footer.jsp" %>
+	<%@ include file="/views/common/footer.jsp" %>
 	
 
 
@@ -56,6 +55,5 @@
 	<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/js/main.js"></script>	
-
 </body>
 </html>

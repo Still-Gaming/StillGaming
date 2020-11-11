@@ -22,6 +22,10 @@
 		}
 		
 		.header__menu ul li .dropdown {
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/develop
 			background: #EAEAEA;
 	  }  	
 	  

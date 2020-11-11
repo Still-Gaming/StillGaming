@@ -18,7 +18,7 @@
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Still Gaming | 마이페이지</title>
+    <title>Still Gaming | 내가 쓴 글 조회</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -102,19 +102,6 @@
 	<div class="btnArea">
 		<button onclick="location.href='<%= request.getContextPath() %>/views/board/boardInsertForm.jsp'">글쓰기</button>
 	</div>
-	
-	<form action="<%= request.getContextPath() %>/search.bo">
-		<div class="searchArea">
-			<select name="category" id="category">
-				<option value="title" selected>제목</option>
-				<option value="memberId">작성자</option>
-			</select>
-			
-			<input type="text" name="searchWord" id="searchWord" />
-			
-			<button>검색</button>
-		</div>
-	</form>
 	
 	
 	<%@ include file="../common/footer.jsp" %>

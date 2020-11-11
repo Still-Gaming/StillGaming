@@ -46,8 +46,8 @@
 				    
 				    <br/>
 				    <div align="center">
-				      	<button type="reset">취소</button>
-				    	<button type="submit">등록</button>
+				      	<button class="btn btn-danger" type="reset">취소</button>
+				    	<button class="btn btn-success" type="submit">등록</button>
 				    </div>
 				</form>
 			</div>
