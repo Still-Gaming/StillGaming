@@ -148,8 +148,8 @@
 								</tr>
 								<tr class="comment replyList<%= co.getComtLevel()%>">
 									<td colspan="3" style="background : transparent;">
-									<textarea class="reply-content" cols="105" rows="3"
-									 readonly="readonly"><%= co.getComtCont() %></textarea>
+										<textarea class="reply-content" cols="105" rows="3"
+										 readonly="readonly"><%= co.getComtCont() %></textarea>
 									</td>
 								</tr>
 							</table>
@@ -161,33 +161,22 @@
 						%>
                         
                         
-                        <!-- for(GameReview co : clist) { 
-	                        <div class="anime__review__item">
-	                        	<div class="anime__review__item__pic">
-	                                <!-- <img src="img/anime/review-1.jpg" alt=""> -->
-						<!-- 	</div>
-	                            <div class="anime__review__item__text">
-	                                <h6> co.getMemberId() </h6>
-	                                <p> co.getComtCont() </p>
-	                            </div>
-	                            <div>
-	                      -->	<!-- 댓글 수정, 삭제 버튼 들어갈 부분 -->
-	                     <!--	</div>
-	                        </div>
-                         } -->
-                        
     				</div>
     				<div class="anime__details__form" style="clear: both;">
                         <div class="section-title">
                             <h5>댓글 등록</h5>
                         </div>
                         <form action="<%= request.getContextPath() %>/reviewInsert.do">
-                        	<input type="hidden" name="memberId" value="<%= m.getMemberId() %>">
 							<input type="hidden" name="gminfoNum" value="<%= gi.getGminfoNum() %>" />
 							<input type="hidden" name="refCno" value="0" />
 							<input type="hidden" name="comtLevel"  value="1"/>
                             <textarea name="comtCont" placeholder="내용을 입력해주세요."></textarea>
-                            <button type="submit"><i class="fa fa-location-arrow"></i> 등록</button>
+                            <% if(m != null) { %>
+                        		<input type="hidden" name="memberId" value="<%= m.getMemberId() %>">
+                            	<button type="submit"><i class="fa fa-location-arrow"></i> 등록</button>
+                            <% } else { %>
+                            	<button type="submit" disabled><i class="fa fa-location-arrow"></i> 등록</button>
+                            <% } %>
                         </form>
                     </div>
     			</div> <!-- div class="col-lg-8 col-md-8" -->
@@ -226,19 +215,7 @@
     	</div>
     </section>
     
-    
-    <!-- =====================================================  -->
-			
-
-	
-	<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/js/mixitup.min.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/js/main.js"></script> 
+    <%@ include file="/views/common/footer.jsp" %> 
 		
 		
 		
@@ -335,9 +312,4 @@
 	<br />
 	<br />
 		
-	</div>
-	
-	
-		<%@ include file="/views/common/footer.jsp" %>
-	
-    </html>
+</html>
