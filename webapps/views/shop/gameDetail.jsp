@@ -7,62 +7,93 @@
 	GameImage gie = (GameImage)request.getAttribute("GameImage");
 	ArrayList<GameReview> clist = (ArrayList<GameReview>)request.getAttribute("clist");
 %>
+
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>게임 상세 페이지</title>
-<style>
-	td {
-		color : black;
-	}
-	body {
-		background : black;
-	}
-</style>
+    <meta charset="UTF-8">
+    <meta name="description" content="Anime Template">
+    <meta name="keywords" content="Anime, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>게임 상세 페이지</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/plyr.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
+
 </head>
+
 <body>
+
 	<%@ include file="/views/common/header.jsp" %>
-		
-			<h2 align="center">게임 상세 보기</h2>
-			<div class="tableArea">
-			<table align="center" width="800px"> 
-			<tr>
-				<td width="50px">게임 타이틀</td> 
-				<td colspan="5"><span><%= gi.getGminfoName() %></span></td> 
-			</tr>
-			<tr>
-				<td>게임 설명 </td>
-				<td colspan="6"><span><%= gi.getGminfoExp() %></span></td>
-				<td>가격</td>
-				<td><span><%= gi.getGminfoPrice() %></span></td>
-				
-			</tr>
-			
-			<tr>
-				<td>대표사진</td>
-				<td colspan="4">
-					<div id="titleImgArea" align="center">
-						<img id="gameImg" src="<%= request.getContextPath() %>/resources/gameimageUploadFiles/<%= gie.getGmimgCgfile() %>">
-					</div>
-				</td>
-				
-			</tr>
-			
-		</table>
-		
-		<div class="btnArea" align="center">
-			<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do'"> 목록 </button>
-			
-			
-				<button onclick="location.href='<%= request.getContextPath() %>/updateView.do?gminfoNum='+<%=gi.getGminfoNum()%>">수정</button>
-				<button onclick="location.href='<%= request.getContextPath() %>/delete.do?gminfoNum='+<%=gi.getGminfoNum()%>">삭제</button>
-			
-		</div>
-		</div>
-		
-	
-		<div class="replyArea">
+
+
+    <!-- Anime Section Begin -->
+    <section class="anime-details spad" style="background: #0b0c2a;">
+        <div class="container">
+            <div class="anime__details__content">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="anime__details__pic set-bg">
+                           <img id="gameImg" src="<%= request.getContextPath() %>/resources/gameimageUploadFiles/<%= gie.getGmimgCgfile() %>">
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="anime__details__text">
+                            <div class="anime__details__title">
+                                <h3> <%= gi.getGminfoName() %> </h3>
+                                <span></span>
+                            </div>
+                            <div class="anime__details__rating">
+                                <div class="rating">
+                                    <a href="#"><i class="fa fa-star"></i></a>
+                                    <a href="#"><i class="fa fa-star"></i></a>
+                                    <a href="#"><i class="fa fa-star"></i></a>
+                                    <a href="#"><i class="fa fa-star"></i></a>
+                                    <a href="#"><i class="fa fa-star-half-o"></i></a>
+                                </div>
+                               
+                            </div>
+                            <p> <%= gi.getGminfoExp() %> </p>
+                            <div class="anime__details__widget">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6">
+                                        <ul>
+                                            <li><span>가격 :</span><%= gi.getGminfoPrice() %></li>
+                                            <li><span>회사 : </span> <%= gi.getGminfoCompany() %></li>
+                                            <li><span>출시 일 : </span> <%= gi.getGminfoDate() %></li>
+                                           
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="anime__details__btn">
+                                <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> 찜 목록</a>
+                                <a href="#" class="watch-btn"><span>장바구니</span> <i
+                                    class="fa fa-angle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+              <div class="replyArea">
 			<div class="replyWriteArea">
 				<form action="<%= request.getContextPath() %>/reviewInsert.do" method="post">
 					<input type="hidden" name="memberId" value="<%= m.getMemberId() %>">
@@ -70,9 +101,19 @@
 					<input type="hidden" name="refCno" value="0" />
 					<input type="hidden" name="comtLevel"  value="1"/>
 					
-					<table align="center">
-						<tr>
-							<td>댓글 작성</td>
+					<div class="row">
+                    <div class="col-lg-10 col-md-10">
+                        <div class="anime__details__review">
+                            <div class="section-title">
+                                <h5>Reviews</h5>
+                            </div>
+                            <div class="anime__review__item">
+                            <div class="anime__review__item__pic"></div>
+                            <div class="anime__review__item__text" style="overflow:hidden; background:#1d1e39; padding:18px 30px 16px 20px; border-radius:10px;">
+                                    <h6>Chris Curry - <span>1 Hour ago</span></h6>
+                                    <p>whachikan Just noticed that someone categorized this as belonging to the genre
+                                    "demons" LOL</p>
+                                </div>
 							<td>
 								<textarea name="comtCont" id="replyContent" 
 								          cols="80" rows="3"></textarea>
@@ -88,10 +129,10 @@
 				</form>
 		<div class="replySelectArea">
 		
-		
+			
 			<!-- 댓글 목록 구현 영역 -->
 			<% if (clist.size() == 0 ) { %>
-				<span>여러분이 새 댓글의 주인공이 되어 보세요!</span>
+				<span style ="color:white;">여러분이 새 댓글의 주인공이 되어 보세요!</span>
 			<% } else {
 				for(GameReview bco : clist) { %>
 				
@@ -146,6 +187,7 @@
 				}
 			}
 			%>
+			
 			</div>
 		
 		</div>
@@ -252,12 +294,10 @@
 	<br />
 	<br />
 	<br />
-	
 		
 	</div>
-		
+	
+	
 		<%@ include file="/views/common/footer.jsp" %>
-		
-
-</body>
-</html>
+	
+    </html>
