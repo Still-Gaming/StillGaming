@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" %>
-<%  %>
+	pageEncoding="UTF-8" import="java.util.*" %>
+<% 
+	HashMap<String, Integer> counts = (HashMap<String, Integer>)request.getAttribute("counts");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,6 +109,7 @@
 							</div>
 							<div class="service-info">
 								<i align="center" class="service-icon fa fa-shopping-cart"></i>
+								<%= counts.get("cartCount") %>
 							</div>
 							<a
 								href="<%=request.getContextPath()%>/cart.my?memberId=<%=m.getMemberId()%>"
@@ -123,6 +126,7 @@
 							</div>
 							<div class="service-info">
 								<i align="center" class="service-icon fa fa-credit-card-alt"></i>
+								<%= counts.get("ordCount") %>
 							</div>
 							<a
 								href="<%=request.getContextPath()%>/ord.my?memberId=<%=m.getMemberId()%>"
@@ -139,6 +143,7 @@
 							</div>
 							<div class="service-info">
 								<i align="center" class="service-icon fa fa-align-left"></i>
+								<%= counts.get("listCount") %>   
 							</div>
 							<a
 								href="<%=request.getContextPath()%>/post.my?memberId=<%=m.getMemberId()%>"
