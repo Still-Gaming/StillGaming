@@ -116,9 +116,9 @@ hr {
 	<section>
 	<h4 align="center">구매내역</h4>
 	<hr />
-	<input type="date" id="date1"> ~ <input type="date" id="date2">
+	<input type="date" name="date1" id="date1"> ~ <input type="date" name="date2" id="date2">
 	<button type="button" class="btn btn-default" onclick="search();">조회</button>
-	<button type="reset" class="btn btn-default">초기화</button>
+	<button type="reset" class="btn btn-default" onclick="history.back();">초기화</button>
 	<br />
 	<br />
 		<div class="tableArea">

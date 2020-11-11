@@ -27,20 +27,26 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
+<style>
+	.header__right, .heaer__ul {
+		    font-weight:normal;
+	}
+</style>
+
 </head>
 <body>
 
 	<%@ include file="/views/common/header.jsp" %>
-		
+		<br /><br /><br />
 	<div class="container table-responsive-xs">
 		<table align="center" class="table table-bordered table-hover">
 			<thead class="table-secondary">
 				<tr align="center">
-					<th>번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>조회수</th>
-					<th>작성일</th>
+					<th width="20">번호</th>
+					<th width="170">제목</th>
+					<th width="40">작성자</th>
+					<th width="20">조회수</th>
+					<th width="40">작성일</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -109,12 +115,11 @@
 			</select>
 			
 			&nbsp;&nbsp;
-			
-			<input type="text" name="searchWord" id="searchWord" placeholder="내용을 입력해주세요." class="form-control" />
+			<input type="text" align="center" name="searchWord" id="searchWord" placeholder="내용을 입력해주세요." class="form-control" />
 		
 			&nbsp;&nbsp;
 			
-			<span class="form-inline-btn">
+			<span class="form-inline-btn" align="center">
 				<button class="btn btn-light" type="button" id="searchBtn">검색</button>
 			</span>
 		</form>
@@ -146,14 +151,8 @@
 			
 			$('#searchFrm').submit();
 		});
+		
 	</script>
 	
-<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/nice-select.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/mixitup.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/slicknav.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
 </body>
 </html>

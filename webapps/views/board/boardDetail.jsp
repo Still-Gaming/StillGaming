@@ -20,54 +20,164 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
 <style>
-	td {
-		color : white;
-	}
+.sub_news,.sub_news th,.sub_news td{
+  border:0;
+}
+
+.sub_news a{
+  color:#383838;
+  text-decoration:none;
+}
+
+.sub_news{
+  width:100%;
+  border-bottom:1px solid #999;
+  color:#666;
+  font-size:15px;
+  table-layout:fixed;
+}
+
+.sub_news caption{
+  display:none;
+}
+
+.sub_news th{
+  padding:5px 0 6px;
+  border-top:solid 1px #999;
+  border-bottom:solid 1px #b2b2b2;
+  background-color:#f1f1f4;
+  color:#333;
+  font-weight:bold;
+  line-height:20px;
+  vertical-align:top;
+  text-align: center;
+}
+
+.sub_news td{
+  padding:8px 0 9px;
+  border-bottom:solid 1px #d2d2d2;
+  border-top: solid 1px #d2d2d2;
+  text-align:center;
+  line-height:18px;
+}
+
+.sub_news .date,.sub_news .hit{
+  padding:0;
+  font-family:Tahoma;
+  font-size:11px;
+  line-height:normal;
+}
+
+.sub_news .title{
+  text-align:left; 
+  padding-left:15px; 
+  font-size:13px;
+}
+
+.sub_news .title .pic,.sub_news .title .new{
+  margin:0 0 2px;
+  vertical-align:middle;
+}
+
+.sub_news .title a.comment{
+  padding:0;
+  background:none;
+  color:#f00;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.sub_news tr.reply .title a{
+  padding-left:16px;
+  background:url(../images/ic_reply.png) 0 1px no-repeat;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+textarea {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.btn-default:hover {background: #ddd;}
+
+#upbtn {
+	margin-left: 905px;
+}
+
+.replyArea {
+	background : #f1f1f4;
+}
+
+#updateBtn {
+		margin-left: 745px;
+	
+}
 </style>
 </head>
 <body>
 	<%@ include file="/views/common/header.jsp" %>
 	
-		<h2 align="center">게시글 상세 보기</h2>
+	<br /><br /><br />
+	<section class="container">
 		<div class="tableArea">
-			<table align="center" width="800px">
+			<table class="sub_news" cellspacing="0" >
+			<tbody style="border: 1px solid #d2d2d2;">
+			
 				<tr>
-					<td colspan="3"><span><%= b.getBoardTitle() %></span></td>
+					<td style="width:10%;background-color:#f1f1f4;">제목 </td>	
+					<td colspan="5"><span><%= b.getBoardTitle() %></span></td>
 				</tr>
 				<tr>
-					<td colspan="2"><span><%= b.getMemberId() %></span></td>
-					<td rowspan="2"><button type="button">신고하기</button></td>
+					<td style="background-color:#f1f1f4;">작성자 </td>
+					<td colspan="5"><span><%= b.getMemberId() %></span></td>
 				</tr>
 				<tr>
-					<td><span><%= b.getBoardDate() %></span></td>
-					<td><span>조회 <%= b.getBoardCount() %></span></td>
+					<td style="background-color:#f1f1f4;">작성일 </td>
+					<td colspan="3"><span><%= b.getBoardDate() %></span></td>
+					<td style="background-color:#f1f1f4;">조회수 </td>
+					<td colspan="1"><span> <%= b.getBoardCount() %></span></td>
 				</tr>
-				<tr>
-					<td colspan="3">
-						<div class="imgArea">
+				<tr style="height:300px;overflow-y:auto;text-align:left;">
+					<td style="background-color:#f1f1f4;">내용</td>
+						<td colspan="5"><div class="imgArea">
 						<% if(bf != null && bf.getFileChangeName() != null && bf.getFileChangeName().length() > 0) { %>
 							<img src="<%= request.getContextPath() %>/resources/boardUploadFiles/<%= bf.getFileChangeName() %>" />
 						<% } %>
 						</div>
 						<div class="textArea">
 							<%= b.getBoardText() %>
-						</div>
-					</td>
+						</div></td>
 				</tr>
+				</tbody>
 			</table>
 		</div>
 		
-		<div class="btnArea" align="center">
-			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo'">목록으로</button>
-			
+		<br />
+		<div class="btnArea" align="left">
+			<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/selectList.bo'">목록으로</button> 
+			&nbsp;
 			<% if(m != null && m.getMemberId().equals(b.getMemberId())){ %>
-				<button onclick="location.href='<%= request.getContextPath() %>/updateView.bo?boardNo='+<%=b.getBoardNo()%>">수정</button>
-				<button onclick="location.href='<%= request.getContextPath() %>/delete.bo?boardNo='+<%=b.getBoardNo()%>">삭제</button>
+				<button class="btn btn-default" id="upbtn" onclick="location.href='<%= request.getContextPath() %>/updateView.bo?boardNo='+<%=b.getBoardNo()%>">수정</button>
+				<button class="btn btn-default"  onclick="location.href='<%= request.getContextPath() %>/delete.bo?boardNo='+<%=b.getBoardNo()%>">삭제</button>
 			<% } %>
 		</div>
 		
-		
+		<br />
 		<div class="replyArea">
+		<br />
 			<div class="replyWriteArea">
 				<form action="<%= request.getContextPath() %>/insert.co" method="post">
 					<input type="hidden" name="memberId" value="<%= m.getMemberId() %>">
@@ -80,27 +190,27 @@
 							<td>댓글 작성</td>
 							<td>
 								<textarea name="commentText" id="replyContent" 
-								          cols="80" rows="3"></textarea>
+								          cols="130" rows="3"></textarea>
 							</td>
 							<td>
-								<button type="submit" id="addReply">
-									댓글 등록
+								<button class="btn btn-default" type="submit" id="addReply">
+									등록
 								</button>
 							</td>
 							
 						</tr>
 					</table>
-				</form>>
+				</form>
 		<div class="replySelectArea">
-		
-		
+		<hr />
 			<!-- 댓글 목록 구현 영역 -->
 			<% if (clist.size() == 0) { %>
-				<span>여러분이 새 댓글의 주인공이 되어 보세요!</span>
+				<p style="text-align: center;">여러분이 새 댓글의 주인공이 되어 보세요!</p>
+				<br />
 			<% } else {
 				for(BoardComment bco : clist) { %>
 				
-			<table id="replySelectTable"
+			<table align="center" id="replySelectTable"
 		      	 style="margin-left : <%= (bco.getCommentLevel()-1) * 15 %>px;
 		      	 		width : <%= 800 - ((bco.getCommentLevel()-1) * 15)%>px;"
 		      	 class="replyList<%=bco.getCommentLevel()%>">
@@ -112,24 +222,24 @@
  					<%if(m.getMemberId().equals(bco.getMemberId())) { %>
 						<input type="hidden" name="commentNo" value="<%=bco.getCommentNo()%>"/>
 							  
-						<button type="button" class="updateBtn" 
+						<button type="button" class="btn btn-default" id="updateBtn"
 							onclick="updateReply(this);">수정하기</button>
 							
-						<button type="button" class="updateConfirm"
+						<button type="button" class="btn btn-default" id="updateConfirm"
 							onclick="updateConfirm(this);"
 							style="display:none;" >수정완료</button> &nbsp;&nbsp;
 							
-						<button type="button" class="deleteBtn"
+						<button type="button" class="btn btn-default" id="deleteBtn"
 							onclick="deleteReply(this);">삭제하기</button>
 							
 					<% } else if( bco.getCommentLevel() < 3) { %>
 						<input type="hidden" name="memberId" value="<%= bco.getMemberId()%>"/>
 						<input type="hidden" name="commentNo" value="<%= bco.getCommentNo() %>" />
 						<input type="hidden" name="commentLevel" value="<%=bco.getCommentLevel() %>" />
-						<button type="button" class="insertBtn" 
+						<button type="button" class="btn btn-default" id="insertBtn"
 							 onclick="reComment(this);">댓글 달기</button>&nbsp;&nbsp;
 							 
-						<button type="button" class="insertConfirm"
+						<button type="button" class="btn btn-default" id="insertConfirm"
 							onclick="reConfirm(this);"
 							style="display:none;" >댓글 추가 완료</button> 
 							
@@ -140,7 +250,7 @@
 				</tr>
 				<tr class="comment replyList<%=bco.getCommentLevel()%>">
 					<td colspan="3" style="background : transparent;">
-					<textarea class="reply-content" cols="105" rows="3"
+					<textarea class="reply-content" cols="155" rows="3"
 					 readonly="readonly"><%= bco.getCommentText() %></textarea>
 					</td>
 				</tr>
@@ -152,13 +262,13 @@
 			}
 			%>
 			</div>
-		
 		</div>
-		<script>
+	</section>
+<script>
 		
 			function reComment(obj) {
 				// 추가 완료 버튼
-				$(obj).siblings('.insertConfirm').css('display', 'inline');
+				$(obj).siblings('#insertConfirm').css('display', 'inline');
 				
 				// 현재 클릭한 버튼 숨기기
 				$(obj).css('display', 'none');
@@ -200,7 +310,7 @@
 				$(obj).parent().parent().next().find('textarea').removeAttr('readonly');
 				
 				// 수정 완료 버튼 보이게 하기
-				$(obj).siblings('.updateConfirm').css('display', 'inline');
+				$(obj).siblings('#updateConfirm').css('display', 'inline');
 				
 				// 현재 클릭한 수정 버튼 숨기기
 				$(obj).css('display', 'none');

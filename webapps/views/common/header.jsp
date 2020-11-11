@@ -30,12 +30,7 @@
 
                 		  <ul class="header__ul">
                                 <li><a href="<%= request.getContextPath() %>/gamelist.do">Store</a></li>
-                                <li><a href="#">Community<span class="arrow_carrot-down"></span></a>
-                                    <ul class="dropdown">
-                                        <li><a href="#" id="drop">공지사항</a></li>
-                                        <li><a href="<%= request.getContextPath() %>/selectList.bo" id="drop">자유게시판</a></li>
-                                    </ul>
-                                </li>
+                                <li><a href="<%= request.getContextPath() %>/selectList.bo">Community</a></li>
                                 
 								<li><a href="#" >Q&A<span class="arrow_carrot-down"></span></a>
                                    <ul class="dropdown">

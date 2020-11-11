@@ -60,7 +60,7 @@
                             <div class="hero__text">
                                 <div class="label">FPS</div>
                                 <h2>Battle Grounds</h2>
-                                <p>PLAYERUNKNOWN’S BATTLEGROUNDS는 배틀로얄 게임으로, 외딴 섬에서 총 100명의 플레이어가 다양한 무기와 전략을 이용하여 마지막 1명이 살아남는 순간까지 전투를 하게 됩니다.</p>
+                                <p>An online and local party game of teamwork and betrayal for 4-10 players...in space!</p>
                                 <a href="#"><span>Buy Now</span> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                             <div class="hero__text">
                                 <div class="label">Action RPG</div>
                                 <h2>CyberPunk 2077</h2>
-                                <p>사이버펑크 2077은 권력, 사치와 신체 개조에 집착하는 거대 도시 나이트 시티를 배경으로 한 오픈 월드, 액션 어드벤처 게임입니다. 당신은 무법자 용병 V가 되어, 유일무이한 불멸의 열쇠를 뒤쫓게 됩니다.</p>
+                                <p>An online and local party game of teamwork and betrayal for 4-10 players...in space!</p>
                                 <a href="#"><span>Buy Now</span> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
@@ -648,17 +648,6 @@
 <!-- Product Section End -->
 
 	<%@ include file="views/common/footer.jsp" %>
-
-<!-- Js Plugins -->
-<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/mixitup.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
-
 
 </body>
 

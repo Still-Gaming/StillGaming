@@ -38,7 +38,7 @@ public class MyOrder extends HttpServlet {
 		
 		MyPageService mps = new MyPageService();
 		
-		ArrayList<Ord> list = new ArrayList<>();
+		ArrayList<Ord> list = null;
 
 		String page = "";
 		

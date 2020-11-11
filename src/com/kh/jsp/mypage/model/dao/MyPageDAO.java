@@ -280,13 +280,14 @@ public class MyPageDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
+		
 		String sql = prop.getProperty("searchOrd");
 		
 		try {
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1, date1);
-			pstmt.setString(2, date2);		
+			pstmt.setString(1, date2);
+			pstmt.setString(2, date1);		
 			pstmt.setString(3, memberId);
 			
 			rset = pstmt.executeQuery();
@@ -294,10 +295,19 @@ public class MyPageDAO {
 			while(rset.next()) {
 				Ord o = new Ord();
 				
-				o.setOrdNo(rset.getInt(1));
-				o.setMemberId(rset.getString(2));
-				o.setGminfoNum(rset.getInt(3));
+				o.setGminfoNum(rset.getInt(1));				
+				o.setOrdNo(rset.getInt(2));
+				o.setMemberId(rset.getString(3));
 				o.setOrdDate(rset.getDate(4));
+				o.setGminfoName(rset.getString(5));
+				o.setGminfoDate(rset.getDate(6));
+				o.setGminfoCompany(rset.getString(7));
+				o.setGminfoExp(rset.getString(8));
+				o.setGmTypenum(rset.getInt(9));
+				o.setGminfoAge(rset.getInt(10));
+				o.setGminfoPrice(rset.getInt(11));
+				
+				list.add(o);
 			}
 			
 		} catch (SQLException e) {

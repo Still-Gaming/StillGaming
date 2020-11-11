@@ -5,6 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>FAQ </title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/plyr.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
+
 <style>
 body{background:#f4f4f4}
 .btn{padding:0;background:transparent;border:0;outline:0}
@@ -228,5 +244,15 @@ function bindingAccordionEvent(wrap){
 	
 	
 	<%@ include file="/views/common/footer.jsp" %>
+	
+	
+	<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/mixitup.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/main.js"></script>	
+	
 </body>
 </html>

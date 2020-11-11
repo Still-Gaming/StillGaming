@@ -71,6 +71,7 @@ h4 {
     background-color: #fff;
     border-color: #ccc;
 }
+
  </style>
 </head>
 <body>
@@ -109,12 +110,17 @@ h4 {
 	</div>
 	<br />
 	
+	<div>
+		<span><button id="delete" class="btn btn-default" onclick="deleteChk();"><i class="fa fa-check"></i>삭제</button></span>
+		<b style="text-align: right;" id="priceAll">총 금액 : <span style="font-size: 22px;" id="price">0</span><span> 원</span></b>
+	</div>
+	
 		<hr style="border-width: 3px;" />
 	
-	<button id="delete" class="btn btn-default" onclick="deleteChk();"><i class="fa fa-check"></i>삭제</button>
+	<div align="center">
+	<button class="btn btn-default" onclick="readyForm();">결제하기</button>
+	</div>
 	
-	<p align="right">총 결제 금액 </p>
-
     <br />
     <br />
     <br />
@@ -133,6 +139,16 @@ h4 {
 	        }else{
 	            $("input[type=checkbox]").prop("checked",false);
 	        }
+	        
+	        var price = 0;
+			
+			$('input:checkbox[name=gno]').each(function() {
+				if($(this).prop('checked')) {
+					price += parseInt($(this).parent().siblings().eq(3).text());
+				}
+			});
+			
+			$('#price').text(price);
 	    })
 	
 	})
@@ -154,6 +170,31 @@ h4 {
 				location.href='<%= request.getContextPath() %>/chkDelete.my?memberId=<%= m.getMemberId() %>&gno=' + chk;
 		  }
 		}
+	
+	$('input:checkbox[name=gno]').on('change', function() {
+		var price = 0;
+		
+		$('input:checkbox[name=gno]').each(function() {
+			if($(this).prop('checked')) {
+				price += parseInt($(this).parent().siblings().eq(3).text());
+			}
+		});
+		
+		$('#price').text(price);
+	});
+	
+	function readyForm(){
+		var gameInfoNums = "";
+		$('input:checkbox[name=gno]').each(function() {
+			if($(this).prop('checked')) {
+				gameInfoNums += $(this).parent().parent().find('input:hidden').val() + ",";
+			}
+		});
+		
+		gameInfoNums = gameInfoNums.substring(0, gameInfoNums.lastIndexOf(","));
+		
+		location.href = '<%= request.getContextPath() %>/view.pay?memberId=<%= m.getMemberId() %>&gameInfoNums=' + gameInfoNums;
+	}
 </script>
 
 </body>

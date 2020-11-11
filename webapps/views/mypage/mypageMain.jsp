@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
+<%  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,6 +62,7 @@
 
 	<%@ include file="../common/header.jsp"%>
 
+	
 	<div class="bg-color-sky-light" data-auto-height="true">
 		<div class="content-lg container">
 			<div class="row row-space-1 margin-b-2">
@@ -152,7 +154,6 @@
 	<%@ include file="../common/footer.jsp"%>
 
 </body>
-
 
 <script
 	src="<%=request.getContextPath()%>/resources/js/jquery-3.3.1.min.js"></script>
