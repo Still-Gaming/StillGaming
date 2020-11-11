@@ -3,13 +3,13 @@
 <%
 	ArrayList<GameInfo> list = (ArrayList<GameInfo>)request.getAttribute("list");
 	
-	
-	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	int listCount = pi.getListCount();
-	int currentPage = pi.getCurrentPage();
-	int maxPage = pi.getMaxPage();
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
+	PageInfo pi = null;
+	String keyword = request.getParameter("keyword");
+	boolean chkSearch = false;
+	if(list != null && list.size() > 0 && (keyword == null)) {
+		pi = (PageInfo)request.getAttribute("pi");
+		chkSearch = true;
+	}
 %>
 
 
@@ -19,91 +19,7 @@
 
 <title>스틸게이밍 상점</title>
 
-	<style>
-			/* Style the tab */
-			.tab {
-				overflow: hidden;
-				border: 1px solid #ccc;
-				background-color: #FBF8F8;
-			}
-			
-			/* Style the buttons that are used to open the tab content */
-			.tab button {
-				background-color: inherit;
-				float: left;
-				border: none;
-				outline: none;
-				cursor: pointer;
-				padding: 14px 16px;
-				transition: 0.3s;
-			}
-			
-			/* Change background color of buttons on hover */
-			.tab button:hover {
-				background-color: #ddd;
-			}
-			
-			/* Create an active/current tablink class */
-			.tab button.active {
-				background-color: #ccc;
-			}
-			
-			/* Style the tab content */
-			.tabcontent {
-				display: none;
-				padding: 6px 12px;
-				border: 1px solid #ccc;
-				border-top: none;
-			}
-			.tabcontent {
-  				animation: fadeEffect 1s; /* Fading effect takes 1 second */
-  				background-color : #ddd;
-			}
-			
-
-		/* Go from zero to full opacity */
-		@keyframes fadeEffect {
- 			 from {opacity: 0;}
- 		 to {opacity: 1;}
-		}
-				* {
-		  box-sizing: border-box;
-					}
-		
-		/* Style the search field */
-		form.example input[type=text] {
-		  padding: 10px;
-		  font-size: 20px;
-		  border: 1px solid grey;
-		  float: right;
-		  width: 20%;
-		  background: white;
-		}
-		
-		/* Style the submit button */
-		form.example button {
-		  float: right;
-		  width: 20%;
-		  padding: 10px;
-		  background: #2196F3;
-		  color: white;
-		  font-size: 17px;
-		  border: 1px solid grey;
-		  border-left: none; /* Prevent double borders */
-		  cursor: pointer;
-		}
-		
-		form.example button:hover {
-		  background: #0b7dda;
-		}
-		
-		/* Clear floats */
-		form.example::after {
-		  content: "";
-		  clear: both;
-		  display: table;
-		}
-	</style>
+	
 	<!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
@@ -118,8 +34,6 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
-    
-	
     
 </head>
 <body>
@@ -136,12 +50,12 @@
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-6">
                                     <div class="section-title">
-                                        <h4>Games</h4>
+                                        <h4 style='color:black;'>Games</h4>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-6">
                                     <div class="product__page__filter">
-                                        <p>Order by:</p>
+                                        <p  style='color:black;'> Order by:</p>
                                         <select>
                                             <option value="">A-Z</option>
                                             <option value="">1-10</option>
@@ -149,10 +63,24 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="searchArea" align="center">
+									<select id="searchCondition" name="searchCondition">
+										<option value="">---</option>
+										<option value="name">게임이름</option>
+										<option value="company">게임회사</option>
+										<option value="content">내용</option>
+								</select>
+								<input type="search" id="keyword" placeholder="키워드를 입력하세요!"> 
+								<button type="button" onclick="search();">검색하기</button>
+							</div>
                             </div>
                         </div>
                         <div class="row">
-                        <% for(GameInfo gi : list) { %>
+                        <% if(list == null || list.size() == 0) { %>
+                        	<div class="col-lg-10 col-md-10 col-sm-10">
+                        		<h2>조회된 상품이 없습니다.</h2>
+                        	</div>
+                        <% } else { for(GameInfo gi : list) { %>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="<%= request.getContextPath() %>/resources/gameimageUploadFiles/<%= gi.getGminfoImage() %>">
@@ -162,136 +90,76 @@
                                     </div>
                                     <div class="product__item__text">
                                         <ul>
-                                            <li><%= gi.getGminfoType() %></li>
+                                            <li style="color : black;"><%= gi.getGminfoType() %></li>
                                         </ul>
-                                        <h5><a href="<%= gi.getGminfoNum() %>"><%= gi.getGminfoName() %></a></h5>
+                                        <h5><a  style="color : black;" href="<%= request.getContextPath() %>/selectone.do?gminfoNum=<%=gi.getGminfoNum()%>"><%= gi.getGminfoName() %></a></h5></div>
+                                       	&nbsp;&nbsp;
+                                      
                                     </div>
                                 </div>
                             </div>
-                            <% } %>
+                            <% } } %>
                         </div>
                         <button onclick="location.href='views/shop/gameInsertForm.jsp'">작성하기</button>
                     </div>
-                    <div class="product__pagination">
-                    <a href="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=1'"><<</a>
+                    <% if(chkSearch) {  %> 
+                    <div class="pagingArea" align="center">
+	
+		<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=1'"><<</button>
 		
-		<%  if(currentPage <= 1){  %>
-			<a class="current-page"><</a>
+		<%  if(pi.getCurrentPage() <= 1){  %>
+			<button disabled><</button>
 		<%  }else{ %>
-			<a href="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= currentPage - 1 %>'"><</a>
+			<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= pi.getCurrentPage() - 1 %>'"><</button>
 		<%  } %>
 			
-		<% for(int p = startPage; p <= endPage; p++){
-				if(p == currentPage){ %>
-				<a class="current-page"><%= p %></a>
+		<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){
+				if(p == pi.getCurrentPage()){ %>
+				<button disabled><%= p %></button>
 			<% } else { %>
-				<a href="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= p %>'"><%= p %></a>
+				<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= p %>'"><%= p %></button>
 			<% } %>
 		<% } %>
 				
-		<%  if(currentPage >= maxPage){  %>
-			<a class="current-page">></a>
+		<%  if(pi.getCurrentPage() >= pi.getMaxPage()){  %>
+			<button disabled>></button>
 		<%  } else { %>
-			<a href="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= currentPage + 1 %>'">></a>
+			<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= pi.getCurrentPage() + 1 %>'">></button>
 		<%  } %>
 		
-		<a href="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= maxPage %>'">>></a>
+		<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= pi.getMaxPage() %>'">>></button>
+		
+	</div>
+	<% } %>
+     </div>
+             
+	</div>
 	
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-8">
-                    <div class="product__sidebar">
-                        <div class="product__sidebar__view">
-                            <div class="section-title">
-                                <h5>Top Views</h5>
-                            </div>
-                            <ul class="filter__controls">
-                                <li class="active" data-filter="*">Day</li>
-                                <li data-filter=".week">Week</li>
-                                <li data-filter=".month">Month</li>
-                                <li data-filter=".years">Years</li>
-                            </ul>
-                            <div class="filter__gallery">
-                                <div class="product__sidebar__view__item set-bg mix day years"
-                                data-setbg="img/sidebar/tv-1.jpg">
-                                <div class="ep">18 / ?</div>
-                                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                <h5><a href="#">Boruto: Naruto next generations</a></h5>
-                            </div>
-                            <div class="product__sidebar__view__item set-bg mix month week"
-                            data-setbg="img/sidebar/tv-2.jpg">
-                            <div class="ep">18 / ?</div>
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                            <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-                        </div>
-                        <div class="product__sidebar__view__item set-bg mix week years"
-                        data-setbg="img/sidebar/tv-3.jpg">
-                        <div class="ep">18 / ?</div>
-                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                        <h5><a href="#">Sword art online alicization war of underworld</a></h5>
-                    </div>
-                    <div class="product__sidebar__view__item set-bg mix years month"
-                    data-setbg="img/sidebar/tv-4.jpg">
-                    <div class="ep">18 / ?</div>
-                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                    <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
-                </div>
-                <div class="product__sidebar__view__item set-bg mix day"
-	                data-setbg="img/sidebar/tv-5.jpg">
-	                <div class="ep">18 / ?</div>
-	                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-	                <h5><a href="#">Fate stay night unlimited blade works</a></h5>
-            	</div>
-        		</div>
-    		</div>
-		</div>
-	</div>
-	</div>
-	</div>
-	</section>
-	<script>
-		function openCity(evt, cityName) {
-		  // Declare all variables
-		  var i, tabcontent, tablinks;
-
-		  // Get all elements with class="tabcontent" and hide them
-		  tabcontent = document.getElementsByClassName("tabcontent");
-		  for (i = 0; i < tabcontent.length; i++) {
-		    tabcontent[i].style.display = "none";
-		  }
-
-		  // Get all elements with class="tablinks" and remove the class "active"
-		  tablinks = document.getElementsByClassName("tablinks");
-		  for (i = 0; i < tablinks.length; i++) {
-		    tablinks[i].className = tablinks[i].className.replace(" active", "");
-		  }
-
-		  // Show the current tab, and add an "active" class to the button that opened the tab
-		  document.getElementById(cityName).style.display = "block";
-		  evt.currentTarget.className += " active";
+<!-- Js Plugins -->
+	<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/mixitup.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/main.js"></script> 
+	
+	<script>  
+		
+		function search(){
+			location.href="<%=request.getContextPath()%>/searchGame.no?con="+$('#searchCondition').val()+"&keyword="+$('#keyword').val();
 		}
+		
 	</script>
+	
+	</section>
+	
 	
 	<%@ include file="/views/common/footer.jsp" %>
 	
-	<div class="search-model">
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-switch"><i class="icon_close"></i></div>
-        <form class="search-model-form">
-            <input type="text" id="search-input" placeholder="Search here.....">
-        </form>
-    </div>
-</div>
-
-<!-- Js Plugins -->
-<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/mixitup.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
+	
+	
 
 
 </body>

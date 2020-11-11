@@ -9,25 +9,26 @@ public class GameInfo {
 	private Date gminfoDate;          // 출시일
 	private String gminfoCompany;     // 개발사
 	private String gminfoExp;         // 게임설명
-	private int gmTypenum;            // 장르번호
+	private int gmTypeNum;            // 장르번호
 	private int gminfoAge;           // 등급번호
 	private int gminfoPrice;          // 가격
 	private String gminfoImage;      // 가상변수 1
 	private String gminfoAgeRank;    // 가상변수 2
 	private String gminfoType;    // 가상변수 3
 	
+	
 	public GameInfo() { }
 
 
 	public GameInfo(int gminfoNum, String gminfoName, Date gminfoDate, String gminfoCompany, String gminfoExp,
-			int gmTypenum, int gminfoAge, int gminfoPrice) {
+			int gmTypeNum, int gminfoAge, int gminfoPrice) {
 		super();
 		this.gminfoNum = gminfoNum;
 		this.gminfoName = gminfoName;
 		this.gminfoDate = gminfoDate;
 		this.gminfoCompany = gminfoCompany;
 		this.gminfoExp = gminfoExp;
-		this.gmTypenum = gmTypenum;
+		this.gmTypeNum = gmTypeNum;
 		this.gminfoAge = gminfoAge;
 		this.gminfoPrice = gminfoPrice;
 	}
@@ -41,14 +42,14 @@ public class GameInfo {
 	}
 
 
-	public GameInfo(String gminfoName, Date gminfoDate, String gminfoCompany, String gminfoExp, int gmTypenum,
+	public GameInfo(String gminfoName, Date gminfoDate, String gminfoCompany, String gminfoExp, int gmTypeNum,
 			int gminfoAge, int gminfoPrice) {
 		super();
 		this.gminfoName = gminfoName;
 		this.gminfoDate = gminfoDate;
 		this.gminfoCompany = gminfoCompany;
 		this.gminfoExp = gminfoExp;
-		this.gmTypenum = gmTypenum;
+		this.gmTypeNum = gmTypeNum;
 		this.gminfoAge = gminfoAge;
 		this.gminfoPrice = gminfoPrice;
 	}
@@ -57,7 +58,7 @@ public class GameInfo {
 	@Override
 	public String toString() {
 		return "GameInfo [gminfoNum=" + gminfoNum + ", gminfoName=" + gminfoName + ", gminfoDate=" + gminfoDate
-				+ ", gminfoCompany=" + gminfoCompany + ", gminfoExp=" + gminfoExp + ", gmTypenum=" + gmTypenum
+				+ ", gminfoCompany=" + gminfoCompany + ", gminfoExp=" + gminfoExp + ", gmTypeNum=" + gmTypeNum
 				+ ", gminfoAge=" + gminfoAge + ", gminfoPrice=" + gminfoPrice + "]";
 	}
 
@@ -112,13 +113,13 @@ public class GameInfo {
 	}
 
 
-	public int getGmTypenum() {
-		return gmTypenum;
+	public int getGmTypeNum() {
+		return gmTypeNum;
 	}
 
 
-	public void setGmTypenum(int gmTypenum) {
-		this.gmTypenum = gmTypenum;
+	public void setGmTypeNum(int gmTypeNum) {
+		this.gmTypeNum = gmTypeNum;
 	}
 
 
@@ -170,5 +171,10 @@ public class GameInfo {
 	public void setGminfoType(String gminfoType) {
 		this.gminfoType = gminfoType;
 	}
+
+
+	
+
+	
 
 }

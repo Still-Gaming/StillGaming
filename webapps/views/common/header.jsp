@@ -51,7 +51,7 @@
          <% } else { %>
          			<b><a href="/StillGaming/logout.me" style="color: black;" >LOGOUT</a></b>&nbsp; | &nbsp;
          			<b><a href="/StillGaming/views/mypage/mypageMain.jsp" style="color: black;" >MY PAGE</a></b>
-          	<% } %>          
+          	<% } %>
                     </div>
                 </div>
             </div>

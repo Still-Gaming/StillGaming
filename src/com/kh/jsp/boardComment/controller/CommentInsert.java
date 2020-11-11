@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.jsp.boardComment.model.serivce.BoardCommentService;
+import com.kh.jsp.boardComment.model.service.BoardCommentService;
 import com.kh.jsp.boardComment.model.vo.BoardComment;
 
 /**
@@ -34,11 +34,12 @@ public class CommentInsert extends HttpServlet {
 		String MemberId = request.getParameter("memberId");
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 		String commentText = request.getParameter("commentText");
-		int refcno = Integer.parseInt(request.getParameter("refcno"));
+		int refCno = Integer.parseInt(request.getParameter("refCno"));
 		int commentLevel = Integer.parseInt(request.getParameter("commentLevel"));
 		
 		
-		BoardComment comment = new BoardComment(boardNo, commentText, MemberId, refcno, commentLevel);
+
+		BoardComment comment = new BoardComment(boardNo, commentText, MemberId, refCno, commentLevel);
 		
 		int result = new BoardCommentService().insertComment(comment);
 		
@@ -46,6 +47,9 @@ public class CommentInsert extends HttpServlet {
 			response.sendRedirect("selectOne.bo?boardNo="+ boardNo);
 		} else {
 			
+			request.setAttribute("error-msg", "댓글 작성 실패");
+			
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
 	}
 
