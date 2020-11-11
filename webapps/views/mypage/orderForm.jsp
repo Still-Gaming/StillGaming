@@ -42,16 +42,14 @@
 		<table>
 			<thead>
 				<tr align="center">
-<!-- 					<th width="300">이미지</th>
- -->					<th width="260">게임명</th>
+					<th width="260">게임명</th>
 					<th width="80">가격</th>
 				</tr>
 			</thead>
 			<tbody>
 				<% for(GameInfo gi : list) { %>
 					<tr align="center">
-<%-- 						<td><img src="<%= gi.getGminfoImage() %>"></td>
- --%>						<td><%= gi.getGminfoName() %></td>
+							<td><%= gi.getGminfoName() %></td>
 							<td><%= gi.getGminfoPrice() %></td>
 					</tr>
 				<% } %>
