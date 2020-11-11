@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	
+	Member sm = (Member)request.getAttribute("searchMember");
 %>
 <!DOCTYPE html>
 <html>
@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Still Gaming | 찾기</title>
+    <title>비밀번호 변경</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -40,43 +40,30 @@
 <body>
 	<%@ include file="../common/header.jsp" %>
 	
-	<div class="container">
-		<form id="searchIdFrm" action="<%= request.getContextPath() %>/searchId.me">
-			<h4>아이디 찾기</h4>
-			
-			<table>
-				<tr>
-					<td>이름</td>
-					<td><input type="text" name="idName" placeholder="내용을 입력해주세요" class="form-control" /></td>
-				</tr>
-				<tr>
-					<td>이메일</td>
-					<td><input type="text" name="idEmail" placeholder="내용을 입력해주세요" class="form-control" /></td>
-				</tr>
-				<tr>
-					<td colspan="2"><button type="button" class="btn btn-dark" id="searchId">확인</button></td>
-				</tr>
-			</table>
-		</form>
-		
-		<form id="searchPwdFrm" action="<%= request.getContextPath() %>/searchPwd.me">
-			<h4>비밀번호 찾기</h4>
+	<br/>
+	
+	<div class="container" style="background : lightgrey; padding : 10px; border-radius : 5px;">
+		<form id="updatePwdFrm" action="<%= request.getContextPath() %>/updatePwd.me">
+			<h4>비밀번호 변경</h4>
 			
 			<table>
 				<tr>
 					<td>아이디</td>
-					<td><input type="text" name="pwdId" placeholder="내용을 입력해주세요" class="form-control" /></td>
+					<td>
+						<input type="text" value="<%= sm.getMemberId() %>" disabled="disabled" class="form-control" />
+						<input type="hidden" name="memberId" value="<%= sm.getMemberId() %>" />
+					</td>
 				</tr>
 				<tr>
-					<td>이름</td>
-					<td><input type="text" name="pwdName" placeholder="내용을 입력해주세요" class="form-control" /></td>
+					<td>비밀번호</td>
+					<td><input type="password" name="memberPwd" placeholder="내용을 입력해주세요" class="form-control" /></td>
 				</tr>
 				<tr>
-					<td>이메일</td>
-					<td><input type="text" name="pwdEmail" placeholder="내용을 입력해주세요" class="form-control" /></td>
+					<td>비밀번호 확인</td>
+					<td><input type="password" name="memberPwd2" placeholder="내용을 입력해주세요" class="form-control" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><button type="button" class="btn btn-dark" id="searchPwd">확인</button></td>
+					<td colspan="2"><button type="button" class="btn btn-dark" id="updatePwd">확인</button></td>
 				</tr>
 			</table>
 		</form>
@@ -96,63 +83,27 @@
     <script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
     <script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
     <script>
-    	$('#searchId').on('click', function() {
-    		var idName = $('input[name=idName]');
-    		var idEmail = $('input[name=idEmail]');
+    	$('#updatePwd').on('click', function() {
+    		var pwd1 = $('input[name=memberPwd]');
+    		var pwd2 = $('input[name=memberPwd2]');
     		
-    		if(idName.val() == "") {
-    			alert('이름을 입력해주세요');
-    			
-    			setTimeout(function(){ 
-    				idName.focus();
-    			}, 1);
-    			
+    		if(pwd1.val().length == 0) {
+    			alert('비밀번호를 입력해주세요.');
+    			pwd1.focus();
     			return;
-    		} else if(idEmail.val() == "") {
-    			alert('이메일을 입력해주세요');
-    			
-    			setTimeout(function(){ 
-    				idEmail.focus();
-    			}, 1);
-    			
+    		} else if(pwd2.val().length == 0) {
+    			alert('비밀번호를 입력해주세요.');
+    			pwd2.focus();
     			return;
-    		} else {
-    			$('#searchIdFrm').submit();
-    		}
-    	});
-    	
-    	$('#searchPwd').on('click', function() {
-    		var pwdId = $('input[name=pwdId]');
-    		var pwdName = $('input[name=pwdName]');
-    		var pwdEmail = $('input[name=pwdEmail]');
+    		} else if(pwd1.val() != pwd2.val()) {
+    			alert('비밀번호가 서로 다릅니다.');
+    			pwd1.val('');
+    			pwd2.val('');
+    			pwd1.focus();
+    			return;
+    		} 
     		
-    		if(pwdId.val() == "") {
-    			alert('아이디를 입력해주세요');
-    			
-    			setTimeout(function(){ 
-    				pwdId.focus();
-    			}, 1);
-    			
-    			return;
-    		} else if(pwdName.val() == "") {
-				alert('이름을 입력해주세요');
-    			
-    			setTimeout(function(){ 
-    				pwdName.focus();
-    			}, 1);
-    			
-    			return;
-    		} else if(pwdEmail.val() == "") {
-				alert('이메일을 입력해주세요');
-    			
-    			setTimeout(function(){ 
-    				pwdEmail.focus();
-    			}, 1);
-    			
-    			return;
-    		} else {
-    			$('#searchPwdFrm').submit();
-    		}
+    		$('#updatePwdFrm').submit();
     	});
     </script>
 </body>

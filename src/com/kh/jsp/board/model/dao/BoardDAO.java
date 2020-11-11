@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
 import com.kh.jsp.board.model.vo.Board;
@@ -126,7 +127,7 @@ public class BoardDAO {
 			pstmt = con.prepareStatement(sql);
 			
 			int startRow = (currentPage - 1) * limit + 1; 
-			int endRow = startRow + limit - 1;
+			int endRow = startRow + 9;
 
 			pstmt.setInt(1, endRow);
 			pstmt.setInt(2, startRow);
@@ -341,6 +342,83 @@ public class BoardDAO {
 		}
 		
 		return result;
+	}
+
+	public int deleteBoard(Connection con, int boardNo) throws BoardException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("deleteBoard");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, boardNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new BoardException("[DAO] : " + e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public HashMap<String, Object> searchBoard(Connection con, int currentPage, int limit, String category, String searchWord) throws BoardException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		HashMap<String, Object> hmap = new HashMap<>();
+		ArrayList<Board> list = new ArrayList<>();
+		int listCount = 0;
+		
+		String sql = prop.getProperty("search" + category);
+		
+		int startRow = (currentPage - 1) * limit + 1; 
+		int endRow = startRow + 9;
+		System.out.println(category + " / " + startRow + " / " + endRow + " / " + searchWord);
+		System.out.println(sql);
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, "%" + searchWord + "%");
+			pstmt.setString(2, "%" + searchWord + "%");
+			pstmt.setInt(3, endRow);
+			pstmt.setInt(4, startRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Board b = new Board();
+				
+				b.setBoardNo(rset.getInt("BOARD_NO"));
+				b.setBoardType(rset.getInt("BOARD_TYPE"));
+				b.setBoardTitle(rset.getString("BOARD_TITLE"));
+				b.setBoardText(rset.getString("BOARD_TEXT"));
+				b.setMemberId(rset.getString("MEMBER_ID"));
+				b.setBoardCount(rset.getInt("BOARD_COUNT"));
+				b.setBoardDate(rset.getDate("BOARD_DATE"));
+				
+				list.add(b);
+				
+				if(listCount == 0) {
+					listCount = rset.getInt("LISTCOUNT");
+				}
+			}
+			
+			if(list.size() > 0) hmap.put("list", list);
+			hmap.put("listCount", listCount);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new BoardException("[DAO] : " + e.getMessage());
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return hmap;
 	}
 
 }

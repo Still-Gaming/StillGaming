@@ -2,6 +2,7 @@ package com.kh.jsp.board.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,16 +16,16 @@ import com.kh.jsp.board.model.vo.PageInfo;
 import com.kh.jsp.common.exception.BoardException;
 
 /**
- * Servlet implementation class BoardSelectList
+ * Servlet implementation class BoardSearch
  */
-@WebServlet("/selectList.bo")
-public class BoardSelectList extends HttpServlet {
+@WebServlet("/search.bo")
+public class BoardSearch extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardSelectList() {
+    public BoardSearch() {
         super();
     }
 
@@ -32,9 +33,8 @@ public class BoardSelectList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Board> list = new ArrayList<>();
-		BoardService bs = new BoardService();
-		
+		String category = request.getParameter("category");
+		String searchWord = request.getParameter("searchWord");
 		String page = "";
 		int startPage;
 		int endPage;
@@ -47,32 +47,23 @@ public class BoardSelectList extends HttpServlet {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		int listCount = 0;
+		BoardService bs = new BoardService();
 		
 		try {
-			listCount = bs.getListCount();
-		} catch (BoardException e) {
+			HashMap<String, Object> hmap = bs.searchBoard(currentPage, limit, category, searchWord);
 			
-			request.setAttribute("exception", e);
-			request.setAttribute("error-msg", "게시글 개수 조회 실패");
+			int listCount = (int)hmap.get("listCount");
+			ArrayList<Board> list = (ArrayList<Board>)hmap.get("list");
 			
-			page = "/views/common/errorPage.jsp";
-		}
-		
-		maxPage = (int)Math.ceil((double)listCount/limit);
-		
-		startPage = ((currentPage - 1)/limit) * limit + 1;
-		
-		endPage = startPage + limit - 1;
-		
-		if(endPage > maxPage) {
-			endPage = maxPage;
-		}
-		
-		try {
-			list = bs.selectList(currentPage, limit);
+			maxPage = (int)Math.ceil((double)listCount/limit);
+			startPage = ((currentPage - 1)/limit) * limit + 1;
+			endPage = startPage + limit - 1;
 			
-			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
+			if(endPage > maxPage) {
+				endPage = maxPage;
+			}
+			
+			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage, category, searchWord);
 			
 			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
