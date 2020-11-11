@@ -213,6 +213,8 @@ body {
 						</tr>
 					</table>
 				</form>
+			</div>
+		</div>
 		<div class="replySelectArea">
 
 		<hr />
@@ -274,7 +276,6 @@ body {
 				}
 			}
 			%>
-			</div>
 		</div>
 	</section>
 <script>

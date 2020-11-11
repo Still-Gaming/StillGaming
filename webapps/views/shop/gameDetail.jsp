@@ -43,154 +43,194 @@
 
     <!-- Anime Section Begin -->
     <section class="anime-details spad" style="background: #0b0c2a;">
-        <div class="container">
-            <div class="anime__details__content">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="anime__details__pic set-bg">
-                           <img id="gameImg" src="<%= request.getContextPath() %>/resources/gameimageUploadFiles/<%= gie.getGmimgCgfile() %>">
+    	<div class="container">
+    		<div class="anime__details__content">
+    			<div class="row">
+    				<div class="col-lg-3">
+    					<div class="anime__details__pic set-bg" data-setbg="<%= request.getContextPath() %>/resources/gameimageUploadFiles/<%= gie.getGmimgCgfile() %>">
+                            <div class="comment"><i class="fa fa-comments"></i> 11</div><!-- 왼쪽 아래 말풍선 -->
+                            <div class="view"><i class="fa fa-eye"></i> 9141</div><!-- 오른쪽 아래 눈 모양 -->
                         </div>
-                    </div>
-                    <div class="col-lg-9">
-                        <div class="anime__details__text">
-                            <div class="anime__details__title">
-                                <h3> <%= gi.getGminfoName() %> </h3>
-                                <span></span>
+    				</div>
+    				
+    				<div class="col-lg-9">
+			    		<div class="anime__details__text">
+			    			<div class="anime__details__title">
+                                <h3><%= gi.getGminfoName() %></h3>
+                                <span><%= gi.getGminfoCompany() %></span>
                             </div>
-                            <div class="anime__details__rating">
-                                <div class="rating">
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star-half-o"></i></a>
-                                </div>
-                               
-                            </div>
-                            <p> <%= gi.getGminfoExp() %> </p>
+                            <p><%= gi.getGminfoExp() %></p>
                             <div class="anime__details__widget">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <ul>
-                                            <li><span>가격 :</span><%= gi.getGminfoPrice() %></li>
-                                            <li><span>회사 : </span> <%= gi.getGminfoCompany() %></li>
-                                            <li><span>출시 일 : </span> <%= gi.getGminfoDate() %></li>
-                                           
+                                            <li><span>가격 : </span><%= gi.getGminfoPrice() %></li>
+                                            <li><span>회사 : </span><%= gi.getGminfoCompany() %></li>
+                                            <li><span>출시 일 : </span><%= gi.getGminfoDate() %></li>
                                         </ul>
                                     </div>
                                     <div class="col-lg-6 col-md-6">
-                                      
+                                    <!-- 
+                                        <ul>
+                                            <li><span>Scores:</span> 7.31 / 1,515</li>
+                                            <li><span>Rating:</span> 8.5 / 161 times</li>
+                                            <li><span>Duration:</span> 24 min/ep</li>
+                                            <li><span>Quality:</span> HD</li>
+                                            <li><span>Views:</span> 131,541</li>
+                                        </ul>
+                                     -->
                                     </div>
                                 </div>
                             </div>
                             <div class="anime__details__btn">
-                                <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> 찜 목록</a>
-                                <a href="#" class="watch-btn"><span>장바구니</span> <i
+                                <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> 찜</a>
+                                <a href="#" class="watch-btn"><span>장바구니 담기</span> <i
                                     class="fa fa-angle-right"></i></a>
-                                </div>
                             </div>
+			    		</div>
+    				</div>
+    			</div>
+    		</div>
+    		
+    		<div class="row">
+    			<div class="col-lg-8 col-md-8">
+    				<div class="anime__details__review" style="clear: both;">
+    					<div class="section-title">
+                        	<h5>Reviews</h5>
+                        </div>
+                        
+                        
+                        <!-- 댓글 목록 구현 영역 -->
+						<% if (clist.size() == 0 ) { %>
+							<span style ="color:white;">여러분이 새 댓글의 주인공이 되어 보세요!</span>
+						<% } else {
+							for(GameReview co : clist) { %>
+							
+							<table id="replySelectTable"
+						      	 style="margin-left : <%= (co.getComtLevel()-1) * 15 %>px;
+						      	 		width : <%= 800 - ((co.getComtLevel()-1) * 15)%>px;"
+						      	 class="replyList<%= co.getComtLevel()%>">
+						  		<tr>
+									<td><b><%= co.getMemberId() %></b></td>
+									<td align="center">
+										<% if(m != null) { %>
+						 					<% if(m.getMemberId().equals(co.getMemberId())) { %>
+												<input type="hidden" name="comtNum" value="<%= co.getComtNum() %>"/>
+													 
+												<button type="button" class="updateBtn" 
+													onclick="updateReply(this);">수정하기</button>
+													
+												<button type="button" class="updateConfirm"
+													onclick="updateConfirm(this);"
+													style="display:none;" >수정완료</button> &nbsp;&nbsp;
+													
+												<button type="button" class="deleteBtn"
+													onclick="deleteReply(this);">삭제하기</button>
+													
+											<% } else if( co.getComtLevel() < 3) { %>
+												<input type="hidden" name="memberId" value="<%= co.getMemberId()%>"/>
+												<input type="hidden" name="refCno" value="<%= co.getComtNum() %>" />
+												<input type="hidden" name="comtLevel" value="<%= co.getComtLevel() %>" />
+												<button type="button" class="insertBtn" 
+													 onclick="reComment(this);">댓글 달기</button>&nbsp;&nbsp;
+													 
+												<button type="button" class="insertConfirm"
+													onclick="reConfirm(this);"
+													style="display:none;" >댓글 추가 완료</button> 
+													
+											<% } else {%>
+												<span> 마지막 레벨입니다.</span>
+											<% } %>
+										<% } else { %>
+											<button type="button" class="insertBtn" disabled>댓글 달기</button>
+										<% } %>
+									</td>
+								</tr>
+								<tr class="comment replyList<%= co.getComtLevel()%>">
+									<td colspan="3" style="background : transparent;">
+									<textarea class="reply-content" cols="105" rows="3"
+									 readonly="readonly"><%= co.getComtCont() %></textarea>
+									</td>
+								</tr>
+							</table>
+							
+								
+						<%
+							}
+						}
+						%>
+                        
+                        
+                        <!-- for(GameReview co : clist) { 
+	                        <div class="anime__review__item">
+	                        	<div class="anime__review__item__pic">
+	                                <!-- <img src="img/anime/review-1.jpg" alt=""> -->
+						<!-- 	</div>
+	                            <div class="anime__review__item__text">
+	                                <h6> co.getMemberId() </h6>
+	                                <p> co.getComtCont() </p>
+	                            </div>
+	                            <div>
+	                      -->	<!-- 댓글 수정, 삭제 버튼 들어갈 부분 -->
+	                     <!--	</div>
+	                        </div>
+                         } -->
+                        
+    				</div>
+    				<div class="anime__details__form" style="clear: both;">
+                        <div class="section-title">
+                            <h5>댓글 등록</h5>
+                        </div>
+                        <form action="<%= request.getContextPath() %>/reviewInsert.do">
+                        	<input type="hidden" name="memberId" value="<%= m.getMemberId() %>">
+							<input type="hidden" name="gminfoNum" value="<%= gi.getGminfoNum() %>" />
+							<input type="hidden" name="refCno" value="0" />
+							<input type="hidden" name="comtLevel"  value="1"/>
+                            <textarea name="comtCont" placeholder="내용을 입력해주세요."></textarea>
+                            <button type="submit"><i class="fa fa-location-arrow"></i> 등록</button>
+                        </form>
+                    </div>
+    			</div> <!-- div class="col-lg-8 col-md-8" -->
+    			
+    			<!-- 사이드 바 -->
+    			<!-- 
+    			<div class="col-lg-4 col-md-4">
+                	<div class="anime__details__sidebar">
+                    	<div class="section-title">
+                            <h5>you might like...</h5>
+                        </div>
+                        <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-1.jpg">
+                            <div class="ep">18 / ?</div>
+                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                            <h5><a href="#">Boruto: Naruto next generations</a></h5>
+                        </div>
+                        <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-2.jpg">
+                            <div class="ep">18 / ?</div>
+                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                            <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
+                        </div>
+                        <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-3.jpg">
+                            <div class="ep">18 / ?</div>
+                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                            <h5><a href="#">Sword art online alicization war of underworld</a></h5>
+                        </div>
+                        <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-4.jpg">
+                            <div class="ep">18 / ?</div>
+                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                            <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
                         </div>
                     </div>
                 </div>
-                
-              <div class="replyArea">
-			<div class="replyWriteArea">
-				<form action="<%= request.getContextPath() %>/reviewInsert.do" method="post">
-					<input type="hidden" name="memberId" value="<%= m.getMemberId() %>">
-					<input type="hidden" name="gminfoNum" value="<%= gi.getGminfoNum() %>" />
-					<input type="hidden" name="refCno" value="0" />
-					<input type="hidden" name="comtLevel"  value="1"/>
-					
-					<div class="row">
-                    <div class="col-lg-10 col-md-10">
-                        <div class="anime__details__review">
-                            <div class="section-title">
-                                <h5>Reviews</h5>
-                            </div>
-                            <div class="anime__review__item">
-                            <div class="anime__review__item__pic"></div>
-                            <div class="anime__review__item__text" style="overflow:hidden; background:#1d1e39; padding:18px 30px 16px 20px; border-radius:10px;">
-                                    <h6>Chris Curry - <span>1 Hour ago</span></h6>
-                                    <p>whachikan Just noticed that someone categorized this as belonging to the genre
-                                    "demons" LOL</p>
-                                </div>
-							<td>
-								<textarea name="comtCont" id="replyContent" 
-								          cols="80" rows="3"></textarea>
-							</td>
-							<td>
-								<button type="submit" id="addReply">
-									댓글 등록
-								</button>
-							</td>
-							
-						</tr>
-					</table>
-				</form>
-		<div class="replySelectArea">
-		
+                -->
+    		</div>
+    	</div>
+    </section>
+    
+    
+    <!-- =====================================================  -->
 			
-			<!-- 댓글 목록 구현 영역 -->
-			<% if (clist.size() == 0 ) { %>
-				<span style ="color:white;">여러분이 새 댓글의 주인공이 되어 보세요!</span>
-			<% } else {
-				for(GameReview bco : clist) { %>
-				
-			<table id="replySelectTable"
-		      	 style="margin-left : <%= (bco.getComtLevel()-1) * 15 %>px;
-		      	 		width : <%= 800 - ((bco.getComtLevel()-1) * 15)%>px;"
-		      	 class="replyList<%=bco.getComtLevel()%>">
-		  		<tr>
-		  			<td rowspan="2"> </td>
-					<td><b><%= bco.getMemberId() %></b></td>
-					<td><%= bco.getComtDate() %></td>
-					<td align="center">
- 					<%if(m.getMemberId().equals(bco.getMemberId())) { %>
-						<input type="hidden" name="comtNum" value="<%=bco.getComtNum() %>"/>
-							 
-						<button type="button" class="updateBtn" 
-							onclick="updateReply(this);">수정하기</button>
-							
-						<button type="button" class="updateConfirm"
-							onclick="updateConfirm(this);"
-							style="display:none;" >수정완료</button> &nbsp;&nbsp;
-							
-						<button type="button" class="deleteBtn"
-							onclick="deleteReply(this);">삭제하기</button>
-							
-					<% } else if( bco.getComtLevel() < 3) { %>
-						<input type="hidden" name="memberId" value="<%= bco.getMemberId()%>"/>
-						<input type="hidden" name="refCno" value="<%= bco.getComtNum() %>" />
-						<input type="hidden" name="comtLevel" value="<%=bco.getComtLevel() %>" />
-						<button type="button" class="insertBtn" 
-							 onclick="reComment(this);">댓글 달기</button>&nbsp;&nbsp;
-							 
-						<button type="button" class="insertConfirm"
-							onclick="reConfirm(this);"
-							style="display:none;" >댓글 추가 완료</button> 
-							
-					<% } else {%>
-						<span> 마지막 레벨입니다.</span>
-					<% } %>
-					</td>
-				</tr>
-				<tr class="comment replyList<%=bco.getComtLevel()%>">
-					<td colspan="3" style="background : transparent;">
-					<textarea class="reply-content" cols="105" rows="3"
-					 readonly="readonly"><%= bco.getComtCont() %></textarea>
-					</td>
-				</tr>
-			</table>
-				
-					
-			<%
-				}
-			}
-			%>
-			
-			</div>
-		
-		</div>
+
+	
 	<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
