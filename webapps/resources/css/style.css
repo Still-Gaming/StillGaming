@@ -31,15 +31,12 @@
 /* Template default CSS
 /*----------------------------------------*/
 
-html {
-  scroll-behavior: smooth;
-}
-
 html,
 body {
 	height: 100%;
 	font-family: "Mulish", sans-serif;
 	-webkit-font-smoothing: antialiased;
+	background: #0b0c2a;
 }
 
 h1,
@@ -329,6 +326,9 @@ ol {
   Header
 -----------------------*/
 
+.header {
+	background: #070720;
+}
 
 .header__logo {
 	padding: 20px 0 17px;
@@ -347,13 +347,11 @@ ol {
 	display: inline-block;
 	position: relative;
 	margin-right: 16px;
-
 }
 
 .header__menu ul li.active a {
 	background: #e53637;
 	color: #ffffff;
-	
 }
 
 .header__menu ul li:hover a {
@@ -379,7 +377,7 @@ ol {
 	left: 0;
 	top: 82px;
 	width: 150px;
-	background: #EAEAEA;
+	background: #ffffff;
 	text-align: left;
 	padding: 5px 0;
 	z-index: 9;
@@ -396,45 +394,6 @@ ol {
 }
 
 .header__menu ul li .dropdown li a {
-	font-size: 14px;
-	color: #111111;
-	font-weight: 500;
-	padding: 5px 20px;
-}
-.header__menu ul li:hover .dropdown2 {
-	top: 62px;
-	opacity: 1;
-	visibility: visible;
-}
-
-.header__menu ul li:hover .dropdown2 li a {
-	background: transparent;
-}
-
-
-
-.header__menu ul li .dropdown2 {
-	position: absolute;
-	left: 0;
-	top: 82px;
-	width: 150px;
-	background: #ffffff;
-	text-align: left;
-	padding: 5px 0;
-	z-index: 9;
-	opacity: 0;
-	visibility: hidden;
-	-webkit-transition: all, 0.3s;
-	-o-transition: all, 0.3s;
-	transition: all, 0.3s;
-}
-
-.header__menu ul li .dropdown2 li {
-	display: block;
-	margin-right: 0;
-}
-
-.header__menu ul li .dropdown2 li a {
 	font-size: 14px;
 	color: #111111;
 	font-weight: 500;

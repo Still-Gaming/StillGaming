@@ -30,6 +30,8 @@
 		text-align:center;
 		display:table-cell;
 		vertical-align:middle;
+		
+		
 	
 </style>
 </head>
@@ -82,13 +84,13 @@
 					<tr>
 						<td width="100px">장르번호</td>
 						<td colspan="3" height="3">
-							<select id="selectGenre"></select>
+							<input type="text" name="gmTypeNum" size="45" />
 						</td>
 					</tr>
 					<tr>
 						<td width="100px">연령등급</td>
 						<td colspan="3" height="3">
-							<input type="text" name="gminfoAage" size="45" />
+							<input type="text" name="gminfoAge" size="45" />
 						</td>
 					</tr>
 					<tr>
@@ -112,7 +114,24 @@
 				<button type="reset">작성 취소</button>
 			</div>
 		</form>	
-	</div>		
+	</div>	
+	<% } else { // 비회원 접근 차단
+		request.setAttribute("exception", new Exception("비회원 접근"));
+		request.setAttribute("error-msg", "회원 로그인 후 진행하세요!");
+		
+		request.getRequestDispatcher("../common/errorPage.jsp").forward(request, response);		
+	} %>
+	
+	<!-- Js Plugins -->
+<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/mixitup.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
+		
 	<script>
 		// 사진 게시글 미리보기 기능 구현
 		$(function(){
@@ -130,9 +149,8 @@
 					var $genre = $('#selectGenre');
 					for( var i = 0 ; i < list.length ; i++ ){
 						var $option = $('<option value=' + list[i].gmTypeNum + '>' + list[i].gmType + '</option>');
-						
 						$genre.append($option);
-					}
+					} 
 				}
 			});
 		})
@@ -151,15 +169,7 @@
 				reader.readAsDataURL(img.files[0]);
 			}	
 		}
-	</script>
-	<% } else { // 비회원 접근 차단
-		request.setAttribute("exception", new Exception("비회원 접근"));
-		request.setAttribute("error-msg", "회원 로그인 후 진행하세요!");
-		
-		request.getRequestDispatcher("../common/errorPage.jsp").forward(request, response);		
-	} %>
-	
-	
+	</script> 
 	
 
 </body>

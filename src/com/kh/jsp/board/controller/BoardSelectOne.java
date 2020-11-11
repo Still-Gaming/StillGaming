@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.jsp.board.model.service.BoardService;
 import com.kh.jsp.board.model.vo.Board;
 import com.kh.jsp.board.model.vo.BoardFile;
-import com.kh.jsp.boardComment.model.serivce.BoardCommentService;
+import com.kh.jsp.boardComment.model.service.BoardCommentService;
 import com.kh.jsp.boardComment.model.vo.BoardComment;
 import com.kh.jsp.common.exception.BoardException;
 

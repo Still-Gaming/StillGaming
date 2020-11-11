@@ -8,13 +8,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.jsp.boardComment.model.serivce.BoardCommentService;
+import com.kh.jsp.boardComment.model.service.BoardCommentService;
 import com.kh.jsp.boardComment.model.vo.BoardComment;
+
 
 /**
  * Servlet implementation class CommentUpdate
  */
-@WebServlet("/update.co")
+@WebServlet("/updateComment.co")
+
 public class CommentUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

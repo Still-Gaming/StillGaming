@@ -11,14 +11,6 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 상세보기</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/plyr.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
 <style>
 	td {
 		color : white;
@@ -72,7 +64,7 @@
 				<form action="<%= request.getContextPath() %>/insert.co" method="post">
 					<input type="hidden" name="memberId" value="<%= m.getMemberId() %>">
 					<input type="hidden" name="boardNo" value="<%= b.getBoardNo() %>" />
-					<input type="hidden" name="refcno" value="0" />
+					<input type="hidden" name="refCno" value="0" />
 					<input type="hidden" name="commentLevel"  value="1"/>
 					
 					<table align="center">
@@ -90,9 +82,8 @@
 							
 						</tr>
 					</table>
-				</form>>
+				</form>
 		<div class="replySelectArea">
-		
 		
 			<!-- 댓글 목록 구현 영역 -->
 			<% if (clist.size() == 0) { %>
@@ -124,7 +115,7 @@
 							
 					<% } else if( bco.getCommentLevel() < 3) { %>
 						<input type="hidden" name="memberId" value="<%= bco.getMemberId()%>"/>
-						<input type="hidden" name="commentNo" value="<%= bco.getCommentNo() %>" />
+						<input type="hidden" name="refCno" value="<%= bco.getCommentNo() %>" />
 						<input type="hidden" name="commentLevel" value="<%=bco.getCommentLevel() %>" />
 						<button type="button" class="insertBtn" 
 							 onclick="reComment(this);">댓글 달기</button>&nbsp;&nbsp;
@@ -154,6 +145,15 @@
 			</div>
 		
 		</div>
+	<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/mixitup.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/main.js"></script> 
+		
 		<script>
 		
 			function reComment(obj) {
@@ -176,8 +176,8 @@
 		
 			function reConfirm(obj){
 				// 참조할 댓글 번호 가져오기
-				var refcno = $(obj).siblings('input[name=refcno]').val();
-				var level = $(obj).siblings('input[name=comment_Level]').val();
+				var refcno = $(obj).siblings('input[name=refCno]').val();
+				var level = $(obj).siblings('input[name=commentLevel]').val();
 				
 				level = Number(level) + 1;
 				
@@ -188,10 +188,10 @@
 				              .last().find('textarea').val();
 				
 				location.href = '<%=request.getContextPath()%>/insert.co'
-						+ '?writer=<%= m.getMemberId()%>'
-						+ '&replyContent=' + commentText
-						+ '&boardNo=' + boardNo
-						+ '&refcno=' + refcno
+						+ '?memberId=<%= m.getMemberId()%>'
+						+ '&commentText=' + content
+						+ '&boardNo=' + bno
+						+ '&refCno=' + refcno
 						+ '&commentLevel=' + level;
 				
 			}
@@ -213,10 +213,24 @@
 				// 댓글 번호 가져오기	
 				var cno = $(obj).siblings('input').val();
 				
-				location.href = "<%= request.getContextPath() %>/update.co?"
+				location.href = "<%= request.getContextPath() %>/updateComment.co?"
 						      + "boardNo=<%= b.getBoardNo() %>"
 						      + "&commentNo=" + cno
 						      + "&commentText=" + content;
+			}
+			
+			function deleteReply(obj){
+				// 댓글 번호 가져오기
+				var cno = $(obj).siblings('input').val();
+				
+				// 게시글 번호 가져오기
+				var bno = '<%= b.getBoardNo() %>';
+				
+				//console.log("삭제 댓글 번호 : " + cno + " / " + bno);
+				
+				location.href="<%= request.getContextPath() %>/deleteComment.co"
+				            + "?commentNo=" + cno + "&boardNo=" + bno;
+				
 			}
 			
 			
