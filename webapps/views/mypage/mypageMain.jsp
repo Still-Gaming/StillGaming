@@ -143,7 +143,7 @@
 							</div>
 							<div class="service-info">
 								<i align="center" class="service-icon fa fa-align-left"></i>
-								<%= counts.get("listCount") %>
+								<%= counts.get("listCount") %> 
 							</div>
 							<a
 								href="<%=request.getContextPath()%>/post.my?memberId=<%=m.getMemberId()%>"
