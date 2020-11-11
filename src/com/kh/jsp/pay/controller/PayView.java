@@ -55,7 +55,9 @@ public class PayView extends HttpServlet {
 			ArrayList<GameInfo> list = ps.selectList(gameInfoNums);
 			
 			request.setAttribute("list", list);
-			
+			for(GameInfo gi : list) {
+				System.out.println(gi.getGminfoName());
+			}
 			page = "views/mypage/orderForm.jsp";
 		
 		} catch (GameInfoException e) {

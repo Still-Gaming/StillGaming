@@ -210,10 +210,10 @@ public class GameInfoDAO {
 			GameInfo result = null;
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
-			
+			System.out.println(gminfoNum);
 			
 			String sql = prop.getProperty("selectGameInfo");
-			System.out.println(sql);
+			
 			try {
 				pstmt = con.prepareStatement(sql);
 				
@@ -236,9 +236,7 @@ public class GameInfoDAO {
 					 result.setGminfoAge( rset.getInt("gminfo_age"));
 					 result.setGminfoImage( rset.getString("gmimg_cgfile"));
 					
-					 
-					
-			}
+				}
 				   	
 			} catch (SQLException e) {
 				
