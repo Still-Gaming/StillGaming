@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import com.kh.jsp.common.exception.BoardException;
+import com.kh.jsp.common.exception.QnaException;
 import com.kh.jsp.qna.model.service.QnaService;
 import com.kh.jsp.qna.model.vo.Qna;
+import com.kh.jsp.qna.model.vo.QnaFile;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -47,33 +50,40 @@ public class QnaServlet extends HttpServlet {
 					 .forward(request, response);
 		}
 		String root = request.getServletContext().getRealPath("/");
-		String savePath = root + "resources/boardUploadFiles";
+		String filePath = root + "resources/qnaUploadFiles";
 		
-		MultipartRequest mre = new MultipartRequest(request, savePath,
+		MultipartRequest mre = new MultipartRequest(request, filePath,
 																	maxSize, "UTF-8",
 																	new DefaultFileRenamePolicy());
 		
-		String qTitle = request.getParameter("title");
-		String qContent = request.getParameter("content");
-		String qFile = mre.getFilesystemName("file");
+		String memberId = mre.getParameter("memberId");
+		int qcode = Integer.parseInt(mre.getParameter("qcode"));
+		String qtitle = mre.getParameter("qtitle");
+		String qcontent = mre.getParameter("qcontent");
+		
+		String fileName = mre.getOriginalFileName("file");
+		String fileChangeName = mre.getFilesystemName("file");
+		
+		Qna q = new Qna(memberId, qcode, qtitle, qcontent);
+	
+		QnaFile qf = null;
 		
 		
-		Qna q = new Qna(qTitle, qContent,qFile);
+		if(fileName != null) qf = new QnaFile(fileName, fileChangeName, filePath);
+		
 		QnaService qs= new QnaService();
 		
-		int result =  qs.insertQna(q);
-		
-		if(result > 0) {
-			System.out.println("Q&A 제출 성공!");
-			response.sendRedirect("index.jsp");
-		} else { 
-			System.out.println("Q&A 제출 실패!");
+		try {
+			qs.insertQna(q, qf);
+			
+			
+		} catch (QnaException e) {
+			
+			request.setAttribute("exception", e);
 			request.setAttribute("error-msg", "게시글 작성 실패");
-			request.getRequestDispatcher("/views/common/errorPage.jsp")
-				   .forward(request, response);
+			
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
-		
-	
 	}
 
 	/**
