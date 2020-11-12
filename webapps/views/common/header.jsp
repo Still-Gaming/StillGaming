@@ -11,7 +11,6 @@
 	}
 
 	</style>
-
     <!-- Header Section Begin -->
 
     <header class="header" style="background-color: white;">
@@ -34,9 +33,14 @@
                                 
 								<li><a href="#" >Q&A<span class="arrow_carrot-down"></span></a>
                                    <ul class="dropdown">
-                                        <li><a href="<%= request.getContextPath()%>/views/about/faq.jsp" id="drop">FAQ</a></li>
-                                        <li><a href="#"<%-- "<%= request.getContextPath()%>/views/about/qna.jsp" --%> id="drop">1:1문의</a></li>
+
+                                        <li><a href="<%= request.getContextPath()%>/views/Q&A/faq.jsp" id="drop">FAQ</a></li>
+                                        <li><a href="<%= request.getContextPath()%>/views/Q&A/qna.jsp" id="drop">1:1문의</a></li>
                                    </ul>
+                                <li><a href="#" >admin<span class="arrow_carrot-down"></span></a>
+                                   <ul class="dropdown">
+                                        <li><a href="/StillGaming/views/mypage/adminpage.jsp" id="drop">adminpage</a></li>
+                                </ul>
 								</li>
                             </ul>
                         </nav>

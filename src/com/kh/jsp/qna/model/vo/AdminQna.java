@@ -4,7 +4,7 @@ package com.kh.jsp.qna.model.vo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Qna {
+public class AdminQna {
 	  private int qno;
 	  private String memberId;
 	  private int qcode;
@@ -13,12 +13,12 @@ public class Qna {
 	  private Date qdate;
 	  private String qanswer;
 	  
-	public Qna() {
+	public AdminQna() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Qna(int qno, String memberId, int qcode, String qtitle, String qcontent, Date qdate, String qanswer) {
+	public AdminQna(int qno, String memberId, int qcode, String qtitle, String qcontent, Date qdate, String qanswer) {
 		super();
 		this.qno = qno;
 		this.memberId = memberId;
@@ -29,18 +29,15 @@ public class Qna {
 		this.qanswer = qanswer;
 	}
 
-	public Qna(String memberId, int qcode, String qtitle, String qcontent) {
+	public AdminQna( String qanswer) {
 		super();
-		this.memberId = memberId;
-		this.qcode = qcode;
-		this.qtitle = qtitle;
-		this.qcontent = qcontent;
+		this.qanswer = qanswer;
 	}
 
 	@Override
 	public String toString() {
-		return "Qna [qno=" + qno + ", memberId=" + memberId + ", qcode=" + qcode + ", qtitle=" + qtitle + ", qcontent="
-				+ qcontent + ", qdate=" + qdate + ", qanswer=" + qanswer + "]";
+		return "AdminQna [qno=" + qno + ", memberId=" + memberId + ", qcode=" + qcode + ", qtitle=" + qtitle
+				+ ", qcontent=" + qcontent + ", qdate=" + qdate + ", qanswer=" + qanswer + "]";
 	}
 
 	/**
@@ -141,13 +138,4 @@ public class Qna {
 		this.qanswer = qanswer;
 	}
 
-	
-}
-	
-	
-	  
-	  
-   
-   
-
-   
+}   

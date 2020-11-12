@@ -22,7 +22,6 @@
 		}
 		
 		.header__menu ul li .dropdown {
-
 			background: #EAEAEA;
 	  }  	
 	  
@@ -72,7 +71,7 @@
                                 <li><a href="#">회원관리</a></li> |
                                 <li><a href="#">신고관리</a></li> |
                                 <li><a href="#">게시글관리</a></li> |
-                                <li><a href="#">Q&A 관리</a></li> |
+                                <li><a href="<%= request.getContextPath()%>/adminselectlist.do" >Q&A 관리</a></li> |
                                 <li><a href="#">공지사항 관리</a></li> 
                                 
                                 

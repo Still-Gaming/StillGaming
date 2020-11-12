@@ -23,6 +23,13 @@ public class QnaFile {
 		this.qnaPath = qnaPath;
 		this.qnaFiledate = qnaFiledate;
 	}
+	
+	public QnaFile(String qnaOrigin, String qnaChange, String qnaPath) {
+		super();
+		this.qnaOrigin = qnaOrigin;
+		this.qnaChange = qnaChange;
+		this.qnaPath = qnaPath;
+	}
 	@Override
 	public String toString() {
 		return "QnaFile [qnaFno=" + qnaFno + ", qnaNo=" + qnaNo + ", qnaOrigin=" + qnaOrigin + ", qnaChange="

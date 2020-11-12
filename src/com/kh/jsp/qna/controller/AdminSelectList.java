@@ -1,27 +1,33 @@
 package com.kh.jsp.qna.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+import com.kh.jsp.common.exception.QnaException;
+
+
 import com.kh.jsp.qna.model.service.QnaService;
 import com.kh.jsp.qna.model.vo.Qna;
 
 /**
- * Servlet implementation class InsertQnAServlet
+ * Servlet implementation class NoticeSelectList
  */
-@WebServlet("/qna.do")
-public class QnaServlet extends HttpServlet {
+@WebServlet("/adminselectlist.do")
+public class AdminSelectList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnaServlet() {
+    public AdminSelectList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,27 +36,32 @@ public class QnaServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 공지사항 여러 개 조회를 위한 배열(ArrayList)
+		// 목록 형태로 (ArrayList) 데이터를 전달하는 서블릿
+		ArrayList<Qna> list = new ArrayList<>();
 		
+		QnaService qs = new QnaService();
 		
-		String qTitle = request.getParameter("title");
-		String qContent = request.getParameter("content");
+		String page = null; // 이동할 페이지 정보
 		
-		Qna q = new Qna(qTitle, qContent);
-		QnaService qs= new QnaService();
-		
-		int result =  qs.insertQna(q);
-		
-		if(result > 0) {
-			System.out.println("Q&A 제출 성공!");
-			response.sendRedirect("index.jsp");
-		} else { 
-			System.out.println("Q&A 제출 실패!");
-			request.setAttribute("error-msg", "게시글 작성 실패");
-			request.getRequestDispatcher("/views/common/errorPage.jsp")
-				   .forward(request, response);
+		try {
+			list = qs.selectList();
+			System.out.println(list.size());
+			request.setAttribute("list", list);
+			
+			page = "views/Q&A/admin_qnaList.jsp";
+			
+		} catch (QnaException e) {
+			
+			request.setAttribute("exception", e);
+			request.setAttribute("error-msg", "공지사항 조회 실패!");
+			
+			page = "views/common/errorPage.jsp";
+			
+		} finally {
+			
+			request.getRequestDispatcher(page).forward(request, response);
 		}
-		
-	
 	}
 
 	/**

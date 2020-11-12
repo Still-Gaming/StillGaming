@@ -3,6 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<meta charset="UTF-8">
+</head>
+<body>
+<%@ include file="../common/adminheader.jsp" %>
+
+	
+
+</body>
+
     <meta charset="UTF-8">
     <meta name="description" content="Anime Template">
     <meta name="keywords" content="Anime, unica, creative, html">
@@ -28,11 +38,11 @@
 </head>
 <body>
 
-	<%@ include file="../common/adminheader.jsp" %>
+	
 	
 	<%@ include file="../manage/member_manage.jsp" %>
 	
-	<%@ include file="../common/adminfooter.jsp" %>
+	
 
 </body>
 
@@ -47,5 +57,6 @@
 <script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
 
 
+<%@ include file="../common/adminfooter.jsp" %>
 </body>
 </html>
