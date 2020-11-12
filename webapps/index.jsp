@@ -97,12 +97,12 @@
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8">
                                 <div class="section-title">
-                                    <h4>최신 게임</h4>
+                                    <h4 style="color:black;">최신 게임</h4>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="btn__all">
-                                    <a href="<%= request.getContextPath() %>/gamelist.do" class="primary-btn">더보기<span class="arrow_right"></span></a>
+                                    <a href="<%= request.getContextPath() %>/gamelist.do" class="primary-btn" style="color:black;">더보기<span class="arrow_right"></span></a>
                                 </div>
                             </div>
                         </div>
@@ -117,9 +117,9 @@
                                     </div>
                                     <div class="product__item__text">
                                     	<ul>
-                                            <li><%= gi.getGminfoType() %></li>
+                                            <li style="color:black;"><%= gi.getGminfoType() %></li>
                                         </ul>
-                                        <h5><a href="#"><%= gi.getGminfoName() %></a></h5>
+                                        <h5><a href="#" style="color:black;"><%= gi.getGminfoName() %></a></h5>
                                     </div>
                         		</div>
                         	</div>
