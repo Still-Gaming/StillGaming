@@ -47,7 +47,7 @@ public class MemberDelete extends HttpServlet {
 			
 			session.invalidate();
 			
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("index.do");
 			
 			
 		} catch (MemberException e) {
