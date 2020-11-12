@@ -190,7 +190,7 @@ public class GameInfoDAO {
 			if(rset.next()) {
 				result = rset.getInt(1);
 			}
-			System.out.println("번호 : " + result);
+			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
@@ -330,11 +330,11 @@ public class GameInfoDAO {
 		int result = 0;
 		
 		String sql = prop.getProperty("updateGameImage");
-		System.out.println(sql);
+		
 		try {
 			pstmt = con.prepareStatement(sql);
 			
-			System.out.println(sql + "1111");
+			
 			pstmt.setString(1, bf.getGmimgFile());
 			pstmt.setString(2, bf.getGmimgCgfile());
 			pstmt.setString(3, bf.getGmimgPath());
