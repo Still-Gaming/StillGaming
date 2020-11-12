@@ -50,6 +50,8 @@ public class BoardUpdateView extends HttpServlet {
 			
 			page = "views/common/errorPage.jsp";
 		}
+		
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

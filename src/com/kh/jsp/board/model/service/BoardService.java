@@ -144,4 +144,26 @@ public class BoardService {
 		return hmap;
 	}
 
+	public int updateBoard(Board b, BoardFile bf) throws BoardException {
+		con = getConnection();
+		
+		int totalResult = 0;
+		int result1 = bDAO.updateBoard(con, b);
+		
+		bf.setBoardNo(b.getBoardNo());
+		
+		int result2 = bDAO.insertBoardFile(con, bf);
+		
+		if(result1 > 0 && result2 > 0) {
+			totalResult = 1;
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return totalResult;
+	}
+
 }
