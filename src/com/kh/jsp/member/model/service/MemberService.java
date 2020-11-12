@@ -1,8 +1,12 @@
 package com.kh.jsp.member.model.service;
 
-import static com.kh.jsp.common.JDBCTemplate.*;
+import static com.kh.jsp.common.JDBCTemplate.close;
+import static com.kh.jsp.common.JDBCTemplate.commit;
+import static com.kh.jsp.common.JDBCTemplate.getConnection;
+import static com.kh.jsp.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import com.kh.jsp.common.exception.MemberException;
 import com.kh.jsp.member.model.dao.MemberDAO;
@@ -103,6 +107,36 @@ public class MemberService {
 		
 		return result;
 	}
+	
+	public ArrayList<Member> searchMember( String keyword) throws MemberException {
+		con = getConnection();
+		
+		ArrayList<Member> list = null;
+		
+		// 검색 옵션에 제목, 작성자 등 그 어떤 것이라도
+		// 조건을 달았다면 조건부 검색을 실시
+		
+			
+			list = mDAO.searchMember(con, keyword);
+			
+		
+		
+		close(con);
+		
+		return list;
+	}
+
+
+	public ArrayList<Member> selectList() throws MemberException {
+		con = getConnection();
+		
+		ArrayList<Member> list =mDAO.selectList(con);
+		return list;
+		
+		
+	}
+
+	
 	
 }
 

@@ -69,7 +69,7 @@
                         <nav class="header__menu mobile-menu">
 
                 		  <ul class="header__ul">
-                                <li><a href="<%= request.getContextPath()%>/views/manage/member_manage.jsp">회원관리</a></li> |
+                                <li><a href="<%= request.getContextPath()%>/MemberList.me">회원관리</a></li> |
                                 <li><a href="#">신고관리</a></li> |
                                 <li><a href="#">게시글관리</a></li> |
                                 <li><a href="#">Q&A 관리</a></li> |

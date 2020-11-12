@@ -1,6 +1,6 @@
 package com.kh.jsp.member.model.dao;
 
-import static com.kh.jsp.common.JDBCTemplate.*;
+import static com.kh.jsp.common.JDBCTemplate.close;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.jsp.common.exception.MemberException;
@@ -218,6 +219,158 @@ public int emailDupCheck(Connection con, String email) {
 	}
 	
 	return result;
+}
+
+
+
+
+public ArrayList<Member> searchMember(Connection con, String keyword) throws MemberException {
+	
+	ArrayList<Member> list = new ArrayList<>();
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	
+	String sql = null;
+	
+	
+		sql = prop.getProperty("searchMember");
+		
+	
+	try {
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1, keyword);
+		
+		rset = pstmt.executeQuery();
+		
+		while(rset.next()) {
+			Member m = new Member();
+			
+
+			m.setMemberId(rset.getString(1));
+			m.setMemberPwd(rset.getString(2));
+			m.setMemberName(rset.getString(3));
+			m.setMemberSsn(rset.getString(4));
+			m.setGender(rset.getString(5));
+			m.setEmail(rset.getString(6));
+			m.setPhone(rset.getString(7));
+			m.setJoinDate(rset.getDate(8));
+			m.setStatus(rset.getString(9));
+			m.setReportNum(rset.getInt(10));
+			
+			
+			list.add(m);
+		}
+		
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
+		throw new MemberException("[DAO] : " + e.getMessage());
+	
+	} finally {
+		
+		close(rset);
+		close(pstmt);
+	}		
+	
+	return list;
+}
+
+
+public ArrayList<Member> searchAll(Connection con, String keyword) throws MemberException {
+
+	ArrayList<Member> list = new ArrayList<>();
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	
+	String sql = prop.getProperty("searchAll");
+	
+	try {
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1, keyword);
+		pstmt.setString(2, keyword);
+		pstmt.setString(3, keyword);
+		
+		rset = pstmt.executeQuery();
+		
+		while(rset.next()) {
+			Member m = new Member();
+			
+			m.setMemberId(rset.getString(1));
+			m.setMemberPwd(rset.getString(2));
+			m.setMemberName(rset.getString(3));
+			m.setMemberSsn(rset.getString(4));
+			m.setGender(rset.getString(5));
+			m.setEmail(rset.getString(6));
+			m.setPhone(rset.getString(7));
+			m.setJoinDate(rset.getDate(8));
+			m.setStatus(rset.getString(9));
+			m.setReportNum(rset.getInt(10));
+			
+			
+			list.add(m);
+		}
+		
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
+		throw new MemberException("[DAO] : " + e.getMessage());
+	
+	} finally {
+		
+		close(rset);
+		close(pstmt);
+	}		
+	
+	return list;
+}
+
+public ArrayList<Member> selectList(Connection con) throws MemberException {
+	ArrayList<Member> list = new ArrayList<>(); // 공지사항 목록 담을 공간
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	
+	String sql = prop.getProperty("selectList");
+	
+	try {
+		pstmt = con.prepareStatement(sql);
+		
+		rset = pstmt.executeQuery();
+		
+		while (rset.next()) {
+			
+			Member m = new Member();
+			
+
+			m.setMemberId(rset.getString(1));
+			m.setMemberPwd(rset.getString(2));
+			m.setMemberName(rset.getString(3));
+			m.setMemberSsn(rset.getString(4));
+			m.setGender(rset.getString(5));
+			m.setEmail(rset.getString(6));
+			m.setPhone(rset.getString(7));
+			m.setJoinDate(rset.getDate(8));
+			m.setStatus(rset.getString(9));
+			m.setReportNum(rset.getInt(10));
+			
+			list.add(m);
+			
+			
+			
+		}
+		
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
+		throw new MemberException("[DAO] : " + e.getMessage());
+		
+	} finally {
+		close(rset);
+		close(pstmt);
+	}
+	
+	return list;
 }
 
 }

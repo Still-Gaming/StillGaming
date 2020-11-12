@@ -24,13 +24,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
-    
-    
-    <link href='https://fonts.googleapis.com/css?family=Amiko' rel='stylesheet'>
+
     <!-- Css Styles -->
-    
-    
-    
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/elegant-icons.css" type="text/css">
@@ -39,26 +34,25 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style2.css" type="text/css">
-    
+ 
 <title>Insert title here</title>
 </head>
 <body>
 
 <%@ include file="../common/adminheader.jsp" %>
 
- <div style = "text-align: center">
 
-               <form action="/Search" method="post">
-
-               Search <input name="search"> <input type="submit" value="Search"/>
-
-               </form>
-
-           </div>
+<form action="<%= request.getContextPath() %>/MemberSearch.me">
+	<br>
+	<br>
+	<br>
+	&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+	<input type="text" name="memberId"/>
+	<button type="submit">회원검색</button>
+</form>
 
 <div class="tableArea">
-	<table align="center">
+	<table align="center" style="color:white;">
 		<thread>
 			<tr align="center">
 				<th width="100">아이디</th>
@@ -71,6 +65,7 @@
 		</thread>
 		<tbody>
 			<% for(Member c : list) { %>
+				
 				<tr align="center">
 					<td><%= c.getMemberId() %></td>
 				</tr>
