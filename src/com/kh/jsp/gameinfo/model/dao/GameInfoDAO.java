@@ -487,6 +487,39 @@ public class GameInfoDAO {
 		return list;
 	}
 
+
+	public ArrayList<GameImage> indexList(Connection con) throws GameInfoException {
+		ArrayList<GameImage> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("indexList");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				GameImage gi = new GameImage();
+				
+				gi.setGminfoNum(rset.getInt("gminfo_num"));
+				// 채워넣어야 함
+				
+				
+				list.add(gi);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new GameInfoException("[DAO] : " + e.getMessage());
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
 }
 
 

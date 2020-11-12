@@ -348,6 +348,29 @@ public class MyPageDAO {
 		return result;
 	}
 
+	public int insertCart(Connection con, String memberId, int gminfoNum) throws MyPageException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("insertCart");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, memberId);
+			pstmt.setInt(2, gminfoNum);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new MyPageException("[DAO] : " + e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 	
 	
 }

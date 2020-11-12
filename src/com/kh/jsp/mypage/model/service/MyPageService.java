@@ -116,5 +116,19 @@ public class MyPageService {
 		
 		return result;
 	}
+
+
+	public int insertCart(String memberId, int gminfoNum) throws MyPageException {
+		con = getConnection();
+		
+		int result = mpDAO.insertCart(con, memberId, gminfoNum);
+		
+		if(result > 0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
 }
 
