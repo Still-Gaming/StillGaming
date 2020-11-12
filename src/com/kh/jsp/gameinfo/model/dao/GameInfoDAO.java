@@ -503,9 +503,20 @@ public class GameInfoDAO {
 			while(rset.next()) {
 				GameImage gi = new GameImage();
 				
-				gi.setGminfoNum(rset.getInt("gminfo_num"));
-				// 채워넣어야 함
-				
+				gi.setGminfoNum(rset.getInt("GMINFO_NUM"));
+				gi.setGminfoName(rset.getString("GMINFO_NAME"));
+				gi.setGminfoDate(rset.getDate("GMINFO_DATE"));
+				gi.setGminfoCompany(rset.getString("GMINFO_COMPANY"));
+				gi.setGminfoExp(rset.getString("GMINFO_EXP"));
+				gi.setGmTypeNum(rset.getInt("GM_TYPENUM"));
+				gi.setGminfoAge(rset.getInt("GMINFO_AGE"));
+				gi.setGminfoPrice(rset.getInt("GMINFO_PRICE"));
+				gi.setGmimgNum(rset.getInt("GMIMG_NUM"));
+				gi.setGmimgFile(rset.getString("GMIMG_FILE"));
+				gi.setGmimgCgfile(rset.getString("GMIMG_CGFILE"));
+				gi.setGmimgPath(rset.getString("GMIMG_PATH"));
+				gi.setGminfoAgeRank(rset.getString("RANK_NAME"));
+				gi.setGminfoType(rset.getString("GM_TYPE"));
 				
 				list.add(gi);
 			}
