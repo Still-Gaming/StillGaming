@@ -33,7 +33,12 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
-
+	
+	<style>
+		textarea {
+			resize: none;
+		}
+	</style>
 </head>
 
 <body >
@@ -132,7 +137,7 @@
 												<input type="hidden" name="memberId" value="<%= co.getMemberId()%>"/>
 												<input type="hidden" name="refCno" value="<%= co.getComtNum() %>" />
 												<input type="hidden" name="comtLevel" value="<%= co.getComtLevel() %>" />
-												<button type="button" class="insertBtn" 
+												<button type="button" class="btn insertBtn" 
 													 onclick="reComment(this);">댓글 달기</button>&nbsp;&nbsp;
 													 
 												<button type="button" class="insertConfirm"
