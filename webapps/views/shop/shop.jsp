@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*, com.kh.jsp.gameinfo.model.vo.*"%>
 <%
-	ArrayList<GameInfo> list = (ArrayList<GameInfo>)request.getAttribute("list");
+	ArrayList<GameImage> list = (ArrayList<GameImage>)request.getAttribute("list");
 	
 	PageInfo pi = null;
 	String keyword = request.getParameter("keyword");
@@ -63,13 +63,12 @@
                                 <div class="col-lg-4 col-md-4 col-sm-6">
                                 <div class="searchArea" align="center">
 									<select id="searchCondition" name="searchCondition">
-										<option value="">---</option>
-										<option value="name">게임이름</option>
+										<option value="name" selected>게임이름</option>
 										<option value="company">게임회사</option>
 										<option value="content">내용</option>
-								</select>
+									</select>
 								<input type="search" id="keyword" placeholder="키워드를 입력하세요!"> 
-								<button type="button" onclick="search();">검색하기</button>
+								<button type="button" onclick="search();">검색</button>
                                   
                                 </div>
 							</div>
@@ -80,7 +79,7 @@
                         	<div class="col-lg-8 col-md-8 col-sm-8">
                         		<h2>조회된 상품이 없습니다.</h2>
                         	</div>
-                        <% } else { for(GameInfo gi : list) { %>
+                        <% } else { for(GameImage gi : list) { %>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="<%= request.getContextPath() %>/resources/gameimageUploadFiles/<%= gi.getGminfoImage() %>">

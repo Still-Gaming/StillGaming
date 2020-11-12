@@ -66,9 +66,9 @@ public class GameInfoDAO {
 		return result;
 	}
 	
-	public ArrayList<GameInfo> selectList(Connection con, int currentPage, int limit) throws GameInfoException {
+	public ArrayList<GameImage> selectList(Connection con, int currentPage, int limit) throws GameInfoException {
 		
-		ArrayList<GameInfo> list = new ArrayList<>();
+		ArrayList<GameImage> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -87,7 +87,7 @@ public class GameInfoDAO {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				GameInfo gi = new GameInfo();
+				GameImage gi = new GameImage();
 				
 				gi.setGminfoNum(   rset.getInt("gminfo_num"));
 				gi.setGminfoName(   rset.getString("gminfo_name"));
@@ -190,7 +190,7 @@ public class GameInfoDAO {
 			if(rset.next()) {
 				result = rset.getInt(1);
 			}
-			System.out.println("번호 : " + result);
+			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
@@ -330,11 +330,11 @@ public class GameInfoDAO {
 		int result = 0;
 		
 		String sql = prop.getProperty("updateGameImage");
-		System.out.println(sql);
+		
 		try {
 			pstmt = con.prepareStatement(sql);
 			
-			System.out.println(sql + "1111");
+			
 			pstmt.setString(1, bf.getGmimgFile());
 			pstmt.setString(2, bf.getGmimgCgfile());
 			pstmt.setString(3, bf.getGmimgPath());
@@ -383,8 +383,8 @@ public class GameInfoDAO {
 	}
 
 
-	public ArrayList<GameInfo> searchList(Connection con, String condition, String keyword) throws GameInfoException {
-		ArrayList<GameInfo> list1 = new ArrayList<>();
+	public ArrayList<GameImage> searchList(Connection con, String condition, String keyword) throws GameInfoException {
+		ArrayList<GameImage> list1 = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -401,29 +401,38 @@ public class GameInfoDAO {
 			sql = prop.getProperty("searchContent");
 			break;
 		}
-			
+		
+		System.out.println(sql);
+		System.out.println(keyword);
+		
 		try {
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1, keyword);
+			pstmt.setInt(1, 10);
+			pstmt.setInt(2, 1);
+			pstmt.setString(3, "%" + keyword + "%");
 			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				GameInfo g = new GameInfo();
+				GameImage gi = new GameImage();
 				
 				
-				g.setGminfoNum( rset.getInt("GMINFO_NUM"));
-				g.setGminfoName(rset.getString("GMINFO_NAME"));
-				g.setGminfoDate(rset.getDate("GMINFO_DATE"));
-				g.setGminfoCompany(rset.getString("GMINFO_COMPANY"));
-				g.setGminfoExp(rset.getString("GMINFO_EXP"));
-				g.setGmTypeNum(rset.getInt("GM_TYPENUM"));
-				g.setGminfoAge(rset.getInt("GMINFO_AGE"));
-				g.setGminfoPrice(rset.getInt("GMINFO_PRICE"));
+				gi.setGminfoNum(   rset.getInt("gminfo_num"));
+				gi.setGminfoName(   rset.getString("gminfo_name"));
+				gi.setGminfoExp( rset.getString("gminfo_exp"));
+				gi.setGminfoPrice( rset.getInt("gminfo_price"));
+				gi.setGminfoDate( rset.getDate("gminfo_date"));
+				gi.setGminfoCompany( rset.getString("gminfo_company"));
+				gi.setGminfoExp( rset.getString("gminfo_exp"));
+				gi.setGmTypeNum( rset.getInt("gm_typenum"));
+				gi.setGminfoAge( rset.getInt("gminfo_age"));
+				gi.setGminfoImage( rset.getString("gmimg_cgfile"));
+				gi.setGminfoAgeRank( rset.getString("RANK_NAME"));
+				gi.setGminfoType( rset.getString("gm_type"));
 				
-				list1.add(g);
-				System.out.println(g.getGminfoName());
+				list1.add(gi);
+				System.out.println(gi.getGminfoName());
 			}
 			
 		} catch (SQLException e) {
@@ -441,8 +450,8 @@ public class GameInfoDAO {
 	
 }
 
-	public ArrayList<GameInfo> searchAll(Connection con, String keyword) throws GameInfoException {
-		ArrayList<GameInfo> list = new ArrayList<>();
+	public ArrayList<GameImage> searchAll(Connection con, String keyword) throws GameInfoException {
+		ArrayList<GameImage> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -458,18 +467,22 @@ public class GameInfoDAO {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				GameInfo g = new GameInfo();
+				GameImage gi = new GameImage();
 				
-				g.setGminfoNum( rset.getInt("GMINFO_NUM"));
-				g.setGminfoName(rset.getString("GMINFO_NAME"));
-				g.setGminfoDate(rset.getDate("GMINFO_DATE"));
-				g.setGminfoCompany(rset.getString("GMINFO_COMPANY"));
-				g.setGminfoExp(rset.getString("GMINFO_EXP"));
-				g.setGmTypeNum(rset.getInt("GM_TYPENUM"));
-				g.setGminfoAge(rset.getInt("GMINFO_AGE"));
-				g.setGminfoPrice(rset.getInt("GMINFO_PRICE"));
+				gi.setGminfoNum(   rset.getInt("gminfo_num"));
+				gi.setGminfoName(   rset.getString("gminfo_name"));
+				gi.setGminfoExp( rset.getString("gminfo_exp"));
+				gi.setGminfoPrice( rset.getInt("gminfo_price"));
+				gi.setGminfoDate( rset.getDate("gminfo_date"));
+				gi.setGminfoCompany( rset.getString("gminfo_company"));
+				gi.setGminfoExp( rset.getString("gminfo_exp"));
+				gi.setGmTypeNum( rset.getInt("gm_typenum"));
+				gi.setGminfoAge( rset.getInt("gminfo_age"));
+				gi.setGminfoImage( rset.getString("gmimg_cgfile"));
+				gi.setGminfoAgeRank( rset.getString("RANK_NAME"));
+				gi.setGminfoType( rset.getString("gm_type"));
 				
-				list.add(g);
+				list.add(gi);
 			}
 			
 		} catch (SQLException e) {
