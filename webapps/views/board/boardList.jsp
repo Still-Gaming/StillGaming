@@ -31,6 +31,7 @@
 	.header__right, .heaer__ul {
 		    font-weight:normal;
 	}
+
 </style>
 
 </head>
@@ -63,7 +64,7 @@
 			</tbody>
 		</table>
 		
-		<div class="">
+		<div align="right">
 			<button class="btn btn-light" onclick="location.href='<%= request.getContextPath() %>/views/board/boardInsertForm.jsp'">글쓰기</button>
 		</div>
 	</div>
@@ -107,7 +108,7 @@
 	<br/>
 	
 	<div class="container">
-		<form id="searchFrm" action="<%= request.getContextPath() %>/search.bo" class="form-inline">
+		<form  id="searchFrm" action="<%= request.getContextPath() %>/search.bo" class="form-inline">
 			<select name="category" id="category" class="custom-select">
 				<option value="BOARD_TITLE" selected>제목</option>
 				<option value="MEMBER_ID">작성자</option>
@@ -115,11 +116,11 @@
 			</select>
 			
 			&nbsp;&nbsp;
-			<input type="text" align="center" name="searchWord" id="searchWord" placeholder="내용을 입력해주세요." class="form-control" />
+			<input type="text" name="searchWord" id="searchWord" placeholder="내용을 입력해주세요." class="form-control" />
 		
 			&nbsp;&nbsp;
 			
-			<span class="form-inline-btn" align="center">
+			<span class="form-inline-btn ">
 				<button class="btn btn-light" type="button" id="searchBtn">검색</button>
 			</span>
 		</form>

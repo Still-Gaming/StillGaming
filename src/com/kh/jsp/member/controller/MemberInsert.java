@@ -45,7 +45,6 @@ public class MemberInsert extends HttpServlet {
 	      Member m = new Member(memberId, memberPwd, memberName, memberSsn, gender,
 	                        email, phone);
 	      
-		System.out.println("gender : " + gender); 
 		// 회원 가입 실행
 		MemberService ms = new MemberService();
 			

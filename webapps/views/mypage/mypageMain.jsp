@@ -12,6 +12,8 @@
 <meta name="keywords" content="Anime, unica, creative, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="shortcut icon" href="<%=request.getContextPath() %>/resources/img/site_ico.ico" type="image/x-icon">
+<link rel="icon" href="<%=request.getContextPath() %>/resources/img/site_ico.ico" type="image/x-icon">
 <title>Still Gaming | 마이페이지</title>
 
 <!-- Google Font -->
@@ -83,9 +85,10 @@
 							<div class="service-element">
 								<h3>프로필</h3>
 							</div>
+							<br />							
 							<div class="service-info">
 								<i align="center" class="service-icon fa fa-user-circle"><br />
-								<%= m.getMemberName() %>님</i>
+								<span style="font-size: 35px;"><%= m.getMemberName() %>님</span></i>
 							</div>
 							<a href="/StillGaming/views/member/memberUpdate.jsp" class="content-wrapper-link"></a>
 						</div>
@@ -109,6 +112,7 @@
 							<div class="service-element">
 								<h3>장바구니</h3>
 							</div>
+							<br /><br />
 							<div class="service-info">
 								<i align="center" class="service-icon fa fa-shopping-cart">
 								<%= counts.get("cartCount") %></i>
@@ -126,6 +130,7 @@
 							<div class="service-element">
 								<h3>구매내역</h3>
 							</div>
+							<br /><br />							
 							<div class="service-info">
 								<i align="center" class="service-icon fa fa-credit-card-alt">
 								<%= counts.get("ordCount") %></i>
@@ -142,6 +147,7 @@
 						<div class="service" data-height="height">
 							<div class="service-element">
 								<h3>게시글 조회</h3>
+							<br /><br />								
 							</div>
 							<div class="service-info">
 								<i align="center" class="service-icon fa fa-align-left">

@@ -3,6 +3,7 @@
 <%  
 	ArrayList<GameInfo> list = (ArrayList<GameInfo>) request.getAttribute("list"); 
 	int price = 0;
+	String gameInfoNums = "";
 %>
 
 <!DOCTYPE html>
@@ -91,6 +92,7 @@ h4 {
 			</thead>
 			<tbody>
 				<% for(GameInfo gi : list) { %>
+					<% gameInfoNums += gi.getGminfoNum() + ","; %>
 					<tr align="center">
 						<input type="hidden" name="CartNo" id="CartNo" value="<%= gi.getGminfoNum() %>" />						
  						<td><img src="<%= request.getContextPath() %>/resources/gameimageUploadFiles/<%= gi.getGminfoImage() %>"></td>
@@ -99,6 +101,7 @@ h4 {
 					</tr>
 					<% price += gi.getGminfoPrice(); %>
 				<% } %>
+				<% gameInfoNums = gameInfoNums.substring(0, gameInfoNums.lastIndexOf(",")); %>
 			</tbody>
 		</table>
 	</div>
@@ -113,10 +116,13 @@ h4 {
 	<div align="center">
 	<button class="btn btn-default" id="payBtn">결제하기</button>
 	</div>
-			</section>
+	</section>
 	
       <table style="display:none;">
          <!-- 결제 정보에 사용-->
+         <tr>
+         	<td>아이디 : <input type="hidden" id="memberId" value="<%= m.getMemberId() %>" /></td>
+         </tr>
          <tr>
             <td>이름 : <span id="memberName" value="<%= m.getMemberName() %>"><%= m.getMemberName() %></span></td>
          </tr>
@@ -141,12 +147,16 @@ h4 {
 		$('#payBtn').on('click', function(){
 			// 문서 로딩될 때 바로 호출
 			
+				  var memberId = $('#memberId').val();
 			      var mname = $('#memberName').text();
-     			  var memail = $('#email').text();var mphone = $('#phone').text();
+     			  var memail = $('#email').text();
+     			  var mphone = $('#phone').text();
      			  console.log(mname);
      			  console.log(memail);
      			  console.log(mphone);
 
+     			  var pageName = "<%= request.getContextPath() %>";
+     			  
      		var IMP = window.IMP; // 생략가능
      		IMP.init('imp38962817');
 
@@ -170,16 +180,19 @@ h4 {
 				        msg += '카드 승인번호 : ' + rsp.apply_num;
 				        
 					    alert(msg);
+					    
+					    pageName += "/insert.pay?memberId=<%= m.getMemberId() %>&gameInfoNums=<%= gameInfoNums %>&price=<%= price %>";
 
-<%-- 			             location.href="<%=request.getContextPath()%>/insertPay.do?
- --%>					    
+   
 				    } else {
 				        var msg = '결제에 실패하였습니다.';
 				        msg += '에러내용 : ' + rsp.error_msg;
 				        alert(msg);
 				        
-				        location.href="<%=request.getContextPath()%>/views/mypage/orderFail.jsp";
+				        pageName += "/views/mypage/orderFail.jsp";
 				    }
+				    
+				    location.href = pageName;
 
 				});
 		});

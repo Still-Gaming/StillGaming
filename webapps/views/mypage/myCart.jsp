@@ -72,6 +72,10 @@ h4 {
     border-color: #ccc;
 }
 
+
+ .float-test {
+	 float : right;
+ }
  </style>
 </head>
 <body>
@@ -112,7 +116,7 @@ h4 {
 	
 	<div>
 		<span><button id="delete" class="btn btn-default" onclick="deleteChk();"><i class="fa fa-check"></i>삭제</button></span>
-		<b style="text-align: right;" id="priceAll">총 금액 : <span style="font-size: 22px;" id="price">0</span><span> 원</span></b>
+		<b><span class="float-test" id="priceAll">총 금액 : <span style="font-size: 22px;" id="price">0</span><span> 원</span></span></b>
 	</div>
 	
 		<hr style="border-width: 3px;" />

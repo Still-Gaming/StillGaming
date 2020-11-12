@@ -9,6 +9,9 @@ public class Ord extends GameInfo {
 	private String memberId;
 	private int gminfoNum;
 	private Date ordDate;
+	private int ordPrice;
+	
+	
 	public Ord() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -22,22 +25,33 @@ public class Ord extends GameInfo {
 		super(gminfoName, gminfoExp, gminfoPrice);
 		// TODO Auto-generated constructor stub
 	}
-	public Ord(int ordNo, String memberId, int gminfoNum, Date ordDate) {
+	public Ord(int ordNo, String memberId, int gminfoNum, Date ordDate, int ordPrice) {
 		super();
 		this.ordNo = ordNo;
 		this.memberId = memberId;
 		this.gminfoNum = gminfoNum;
 		this.ordDate = ordDate;
+		this.ordPrice = ordPrice;
 	}
+	
+	
+	public Ord(String memberId, int gminfoNum, int ordPrice) {
+		super();
+		this.memberId = memberId;
+		this.gminfoNum = gminfoNum;
+		this.ordPrice = ordPrice;
+	}
+	
 	@Override
 	public String toString() {
 		return "Ord [ordNo=" + ordNo + ", memberId=" + memberId + ", gminfoNum=" + gminfoNum + ", ordDate=" + ordDate
 				+ ", toString()=" + super.toString() + ", getGminfoNum()=" + getGminfoNum() + ", getGminfoName()="
 				+ getGminfoName() + ", getGminfoDate()=" + getGminfoDate() + ", getGminfoCompany()="
-				+ getGminfoCompany() + ", getGminfoExp()=" + getGminfoExp() + ", getGmTypenum()=" + getGmTypenum()
+				+ getGminfoCompany() + ", getGminfoExp()=" + getGminfoExp() + ", getGmTypenum()=" + getGminfoNum()
 				+ ", getGminfoAage()=" + getGminfoAge() + ", getGminfoPrice()=" + getGminfoPrice() + ", getClass()="
 				+ getClass() + ", hashCode()=" + hashCode() + "]";
 	}
+	
 	public int getOrdNo() {
 		return ordNo;
 	}
@@ -61,6 +75,12 @@ public class Ord extends GameInfo {
 	}
 	public void setOrdDate(Date ordDate) {
 		this.ordDate = ordDate;
+	}
+	public int getOrdPrice() {
+		return ordPrice;
+	}
+	public void setOrdPrice(int ordPrice) {
+		this.ordPrice = ordPrice;
 	}
 
 
