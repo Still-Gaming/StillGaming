@@ -38,7 +38,7 @@
     	}
     </style>
     
-    <title>StillGaming | 회원가입</title>
+    <title>StillGaming | 회원가입성공</title>
     
 </head>
 <body>
