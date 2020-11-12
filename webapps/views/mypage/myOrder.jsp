@@ -3,12 +3,16 @@
 <%@ page import="com.kh.jsp.mypage.model.vo.*, com.kh.jsp.board.model.vo.*, java.util.*" %>
 <%
 	ArrayList<Ord> list = (ArrayList<Ord>)request.getAttribute("list");
-	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	int listCount = pi.getListCount();
-	int currentPage = pi.getCurrentPage();
-	int maxPage = pi.getMaxPage();
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
+	PageInfo pi = null;
+	String date1 = request.getParameter("date1");
+	String date2 = request.getParameter("date2");
+	boolean chkSearch = false;
+
+	if(list != null && list.size() > 0 && (date1 == null) && (date2 == null)) {
+		pi = (PageInfo)request.getAttribute("pi");
+		chkSearch = true;
+
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -118,7 +122,7 @@ hr {
 	<hr />
 	<input type="date" name="date1" id="date1"> ~ <input type="date" name="date2" id="date2">
 	<button type="button" class="btn btn-default" onclick="search();">조회</button>
-	<button type="reset" class="btn btn-default" onclick="history.back();">초기화</button>
+	<button type="reset" class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/ord.my?memberId=<%= m.getMemberId() %>&currentPage=1'">초기화</button>
 	<br />
 	<br />
 		<div class="tableArea">
@@ -143,33 +147,34 @@ hr {
 		</table>
 	</div>
 	<br />
+	 <% if(chkSearch) {  %> 
 	    <div class="product__pagination" align="center">
            <a onclick="location.href='<%= request.getContextPath() %>/ord.my?memberId=<%= m.getMemberId() %>&currentPage=1'"><<</a>
 		
-		<%  if(currentPage <= 1){  %>
+		<%  if(pi.getCurrentPage() <= 1){  %>
 			<a class="current-page"><</a>
 		<%  }else{ %>
-			<a onclick="location.href='<%= request.getContextPath() %>/ord.my?memberId=<%= m.getMemberId() %>&currentPage=<%= currentPage - 1 %>'"><</a>
+			<a onclick="location.href='<%= request.getContextPath() %>/ord.my?memberId=<%= m.getMemberId() %>&currentPage=<%= pi.getCurrentPage() - 1 %>'"><</a>
 		<%  } %>
 			
-		<% for(int p = startPage; p <= endPage; p++){
-				if(p == currentPage){ %>
+		<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){
+				if(p == pi.getCurrentPage()){ %>
 				<a class="current-page"><%= p %></a>
 			<% } else { %>
 				<a onclick="location.href='<%= request.getContextPath() %>/ord.my?memberId=<%= m.getMemberId() %>&currentPage=<%= p %>'"><%= p %></a>
 			<% } %>
 		<% } %>
 				
-		<%  if(currentPage >= maxPage){  %>
+		<%  if(pi.getCurrentPage() >= pi.getMaxPage()){  %>
 			<a class="current-page">></a>
 		<%  } else { %>
-			<a onclick="location.href='<%= request.getContextPath() %>/ord.my?memberId=<%= m.getMemberId() %>&currentPage=<%= currentPage + 1 %>'">></a>
+			<a onclick="location.href='<%= request.getContextPath() %>/ord.my?memberId=<%= m.getMemberId() %>&currentPage=<%=  pi.getCurrentPage() + 1 %>'">></a>
 		<%  } %>
 		
-		<a onclick="location.href='<%= request.getContextPath() %>/ord.my?memberId=<%= m.getMemberId() %>&currentPage=<%= maxPage %>'">>></a>
+		<a onclick="location.href='<%= request.getContextPath() %>/ord.my?memberId=<%= m.getMemberId() %>&currentPage=<%= pi.getMaxPage() %>'">>></a>
 	
       </div>
-      
+      	<% } %>
       <br />
       <br />
       <br />
@@ -187,8 +192,13 @@ hr {
 	
 	<script>
 	function search(){
-		location.href="<%=request.getContextPath()%>/searchOrd.my?memberId=<%= m.getMemberId() %>&date1="+$('#date1').val()+"&date2="+$('#date2').val();
-	}
+		location.href="<%=request.getContextPath()%>/searchOrd.my?memberId=<%= m.getMemberId() %>&date1="+$('#date1').val()+"&date2="+$('#date2').val();	
+		}
+	
+
+
+
+	
 	</script>
 
 	<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>

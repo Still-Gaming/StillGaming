@@ -58,7 +58,6 @@ public class MyOrder extends HttpServlet {
 		try {
 			listCount = mps.getOrdCount(memberId);
 			
-			System.out.println("총 구매내역 수 : " + listCount);
 
 		} catch (MyPageException e) {
 			

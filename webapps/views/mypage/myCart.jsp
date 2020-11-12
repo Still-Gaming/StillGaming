@@ -3,8 +3,8 @@
 <%@ page import="com.kh.jsp.mypage.model.vo.*, com.kh.jsp.board.model.vo.*, java.util.*" %>
 <%
 	Cart cart = (Cart)request.getAttribute("cart");
-
 	ArrayList<Cart> list = (ArrayList<Cart>)request.getAttribute("list");
+
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
@@ -100,7 +100,7 @@ h4 {
 					<tr align="center">
 						<input type="hidden" name="CartNo" id="CartNo" value="<%= c.getGminfoNum() %>" />					
 						<td><input type="checkbox" name="gno" id="chk" value="<%= c.getGminfoNum() %>"></td>						
- 						<td><%= c.getGminfoImage() %></td>
+ 						<td><img src="<%= request.getContextPath() %>/resources/gameimageUploadFiles/<%= c.getGminfoImage() %>"></td>
 						<td><%= c.getGminfoName() %></td>
 						<td><%= c.getGminfoPrice() %></td>
 					</tr>

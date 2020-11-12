@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" import="java.util.*" %>
 <% 
 	HashMap<String, Integer> counts = (HashMap<String, Integer>)request.getAttribute("counts");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -83,9 +84,10 @@
 								<h3>프로필</h3>
 							</div>
 							<div class="service-info">
-								<i align="center" class="service-icon fa fa-user-circle"></i>
+								<i align="center" class="service-icon fa fa-user-circle"><br />
+								<%= m.getMemberName() %>님</i>
 							</div>
-							<a href="../member/memberUpdate.jsp" class="content-wrapper-link"></a>
+							<a href="/StillGaming/views/member/memberUpdate.jsp" class="content-wrapper-link"></a>
 						</div>
 					</div>
 				</div>
@@ -108,8 +110,8 @@
 								<h3>장바구니</h3>
 							</div>
 							<div class="service-info">
-								<i align="center" class="service-icon fa fa-shopping-cart"></i>
-								<%= counts.get("cartCount") %>
+								<i align="center" class="service-icon fa fa-shopping-cart">
+								<%= counts.get("cartCount") %></i>
 							</div>
 							<a
 								href="<%=request.getContextPath()%>/cart.my?memberId=<%=m.getMemberId()%>"
@@ -125,8 +127,8 @@
 								<h3>구매내역</h3>
 							</div>
 							<div class="service-info">
-								<i align="center" class="service-icon fa fa-credit-card-alt"></i>
-								<%= counts.get("ordCount") %>
+								<i align="center" class="service-icon fa fa-credit-card-alt">
+								<%= counts.get("ordCount") %></i>
 							</div>
 							<a
 								href="<%=request.getContextPath()%>/ord.my?memberId=<%=m.getMemberId()%>"
@@ -142,8 +144,8 @@
 								<h3>게시글 조회</h3>
 							</div>
 							<div class="service-info">
-								<i align="center" class="service-icon fa fa-align-left"></i>
-								<%= counts.get("listCount") %>   
+								<i align="center" class="service-icon fa fa-align-left">
+								<%= counts.get("listCount") %></i>
 							</div>
 							<a
 								href="<%=request.getContextPath()%>/post.my?memberId=<%=m.getMemberId()%>"
