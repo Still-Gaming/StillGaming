@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">
-                        <a href="/StillGaming/">
+                        <a href="<%= request.getContextPath() %>">
                             <img src="/StillGaming/resources/img/sglogo.png">
                         </a>
                     </div>

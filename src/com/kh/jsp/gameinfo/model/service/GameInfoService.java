@@ -21,10 +21,10 @@ public class GameInfoService {
 	private GameInfoDAO nDAO = new GameInfoDAO();
 	
 	
-	public ArrayList<GameImage> selectList(int currentPage, int limit) throws GameInfoException {
+	public ArrayList<GameInfo> selectList(int currentPage, int limit) throws GameInfoException {
 		con = getConnection();
 		
-		ArrayList<GameImage> list = nDAO.selectList(con, currentPage, limit);
+		ArrayList<GameInfo> list = nDAO.selectList(con, currentPage, limit);
 		
 		
 		
@@ -152,10 +152,10 @@ public class GameInfoService {
 	}
 
 
-	public ArrayList<GameImage> searchGame(String condition, String keyword) throws GameInfoException {
+	public ArrayList<GameInfo> searchGame(String condition, String keyword) throws GameInfoException {
 		con = getConnection();
 		
-		ArrayList<GameImage> list = null;
+		ArrayList<GameInfo> list = null;
 		
 		// 검색 옵션에 제목, 작성자 등 그 어떤 것이라도
 		// 조건을 달았다면 조건부 검색을 실시

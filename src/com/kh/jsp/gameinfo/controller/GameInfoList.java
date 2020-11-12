@@ -37,7 +37,7 @@ public class GameInfoList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<GameImage> list = new ArrayList<>();
+		ArrayList<GameInfo> list = new ArrayList<>();
 		
 		GameInfoService bs = new GameInfoService();
 	
