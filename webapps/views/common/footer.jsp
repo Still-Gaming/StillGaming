@@ -8,21 +8,19 @@
     <div class="page-up">
         <a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="footer__nav">
+    <div class="container" align="center">
+
+                <div class="footer__nav" align="center">
                     <ul>
-                        <li style="color: #8C8C8C">
-                        Copyright © 2020.11 StillGaming - Designed by 구성인
+                        <li style="color: #8C8C8C;">
+                   		Copyright © 2020.11 StillGaming - Designed by 구성인
                         </li>
                     </ul>
                     <br />
                     <br />
                     <br />
                 </div>
-            </div>
-          </div>
+
       </div>
   </footer>
   <!-- Footer Section End -->

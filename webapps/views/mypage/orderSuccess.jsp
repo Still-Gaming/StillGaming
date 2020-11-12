@@ -43,14 +43,13 @@
 	<br />
 	
 	<div align="center">
-	<h2 style="font-size:30px; font-weight:bold; color:red;">결제 실패하였습니다.</h2>
+	<h2 style="font-size:30px; font-weight:bold;">결제 완료 되셨습니다.</h2>
+	<h3>감사합니다.</h3>
 	</div>
 	
 	<br />
 	
-	<div class="returnpay" align="center"> 
-		<button class="ui red button" onclick="rePayButton();">다시 결제하기</button>
-	</div>
+
 	
 		
 	<br />
@@ -61,11 +60,6 @@
 	
 	<%@ include file="../common/footer.jsp" %>
 
-	<script>
-		function(rePayButton){
-			location.href="/StillGaming/views/mypage/orderForm.jsp";
-		}
-		
-	</script>
+\
 </body>
 </html>

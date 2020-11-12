@@ -40,7 +40,6 @@ public class MemberDAO {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertMember");
-		System.out.println(joinMember.getGender()+"1234");
 		try {
 			pstmt = con.prepareStatement(sql);
 			

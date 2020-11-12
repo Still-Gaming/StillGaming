@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.jsp.gameinfo.model.vo.GameInfo;
+import com.kh.jsp.mypage.model.vo.Ord;
 import com.kh.jsp.common.exception.GameInfoException;
+import com.kh.jsp.common.exception.PayException;
 import com.kh.jsp.gameinfo.model.dao.GameInfoDAO;
 import com.kh.jsp.pay.model.dao.PayDAO;
 
@@ -28,7 +30,32 @@ public class PayService {
 		
 		return list;
 	}
+
+	public int insertPay(ArrayList<Ord> list) throws PayException {
+		con = getConnection();
+		
+		int totalresult = 0;
+		
+		for(Ord o : list) {
+			int result = pDAO.insertPay(con, o);
+			
+			if(result > 0)totalresult++;
+		}
+		
+		if( totalresult > 0  && totalresult == list.size() ) { 
+			commit(con);
+			System.out.println(list.size());
+
+		} else {   
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return totalresult;
+	}
+		
+	}
 	
 	
 	
-}
