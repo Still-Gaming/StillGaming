@@ -39,7 +39,7 @@
                                    
                                   <li><a href="#" >admin<span class="arrow_carrot-down"></span></a>
                                    <ul class="dropdown">
-                                        <li><a href="<%= request.getContextPath()%>/MemberList.me" id="drop">adminpage</a></li>
+                                        <li><a href="<%= request.getContextPath()%>/views/about/adminpage.jsp" id="drop">adminpage</a></li>
                                        
                                    </ul>
 
