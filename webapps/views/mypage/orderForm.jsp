@@ -30,9 +30,8 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
  <script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
-
-<style>
-
+ 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style>
  section {
 	margin-left: 200px;
@@ -95,7 +94,7 @@ h4 {
 					<tr align="center">
 						<input type="hidden" name="CartNo" id="CartNo" value="<%= gi.getGminfoNum() %>" />						
  						<td><img src="<%= request.getContextPath() %>/resources/gameimageUploadFiles/<%= gi.getGminfoImage() %>"></td>
-						<td><%= gi.getGminfoName() %></td>
+						<td id="name"><%= gi.getGminfoName() %></td>
 						<td><%= gi.getGminfoPrice() %></td>
 					</tr>
 					<% price += gi.getGminfoPrice(); %>
@@ -112,17 +111,80 @@ h4 {
 		<hr style="border-width: 3px;" />
 	
 	<div align="center">
-	<button class="btn btn-default" onclick="readyForm();">결제하기</button>
+	<button class="btn btn-default" id="payBtn">결제하기</button>
 	</div>
+			</section>
 	
+      <table style="display:none;">
+         <!-- 결제 정보에 사용-->
+         <tr>
+            <td>이름 : <span id="memberName" value="<%= m.getMemberName() %>"><%= m.getMemberName() %></span></td>
+         </tr>
+         <tr>
+            <td>이메일 : <span id="email" value="<%= m.getMemberName() %>"><%=m.getEmail()%></span></td>
+         </tr>
+         <tr>
+            <td>연락처 : <span id="phone" value="<%=m.getPhone()%>"><%=m.getPhone()%></span></td>
+         </tr>
+      </table>
+
     <br />
     <br />
     <br />
     <br />
-	</section>
 	
-	
-	<%@ include file="../common/footer.jsp" %>
+		<%@ include file="../common/footer.jsp" %>
+
+	<script>
+
+
+		$('#payBtn').on('click', function(){
+			// 문서 로딩될 때 바로 호출
+			
+			      var mname = $('#memberName').text();
+     			  var memail = $('#email').text();var mphone = $('#phone').text();
+     			  console.log(mname);
+     			  console.log(memail);
+     			  console.log(mphone);
+
+     		var IMP = window.IMP; // 생략가능
+     		IMP.init('imp38962817');
+
+			IMP.request_pay({
+					pg : 'html5_inicis',
+				    pay_method : 'card',
+				    merchant_uid : 'merchant_' + new Date().getTime(),
+					name : 'Still Gaming',
+					amount : parseInt($('#price').text()),
+					buyer_email : memail,
+					buyer_name : mname,
+					buyer_tel : mphone,
+					buyer_addr : '서울시 강남구 역삼동',
+					buyer_postcode : 'TC0ONETIME'
+				}, function(rsp) {
+				    if ( rsp.success ) {
+				        var msg = '결제가 완료되었습니다.';
+				        msg += '고유ID : ' + rsp.imp_uid;
+				        msg += '상점 거래ID : ' + rsp.merchant_uid;
+				        msg += '결제 금액 : ' + rsp.paid_amount;
+				        msg += '카드 승인번호 : ' + rsp.apply_num;
+				        
+					    alert(msg);
+
+<%-- 			             location.href="<%=request.getContextPath()%>/insertPay.do?
+ --%>					    
+				    } else {
+				        var msg = '결제에 실패하였습니다.';
+				        msg += '에러내용 : ' + rsp.error_msg;
+				        alert(msg);
+				        
+				        location.href="<%=request.getContextPath()%>/views/mypage/orderFail.jsp";
+				    }
+
+				});
+		});
+			
+	</script>
 
 </body>
 </html>

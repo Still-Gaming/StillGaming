@@ -10,7 +10,7 @@ public class Cart extends GameInfo {
 	private int gminfoNum;
 	private String gminfoname;
 	private int gminfoprice;
-	private String gmimgfile;
+	private String gminfoImage;
 	
 	public Cart() {
 		super();
@@ -25,22 +25,24 @@ public class Cart extends GameInfo {
 		super(gminfoName, gminfoExp, gminfoPrice);
 		// TODO Auto-generated constructor stub
 	}
-	public Cart(String memberId, int gminfoNum, String gminfoname, int gminfoprice, String gmimgfile) {
+	public Cart(String memberId, int gminfoNum, String gminfoname, int gminfoprice, String gminfoImage) {
 		super();
 		this.memberId = memberId;
 		this.gminfoNum = gminfoNum;
 		this.gminfoname = gminfoname;
 		this.gminfoprice = gminfoprice;
-		this.gmimgfile = gmimgfile;
+		this.gminfoImage = gminfoImage;
 	}
 	@Override
 	public String toString() {
 		return "Cart [memberId=" + memberId + ", gminfoNum=" + gminfoNum + ", gminfoname=" + gminfoname
-				+ ", gminfoprice=" + gminfoprice + ", gmimgfile=" + gmimgfile + ", toString()=" + super.toString()
+				+ ", gminfoprice=" + gminfoprice + ", gminfoImage=" + gminfoImage + ", toString()=" + super.toString()
 				+ ", getGminfoNum()=" + getGminfoNum() + ", getGminfoName()=" + getGminfoName() + ", getGminfoDate()="
 				+ getGminfoDate() + ", getGminfoCompany()=" + getGminfoCompany() + ", getGminfoExp()=" + getGminfoExp()
-				+ ", getGmTypenum()=" + getGminfoNum() + ", getGminfoAage()=" + getGminfoAge() + ", getGminfoPrice()="
-				+ getGminfoPrice() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
+				+ ", getGmTypeNum()=" + getGmTypeNum() + ", getGminfoAge()=" + getGminfoAge() + ", getGminfoPrice()="
+				+ getGminfoPrice() + ", getGminfoImage()=" + getGminfoImage() + ", getGminfoAgeRank()="
+				+ getGminfoAgeRank() + ", getGminfoType()=" + getGminfoType() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + "]";
 	}
 	public String getMemberId() {
 		return memberId;
@@ -66,13 +68,12 @@ public class Cart extends GameInfo {
 	public void setGminfoprice(int gminfoprice) {
 		this.gminfoprice = gminfoprice;
 	}
-	public String getGmimgfile() {
-		return gmimgfile;
+	public String getGminfoImage() {
+		return gminfoImage;
 	}
-	public void setGmimgfile(String gmimgfile) {
-		this.gmimgfile = gmimgfile;
+	public void setGminfoImage(String gminfoImage) {
+		this.gminfoImage = gminfoImage;
 	}
-
 
 	
 }

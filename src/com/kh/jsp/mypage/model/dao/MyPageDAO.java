@@ -256,7 +256,6 @@ public class MyPageDAO {
 				c.setGminfoNum(rset.getInt("GMINFO_NUM"));
 				c.setGminfoName(rset.getString("GMINFO_NAME"));
 				c.setGminfoPrice(rset.getInt("GMINFO_PRICE"));
-
 				
 				list.add(c);
 			}
