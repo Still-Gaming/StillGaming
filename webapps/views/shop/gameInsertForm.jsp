@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
+    
 
 <style>
 *{
@@ -103,7 +105,7 @@ input{margin-bottom: 9px;}
     <br />
     <br />
     <br />
-	<% if(m != null && m.getMemberId().equals("user01")) { %>
+	<% if(m != null && m.getMemberId().equals("admin")) { %>
 	
 	<div class="section1">
    <div class="section2">
@@ -146,7 +148,9 @@ input{margin-bottom: 9px;}
              
              	<tr>
                		<td>장르번호</td>
-               		<td><input type="text" maxlenth="15" name="gmTypeNum" style="width : 268px; height:37px; margin-top:10px;" class="form-control"/></td>
+				            
+					  <td><input type="text" maxlenth="15" name="gmTypeNum" style="width : 268px; height:37px; margin-top:10px;" class="form-control"/></td>
+					
                </tr>
               
               <tr>

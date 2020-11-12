@@ -100,7 +100,7 @@ input{margin-bottom: 9px;}
 <body>
 	<%@ include file="/views/common/header.jsp" %>
 	
-	<% if(m != null && m.getMemberId().equals("user01")) { %>
+	<% if(m != null && m.getMemberId().equals("admin")) { %>
 	
 	<div class="section1">
   	   <div class="section2">
@@ -145,7 +145,8 @@ input{margin-bottom: 9px;}
 					<tr>
 						<td width="100px">장르번호</td>
 						<td colspan="3" height="3">
-							<input type="text" name="gmTypeNum" size="45" vlaue="<%= gi.getGmTypeNum() %>" />
+							<input type="text" name="gmTypeNum" size="45" value="<%= gi.getGmTypeNum() %>" />
+							
 						</td>
 					</tr>
 					<tr>

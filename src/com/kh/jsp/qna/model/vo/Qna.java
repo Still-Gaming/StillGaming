@@ -1,99 +1,106 @@
 package com.kh.jsp.qna.model.vo;
 
+
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
-public class Qnavo implements Serializable {
-	
-	private static final long serialVersionUID = 119L;
-	
-	private int qnaNo;
-	private String memberId;
-	private int qnaCode;
-	private String qnaTitle;
-	private String qnaContent;
-	private Date qnaDate;
-	private String qnaAnswer;
-	
-	public Qna() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+public class Qna implements Serializable {
+   private int qno;
+   private int writer;
+   private String qtitle;
+   private String qcontent;
+   private int qcount;
+   private Date qdate;
+   private String status;
+   
+   public Qna() {
+      super();
 
-	public Qna(int qnaNo, String memberId, int qnaCode, String qnaTitle, String qnaContent, Date qnaDate,
-			String qnaAnswer) {
-		super();
-		this.qnaNo = qnaNo;
-		this.memberId = memberId;
-		this.qnaCode = qnaCode;
-		this.qnaTitle = qnaTitle;
-		this.qnaContent = qnaContent;
-		this.qnaDate = qnaDate;
-		this.qnaAnswer = qnaAnswer;
-	}
+   }
+   
+   
 
-	@Override
-	public String toString() {
-		return "Qna [qnaNo=" + qnaNo + ", memberId=" + memberId + ", qnaCode=" + qnaCode + ", qnaTitle=" + qnaTitle
-				+ ", qnaContent=" + qnaContent + ", qnaDate=" + qnaDate + ", qnaAnswer=" + qnaAnswer + "]";
-	}
+   public Qna(String qtitle, String qcontent) {
+	super();
+	this.qtitle = qtitle;
+	this.qcontent = qcontent;
+}
 
-	public int getQnaNo() {
-		return qnaNo;
-	}
 
-	public void setQnaNo(int qnaNo) {
-		this.qnaNo = qnaNo;
-	}
 
-	public String getMemberId() {
-		return memberId;
-	}
+public Qna(int qno, int writer, String qtitle, String qcontent, int qcount, Date qdate, String status) {
+      super();
+      this.qno = qno;
+      this.writer = writer;
+      this.qtitle = qtitle;
+      this.qcontent = qcontent;
+      this.qcount = qcount;
+      this.qdate = qdate;
+      this.status = status;
+   }
 
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
-	}
+   public int getQno() {
+      return qno;
+   }
 
-	public int getQnaCode() {
-		return qnaCode;
-	}
+   public void setQno(int qno) {
+      this.qno = qno;
+   }
 
-	public void setQnaCode(int qnaCode) {
-		this.qnaCode = qnaCode;
-	}
+   public int getWriter() {
+      return writer;
+   }
 
-	public String getQnaTitle() {
-		return qnaTitle;
-	}
+   public void setWriter(int writer) {
+      this.writer = writer;
+   }
 
-	public void setQnaTitle(String qnaTitle) {
-		this.qnaTitle = qnaTitle;
-	}
+   public String getQtitle() {
+      return qtitle;
+   }
 
-	public String getQnaContent() {
-		return qnaContent;
-	}
+   public void setQtitle(String qtitle) {
+      this.qtitle = qtitle;
+   }
 
-	public void setQnaContent(String qnaContent) {
-		this.qnaContent = qnaContent;
-	}
+   public String getQcontent() {
+      return qcontent;
+   }
 
-	public Date getQnaDate() {
-		return qnaDate;
-	}
+   public void setQcontent(String qcontent) {
+      this.qcontent = qcontent;
+   }
 
-	public void setQnaDate(Date qnaDate) {
-		this.qnaDate = qnaDate;
-	}
+   public int getQcount() {
+      return qcount;
+   }
 
-	public String getQnaAnswer() {
-		return qnaAnswer;
-	}
+   public void setQcount(int qcount) {
+      this.qcount = qcount;
+   }
 
-	public void setQnaAnswer(String qnaAnswer) {
-		this.qnaAnswer = qnaAnswer;
-	}
-	
-	
+   public Date getQdate() {
+      return qdate;
+   }
 
+   public void setQdate(Date qdate) {
+      this.qdate = qdate;
+   }
+
+   public String getStatus() {
+      return status;
+   }
+
+   public void setStatus(String status) {
+      this.status = status;
+   }
+
+   @Override
+   public String toString() {
+      return "Qna [qno=" + qno + ", writer=" + writer + ", qtitle=" + qtitle + ", qcontent=" + qcontent + ", qcount="
+            + qcount + ", qdate=" + qdate + ", status=" + status + "]";
+   }
+   
+   
+   
 }

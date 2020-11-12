@@ -39,13 +39,26 @@ public class MemberDelete extends HttpServlet {
 
 		MemberService ms = new MemberService();
 		
-		ms.deleteMember(memberId);
+		try {
+			ms.deleteMember(memberId);
+			
+			
+			System.out.println("회원 탈퇴 성공!");
+			
+			session.invalidate();
+			
+			response.sendRedirect("index.jsp");
+			
+			
+		} catch (MemberException e) {
+			request.setAttribute("error-msg", "회원 탈퇴 수행 중 에러 발생!");
+			request.setAttribute("exception", e);
+			
+			request
+			.getRequestDispatcher("views/common/errorPage.jsp")
+			.forward(request, response);
+		}
 		
-		System.out.println("회원 탈퇴 성공!");
-		
-		session.invalidate();
-		
-		response.sendRedirect("index.jsp");
 	}
 
 	/**

@@ -8,7 +8,7 @@
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Still Gaming | 찜목록</title>
+    <title>Still Gaming | 결제</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -16,6 +16,7 @@
     rel="stylesheet">
 
     <!-- Css Styles -->
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style2.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/elegant-icons.css" type="text/css">
@@ -24,33 +25,34 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
- 
+ 	<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
+
+<style>
+	
+</style>
+
 </head>
 <body>
 
 	<%@ include file="../common/header.jsp" %>
 	
-	<div>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
 	
-		<p></p>
-	
+	<div align="center">
+	<span style="font-size:30px; font-weight:bold; color:red;">결제 실패하였습니다.</span>
 	</div>
-	
+		
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
 	
 	<%@ include file="../common/footer.jsp" %>
-
-</body>
-
-
-<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/mixitup.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
-
 
 </body>
 </html>

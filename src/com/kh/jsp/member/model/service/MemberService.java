@@ -15,7 +15,7 @@ public class MemberService {
 	private Connection con;
 	private MemberDAO mDAO = new MemberDAO();
 
-	public int insertMember(Member joinMember) {
+	public int insertMember(Member joinMember) throws MemberException{
 		
 		con = getConnection();
 		int result = mDAO.insertMember(con, joinMember);
@@ -44,7 +44,7 @@ public class MemberService {
 	}
 
 
-	public int deleteMember(String memberId) {
+	public int deleteMember(String memberId) throws MemberException{
 
 		con = getConnection();
 		

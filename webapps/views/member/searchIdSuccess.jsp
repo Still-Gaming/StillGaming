@@ -37,7 +37,7 @@
     	}
     </style>
     
-    <title>StillGaming | 회원가입</title>
+    <title>StillGaming | 아이디찾기</title>
     
 </head>
 <body>

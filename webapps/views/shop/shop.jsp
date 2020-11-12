@@ -3,12 +3,13 @@
 <%
 	ArrayList<GameInfo> list = (ArrayList<GameInfo>)request.getAttribute("list");
 	
-	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	int listCount = pi.getListCount();
-	int currentPage = pi.getCurrentPage();
-	int maxPage = pi.getMaxPage();
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
+	PageInfo pi = null;
+	String keyword = request.getParameter("keyword");
+	boolean chkSearch = false;
+	if(list != null && list.size() > 0 && (keyword == null)) {
+		pi = (PageInfo)request.getAttribute("pi");
+		chkSearch = true;
+	}
 %>
 
 
@@ -34,7 +35,12 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
     
-	
+    <style>
+    	.product__pagination a:hover {
+	color: #b7b7b7;
+	cursor: pointer;
+}
+    </style>
     
 </head>
 <body>
@@ -42,33 +48,40 @@
 	<%@ include file="/views/common/header.jsp" %>
 	
 	<!-- Product Section Begin -->
-    <section class="product-page spad" style="background: #0b0c2a;">
+    <section class="product-page spad"  style="background: #0b0c2a; ">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
+            <div class="row" >
+                <div class="col">
                     <div class="product__page__content">
                         <div class="product__page__title">
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-6">
                                     <div class="section-title">
-                                        <h4>Games</h4>
+                                        <h4 >Games</h4>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-6">
-                                    <div class="product__page__filter">
-                                        <p>Order by:</p>
-                                        <select>
-                                            <option value="">A-Z</option>
-                                            <option value="">1-10</option>
-                                            <option value="">10-50</option>
-                                        </select>
-                                    </div>
+                                <div class="searchArea" align="center">
+									<select id="searchCondition" name="searchCondition">
+										<option value="">---</option>
+										<option value="name">게임이름</option>
+										<option value="company">게임회사</option>
+										<option value="content">내용</option>
+								</select>
+								<input type="search" id="keyword" placeholder="키워드를 입력하세요!"> 
+								<button type="button" onclick="search();">검색하기</button>
+                                  
                                 </div>
+							</div>
                             </div>
                         </div>
                         <div class="row">
-                        <% for(GameInfo gi : list) { %>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                        <% if(list == null || list.size() == 0) { %>
+                        	<div class="col-lg-8 col-md-8 col-sm-8">
+                        		<h2>조회된 상품이 없습니다.</h2>
+                        	</div>
+                        <% } else { for(GameInfo gi : list) { %>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="<%= request.getContextPath() %>/resources/gameimageUploadFiles/<%= gi.getGminfoImage() %>">
                                         <div class="ep"><%= gi.getGminfoDate() %></div>
@@ -79,19 +92,46 @@
                                         <ul>
                                             <li><%= gi.getGminfoType() %></li>
                                         </ul>
-                                        <h5><a  href="<%= request.getContextPath() %>/selectone.do?gminfoNum=<%=gi.getGminfoNum()%>"><%= gi.getGminfoName() %></a></h5>
+                                        <h5><a  href="<%= request.getContextPath() %>/selectone.do?gminfoNum=<%=gi.getGminfoNum()%>"><%= gi.getGminfoName() %></a></h5></div>
+                                       	&nbsp;&nbsp;
+                                      
                                     </div>
                                 </div>
+                            <% } } %>
                             </div>
-                            <% } %>
+                            <% if(chkSearch) {  %> 
+                    <div class="product__pagination" align="center" >
+                  
+		<a onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=1'"><<</a>
+		
+		<%  if(pi.getCurrentPage() <= 1){  %>
+			<a class="current-page"><</a>
+		<%  }else{ %>
+			<a onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= pi.getCurrentPage() - 1 %>'"><</a>
+		<%  } %>
+			
+		<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){
+				if(p == pi.getCurrentPage()){ %>
+				<a class="current-page"><%= p %></a>
+			<% } else { %>
+				<a onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= p %>'"><%= p %></a>
+			<% } %>
+		<% } %>
+				
+		<%  if(pi.getCurrentPage() >= pi.getMaxPage()){  %>
+			<a class="current-page">></a>
+		<%  } else { %>
+			<a onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= pi.getCurrentPage() + 1 %>'">></a>
+		<%  } %>
+		
+		<a onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= pi.getMaxPage() %>'">>></a>
+		
+	</div>
+	<% } %>
                         </div>
                         <button onclick="location.href='views/shop/gameInsertForm.jsp'">작성하기</button>
                     </div>
-                   
-						
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-8">
-                    <div class="product__sidebar">
+                   <!--   <div class="product__sidebar">
                         <div class="product__sidebar__view">
                             <div class="section-title">
                                 <h5>Top Views</h5>
@@ -192,93 +232,24 @@
             </div>
         </div>
     </div>
-</div>
-</div>
-
-			<div class="pagingArea" align="center">
+</div> -->
+     </div>
+       </div> 
 	
-		<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=1'"><<</button>
+	</section>
+	
+	
+	<%@ include file="/views/common/footer.jsp" %>
+	
+	<script>  
 		
-		<%  if(currentPage <= 1){  %>
-			<button disabled><</button>
-		<%  }else{ %>
-			<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= currentPage - 1 %>'"><</button>
-		<%  } %>
-			
-		<% for(int p = startPage; p <= endPage; p++){
-				if(p == currentPage){ %>
-				<button disabled><%= p %></button>
-			<% } else { %>
-				<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= p %>'"><%= p %></button>
-			<% } %>
-		<% } %>
-				
-		<%  if(currentPage >= maxPage){  %>
-			<button disabled>></button>
-		<%  } else { %>
-			<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= currentPage + 1 %>'">></button>
-		<%  } %>
+		function search(){
+			location.href="<%=request.getContextPath()%>/searchGame.no?con="+$('#searchCondition').val()+"&keyword="+$('#keyword').val();
+		}
 		
-		<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do?currentPage=<%= maxPage %>'">>></button>
-		
-	</div>
-</section>
-<!-- Product Section End -->
+	</script>
+	
 
-<!-- Footer Section Begin -->
-<footer class="footer">
-    <div class="page-up">
-        <a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="footer__logo">
-                    <a href="./index.html"><img src="img/logo.png" alt=""></a>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="footer__nav">
-                    <ul>
-                        <li class="active"><a href="./index.html">Homepage</a></li>
-                        <li><a href="./categories.html">Categories</a></li>
-                        <li><a href="./blog.html">Our Blog</a></li>
-                        <li><a href="#">Contacts</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-
-              </div>
-          </div>
-      </div>
-  </footer>
-  <!-- Footer Section End -->
-
-  <!-- Search model Begin -->
-  <div class="search-model">
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-switch"><i class="icon_close"></i></div>
-        <form class="search-model-form">
-            <input type="text" id="search-input" placeholder="Search here.....">
-        </form>
-    </div>
-</div>
-<!-- Search model end -->
-
-<!-- Js Plugins -->
-<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/mixitup.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
 
 </body>
-
 </html>

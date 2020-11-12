@@ -49,7 +49,7 @@ public class MemberLogin extends HttpServlet {
 			response.sendRedirect("index.jsp");
 			
 		} else {
-			
+						
 		request.setAttribute("error-msg", "회원 로그인 실패!");
 			
 			RequestDispatcher view 

@@ -27,8 +27,8 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style2.css" type="text/css">
     
+        <script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
     
 <style>
 
@@ -36,6 +36,14 @@
 html, body {
 	background: #EAEAEA;
 	color : black;
+}
+
+#eye {
+	margion-left: 50px;
+	color: #b7b7b7;
+	position: absolute;
+	left: 335px;
+	top: 13px;
 }
 
 
@@ -68,14 +76,14 @@ html, body {
                         
                             <div class="input__item" >
                                 <input type="text" name="memberId" placeholder="ID" >
-                            	<span class="fa fa-user" id="userIcon"></span>
+                            	<span class="icon_id"></span>
                             </div>
                             
                             <div class="input__item">
-                                <input type="password" name="memberPwd" placeholder="Password">
                                 <span class="icon_lock"></span>
+                                <input type="password" name="memberPwd" id="memberPwd" placeholder="Password">
+                            	<span class="fa fa-eye" id="eye" ></span>
                             </div>
-                            
                             <button type="submit" onclick='login()' class="site-btn">Login Now</button>
                             
                         </form>
@@ -91,6 +99,7 @@ html, body {
                         <h5 style="color: black;">Dont’t Have An Account?</h5>
                         <br />
                         <a href="memberJoin.jsp" class="primary-btn">Register Now</a>
+                    </div>
                     </div>
                 </div>
            </div>  
@@ -111,21 +120,24 @@ html, body {
 	function login(){
 		$('#loginForm').submit();
 	}
+
+		$(document).ready(function(){
+		    $('#eye').on('click',function(){
+		        $('input').toggleClass('active');
+		        if($('input').hasClass('active')){
+		            $(this).attr('class',"fa fa-eye-slash")
+		            .prev('input').attr('type','text');
+		        }else{
+		            $(this).attr('class',"fa fa-eye")
+		            .prev('input').attr('type','password');
+		        }
+		    });
+		});
+
+
 	</script>
 
-      <!-- Search model Begin -->
-      <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch"><i class="icon_close"></i></div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
-            </form>
-        </div>
-    </div>
-    <!-- Search model end -->
-
     <!-- Js Plugins -->
-    <script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
     <script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
     <script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
     <script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>

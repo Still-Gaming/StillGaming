@@ -81,7 +81,7 @@ public class MyPost extends HttpServlet {
 			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
 			
-			page = "views/board/boardList.jsp";
+			page = "views/mypage/myPost.jsp";
 			
 		} catch (MyPageException e) {
 			
