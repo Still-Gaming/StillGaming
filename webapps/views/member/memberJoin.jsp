@@ -175,10 +175,7 @@ $('#idDupCheckBtn').on('click',function(){
 		type : 'post',
 		data : { memberId : $('#memberId').val() },
 		success : function(data){
-			// console.log(data);
-			
-			// 전달된 결과가 0이면 사용자 없음 : 가입 가능!
-			//			 1 		    있음 : 가입 불가!
+
 			if( data == 0 ) {
 				alert("사용 가능한 아이디입니다.");
 			} else {
@@ -211,14 +208,13 @@ $('#emailDupCheckBtn').on('click',function(){
 		}
 	});
 });
-// 비밀번호 유효성 체크 정규표현식 함수(영문,숫자,특수문자 8자리 이상 20자리 이하)
+
 function pwdRegEx(pwd){  
    var pwdRegEx = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
 
    return pwdRegEx.test(pwd);
 }
 
-// 두 비밀번호가 같은지 체크하는 함수
 function isSamePwd(pwd1,pwd2){
    if(pwd1 == pwd2){
       return true;
@@ -227,7 +223,6 @@ function isSamePwd(pwd1,pwd2){
 }
 
 
-// 비밀번호 유효성체크 이벤트 함수
 $('[name^="memberPwd"]').change(function(){
    var pwd1 = $('#memberPwd').val();
    var pwd2 = $('#memberPwd2').val();

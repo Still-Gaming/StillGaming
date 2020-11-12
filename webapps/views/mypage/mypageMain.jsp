@@ -168,23 +168,4 @@
 
 </body>
 
-<script
-	src="<%=request.getContextPath()%>/resources/js/jquery-3.3.1.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/js/player.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/js/jquery.nice-select.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/js/mixitup.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/js/jquery.slicknav.js"></script>
-<script
-	sr c="<%=request.getContextPath()%>/resources/js/owl.carousel.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/js/main.js"></script>
-
-<script src="<%=request.getContextPath()%>/resources/js/layout.min.js"
-	type="text/javascript"></script>
-
-</body>
 </html>
