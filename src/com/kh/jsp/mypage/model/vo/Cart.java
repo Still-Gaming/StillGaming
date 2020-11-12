@@ -10,7 +10,7 @@ public class Cart extends GameInfo {
 	private int gminfoNum;
 	private String gminfoname;
 	private int gminfoprice;
-	private String gminfoImage;
+	private String gminfoImage; 
 	
 	public Cart() {
 		super();

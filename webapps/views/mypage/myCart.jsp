@@ -76,6 +76,12 @@ h4 {
  .float-test {
 	 float : right;
  }
+ 
+ .img {
+ 	width: 150px;
+ 	height: 100px;
+ }
+ 
  </style>
 </head>
 <body>
@@ -104,7 +110,7 @@ h4 {
 					<tr align="center">
 						<input type="hidden" name="CartNo" id="CartNo" value="<%= c.getGminfoNum() %>" />					
 						<td><input type="checkbox" name="gno" id="chk" value="<%= c.getGminfoNum() %>"></td>						
- 						<td><img src="<%= request.getContextPath() %>/resources/gameimageUploadFiles/<%= c.getGminfoImage() %>"></td>
+ 						<td><div class="img"><img src="<%= request.getContextPath() %>/resources/gameimageUploadFiles/<%= c.getGminfoImage() %>"></div></td>
 						<td><%= c.getGminfoName() %></td>
 						<td><%= c.getGminfoPrice() %></td>
 					</tr>

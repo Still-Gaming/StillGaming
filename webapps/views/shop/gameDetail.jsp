@@ -36,7 +36,7 @@
 
 </head>
 
-<body>
+<body >
 
 	<%@ include file="/views/common/header.jsp" %>
 
@@ -49,13 +49,14 @@
     				<div class="col-lg-3">
     					<div class="anime__details__pic set-bg" data-setbg="<%= request.getContextPath() %>/resources/gameimageUploadFiles/<%= gie.getGmimgCgfile() %>">
                             <div class="comment"><i class="fa fa-comments"></i> 11</div><!-- 왼쪽 아래 말풍선 -->
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div><!-- 오른쪽 아래 눈 모양 -->
+                            <div class="view"><i class="fa fa-check"></i><%= gi.getGminfoAgeRank() %></div>
                         </div>
     				</div>
     				
     				<div class="col-lg-9">
 			    		<div class="anime__details__text">
 			    			<div class="anime__details__title">
+			    				<input type="hidden" id="gminfoNum" value="<%= gi.getGminfoNum() %>" />
                                 <h3><%= gi.getGminfoName() %></h3>
                                 <span><%= gi.getGminfoCompany() %></span>
                             </div>
@@ -83,8 +84,8 @@
                                 </div>
                             </div>
                             <div class="anime__details__btn">
-                                <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> 찜</a>
-                                <a href="#" class="watch-btn"><span>장바구니 담기</span> <i
+                                <a href="#" class="follow-btn"><i class="fa fa-krw"></i>바로 결제</a>
+                                <a href="#" class="watch-btn"><i class="fa fa-shopping-cart" id="cart"></i><span>장바구니 담기</span> <i
                                     class="fa fa-angle-right"></i></a>
                             </div>
 			    		</div>
@@ -162,8 +163,8 @@
                         
                         
     				</div>
-    				<div class="anime__details__form" style="clear: both;">
-                        <div class="section-title">
+    				<div class="anime__details__form" style="clear: both; ">
+                        <div class="section-title" >
                             <h5>댓글 등록</h5>
                         </div>
                         <form action="<%= request.getContextPath() %>/reviewInsert.do">
@@ -179,38 +180,7 @@
                             <% } %>
                         </form>
                     </div>
-    			</div> <!-- div class="col-lg-8 col-md-8" -->
-    			
-    			<!-- 사이드 바 -->
-    			<!-- 
-    			<div class="col-lg-4 col-md-4">
-                	<div class="anime__details__sidebar">
-                    	<div class="section-title">
-                            <h5>you might like...</h5>
-                        </div>
-                        <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-1.jpg">
-                            <div class="ep">18 / ?</div>
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                            <h5><a href="#">Boruto: Naruto next generations</a></h5>
-                        </div>
-                        <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-2.jpg">
-                            <div class="ep">18 / ?</div>
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                            <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-                        </div>
-                        <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-3.jpg">
-                            <div class="ep">18 / ?</div>
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                            <h5><a href="#">Sword art online alicization war of underworld</a></h5>
-                        </div>
-                        <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-4.jpg">
-                            <div class="ep">18 / ?</div>
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                            <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
-                        </div>
-                    </div>
-                </div>
-                -->
+    			</div> 
     		</div>
     	</div>
     </section>
@@ -299,19 +269,26 @@
 				
 			}
 			
+			$('#cart').on('click', function() {
+				$.ajax({
+					url : '/StillGaming/insert.cart',
+					type : 'post',
+					data : { gmifNum : $('#gminfoNum').val() },
+					success : function(data){
+						if( data == 0 ) {
+							alert("사용 가능한 아이디입니다.");
+						} else {
+							alert("이미 사용 중인 아이디입니다.")
+						}
+					}, error : function(){
+						console.log("에러 발생");
+					}
+				});
+			});
+			
 		</script>
 		
 	<% } %>
 	
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-		
+	</body>	
 </html>
