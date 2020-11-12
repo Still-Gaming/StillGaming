@@ -30,26 +30,69 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
 
 <style>
+	*{
+   font-family: 'Noto Sans KR', sans-serif;
+}
+.logo{
+   width: 500px;
+   text-align:center;
+   margin:0 auto;
+}
+.section1{
+   margin:0 auto;
+}
+.section2{
+   width : 1200px;
+   margin:0 auto;
+   margin-top: 50px;
+}
+.section3{
+   margin:0 auto;
+   padding:30px;
+   position: relative; 
+}
+.section3>div{
+   display:inline-block;
+}
+.join1{
+  width:420px;
+  border-right:2px solid #BDD4F2;
+  margin-left:150px;
+}
+.join2{
+  width:470px;
+}
+.email>div{
+   width :300px; 
+   height:40px; 
+   display:inline-block;
+}
+.join1>form>p{
+   font-size:15px;
+   margin-top:14px;
+   margin-bottom:3px;
+   font-family: 'Noto Sans KR', sans-serif;
+}
+.check{
+    margin-bottom: 132px;
+
+}
+input{margin-bottom: 9px;}
+.term-box{
+ font-family: 'Noto Sans KR', sans-serif;
+   width:350px;
+   height:160px;
+   margin-left:15px;
+   border-radius:3px;
+}
+
+.default {background-color: #e7e7e7; color: black;}
+
+.default:hover {background: #ddd;}
+.info {background-color: #2196F3;}
+.info:hover {background: #0b7dda;}
+</style>
 	
-	.insertArea {
-		width:500px;
-		height:450px;
-		margin-left:auto;
-		margin-right:auto;
-	}
-	.btnArea {
-		width:150px;
-		margin-left:auto;
-		margin-right:auto;
-	}
-	#titleImgArea {
-		width:350px;
-		height:200px;
-		border:2px dashed darkgray;
-		text-align:center;
-		display:table-cell;
-		vertical-align:middle;
-		
 		
 	
 </style>
@@ -57,72 +100,70 @@
 <body>
 	<%@ include file="/views/common/header.jsp" %>
 	
-	<% if (m != null) { %>
-	<div class="outer">
-		<br>
-		<h2 align="center">게임 수정</h2>
-		<form action="<%= request.getContextPath() %>/gameupdate.do"
-			  method="post" enctype="multipart/form-data">
-			<div class="insertArea">
-				<!-- 게시글 추가 영역 -->
+	<% if(m != null && m.getMemberId().equals("admin")) { %>
+	
+	<div class="section1">
+  	   <div class="section2">
+     	 <div class="section3">
+		<h2  align="center">게임 수정</h2>
+		<form  action="<%= request.getContextPath() %>/gameupdate.do"
+			  method="post" enctype="multipart/form-data" method="post" style="margin-top:-10px;"> 
+			
 				<input type="hidden" name="gminfoNum" value="<%= gi.getGminfoNum() %>" />
-				<table align="center">
+				<table >
 				
 					<tr>
-						<td width="100px">게임명</td>
-						<td colspan="3" height="3">
-							<input type="text" name="gminfoName" size="45" value="<%=gi.getGminfoName() %>" />
-						</td>
+						<td>게임명</td>
+	               <td><input type="text" name="gminfoName" value="<%=gi.getGminfoName() %>" style="width :268px; height:40px; display:inline-block;" class="form-control"/></td>
 					</tr>
-					<tr>
-						<td width="100px">게임출시일</td>
-						<td>
-						<input type="date" name="gminfoDate" value="<%= gi.getGminfoDate() %>">
-						</td>
-					</tr>
-					<tr>
-						<td>게임 이미지</td>
-						<td colspan="3">
-							<!-- div#titleImgArea -->
+               		
+               		<tr>
+                   <td>게임출시일</td>
+               	   <td><input type="date" name="gminfoDate" value="<%= gi.getGminfoDate() %>" style="width : 268px;  height:40px; "  class="form-control"/></td>
+             	  </tr>
+					
+					 <tr>
+               		<td>게임 이미지</td>
+              	    <td colspan="3">
 							<div id="titleImgArea">
-								<img id="gameimage" src="<%= request.getContextPath() %>/resources/gameimageUploadFiles/<%= gie.getGmimgCgfile() %>" width="350" height="200" />
+								<img id="gameimage" src="<%= request.getContextPath() %>/resources/gameimageUploadFiles/<%= gie.getGmimgCgfile() %>" width="350" height="200"  />
 							</div>
 						</td>
-					</tr>
-					<tr>
-						<td width="100px">출시한 회사</td>
-						<td colspan="3" height="3">
-							<input type="text" name="gminfoCompany" size="45"  value="<%= gi.getGminfoCompany()%>"/>
-						</td>
-					</tr>
-					<tr>
-						<td width="100px">게임 설명</td>
-						<td colspan="3">
-							<textarea name="gminfoExp" cols="50" rows="5" style="resize:none;"><%= gi.getGminfoExp() %></textarea>
-						</td>
-					</tr>
+               		</tr>
+					
+					 <tr>
+               		<td>출시한 회사</td>
+               		<td><input type="text" maxlenth="15" name="gminfoCompany"  value="<%= gi.getGminfoCompany()%>" style="width : 268px; height:37px; margin-top:10px;" class="form-control"/></td>
+             	  </tr>
+		
+					 <tr>
+               		<td>게임 설명</td>
+			   		<td>
+					<textarea name="gminfoExp" cols="50" rows="5" style="resize:none;" value="<%= gi.getGminfoExp() %>" class="form-control"></textarea>
+					</td>	
+               </tr>
 					<tr>
 						<td width="100px">장르번호</td>
 						<td colspan="3" height="3">
-							<input type="text" name="gmTypeNum" size="45" vlaue="<%= gi.getGmTypeNum() %>" />
+							<input type="text" name="gmTypeNum" size="45" value="<%= gi.getGmTypeNum() %>" />
+							
 						</td>
 					</tr>
 					<tr>
-						<td width="100px">연령등급</td>
-						<td colspan="3" height="3">
-							<input type="text" name="gminfoAge" size="45" value="<%= gi.getGminfoAge()%>"/>
-						</td>
-					</tr>
+             
+					
 					<tr>
-						<td width="100px">가격</td>
-						<td colspan="3" height="3">
-							<input type="text" name="gminfoPrice" size="45" value="<%= gi.getGminfoPrice() %>" />
-						</td>
-					</tr>
+               		<td>연령등급</td>
+               		<td><input type="text" maxlenth="15" name="gminfoAge" value="<%= gi.getGminfoAge()%>" style="width : 268px; height:37px; margin-top:10px;" class="form-control"/></td>
+               		</tr>
+					
+					<tr>
+               		<td>가격</td>
+               		<td><input type="text" maxlenth="15" name="gminfoPrice" value="<%= gi.getGminfoPrice() %>"  style="width : 268px; height:37px; margin-top:10px;" class="form-control"/></td>
+               </tr>
 					
 				</table>
 			
-			</div>
 			<div class="fileArea" id="fileArea">
 				<!-- 첨부할 사진 추가 영역 -->
 				<!-- (input:file#thumbnailImg[name=thumbnailImg onchange=loadImg(this, )])*4 -->
@@ -133,14 +174,19 @@
 				<button type="submit">작성 완료</button>
 				<button type="reset">작성 취소</button>
 			</div>
-		</form>	
+			</form>
+			</div>
+			</div>
+			
+			
+		
 	</div>	
-	<% } else { // 비회원 접근 차단
+	<% } else {
 		request.setAttribute("exception", new Exception("비회원 접근"));
 		request.setAttribute("error-msg", "회원 로그인 후 진행하세요!");
 		
-		request.getRequestDispatcher("../common/errorPage.jsp").forward(request, response);		
-	} %>
+		request.getRequestDispatcher("../common/errorPage.jsp").forward(request, response);
+	 } %>
 	
 	<!-- Js Plugins -->
 <script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
@@ -158,7 +204,7 @@
 			$('#titleImgArea').click(function(){
 				$('#gameImg1').click();
 			});
-			
+		
 			
 			$('#fileArea').hide();
 			
@@ -190,7 +236,6 @@
 			}	
 		}
 	</script> 
-	
 	
 
 </body>

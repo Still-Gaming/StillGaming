@@ -31,6 +31,13 @@
 /* Template default CSS
 /*----------------------------------------*/
 
+html,
+body {
+	height: 100%;
+	font-family: "Mulish", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	background: #0b0c2a;
+}
 
 h1,
 h2,
@@ -1781,7 +1788,6 @@ ol {
 .login__form form .input__item input::placeholder {
 	color: #b7b7b7;
 }
-
 
 .login__form form .input__item span {
 	color: #b7b7b7;
