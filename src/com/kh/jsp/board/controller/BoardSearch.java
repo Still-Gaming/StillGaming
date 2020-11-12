@@ -41,6 +41,7 @@ public class BoardSearch extends HttpServlet {
 		int maxPage;
 		int currentPage;
 		int limit = 5;
+		int limitList = 10;
 		currentPage = 1;
 		
 		if(request.getParameter("currentPage") != null) {
@@ -55,8 +56,8 @@ public class BoardSearch extends HttpServlet {
 			int listCount = (int)hmap.get("listCount");
 			ArrayList<Board> list = (ArrayList<Board>)hmap.get("list");
 			
-			maxPage = (int)Math.ceil((double)listCount/limit);
-			startPage = ((currentPage - 1)/limit) * limit + 1;
+			maxPage = (int)Math.ceil((double)listCount/limitList);
+			startPage = ((currentPage - 1)/limitList) * limitList + 1;
 			endPage = startPage + limit - 1;
 			
 			if(endPage > maxPage) {
