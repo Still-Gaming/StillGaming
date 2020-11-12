@@ -63,7 +63,7 @@ public class MemberUpdate extends HttpServlet {
 	
 			System.out.println("회원 정보 수정 완료!");
 				
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("index.do");
 						
 		} catch(MemberException e) {
 			

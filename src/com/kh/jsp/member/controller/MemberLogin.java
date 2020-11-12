@@ -46,7 +46,7 @@ public class MemberLogin extends HttpServlet {
 		
 			session.setAttribute("member", m);
 			
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("index.do");
 			
 		} else {
 						
