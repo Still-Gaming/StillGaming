@@ -256,6 +256,7 @@ public class MyPageDAO {
 				c.setGminfoNum(rset.getInt("GMINFO_NUM"));
 				c.setGminfoName(rset.getString("GMINFO_NAME"));
 				c.setGminfoPrice(rset.getInt("GMINFO_PRICE"));
+				c.setGminfoImage(rset.getString("GMIMG_CGFILE"));
 				
 				list.add(c);
 			}
@@ -298,13 +299,14 @@ public class MyPageDAO {
 				o.setOrdNo(rset.getInt(2));
 				o.setMemberId(rset.getString(3));
 				o.setOrdDate(rset.getDate(4));
-				o.setGminfoName(rset.getString(5));
-				o.setGminfoDate(rset.getDate(6));
-				o.setGminfoCompany(rset.getString(7));
-				o.setGminfoExp(rset.getString(8));
-				o.setGmTypeNum(rset.getInt(9));
-				o.setGminfoAge(rset.getInt(10));
-				o.setGminfoPrice(rset.getInt(11));
+				o.setOrdPrice(rset.getInt(5));
+				o.setGminfoName(rset.getString(6));
+				o.setGminfoDate(rset.getDate(7));
+				o.setGminfoCompany(rset.getString(8));
+				o.setGminfoExp(rset.getString(9));
+				o.setGmTypeNum(rset.getInt(10));
+				o.setGminfoAge(rset.getInt(11));
+				o.setGminfoPrice(rset.getInt(12));
 				
 				list.add(o);
 			}

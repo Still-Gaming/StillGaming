@@ -76,6 +76,7 @@ public class QnaInsertServlet extends HttpServlet {
 		try {
 			qs.insertQna(q, qf);
 			
+			response.sendRedirect(request.getContextPath() );
 			
 		} catch (QnaException e) {
 			

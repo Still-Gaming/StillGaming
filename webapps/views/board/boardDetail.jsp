@@ -130,7 +130,7 @@ textarea {
 }
 
 #updateBtn {
-		margin-left: 745px;
+		margin-left: 725px;
 	
 }
 
@@ -202,7 +202,7 @@ body {
 							<td>댓글 작성</td>
 							<td>
 								<textarea name="commentText" id="replyContent" 
-								          cols="130" rows="3"></textarea>
+								          cols="110" rows="3"></textarea>
 							</td>
 							<td>
 								<button class="btn btn-default" type="submit" id="addReply">
@@ -265,7 +265,7 @@ body {
 				</tr>
 				<tr class="comment replyList<%=bco.getCommentLevel()%>">
 					<td colspan="3" style="background : transparent;">
-					<textarea class="reply-content" cols="155" rows="3"
+					<textarea class="reply-content" cols="125" rows="3"
 					 readonly="readonly"><%= bco.getCommentText() %></textarea>
 					</td>
 				</tr>

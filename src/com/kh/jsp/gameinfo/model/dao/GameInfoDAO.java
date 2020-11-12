@@ -234,6 +234,7 @@ public class GameInfoDAO {
 					 result.setGminfoExp( rset.getString("gminfo_exp"));
 					 result.setGmTypeNum( rset.getInt("gm_typenum"));
 					 result.setGminfoAge( rset.getInt("gminfo_age"));
+					 result.setGminfoAgeRank( rset.getString("RANK_NAME"));
 					 result.setGminfoImage( rset.getString("gmimg_cgfile"));
 					
 				}

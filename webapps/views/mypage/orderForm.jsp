@@ -68,6 +68,10 @@ h4 {
     border-color: #ccc;
 }
 
+ .img {
+ 	width: 150px;
+ 	height: 100px;
+ }
  </style>
 </head>
 <body>
@@ -95,7 +99,7 @@ h4 {
 					<% gameInfoNums += gi.getGminfoNum() + ","; %>
 					<tr align="center">
 						<input type="hidden" name="CartNo" id="CartNo" value="<%= gi.getGminfoNum() %>" />						
- 						<td><img src="<%= request.getContextPath() %>/resources/gameimageUploadFiles/<%= gi.getGminfoImage() %>"></td>
+ 						<td><div class="img"><img src="<%= request.getContextPath() %>/resources/gameimageUploadFiles/<%= gi.getGminfoImage() %>"></div></td>
 						<td id="name"><%= gi.getGminfoName() %></td>
 						<td><%= gi.getGminfoPrice() %></td>
 					</tr>
