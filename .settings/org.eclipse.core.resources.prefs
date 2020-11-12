@@ -5,3 +5,5 @@ encoding//src/config/comment-sql.properties=UTF-8
 encoding//src/config/gamelist-sql.properties=UTF-8
 encoding//src/config/member-sql.properties=UTF-8
 encoding//src/config/mypage-sql.properties=UTF-8
+encoding//src/config/qna.properties=UTF-8
+encoding/<project>=UTF-8

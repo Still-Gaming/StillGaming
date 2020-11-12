@@ -23,7 +23,7 @@ public class MemberService {
 	
 	private MemberDAO mDAO = new MemberDAO();
 
-	public int insertMember(Member joinMember) {
+	public int insertMember(Member joinMember) throws MemberException{
 		
 		con = getConnection();
 		int result = mDAO.insertMember(con, joinMember);
@@ -52,7 +52,7 @@ public class MemberService {
 	}
 
 
-	public int deleteMember(String memberId) {
+	public int deleteMember(String memberId) throws MemberException{
 
 		con = getConnection();
 		
@@ -102,6 +102,42 @@ public class MemberService {
 		con = getConnection();
 		
 		int result = mDAO.emailDupCheck(con, email);
+		
+		close(con);
+		
+		return result;
+	}
+
+
+	public String searchId(String name, String email) throws MemberException {
+		con = getConnection();
+		
+		String memberId = mDAO.searchId(con, name, email);
+		
+		close(con);
+		
+		return memberId;
+	}
+
+
+	public int searchPwd(Member m) throws MemberException {
+		con = getConnection();
+		
+		int result = mDAO.searchPwd(con, m);
+				
+		close(con);
+		
+		return result;
+	}
+
+
+	public int updatePwd(Member m) throws MemberException {
+		con = getConnection();
+		
+		int result = mDAO.updatePwd(con, m);
+		
+		if(result > 0) commit(con);
+		else rollback(con);
 		
 		close(con);
 		

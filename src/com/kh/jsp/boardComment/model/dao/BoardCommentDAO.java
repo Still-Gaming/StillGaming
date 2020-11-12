@@ -40,7 +40,7 @@ public class BoardCommentDAO {
 		
 		String sql = prop.getProperty("insertComment");
 		
-		System.out.println(sql);
+		
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -111,7 +111,7 @@ public class BoardCommentDAO {
 		PreparedStatement pstmt = null;
 		
 		String sql = prop.getProperty("updateComment");
-		System.out.println(bco.getCommentText() + " / " + bco.getCommentNo());
+		
 		try {
 			pstmt = con.prepareStatement(sql);
 			
@@ -130,6 +130,30 @@ public class BoardCommentDAO {
 				
 		return result;
 		
+	}
+	public int deleteComment(Connection con, int commentNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteComment");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, commentNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			
+			close(pstmt);
+		}
+				
+		return result;
 	}
 
 	

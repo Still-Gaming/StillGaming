@@ -73,14 +73,14 @@ public class GameInfoInsert extends HttpServlet {
 		}
 		String gminfoCompany = mre.getParameter("gminfoCompany");
 		String gminfoExp = mre.getParameter("gminfoExp");
-		int gmTypenum = Integer.parseInt(mre.getParameter("gmTypenum"));
-		int gminfoAage = Integer.parseInt(mre.getParameter("gminfoAage"));
+		int gmTypeNum = Integer.parseInt(mre.getParameter("gmTypeNum"));
+		int gminfoAge = Integer.parseInt(mre.getParameter("gminfoAge"));
 		int gminfoPrice = Integer.parseInt(mre.getParameter("gminfoPrice"));
 		
 		String fileName = mre.getOriginalFileName("gameImg1");
 		String fileChangeName = mre.getFilesystemName("gameImg1");
 		
-		GameInfo b = new GameInfo(gminfoName, gminfoDate, gminfoCompany, gminfoExp, gmTypenum, gminfoAage, gminfoPrice);
+		GameInfo b = new GameInfo(gminfoName, gminfoDate, gminfoCompany, gminfoExp, gmTypeNum, gminfoAge, gminfoPrice);
 		
 		GameImage bf = null; 
 		

@@ -17,7 +17,7 @@ import com.kh.jsp.mypage.model.vo.Ord;
 /**
  * Servlet implementation class MyOrder
  */
-@WebServlet("/orderList.my")
+@WebServlet("/ord.my")
 public class MyOrder extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -38,7 +38,7 @@ public class MyOrder extends HttpServlet {
 		
 		MyPageService mps = new MyPageService();
 		
-		ArrayList<Ord> list = new ArrayList<>();
+		ArrayList<Ord> list = null;
 
 		String page = "";
 		
@@ -57,6 +57,9 @@ public class MyOrder extends HttpServlet {
 		
 		try {
 			listCount = mps.getOrdCount(memberId);
+			
+			System.out.println("총 구매내역 수 : " + listCount);
+
 		} catch (MyPageException e) {
 			
 			request.setAttribute("exception", e);

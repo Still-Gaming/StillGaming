@@ -3,8 +3,14 @@
 <%
 	Member m = (Member)session.getAttribute("member");
 %>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
 	<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/headerstyle.css" type="text/css">
+	<style>
+
+	.header {	
+		font-family: "Mulish", sans-serif;
+	}
+
+	</style>
 
     <!-- Header Section Begin -->
 
@@ -14,7 +20,7 @@
                 <div class="col-lg-2">
                     <div class="header__logo">
                         <a href="/StillGaming/">
-                            <img src="/StillGaming/resources/img/sglogo.png" alt="">
+                            <img src="/StillGaming/resources/img/sglogo.png">
                         </a>
                     </div>
                 </div>
@@ -24,25 +30,22 @@
 
                 		  <ul class="header__ul">
                                 <li><a href="<%= request.getContextPath() %>/gamelist.do">Store</a></li>
-                                <li><a href="#">Community<span class="arrow_carrot-down"></span></a>
-                                    <ul class="dropdown">
-                                        <li><a href="#" id="drop">공지사항</a></li>
-                                        <li><a href="<%= request.getContextPath() %>/selectList.bo" id="drop">자유게시판</a></li>
-                                    </ul>
-                                </li>
+                                <li><a href="<%= request.getContextPath() %>/selectList.bo">Community</a></li>
                                 
 								<li><a href="#" >Q&A<span class="arrow_carrot-down"></span></a>
                                    <ul class="dropdown">
                                         <li><a href="<%= request.getContextPath()%>/views/about/faq.jsp" id="drop">FAQ</a></li>
-                                        <li><a href="<%= request.getContextPath()%>/views/about/qna.jsp" id="drop">1:1문의</a></li>
+                                        <li><a href="#"<%-- "<%= request.getContextPath()%>/views/about/qna.jsp" --%> id="drop">1:1문의</a></li>
                                    </ul>
                                    
+                                  
                                   <li><a href="#" >admin<span class="arrow_carrot-down"></span></a>
                                    <ul class="dropdown">
                                         <li><a href="<%= request.getContextPath()%>/views/about/adminpage.jsp" id="drop">adminpage</a></li>
                                        
                                    </ul>
-
+								  
+								</li>
                             </ul>
                         </nav>
                     </div>
@@ -55,8 +58,8 @@
                       <b><a href="/StillGaming/views/member/memberJoin.jsp" style="color: black;" >JOIN US</a></b>
          <% } else { %>
          			<b><a href="/StillGaming/logout.me" style="color: black;" >LOGOUT</a></b>&nbsp; | &nbsp;
-         			<b><a href="/StillGaming/views/mypage/mypageMain.jsp" style="color: black;" >MY PAGE</a></b>
-          	<% } %>          
+         			<b><a href="<%= request.getContextPath() %>/main.my?memberId=<%= m.getMemberId() %>" style="color: black;" >MY PAGE</a></b>
+          	<% } %>
                     </div>
                 </div>
             </div>

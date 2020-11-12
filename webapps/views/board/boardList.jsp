@@ -9,12 +9,16 @@
    int maxPage = pi.getMaxPage();
    int startPage = pi.getStartPage();
    int endPage = pi.getEndPage();
+   String searchWord = pi.getSearchWord();
+   String str = "";
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>커뮤니티</title>
+	<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
+
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/elegant-icons.css" type="text/css">
@@ -23,26 +27,26 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
+<style>
+	.header__right, .heaer__ul {
+		    font-weight:normal;
+	}
+</style>
 
-<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-<<<<<<< HEAD
+
 	<%@ include file="/views/common/header.jsp" %>
-	
-	<div class="titleArea">
-		<h2>자유 게시판</h2>
-	</div>
-		
-	<div class="tableArea">
-		<table align="center">
-			<thead>
+		<br /><br /><br />
+	<div class="container table-responsive-xs">
+		<table align="center" class="table table-bordered table-hover">
+			<thead class="table-secondary">
 				<tr align="center">
-					<th width="50">번호</th>
-					<th width="200">제목</th>
-					<th width="80">작성자</th>
-					<th width="50">조회수</th>
-					<th width="120">작성일</th>
+					<th width="20">번호</th>
+					<th width="170">제목</th>
+					<th width="40">작성자</th>
+					<th width="20">조회수</th>
+					<th width="40">작성일</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -58,67 +62,76 @@
 				<% } %>
 			</tbody>
 		</table>
+		
+		<div class="">
+			<button class="btn btn-light" onclick="location.href='<%= request.getContextPath() %>/views/board/boardInsertForm.jsp'">글쓰기</button>
+		</div>
 	</div>
 	
 	<div class="pagingArea" align="center">
-	
-		<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
+		
+		<% 
+			if(pi.getSearchWord() == null) {
+				str = request.getContextPath() + "/selectList.bo?currentPage=";
+			} else {
+				str = request.getContextPath() + "/search.bo?category=" + pi.getCategory() + "&searchWord=" + pi.getSearchWord() + "&currentPage=";
+			}
+		
+		%>
+		<button class="btn btn-light" onclick="location.href='<%= str %>1'"><<</button>
 		
 		<%  if(currentPage <= 1){  %>
-			<button disabled><</button>
-		<%  }else{ %>
-			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage - 1 %>'"><</button>
+			<button class="btn btn-light" disabled><</button>
+		<%  } else { %>
+			<button class="btn btn-light" onclick="location.href='<%= str %><%= currentPage - 1 %>'"><</button>
 		<%  } %>
 			
 		<% for(int p = startPage; p <= endPage; p++){
 				if(p == currentPage){ %>
-				<button disabled><%= p %></button>
+				<button class="btn btn-light" disabled><%= p %></button>
 			<% } else { %>
-				<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= p %>'"><%= p %></button>
+				<button class="btn btn-light" onclick="location.href='<%= str %><%= p %>'"><%= p %></button>
 			<% } %>
 		<% } %>
 				
 		<%  if(currentPage >= maxPage){  %>
-			<button disabled>></button>
+			<button class="btn btn-light" disabled>></button>
 		<%  } else { %>
-			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage + 1 %>'">></button>
+			<button class="btn btn-light" onclick="location.href='<%= str %><%= currentPage + 1 %>'">></button>
 		<%  } %>
 		
-		<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= maxPage %>'">>></button>
+		<button class="btn btn-light" onclick="location.href='<%= str %><%= maxPage %>'">>></button>
 		
 	</div>
 	
-	<div class="btnArea">
-		<button onclick="location.href='<%= request.getContextPath() %>/views/board/boardInsertForm.jsp'">글쓰기</button>
-	</div>
+	<br/>
 	
-	<form action="<%= request.getContextPath() %>/search.bo">
-		<div class="searchArea">
-			<select name="category" id="category">
-				<option value="title" selected>제목</option>
-				<option value="memberId">작성자</option>
+	<div class="container">
+		<form id="searchFrm" action="<%= request.getContextPath() %>/search.bo" class="form-inline">
+			<select name="category" id="category" class="custom-select">
+				<option value="BOARD_TITLE" selected>제목</option>
+				<option value="MEMBER_ID">작성자</option>
+				<option value="BOARD_TEXT">내용</option>
 			</select>
 			
-			<input type="text" name="searchWord" id="searchWord" />
+			&nbsp;&nbsp;
+			<input type="text" align="center" name="searchWord" id="searchWord" placeholder="내용을 입력해주세요." class="form-control" />
+		
+			&nbsp;&nbsp;
 			
-			<button>검색</button>
-		</div>
-	</form>
+			<span class="form-inline-btn" align="center">
+				<button class="btn btn-light" type="button" id="searchBtn">검색</button>
+			</span>
+		</form>
+	</div>
+	
+	<br/><br/><br/><br/>
 	
 	<%@ include file="/views/common/footer.jsp" %>
 	
 	<script>
 		$('td').on('mouseenter', function() {
 			$(this).css('cursor', 'pointer');
-			$(this).parent().css({
-				'background-color' : 'black',
-				'color' : 'white'
-			});
-		}).on('mouseleave', function() {
-			$(this).parent().css({
-				'background-color' : 'transparent',
-				'color' : 'black'
-			})
 		}).on('click', function() {
 			var boardNo = $(this).parent().find('input').val();
 			console.log(boardNo);
@@ -128,14 +141,18 @@
 				location.href='<%= request.getContextPath() %>/views/member/memberLogin.jsp';
 			<% } %>
 		});
+		
+		$('#searchBtn').on('click', function() {
+			if($('#searchWord').val().length < 2) {
+				alert('검색어를 2자 이상 입력해주세요');
+				$('#searchWord').focus();
+				return;
+			}
+			
+			$('#searchFrm').submit();
+		});
+		
 	</script>
 	
-<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/mixitup.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
 </body>
 </html>

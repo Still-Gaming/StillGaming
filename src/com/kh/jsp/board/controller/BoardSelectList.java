@@ -40,7 +40,7 @@ public class BoardSelectList extends HttpServlet {
 		int endPage;
 		int maxPage;
 		int currentPage;
-		int limit = 10;
+		int limit = 5;
 		currentPage = 1;
 		
 		if(request.getParameter("currentPage") != null) {
@@ -58,8 +58,7 @@ public class BoardSelectList extends HttpServlet {
 			
 			page = "/views/common/errorPage.jsp";
 		}
-		
-		maxPage = (int)Math.ceil((double)listCount/limit);
+		maxPage = (int)Math.ceil((double)listCount/10);
 		
 		startPage = ((currentPage - 1)/limit) * limit + 1;
 		
