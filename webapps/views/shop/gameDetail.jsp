@@ -92,7 +92,14 @@
                         </div>
                     </div>
                 </div>
-                
+                		<div class="btnArea" align="center">
+			<button onclick="location.href='<%= request.getContextPath() %>/gamelist.do'"> 목록 </button>
+			
+			
+				<button onclick="location.href='<%= request.getContextPath() %>/updateView.do?gminfoNum='+<%=gi.getGminfoNum()%>">수정</button>
+				<button onclick="location.href='<%= request.getContextPath() %>/delete.do?gminfoNum='+<%=gi.getGminfoNum()%>">삭제</button>
+			
+		</div>
               <div class="replyArea">
 			<div class="replyWriteArea">
 				<form action="<%= request.getContextPath() %>/reviewInsert.do" method="post">
@@ -102,7 +109,7 @@
 					<input type="hidden" name="comtLevel"  value="1"/>
 					
 					<div class="row">
-                    <div class="col-lg-10 col-md-10">
+                    <div class="col-lg-8 col-md-8">
                         <div class="anime__details__review">
                             <div class="section-title">
                                 <h5>Reviews</h5>
@@ -126,6 +133,7 @@
 							
 						</tr>
 					</table>
+					
 				</form>
 		<div class="replySelectArea">
 		
@@ -189,8 +197,11 @@
 			%>
 			
 			</div>
-		
+				
 		</div>
+		</div>
+		</section>
+		
 	<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
