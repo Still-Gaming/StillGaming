@@ -1,20 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.kh.jsp.board.model.vo.*, java.util.*" %>
+<%@ page import="com.kh.jsp.member.model.vo.*, java.util.*" %>
+
 <%
-   ArrayList<Member> list = (ArrayList<Board>)request.getAttribute("list");
-   MemberInfo mi = (PageInfo)request.getAttribute("pi");
-   int listCount = pi.getListCount();
-   int currentPage = pi.getCurrentPage();
-   int maxPage = pi.getMaxPage();
-   int startPage = pi.getStartPage();
-   int endPage = pi.getEndPage();
+   
+   
+   ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>커뮤니티</title>
+
+    <meta name="description" content="Anime Template">
+    <meta name="keywords" content="Anime, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>회원관리</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+    
+    
+    <link href='https://fonts.googleapis.com/css?family=Amiko' rel='stylesheet'>
+    <!-- Css Styles -->
+    
+    
+    
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/elegant-icons.css" type="text/css">
@@ -23,119 +39,71 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css" type="text/css">
-
-<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style2.css" type="text/css">
+    
+<title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
-	<%@ include file="/views/common/header.jsp" %>
-	
-	<div class="titleArea">
-		<h2>자유 게시판</h2>
-	</div>
-		
-	<div class="tableArea">
-		<table align="center">
-			<thead>
+
+<%@ include file="../common/adminheader.jsp" %>
+
+ <div style = "text-align: center">
+
+               <form action="/Search" method="post">
+
+               Search <input name="search"> <input type="submit" value="Search"/>
+
+               </form>
+
+           </div>
+
+<div class="tableArea">
+	<table align="center">
+		<thread>
+			<tr align="center">
+				<th width="100">아이디</th>
+				<th width="100">이름</th>
+				<th width="80">성별</th>
+				<th width="120">생년월일</th>
+				<th width="120">이메일</th>
+				<th width="100">회원삭제</th>
+			</tr>
+		</thread>
+		<tbody>
+			<% for(Member c : list) { %>
 				<tr align="center">
-					<th width="50">번호</th>
-					<th width="200">제목</th>
-					<th width="80">작성자</th>
-					<th width="50">조회수</th>
-					<th width="120">작성일</th>
+					<td><%= c.getMemberId() %></td>
 				</tr>
-			</thead>
-			<tbody>
-				<% for(Board b : list) { %>
-					<tr align="center">
-						<input type="hidden" name="BoardNo" id="BoardNo" value="<%= b.getBoardNo() %>" />
-						<td><%= b.getBoardNo() %></td>
-						<td><%= b.getBoardTitle() %></td>
-						<td><%= b.getMemberId() %></td>
-						<td><%= b.getBoardCount() %></td>
-						<td><%= b.getBoardDate() %></td>
-					</tr>
-				<% } %>
-			</tbody>
-		</table>
-	</div>
-	
-	<div class="pagingArea" align="center">
-	
-		<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
-		
-		<%  if(currentPage <= 1){  %>
-			<button disabled><</button>
-		<%  }else{ %>
-			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage - 1 %>'"><</button>
-		<%  } %>
-			
-		<% for(int p = startPage; p <= endPage; p++){
-				if(p == currentPage){ %>
-				<button disabled><%= p %></button>
-			<% } else { %>
-				<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= p %>'"><%= p %></button>
+				<tr align="center">
+					<td><%= c.getMemberName() %></td>
+				</tr>
+				<tr align="center">
+					<td><%= c.getGender() %></td>
+				</tr>
+				<tr align="center">
+					<td><%= c.getMemberSsn() %></td>
+				</tr>
+				<tr align="center">
+					<td><%= c.getEmail() %></td>
+				</tr>
+				<tr align="center">
+					<td><%= c.getGender() %></td>
+				</tr>
 			<% } %>
-		<% } %>
-				
-		<%  if(currentPage >= maxPage){  %>
-			<button disabled>></button>
-		<%  } else { %>
-			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage + 1 %>'">></button>
-		<%  } %>
-		
-		<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= maxPage %>'">>></button>
-		
-	</div>
-	
-	<div class="btnArea">
-		<button onclick="location.href='<%= request.getContextPath() %>/views/board/boardInsertForm.jsp'">글쓰기</button>
-	</div>
-	
-	<form action="<%= request.getContextPath() %>/search.bo">
-		<div class="searchArea">
-			<select name="category" id="category">
-				<option value="title" selected>제목</option>
-				<option value="memberId">작성자</option>
-			</select>
-			
-			<input type="text" name="searchWord" id="searchWord" />
-			
-			<button>검색</button>
-		</div>
-	</form>
-	
-	<%@ include file="/views/common/footer.jsp" %>
-	
-	<script>
-		$('td').on('mouseenter', function() {
-			$(this).css('cursor', 'pointer');
-			$(this).parent().css({
-				'background-color' : 'black',
-				'color' : 'white'
-			});
-		}).on('mouseleave', function() {
-			$(this).parent().css({
-				'background-color' : 'transparent',
-				'color' : 'black'
-			})
-		}).on('click', function() {
-			var boardNo = $(this).parent().find('input').val();
-			console.log(boardNo);
-			<% if(m != null) { %>
-				location.href='<%= request.getContextPath() %>/selectOne.bo?boardNo=' + boardNo;
-			<% } else { %>
-				location.href='<%= request.getContextPath() %>/views/member/memberLogin.jsp';
-			<% } %>
-		});
-	</script>
-	
-<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/player.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/mixitup.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
+		</tbody>
+	</table>
+
+</div>
+
+
+
+
+
+
+<%@ include file="../common/adminfooter.jsp" %>
 </body>
 </html>
+
+
+
+

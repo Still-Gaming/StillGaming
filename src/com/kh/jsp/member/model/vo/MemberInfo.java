@@ -1,122 +1,109 @@
 package com.kh.jsp.member.model.vo;
 
-import java.io.IOException;
-import java.sql.Date;
+import java.io.Serializable;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+public class MemberInfo implements Serializable {
 
-/**
- * Servlet implementation class MemberInfo
- */
-@WebServlet("/MemberInfo.do")
-public class MemberInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-	private String memberId;            // 아이디
-    private String memberPwd;           // 비밀번호
-	private String memberName;          // 이름
-    private String memberSsn;           // 생년월일
-	private String gender;              // 성별
-	private String email;               // 이메일
-	private String phone;               // 번호
-	private Date joinDate;            // 가입일
-	private String status;              // 탈퇴여부
-	private int reportNum;           // 신고누적회수
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public MemberInfo() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-	public MemberInfo(String memberId, String memberPwd, String memberName, String memberSsn, String gender,
-			String email, String phone, Date joinDate, String status, int reportNum) {
+	
+	private int currentPage;
+	private int listCount;
+	private int limit;
+	private int maxPage;
+	private int startPage;
+	private int endPage;
+	
+	
+	public MemberInfo() {
 		super();
-		this.memberId = memberId;
-		this.memberPwd = memberPwd;
-		this.memberName = memberName;
-		this.memberSsn = memberSsn;
-		this.gender = gender;
-		this.email = email;
-		this.phone = phone;
-		this.joinDate = joinDate;
-		this.status = status;
-		this.reportNum = reportNum;
+		// TODO Auto-generated constructor stub
 	}
+
+
+	public MemberInfo(int currentPage, int listCount, int limit, int maxPage, int startPage, int endPage) {
+		super();
+		this.currentPage = currentPage;
+		this.listCount = listCount;
+		this.limit = limit;
+		this.maxPage = maxPage;
+		this.startPage = startPage;
+		this.endPage = endPage;
+	}
+
+
 	@Override
 	public String toString() {
-		return "MemberInfo [memberId=" + memberId + ", memberPwd=" + memberPwd + ", memberName=" + memberName
-				+ ", memberSsn=" + memberSsn + ", gender=" + gender + ", email=" + email + ", phone=" + phone
-				+ ", joinDate=" + joinDate + ", status=" + status + ", reportNum=" + reportNum + "]";
+		return "MemberInfo [currentPage=" + currentPage + ", listCount=" + listCount + ", limit=" + limit + ", maxPage="
+				+ maxPage + ", startPage=" + startPage + ", endPage=" + endPage + "]";
 	}
-	public String getMemberId() {
-		return memberId;
+
+
+	public int getCurrentPage() {
+		return currentPage;
 	}
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
 	}
-	public String getMemberPwd() {
-		return memberPwd;
+
+
+	public int getListCount() {
+		return listCount;
 	}
-	public void setMemberPwd(String memberPwd) {
-		this.memberPwd = memberPwd;
+
+
+	public void setListCount(int listCount) {
+		this.listCount = listCount;
 	}
-	public String getMemberName() {
-		return memberName;
+
+
+	public int getLimit() {
+		return limit;
 	}
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
+
+
+	public void setLimit(int limit) {
+		this.limit = limit;
 	}
-	public String getMemberSsn() {
-		return memberSsn;
+
+
+	public int getMaxPage() {
+		return maxPage;
 	}
-	public void setMemberSsn(String memberSsn) {
-		this.memberSsn = memberSsn;
+
+
+	public void setMaxPage(int maxPage) {
+		this.maxPage = maxPage;
 	}
-	public String getGender() {
-		return gender;
+
+
+	public int getStartPage() {
+		return startPage;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
+
+
+	public void setStartPage(int startPage) {
+		this.startPage = startPage;
 	}
-	public String getEmail() {
-		return email;
+
+
+	public int getEndPage() {
+		return endPage;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
 	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	public Date getJoinDate() {
-		return joinDate;
-	}
-	public void setJoinDate(Date joinDate) {
-		this.joinDate = joinDate;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	public int getReportNum() {
-		return reportNum;
-	}
-	public void setReportNum(int reportNum) {
-		this.reportNum = reportNum;
-	}
+
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 	
 	
 	
+	
 }
+

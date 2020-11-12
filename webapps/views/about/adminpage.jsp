@@ -8,7 +8,14 @@
 </head>
 <body>
 <%@ include file="../common/adminheader.jsp" %>
-<%@ include file="../manage/member_manage.jsp" %>
+<br />
+<br />
+<br />
+
+
+
+
 <%@ include file="../common/adminfooter.jsp" %>
 </body>
 </html>
+

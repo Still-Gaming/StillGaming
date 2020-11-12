@@ -8,11 +8,15 @@ import com.kh.jsp.common.exception.MemberException;
 import com.kh.jsp.member.model.dao.MemberDAO;
 import com.kh.jsp.member.model.vo.Member;
 
+
+
 public class MemberService {
 
 	public MemberService(){}
 	
+	
 	private Connection con;
+	
 	private MemberDAO mDAO = new MemberDAO();
 
 	public int insertMember(Member joinMember) {
