@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.jsp.common.exception.GameInfoException;
 import com.kh.jsp.gameinfo.model.service.GameInfoService;
+import com.kh.jsp.gameinfo.model.vo.GameImage;
 import com.kh.jsp.gameinfo.model.vo.GameInfo;
 import com.kh.jsp.gameinfo.model.vo.PageInfo;
 
@@ -38,7 +39,7 @@ public class GameSearch extends HttpServlet {
 		
 		String keyword = request.getParameter("keyword");
 		
-		ArrayList<GameInfo> list = new ArrayList<>();
+		ArrayList<GameImage> list = new ArrayList<>();
 		
 		GameInfoService gi = new GameInfoService();
 		
@@ -48,6 +49,9 @@ public class GameSearch extends HttpServlet {
 		try {
 			list = gi.searchGame(condition, keyword);
 			
+			PageInfo pi = new PageInfo(1, 10, 10, 1, 1, 1);
+			
+			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
 			
 			page = "views/shop/shop.jsp";
@@ -75,3 +79,4 @@ public class GameSearch extends HttpServlet {
 	}
 
 }
+
