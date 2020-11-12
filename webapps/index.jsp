@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.jsp.gameinfo.model.vo.*, java.util.*" %>
+<%
+	ArrayList<GameImage> list = (ArrayList<GameImage>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 

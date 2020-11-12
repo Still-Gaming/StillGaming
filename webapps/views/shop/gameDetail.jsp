@@ -48,7 +48,7 @@
     			<div class="row">
     				<div class="col-lg-3">
     					<div class="anime__details__pic set-bg" data-setbg="<%= request.getContextPath() %>/resources/gameimageUploadFiles/<%= gie.getGmimgCgfile() %>">
-                            <div class="comment"><i class="fa fa-comments"></i> 11</div><!-- 왼쪽 아래 말풍선 -->
+                            <!-- <div class="comment"><i class="fa fa-comments"></i> 11</div> --><!-- 왼쪽 아래 말풍선 -->
                             <div class="view"><i class="fa fa-check"></i><%= gi.getGminfoAgeRank() %></div>
                         </div>
     				</div>
@@ -84,8 +84,8 @@
                                 </div>
                             </div>
                             <div class="anime__details__btn">
-                                <a href="#" class="follow-btn"><i class="fa fa-krw"></i>바로 결제</a>
-                                <a href="#" class="watch-btn"><i class="fa fa-shopping-cart" id="cart"></i><span>장바구니 담기</span> <i
+                                <!-- <a href="#" class="follow-btn"><i class="fa fa-krw"></i>바로 결제</a> -->
+                                <a href="#" class="watch-btn" id="cart"><i class="fa fa-shopping-cart"></i><span>장바구니 담기</span> <i
                                     class="fa fa-angle-right"></i></a>
                             </div>
 			    		</div>
@@ -173,7 +173,7 @@
 							<input type="hidden" name="comtLevel"  value="1"/>
                             <textarea name="comtCont" placeholder="내용을 입력해주세요."></textarea>
                             <% if(m != null) { %>
-                        		<input type="hidden" name="memberId" value="<%= m.getMemberId() %>">
+                        		<input type="hidden" name="memberId" id="memberId" value="<%= m.getMemberId() %>">
                             	<button type="submit"><i class="fa fa-location-arrow"></i> 등록</button>
                             <% } else { %>
                             	<button type="submit" disabled><i class="fa fa-location-arrow"></i> 등록</button>
@@ -273,15 +273,16 @@
 				$.ajax({
 					url : '/StillGaming/insert.cart',
 					type : 'post',
-					data : { gmifNum : $('#gminfoNum').val() },
+					data : { memberId : $('#memberId').val(), 
+							 gminfoNum : $('#gminfoNum').val() },
 					success : function(data){
-						if( data == 0 ) {
-							alert("사용 가능한 아이디입니다.");
+						if( data == 1 ) {
+							alert('장바구니에 등록되었습니다.');
 						} else {
-							alert("이미 사용 중인 아이디입니다.")
+							alert('이미 등록된 게임입니다.');
 						}
 					}, error : function(){
-						console.log("에러 발생");
+						console.log('장바구니 담기 에러 발생');
 					}
 				});
 			});
