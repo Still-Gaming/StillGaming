@@ -216,7 +216,8 @@
     </section>
     
     <%@ include file="/views/common/footer.jsp" %> 
-		
+	
+	<% if (m != null) { %>
 		<script>
 		
 			function reComment(obj) {
@@ -299,6 +300,9 @@
 			}
 			
 		</script>
+		
+	<% } %>
+	
 	<br />
 	<br />
 	<br />
