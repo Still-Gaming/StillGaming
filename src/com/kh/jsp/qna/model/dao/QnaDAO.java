@@ -2,6 +2,7 @@ package com.kh.jsp.qna.model.dao;
 
 import java.io.FileNotFoundException;
 
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -10,13 +11,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Properties;
 
 import com.kh.jsp.board.model.dao.BoardDAO;
 import com.kh.jsp.board.model.vo.BoardFile;
+
 import com.kh.jsp.common.exception.BoardException;
 import com.kh.jsp.common.exception.QnaException;
 import com.kh.jsp.member.model.dao.MemberDAO;
+
 import com.kh.jsp.qna.model.vo.Qna;
 import com.kh.jsp.qna.model.vo.QnaFile;
 
@@ -141,4 +145,50 @@ public Qna selectOne(Connection con, int qno) {
 	return q;
 
 	}
+
+public ArrayList<Qna> selectList(Connection con) throws QnaException { 
+	
+	ArrayList<Qna> list = new ArrayList<>(); // 공지사항 목록 담을 공간
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	
+	String sql = prop.getProperty("selectList");
+	
+	try {
+		pstmt = con.prepareStatement(sql);
+		
+		rset = pstmt.executeQuery();
+	
+		while (rset.next()) {
+			
+			Qna q = new Qna();
+			
+			q.setQno(      rset.getInt(1)    );
+			q.setMemberId(   rset.getString(2) );
+			q.setQcode( rset.getInt(3) );
+			q.setQtitle(  rset.getString(4) );
+			q.setQcontent(   rset.getString(5)    );
+			q.setQdate(    rset.getDate(6)   );
+			q.setQanswer(   rset.getString(7)    );
+			
+			list.add(q);
+			
+			
+		}
+		
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
+		throw new QnaException("[DAO] : " + e.getMessage());
+		
+	} finally {
+		close(rset);
+		close(pstmt);
+	}
+	
+	return list;
+}
+	
+	
+
 }

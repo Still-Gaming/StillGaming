@@ -22,13 +22,13 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
  * Servlet implementation class InsertQnAServlet
  */
 @WebServlet("/qna.do")
-public class QnaServlet extends HttpServlet {
+public class QnaInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnaServlet() {
+    public QnaInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

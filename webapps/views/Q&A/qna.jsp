@@ -55,7 +55,7 @@ table, tr, td {
 			<td width="70" align="center">제목</td>
 			<td width="330"><input type="text" name="qtitle" size="30">
 			<select name="qcode" style="display:block;">
-					<option value="1">배송문의</option>
+					<option value="1">게임문의</option>
 					<option value="2">기타문의</option>
 					<option value="3">환불문의</option>
 			</select>

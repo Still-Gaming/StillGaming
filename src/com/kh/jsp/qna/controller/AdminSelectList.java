@@ -3,67 +3,63 @@ package com.kh.jsp.qna.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.jsp.board.model.service.BoardService;
-import com.kh.jsp.board.model.vo.Board;
-import com.kh.jsp.board.model.vo.BoardFile;
-import com.kh.jsp.boardComment.model.serivce.BoardCommentService;
-import com.kh.jsp.boardComment.model.vo.BoardComment;
-import com.kh.jsp.common.exception.BoardException;
+
+import com.kh.jsp.common.exception.QnaException;
+
+
 import com.kh.jsp.qna.model.service.QnaService;
+import com.kh.jsp.qna.model.vo.Qna;
 
 /**
- * Servlet implementation class BoardSelectOne
+ * Servlet implementation class NoticeSelectList
  */
-@WebServlet("/selectOne.bo")
-public class AdminSelectOne extends HttpServlet {
+@WebServlet("/adminselectlist.do")
+public class AdminSelectList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminSelectOne() {
+    public AdminSelectList() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int qNo = Integer.parseInt(request.getParameter("qNo"));
+		// 공지사항 여러 개 조회를 위한 배열(ArrayList)
+		// 목록 형태로 (ArrayList) 데이터를 전달하는 서블릿
+		ArrayList<Qna> list = new ArrayList<>();
 		
 		QnaService qs = new QnaService();
-		ArrayList<QnaComment> qlist = new QnaCommentService().selectList(qNo);
 		
-		String page = "";
+		String page = null; // 이동할 페이지 정보
 		
 		try {
-			QNA q = qs.selectOne(qNo);
-			BoardFile bf = qs.selectBoardFile(qNo);
+			list = qs.selectList();
 			
-			bs.plusCount(boardNo);
-			b.setBoardCount(b.getBoardCount() + 1);
+			request.setAttribute("list", list);
 			
-			request.setAttribute("board", b);
-			request.setAttribute("boardFile", bf);
-			request.setAttribute("clist", clist);
+			page = "views/Q&A/admin_qnaList.jsp";
 			
-			
-			page = "views/board/boardDetail.jsp";
-			
-		} catch (BoardException e) {
+		} catch (QnaException e) {
 			
 			request.setAttribute("exception", e);
-			request.setAttribute("error-msg", "게시글 상세 조회 실패");
+			request.setAttribute("error-msg", "공지사항 조회 실패!");
 			
 			page = "views/common/errorPage.jsp";
 			
 		} finally {
+			
 			request.getRequestDispatcher(page).forward(request, response);
 		}
 	}
@@ -72,6 +68,7 @@ public class AdminSelectOne extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
