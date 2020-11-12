@@ -20,7 +20,7 @@ import com.kh.jsp.qna.model.service.QnaService;
 /**
  * Servlet implementation class BoardSelectOne
  */
-@WebServlet("/selectOne.bo")
+@WebServlet("/adminselectone.do")
 public class AdminSelectOne extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

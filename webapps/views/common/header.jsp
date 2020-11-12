@@ -30,12 +30,8 @@
                                         <li><a href="<%= request.getContextPath() %>/selectList.bo" id="drop">자유게시판</a></li>
                                     </ul>
                                 </li>
-<<<<<<< HEAD
-                                 <li><a href="#" >Q&A<span class="arrow_carrot-down"></span></a>
-=======
                                 
 								<li><a href="#" >Q&A<span class="arrow_carrot-down"></span></a>
->>>>>>> refs/remotes/origin/develop
                                    <ul class="dropdown">
                                         <li><a href="<%= request.getContextPath()%>/views/Q&A/faq.jsp" id="drop">FAQ</a></li>
                                         <li><a href="<%= request.getContextPath()%>/views/Q&A/qna.jsp" id="drop">1:1문의</a></li>

@@ -153,7 +153,7 @@ public ArrayList<Qna> selectList(Connection con) throws QnaException {
 	ResultSet rset = null;
 	
 	String sql = prop.getProperty("selectList");
-	
+	System.out.println(sql);
 	try {
 		pstmt = con.prepareStatement(sql);
 		

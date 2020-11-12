@@ -46,7 +46,7 @@ public class AdminSelectList extends HttpServlet {
 		
 		try {
 			list = qs.selectList();
-			
+			System.out.println(list.size());
 			request.setAttribute("list", list);
 			
 			page = "views/Q&A/admin_qnaList.jsp";

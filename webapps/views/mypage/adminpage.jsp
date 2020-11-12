@@ -3,18 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
+
 <meta charset="UTF-8">
 </head>
 <body>
+<%@ include file="../common/adminheader.jsp" %>
 
-
-	<form action="/QNA/adminqna.jsp"  name = "admin_qna" method = "get">
-		<input type="button" value="관리자 q&a">
-	</form>
+	
 
 </body>
-=======
+
     <meta charset="UTF-8">
     <meta name="description" content="Anime Template">
     <meta name="keywords" content="Anime, unica, creative, html">
@@ -40,11 +38,11 @@
 </head>
 <body>
 
-	<%@ include file="../common/adminheader.jsp" %>
+	
 	
 	<%@ include file="../manage/member_manage.jsp" %>
 	
-	<%@ include file="../common/adminfooter.jsp" %>
+	
 
 </body>
 
@@ -57,8 +55,8 @@
 <script src="<%= request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
->>>>>>> refs/remotes/origin/develop
 
 
+<%@ include file="../common/adminfooter.jsp" %>
 </body>
 </html>
