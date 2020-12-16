@@ -51,6 +51,8 @@ public class BoardUpdate extends HttpServlet {
 				maxSize, "UTF-8", new MyRenamePolicy());
 		
 		int boardNo = Integer.parseInt(mre.getParameter("boardNo"));
+		String boardTitle = mre.getParameter("boardTitle");
+		String boardText = mre.getParameter("boardText");
 		
 		String fileName = mre.getOriginalFileName("file");
 		String fileChangeName = mre.getFilesystemName("file");
@@ -60,16 +62,28 @@ public class BoardUpdate extends HttpServlet {
 		try {
 			Board b = bs.selectBoard(boardNo);
 			
+			b.setBoardTitle(boardTitle);
+			b.setBoardText(boardText);
+			
 			BoardFile bf = null;
+			
+			int result = 0;
 			
 			if(fileName != null) {
 				bf = bs.selectBoardFile(boardNo);
 				
-				bf.setFileName(fileName);
-				bf.setFileChangeName(fileChangeName);
+				if(bf == null) {
+					
+					result = bs.updateBoard(b, new BoardFile(fileName, fileChangeName, filePath));
+					
+				} else {
+					bf.setFileName(fileName);
+					bf.setFileChangeName(fileChangeName);
+					bf.setFilePath(filePath);
+					
+					result = bs.updateBoard(b, bf, filePath);
+				}
 			}
-			
-			int result = bs.updateBoard(b, bf, filePath);
 			
 			response.sendRedirect("selectOne.bo?boardNo=" + boardNo);
 			

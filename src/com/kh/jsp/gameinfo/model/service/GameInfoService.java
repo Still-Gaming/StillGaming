@@ -173,6 +173,17 @@ public class GameInfoService {
 		return list;
 	}
 
+
+	public ArrayList<GameImage> indexList() throws GameInfoException {
+		con = getConnection();
+		
+		ArrayList<GameImage> list = nDAO.indexList(con);
+		
+		close(con);
+		
+		return list;
+	}
+
 }
 	
 

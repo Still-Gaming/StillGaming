@@ -16,6 +16,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Still Gaming | 결제</title>
 
+<link rel="shortcut icon" href="<%=request.getContextPath() %>/resources/img/site_ico.ico" type="image/x-icon">
+<link rel="icon" href="<%=request.getContextPath() %>/resources/img/site_ico.ico" type="image/x-icon">
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
@@ -80,7 +82,7 @@ h4 {
 	
 	
 	<section>
-	<h4 align="center">주문서 작성</h4>
+	<h4 align="center">주문서</h4>
 	<hr id="hr1" />
 	<br />
 	<br />

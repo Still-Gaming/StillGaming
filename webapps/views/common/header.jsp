@@ -4,6 +4,7 @@
 	Member m = (Member)session.getAttribute("member");
 %>
 	<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/headerstyle.css" type="text/css">
+	
 	<style>
 
 	.header {	
@@ -18,7 +19,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">
-                        <a href="<%= request.getContextPath() %>">
+                        <a href="/StillGaming/">
                             <img src="/StillGaming/resources/img/sglogo.png">
                         </a>
                     </div>
@@ -37,11 +38,6 @@
                                         <li><a href="<%= request.getContextPath()%>/views/Q&A/faq.jsp" id="drop">FAQ</a></li>
                                         <li><a href="<%= request.getContextPath()%>/views/Q&A/qna.jsp" id="drop">1:1문의</a></li>
                                    </ul>
-                                <li><a href="#" >admin<span class="arrow_carrot-down"></span></a>
-                                   <ul class="dropdown">
-                                        <li><a href="/StillGaming/views/mypage/adminpage.jsp" id="drop">adminpage</a></li>
-                                </ul>
-								</li>
                             </ul>
                         </nav>
                     </div>

@@ -40,30 +40,30 @@ public class BoardSearch extends HttpServlet {
 		int endPage;
 		int maxPage;
 		int currentPage;
-		int limit = 5;
-		int limitList = 10;
-		currentPage = 1;
-		
-		if(request.getParameter("currentPage") != null) {
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		}
-		
-		BoardService bs = new BoardService();
-		
-		try {
-			HashMap<String, Object> hmap = bs.searchBoard(currentPage, limit, category, searchWord);
-			
-			int listCount = (int)hmap.get("listCount");
-			ArrayList<Board> list = (ArrayList<Board>)hmap.get("list");
-			
-			maxPage = (int)Math.ceil((double)listCount/limitList);
-			startPage = ((currentPage - 1)/limitList) * limitList + 1;
-			endPage = startPage + limit - 1;
-			
-			if(endPage > maxPage) {
-				endPage = maxPage;
-			}
-			
+		int limit = 10;
+	      
+	      currentPage = 1;
+	      
+	      if(request.getParameter("currentPage") != null) {
+	         currentPage = Integer.parseInt(request.getParameter("currentPage"));
+	      }
+	      
+	      BoardService bs = new BoardService();
+	      
+	      try {
+	         HashMap<String, Object> hmap = bs.searchBoard(currentPage, limit, category, searchWord);
+	         
+	         int listCount = (int)hmap.get("listCount");
+	         ArrayList<Board> list = (ArrayList<Board>)hmap.get("list");
+	         
+	         maxPage = (int)Math.ceil((double)listCount/limit);
+	         startPage = (((currentPage - 1)/5) * 5) + 1;
+	         endPage = startPage + 4;
+	         
+	         if(endPage > maxPage) {
+	            endPage = maxPage;
+	         }
+	         
 			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage, category, searchWord);
 			
 			request.setAttribute("pi", pi);

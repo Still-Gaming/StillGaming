@@ -10,6 +10,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Still Gaming | 결제</title>
 
+<link rel="shortcut icon" href="<%=request.getContextPath() %>/resources/img/site_ico.ico" type="image/x-icon">
+<link rel="icon" href="<%=request.getContextPath() %>/resources/img/site_ico.ico" type="image/x-icon">
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
@@ -47,11 +49,7 @@
 	</div>
 	
 	<br />
-	
-	<div class="returnpay" align="center"> 
-		<button class="ui red button" onclick="rePayButton();">다시 결제하기</button>
-	</div>
-	
+
 		
 	<br />
 	<br />
@@ -61,11 +59,6 @@
 	
 	<%@ include file="../common/footer.jsp" %>
 
-	<script>
-		function(rePayButton){
-			location.href="/StillGaming/views/mypage/orderForm.jsp";
-		}
-		
-	</script>
+
 </body>
 </html>
